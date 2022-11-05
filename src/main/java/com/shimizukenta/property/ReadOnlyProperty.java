@@ -2,10 +2,11 @@ package com.shimizukenta.property;
 
 public interface ReadOnlyProperty<T> {
 	
+	/** 
+	 * Value getter.
+	 * 
+	 * @return value
+	 */
 	public T get();
-	
-	public boolean addChangeListener(ChangeListener<T> l);
-	
-	public boolean removeChangeListener(ChangeListener<T> l);
 	
 }

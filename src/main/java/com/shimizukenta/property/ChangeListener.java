@@ -1,8 +1,8 @@
 package com.shimizukenta.property;
 
-import java.awt.event.ActionListener;
+import java.util.EventListener;
 
-public interface ChangeListener<T> extends ActionListener {
+public interface ChangeListener<T> extends EventListener {
 	
 	public void changed(T v);
 }

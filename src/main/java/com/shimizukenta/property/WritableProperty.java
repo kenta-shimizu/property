@@ -2,5 +2,10 @@ package com.shimizukenta.property;
 
 public interface WritableProperty<T> {
 	
-	public void set(T v);
+	/**
+	 * Value setter.
+	 * 
+	 * @param value
+	 */
+	public void set(T value);
 }

@@ -1,37 +1,92 @@
 package com.shimizukenta.property;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Objects;
 
-public abstract class AbstractProperty<T> implements Property<T> {
+public abstract class AbstractProperty<T, U extends WritableProperty<T>> implements Property<T, U> {
 	
-	public AbstractProperty() {
-		/* Nothing */
+	private static final long serialVersionUID = 673883739488369977L;
+	
+	private T v;
+	
+	protected AbstractProperty(T initial) {
+		this.v = initial;
 	}
 	
-	private final Object sync = new Object();
-	
-	private final Collection<ChangeListener<T>> changeLstnrs = new ArrayList<>();
+	protected final Object _sync = new Object();
 	
 	@Override
-	public boolean addChangeListener(ChangeListener<T> l) {
-		synchronized ( this.sync ) {
-			return this.changeLstnrs.add(l);
+	public void set(T value) {
+		synchronized ( this._sync ) {
+			if ( ! Objects.equals(this.v, value) ) {
+				this._set(value);
+				this._notifyChanged(this.v);
+			}
+		}
+	}
+	
+	protected final void _set(T value) {
+		this.v = value;
+	}
+	
+	@Override
+	public T get() {
+		synchronized ( this._sync ) {
+			return this._get();
+		}
+	}
+	
+	private final Collection<ChangeListener<? super T>> changeLstnrs = new HashSet<>();
+	
+	protected final T _get() {
+		return v;
+	}
+	
+	@Override
+	public boolean addChangeListener(ChangeListener<? super T> l) {
+		synchronized ( this._sync ) {
+			boolean f = this.changeLstnrs.add(l);
+			if ( f ) {
+				l.changed(this._get());
+			}
+			return f;
 		}
 	}
 	
 	@Override
-	public boolean removeChangeListener(ChangeListener<T> l) {
-		synchronized ( this.sync ) {
+	public boolean removeChangeListener(ChangeListener<? super T> l) {
+		synchronized ( this._sync ) {
 			return this.changeLstnrs.remove(l);
 		}
 	}
 	
-	protected void notifyChanged(T v) {
-		synchronized ( this.sync ) {
-			for ( ChangeListener<T> l : this.changeLstnrs ) {
-				l.changed(v);
+	private final Collection<U> binds = new HashSet<>();
+	
+	@Override
+	public boolean bind(U property) {
+		synchronized ( this._sync ) {
+			boolean f = this.binds.add(property);
+			if ( f ) {
+				property.set(this._get());
 			}
+			return f;
+		}
+	}
+	
+	@Override
+	public boolean unbind(U property) {
+		synchronized ( this._sync ) {
+			return this.binds.remove(property);
+		}
+	}
+	
+	protected final void _notifyChanged(T v) {
+		for ( ChangeListener<? super T> l : this.changeLstnrs ) {
+			l.changed(v);
+		}
+		for ( U p : this.binds ) {
+			p.set(v);
 		}
 	}
 	

@@ -7,7 +7,7 @@ package com.shimizukenta.property;
  * @author kenta-shimizu
  *
  */
-public interface FloatProperty extends NumberProperty<Float>, ReadOnlyFloatProperty, WritableFloatProperty, ObservableFloatProperty {
+public interface FloatProperty extends NumberProperty<Float>, FloatGettable, FloatSettable, FloatObservable {
 	
 	/**
 	 * FloatProperty builder.

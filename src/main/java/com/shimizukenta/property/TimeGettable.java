@@ -10,28 +10,40 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-public interface ReadOnlyTimeProperty extends ReadOnlyProperty<TimeoutAndUnit> {
+/**
+ * 
+ * @author kenta-shimizu
+ *
+ */
+public interface TimeGettable extends Gettable<TimeoutAndUnit> {
 	
 	/**
 	 * Returns {@link #get()}.timeout().
 	 * 
 	 * @return get().timeout()
 	 */
-	public long getTimeout();
+	default public long getTimeout() {
+		return this.get().timeout();
+	}
 	
 	/**
 	 * Returns {@link #get()}.unit().
 	 * 
-	 * @return get().unit(.
+	 * @return get().unit().
 	 */
-	public TimeUnit getTimeUnit();
+	default public TimeUnit getTimeUnit() {
+		return this.get().unit();
+	}
 	
 	/**
 	 * Thread sleep.
 	 * 
 	 * @throws InterruptedException
 	 */
-	public void sleep() throws InterruptedException;
+	default public void sleep() throws InterruptedException {
+		TimeoutAndUnit a = this.get();
+		a.unit().sleep(a.timeout());
+	}
 	
 	/**
 	 * Thread join.
@@ -39,7 +51,10 @@ public interface ReadOnlyTimeProperty extends ReadOnlyProperty<TimeoutAndUnit> {
 	 * @param thread
 	 * @throws InterruptedException
 	 */
-	public void join(Thread thread) throws InterruptedException;
+	default public void join(Thread thread) throws InterruptedException {
+		TimeoutAndUnit a = this.get();
+		a.unit().timedJoin(thread, a.timeout());
+	}
 	
 	/**
 	 * Synchronized wait.
@@ -47,7 +62,10 @@ public interface ReadOnlyTimeProperty extends ReadOnlyProperty<TimeoutAndUnit> {
 	 * @param sync
 	 * @throws InterruptedException
 	 */
-	public void wait(Object sync) throws InterruptedException;
+	default public void wait(Object sync) throws InterruptedException {
+		TimeoutAndUnit a = this.get();
+		a.unit().timedWait(sync, a.timeout());
+	}
 	
 	/**
 	 * BlockingQueue poll.
@@ -57,7 +75,10 @@ public interface ReadOnlyTimeProperty extends ReadOnlyProperty<TimeoutAndUnit> {
 	 * @return poll-value
 	 * @throws InterruptedException
 	 */
-	public <T> T poll(BlockingQueue<T> queue) throws InterruptedException;
+	default public <T> T poll(BlockingQueue<T> queue) throws InterruptedException {
+		TimeoutAndUnit a = this.get();
+		return queue.poll(a.timeout(),  a.unit());
+	}
 	
 	/**
 	 * Future get.
@@ -69,7 +90,10 @@ public interface ReadOnlyTimeProperty extends ReadOnlyProperty<TimeoutAndUnit> {
 	 * @throws TimeoutException
 	 * @throws ExecutionException
 	 */
-	public <T> T future(Future<T> future) throws InterruptedException, TimeoutException, ExecutionException;
+	default public <T> T future(Future<T> future) throws InterruptedException, TimeoutException, ExecutionException {
+		TimeoutAndUnit a = this.get();
+		return future.get(a.timeout(), a.unit());
+	}
 	
 	/**
 	 * ExecutorService invokeAll.
@@ -80,25 +104,31 @@ public interface ReadOnlyTimeProperty extends ReadOnlyProperty<TimeoutAndUnit> {
 	 * @return Future result list
 	 * @throws InterruptedException
 	 */
-	public <T> List<Future<T>> invokeAll(
+	default public <T> List<Future<T>> invokeAll(
 			ExecutorService executorService,
 			Collection<? extends Callable<T>> tasks)
-					throws InterruptedException;
+					throws InterruptedException {
+		TimeoutAndUnit a = this.get();
+		return executorService.invokeAll(tasks, a.timeout(), a.unit());
+	}
 	
 	/**
 	 * ExecutorService invokeAny.
 	 * 
 	 * @param <T>
 	 * @param executorService
-	 * @param tatks
+	 * @param tasks
 	 * @return Callable result
 	 * @throws InterruptedException
 	 * @throws TimeoutException
 	 * @throws ExecutionException
 	 */
-	public <T> T invokeAny(
+	default public <T> T invokeAny(
 			ExecutorService executorService,
-			Collection<? extends Callable<T>> tatks)
-					throws InterruptedException, TimeoutException, ExecutionException;
+			Collection<? extends Callable<T>> tasks)
+					throws InterruptedException, TimeoutException, ExecutionException {
+		TimeoutAndUnit a = this.get();
+		return executorService.invokeAny(tasks, a.timeout(), a.unit());
+	}
 	
 }

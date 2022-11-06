@@ -7,7 +7,7 @@ package com.shimizukenta.property;
  * @author kenta-shimizu
  *
  */
-public interface DoubleProperty extends NumberProperty<Double>, ReadOnlyDoubleProperty, WritableDoubleProperty, ObservableDoubleProperty {
+public interface DoubleProperty extends NumberProperty<Double>, DoubleGettable, DoublezSettable, DoubleObservable {
 	
 	/**
 	 * DoubleProperty builder.

@@ -7,6 +7,6 @@ package com.shimizukenta.property;
  * @author kenta-shimizu
  *
  */
-public interface ObservableLongProperty extends ObservableNumberProperty<Long> {
-
+public interface NumberSettable<T extends Number> extends Settable<T> {
+	
 }

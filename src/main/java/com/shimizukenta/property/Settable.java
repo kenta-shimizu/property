@@ -1,6 +1,12 @@
 package com.shimizukenta.property;
 
-public interface WritableProperty<T> {
+/**
+ * 
+ * @author kenta-shimizu
+ *
+ * @param <T>
+ */
+public interface Settable<T> {
 	
 	/**
 	 * Value setter.
@@ -8,4 +14,5 @@ public interface WritableProperty<T> {
 	 * @param value
 	 */
 	public void set(T value);
+	
 }

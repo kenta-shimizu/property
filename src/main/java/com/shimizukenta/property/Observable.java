@@ -1,12 +1,12 @@
 package com.shimizukenta.property;
 
-public interface ObservableProperty<T, U extends WritableProperty<T>> {
+public interface Observable<T, U extends Settable<T>> {
 	
 	/**
 	 * Add change-listener.
 	 * 
 	 * @param l
-	 * @return true if add success
+	 * @return true if add success.
 	 */
 	public boolean addChangeListener(ChangeListener<? super T> l);
 	
@@ -14,7 +14,7 @@ public interface ObservableProperty<T, U extends WritableProperty<T>> {
 	 * Remove change-listener.
 	 * 
 	 * @param l
-	 * @return true if remove success
+	 * @return true if remove success.
 	 */
 	public boolean removeChangeListener(ChangeListener<? super T> l);
 	
@@ -22,7 +22,7 @@ public interface ObservableProperty<T, U extends WritableProperty<T>> {
 	 * Bind Property.
 	 * 
 	 * @param p
-	 * @return true if bind success
+	 * @return true if bind success.
 	 */
 	public boolean bind(U property);
 	
@@ -30,7 +30,7 @@ public interface ObservableProperty<T, U extends WritableProperty<T>> {
 	 * Unbind property.
 	 * 
 	 * @param p
-	 * @return true if unbind success
+	 * @return true if unbind success.
 	 */
 	public boolean unbind(U property);
 	

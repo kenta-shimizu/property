@@ -2,6 +2,7 @@ package propertytest;
 
 import java.util.concurrent.TimeUnit;
 
+import com.shimizukenta.property.BooleanCompution;
 import com.shimizukenta.property.BooleanProperty;
 import com.shimizukenta.property.IntegerProperty;
 import com.shimizukenta.property.TimeProperty;
@@ -18,16 +19,22 @@ public class PropertyTest {
 			
 			echo("Property-Test start.");
 			
-			final TimeProperty tp = TimeProperty.newInstance(1.5F);
+			final TimeProperty tp = TimeProperty.newInstance(0.5F);
 			final BooleanProperty bp = BooleanProperty.newInstance(false);
 			final IntegerProperty ip = IntegerProperty.newInstance(1);
 			
+			final BooleanCompution bc = BooleanCompution.not(bp);
+			
 			bp.addChangeListener(f -> {
-				echo("changed: " + f);
+				echo("bp changed: " + f);
 			});
 			
 			ip.addChangeListener(n -> {
-				echo("changed: " + n);
+				echo("ip changed: " + n);
+			});
+			
+			bc.addChangeListener(f -> {
+				echo("bool-compution: " + f);
 			});
 			
 			echo("try set false.");
@@ -42,6 +49,8 @@ public class PropertyTest {
 					bp.set(false);
 					tp.sleep();
 					ip.set(3);
+					tp.sleep();
+					bp.set(true);
 				}
 				catch ( InterruptedException ignore ) {
 				}
@@ -58,12 +67,21 @@ public class PropertyTest {
 			echo("wait-until > 2.5");
 			ip.waitUntilGreaterThan(2.5f, 3L, TimeUnit.SECONDS);
 			
+			echo("wait-until compute false.");
+			bc.waitUntilFalse();
+			
 			echo("Property-Test end.");
 			
 		}
 		catch ( Throwable t ) {
 			echo(t);
 		}
+		
+		/*
+		 * Gettable
+		 * Settable
+		 * 
+		 */
 		
 	}
 	

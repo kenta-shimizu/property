@@ -2,31 +2,20 @@ package com.shimizukenta.property;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Objects;
 
-public abstract class AbstractProperty<T, U extends Settable<T>> implements Property<T, U> {
+public abstract class AbstractCompution<T, U extends Settable<T>> implements Compution<T, U> {
 	
-	private static final long serialVersionUID = 673883739488369977L;
+	private static final long serialVersionUID = -3295956325648873642L;
 	
 	private T v;
 	
-	protected AbstractProperty(T initial) {
+	protected final Object _sync = new Object();
+	
+	protected AbstractCompution(T initial) {
 		this.v = initial;
 	}
 	
-	protected final Object _sync = new Object();
-	
-	@Override
-	public void set(T value) {
-		synchronized ( this._sync ) {
-			if ( ! Objects.equals(this.v, value) ) {
-				this._set(value);
-				this._notifyChanged(this.v);
-			}
-		}
-	}
-	
-	protected final void _set(T value) {
+	protected void _set(T value) {
 		this.v = value;
 	}
 	
@@ -38,7 +27,7 @@ public abstract class AbstractProperty<T, U extends Settable<T>> implements Prop
 	}
 	
 	protected final T _get() {
-		return v;
+		return this.v;
 	}
 	
 	private final Collection<ChangeListener<? super T>> changeLstnrs = new HashSet<>();
@@ -73,7 +62,7 @@ public abstract class AbstractProperty<T, U extends Settable<T>> implements Prop
 			return f;
 		}
 	}
-	
+
 	@Override
 	public boolean unbind(U property) {
 		synchronized ( this._sync ) {
@@ -81,7 +70,7 @@ public abstract class AbstractProperty<T, U extends Settable<T>> implements Prop
 		}
 	}
 	
-	protected final void _notifyChanged(T v) {
+	protected void _notifyChanged(T value) {
 		for ( ChangeListener<? super T> l : this.changeLstnrs ) {
 			l.changed(v);
 		}
@@ -89,5 +78,5 @@ public abstract class AbstractProperty<T, U extends Settable<T>> implements Prop
 			p.set(v);
 		}
 	}
-	
+
 }

@@ -12,7 +12,7 @@ import java.util.function.Predicate;
  * @author kenta-shimizu
  *
  */
-public abstract class AbstractNumberProperty<T extends Number> extends AbstractProperty<T, WritableNumberProperty<T>> implements NumberProperty<T> {
+public abstract class AbstractNumberProperty<T extends Number> extends AbstractProperty<T, NumberSettable<T>> implements NumberProperty<T> {
 	
 	private static final long serialVersionUID = -5768297706611678591L;
 	
@@ -31,35 +31,6 @@ public abstract class AbstractNumberProperty<T extends Number> extends AbstractP
 		}
 	}
 	
-	@Override
-	public byte byteValue() {
-		return get().byteValue();
-	}
-
-	@Override
-	public short shortValue() {
-		return get().shortValue();
-	}
-
-	@Override
-	public int intValue() {
-		return get().intValue();
-	}
-
-	@Override
-	public long longValue() {
-		return get().longValue();
-	}
-
-	@Override
-	public float floatValue() {
-		return get().floatValue();
-	}
-
-	@Override
-	public double doubleValue() {
-		return get().doubleValue();
-	}
 	
 	abstract protected boolean _isEqualTo(int value);
 	abstract protected boolean _isEqualTo(long value);
@@ -250,30 +221,6 @@ public abstract class AbstractNumberProperty<T extends Number> extends AbstractP
 	}
 	
 	@Override
-	public void waitUntilEqualTo(int value, ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilEqualTo(value, a.timeout(), a.unit());
-	}
-	
-	@Override
-	public void waitUntilEqualTo(long value, ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilEqualTo(value, a.timeout(), a.unit());
-	}
-	
-	@Override
-	public void waitUntilEqualTo(float value, ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilEqualTo(value, a.timeout(), a.unit());
-	}
-	
-	@Override
-	public void waitUntilEqualTo(double value, ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilEqualTo(value, a.timeout(), a.unit());
-	}
-	
-	@Override
 	public void waitUntilNotEqualTo(int value) throws InterruptedException {
 		this.__waitUntilInteger(this::_isNotEqualTo, value);
 	}
@@ -311,30 +258,6 @@ public abstract class AbstractNumberProperty<T extends Number> extends AbstractP
 	@Override
 	public void waitUntilNotEqualTo(double value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.__waitUntilDouble(this::_isNotEqualTo, value, timeout, unit);
-	}
-	
-	@Override
-	public void waitUntilNotEqualTo(int value, ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilNotEqualTo(value, a.timeout(), a.unit());
-	}
-	
-	@Override
-	public void waitUntilNotEqualTo(long value, ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilNotEqualTo(value, a.timeout(), a.unit());
-	}
-	
-	@Override
-	public void waitUntilNotEqualTo(float value, ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilNotEqualTo(value, a.timeout(), a.unit());
-	}
-	
-	@Override
-	public void waitUntilNotEqualTo(double value, ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilNotEqualTo(value, a.timeout(), a.unit());
 	}
 	
 	@Override
@@ -378,30 +301,6 @@ public abstract class AbstractNumberProperty<T extends Number> extends AbstractP
 	}
 	
 	@Override
-	public void waitUntilLessThan(int value, ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilLessThan(value, a.timeout(), a.unit());
-	}
-	
-	@Override
-	public void waitUntilLessThan(long value, ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilLessThan(value, a.timeout(), a.unit());
-	}
-	
-	@Override
-	public void waitUntilLessThan(float value, ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilLessThan(value, a.timeout(), a.unit());
-	}
-	
-	@Override
-	public void waitUntilLessThan(double value, ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilLessThan(value, a.timeout(), a.unit());
-	}
-	
-	@Override
 	public void waitUntilLessThanOrEqualTo(int value) throws InterruptedException {
 		this.__waitUntilInteger(this::_isLessThanOrEqualTo, value);
 	}
@@ -439,30 +338,6 @@ public abstract class AbstractNumberProperty<T extends Number> extends AbstractP
 	@Override
 	public void waitUntilLessThanOrEqualTo(double value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.__waitUntilDouble(this::_isLessThanOrEqualTo, value, timeout, unit);
-	}
-	
-	@Override
-	public void waitUntilLessThanOrEqualTo(int value, ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilLessThanOrEqualTo(value, a.timeout(), a.unit());
-	}
-	
-	@Override
-	public void waitUntilLessThanOrEqualTo(long value, ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilLessThanOrEqualTo(value, a.timeout(), a.unit());
-	}
-	
-	@Override
-	public void waitUntilLessThanOrEqualTo(float value, ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilLessThanOrEqualTo(value, a.timeout(), a.unit());
-	}
-	
-	@Override
-	public void waitUntilLessThanOrEqualTo(double value, ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilLessThanOrEqualTo(value, a.timeout(), a.unit());
 	}
 	
 	@Override
@@ -506,29 +381,6 @@ public abstract class AbstractNumberProperty<T extends Number> extends AbstractP
 	}
 	
 	@Override
-	public void waitUntilGreaterThan(int value, ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilGreaterThan(value, a.timeout(), a.unit());
-	}
-	
-	public void waitUntilGreaterThan(long value, ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilGreaterThan(value, a.timeout(), a.unit());
-	}
-	
-	@Override
-	public void waitUntilGreaterThan(float value, ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilGreaterThan(value, a.timeout(), a.unit());
-	}
-	
-	@Override
-	public void waitUntilGreaterThan(double value, ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilGreaterThan(value, a.timeout(), a.unit());
-	}
-	
-	@Override
 	public void waitUntilGreaterThanOrEqualTo(int value) throws InterruptedException {
 		this.__waitUntilInteger(this::_isGreaterThanOrEqualTo, value);
 	}
@@ -566,66 +418,6 @@ public abstract class AbstractNumberProperty<T extends Number> extends AbstractP
 	@Override
 	public void waitUntilGreaterThanOrEqualTo(double value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.__waitUntilDouble(this::_isGreaterThanOrEqualTo, value, timeout, unit);
-	}
-	
-	@Override
-	public void waitUntilGreaterThanOrEqualTo(int value, ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilGreaterThanOrEqualTo(value, a.timeout(), a.unit());
-	}
-	
-	@Override
-	public void waitUntilGreaterThanOrEqualTo(long value, ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilGreaterThanOrEqualTo(value, a.timeout(), a.unit());
-	}
-	
-	@Override
-	public void waitUntilGreaterThanOrEqualTo(float value, ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilGreaterThanOrEqualTo(value, a.timeout(), a.unit());
-	}
-	
-	@Override
-	public void waitUntilGreaterThanOrEqualTo(double value, ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilGreaterThanOrEqualTo(value, a.timeout(), a.unit());
-	}
-	
-	@Override
-	public void waitUntilEqualToZero(ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilEqualToZero(a.timeout(), a.unit());
-	}
-	
-	@Override
-	public void waitUntilNotEqualToZero(ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilNotEqualToZero(a.timeout(), a.unit());
-	}
-	
-	@Override
-	public void waitUntilLessThanZero(ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilLessThanZero(a.timeout(), a.unit());
-	}
-	
-	@Override
-	public void waitUntilGreaterThanZero(ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilGreaterThanZero(a.timeout(), a.unit());
-	}
-	
-	@Override
-	public void waitUntilLessThanOrEqualToZero(ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilLessThanOrEqualToZero(a.timeout(), a.unit());
-	}
-	
-	@Override
-	public void waitUntilGreaterThanOrEqualToZero(ReadOnlyTimeProperty p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilGreaterThanOrEqualToZero(a.timeout(), a.unit());
 	}
 	
 	@Override

@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
  * @author kenta-shimizu
  *
  */
-public interface TimeProperty extends Property<TimeoutAndUnit, WritableTimeProperty>, ReadOnlyTimeProperty, WritableTimeProperty {
+public interface TimeProperty extends Property<TimeoutAndUnit, TimeSettable>, TimeGettable, TimeSettable, TimeObservable {
 	
 	/**
 	 * TimeProperty builder.

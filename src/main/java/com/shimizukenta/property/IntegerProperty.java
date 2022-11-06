@@ -7,7 +7,7 @@ package com.shimizukenta.property;
  * @author kenta-shimizu
  *
  */
-public interface IntegerProperty extends NumberProperty<Integer>, ReadOnlyIntegerProperty, WritableIntegerProperty, ObservableIntegerProperty {
+public interface IntegerProperty extends NumberProperty<Integer>, IntegerGettable, IntegerSettable, IntegerObservable {
 	
 	/**
 	 * IntegerProperty builder.

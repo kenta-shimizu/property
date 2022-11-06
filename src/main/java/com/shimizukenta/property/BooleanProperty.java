@@ -5,13 +5,13 @@ package com.shimizukenta.property;
  * @author kenta-shimizu
  *
  */
-public interface BooleanProperty extends Property<Boolean, WritableBooleanProperty>, ReadOnlyBooleanProperty, WritableBooleanProperty, ObservableBooleanProperty {
+public interface BooleanProperty extends Property<Boolean, BooleanSettable>, BooleanGettable, BooleanSettable, BooleanObservable {
 	
 	/**
 	 * BooleanProperty builder.
 	 * 
 	 * @param initial
-	 * @return new-instance
+	 * @return new-instance.
 	 */
 	public static BooleanProperty newInstance(boolean initial) {
 		

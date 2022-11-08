@@ -22,7 +22,11 @@ public class AbstractBooleanCompution extends AbstractCompution<Boolean, Boolean
 			}
 		}
 	}
-
+	
+	protected void _set(boolean f) {
+		this._set(Boolean.valueOf(f));
+	}
+	
 	@Override
 	public void waitUntil(boolean f) throws InterruptedException {
 		synchronized ( this._sync ) {
@@ -45,5 +49,10 @@ public class AbstractBooleanCompution extends AbstractCompution<Boolean, Boolean
 			}
 		}
 	}
-
+	
+	@Override
+	public String toString() {
+		return this.get().toString();
+	}
+	
 }

@@ -3,6 +3,11 @@ package com.shimizukenta.property;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * 
+ * @author kenta-shimizu
+ *
+ */
 public abstract class AbstractOrBooleanCompution extends AbstractBooleanCompution {
 
 	private static final long serialVersionUID = 6618799540846521836L;

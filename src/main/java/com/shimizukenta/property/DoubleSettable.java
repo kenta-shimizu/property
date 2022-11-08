@@ -5,7 +5,7 @@ package com.shimizukenta.property;
  * @author kenta-shimizu
  *
  */
-public interface DoublezSettable extends NumberSettable<Double> {
+public interface DoubleSettable extends NumberSettable<Double> {
 	
 	/**
 	 * Value setter.

@@ -10,12 +10,12 @@ import java.util.Collection;
  */
 public interface BooleanCompution extends Compution<Boolean, BooleanSettable>, BooleanGettable, BooleanObservable {
 	
-	public static BooleanCompution and(BooleanObservable... observers) {
-		return and(Arrays.asList(observers));
+	public static BooleanCompution and(BooleanObservable... observables) {
+		return and(Arrays.asList(observables));
 	}
 	
-	public static BooleanCompution and(Collection<? extends BooleanObservable> observers) {
-		return new AbstractAndBooleanCompution(observers) {
+	public static BooleanCompution and(Collection<? extends BooleanObservable> observables) {
+		return new AbstractAndBooleanCompution(observables) {
 			
 			private static final long serialVersionUID = 7267460580158670298L;
 		};
@@ -32,8 +32,8 @@ public interface BooleanCompution extends Compution<Boolean, BooleanSettable>, B
 		};
 	}
 	
-	public static BooleanCompution not(BooleanObservable observer) {
-		return new AbstractNotBooleanCompution(observer) {
+	public static BooleanCompution not(BooleanObservable observables) {
+		return new AbstractNotBooleanCompution(observables) {
 			
 			private static final long serialVersionUID = -5546414119644980854L;
 		};
@@ -47,7 +47,7 @@ public interface BooleanCompution extends Compution<Boolean, BooleanSettable>, B
 	}
 	
 	public static BooleanCompution nand(BooleanObservable... observables) {
-		return nand(Arrays.asList(observables));
+		return not(and(observables));
 	}
 	
 	public static BooleanCompution nand(Collection<? extends BooleanObservable> observables) {
@@ -55,11 +55,19 @@ public interface BooleanCompution extends Compution<Boolean, BooleanSettable>, B
 	}
 	
 	public static BooleanCompution nor(BooleanObservable... observables) {
-		return nor(Arrays.asList(observables));
+		return not(or(observables));
 	}
 	
 	public static BooleanCompution nor(Collection<? extends BooleanObservable> observables) {
 		return not(or(observables));
 	}
-
+	
+	//TODO
+	//equalto
+	//notequalTo
+	//lessThan
+	//lessThanOrEqualTo
+	//greaterThan
+	//greaterThanOrEqualTo
+	
 }

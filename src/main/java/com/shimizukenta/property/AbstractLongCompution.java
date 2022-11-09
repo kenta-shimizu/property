@@ -1,5 +1,11 @@
 package com.shimizukenta.property;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 /**
  * 
  * @author kenta-shimizu
@@ -10,18 +16,31 @@ public abstract class AbstractLongCompution extends AbstractNumberCompution impl
 	private static final long serialVersionUID = -3048597701111574361L;
 	
 	protected static final Long ZERO = Long.valueOf(0L);
-	protected static final Long MAX = Long.valueOf(Long.MAX_VALUE);
-	protected static final Long MIN = Long.valueOf(Long.MIN_VALUE);
 	
-	public AbstractLongCompution(Long initial) {
-		super(initial);
+	private final List<Inner> inners = new ArrayList<>();
+	private final Function<? super List<? extends Number>, ? extends Number> compute;
+	
+	public AbstractLongCompution(
+			Collection<? extends NumberObservable<? extends Number>> observables,
+			Function<? super List<? extends Number>, ? extends Number> compute) {
+		
+		super(ZERO);
+		
+		this.compute = compute;
+		
+		observables.forEach(o -> {
+			Inner i = new Inner();
+			this.inners.add(i);
+			i.addChangeListener(o);
+		});
 	}
 	
-	protected void _set(long value) {
-		this._set(Long.valueOf(value));
+	protected void compute() {
+		this._set(this.compute.apply(
+				this.inners.stream()
+				.map(Inner::longValue)
+				.collect(Collectors.toList())));
 	}
-	
-	abstract protected void compute();
 	
 	protected class Inner {
 		

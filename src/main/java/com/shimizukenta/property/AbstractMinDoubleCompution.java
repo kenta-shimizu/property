@@ -3,7 +3,7 @@ package com.shimizukenta.property;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class AbstractMinDoubleCompution extends AbstractDoubleCompution {
+public abstract class AbstractMinDoubleCompution extends AbstractDoubleCompution {
 	
 	private static final long serialVersionUID = 9157262576036369567L;
 	

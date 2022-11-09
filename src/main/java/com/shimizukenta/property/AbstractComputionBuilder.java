@@ -9,7 +9,7 @@ import java.util.Collections;
  * @author kenta-shimizu
  *
  */
-public class AbstractComputionBuilder {
+public abstract class AbstractComputionBuilder {
 
 	protected AbstractComputionBuilder() {
 		/* Nothing */

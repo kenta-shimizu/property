@@ -1,5 +1,11 @@
 package com.shimizukenta.property;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 /**
  * 
  * @author kenta-shimizu
@@ -10,18 +16,31 @@ public abstract class AbstractIntegerCompution extends AbstractNumberCompution i
 	private static final long serialVersionUID = 8925963972017058242L;
 	
 	protected static final Integer ZERO = Integer.valueOf(0);
-	protected static final Integer MAX = Integer.valueOf(Integer.MAX_VALUE);
-	protected static final Integer MIN = Integer.valueOf(Integer.MIN_VALUE);
 	
-	public AbstractIntegerCompution(Integer initial) {
-		super(initial);
+	private final List<Inner> inners = new ArrayList<>();
+	private final Function<? super List<? extends Number>, ? extends Number> compute;
+	
+	public AbstractIntegerCompution(
+			Collection<? extends NumberObservable<? extends Number>> observables,
+			Function<? super List<? extends Number>, ? extends Number> compute) {
+		
+		super(ZERO);
+		
+		this.compute = compute;
+		
+		observables.forEach(o -> {
+			Inner i = new Inner();
+			this.inners.add(i);
+			i.addChangeListener(o);
+		});
 	}
 	
-	protected void _set(int value) {
-		this._set(Integer.valueOf(value));
+	protected void compute() {
+		this._set(this.compute.apply(
+				this.inners.stream()
+				.map(Inner::intValue)
+				.collect(Collectors.toList())));
 	}
-	
-	abstract protected void compute();
 	
 	protected class Inner {
 		

@@ -20,7 +20,7 @@ public abstract class AbstractComparativeCompution extends AbstractBooleanComput
 	public AbstractComparativeCompution(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right,
-			BiPredicate<Number, Number> compute
+			BiPredicate<? super Number, ? super Number> compute
 			) {
 		
 		super(Boolean.FALSE);

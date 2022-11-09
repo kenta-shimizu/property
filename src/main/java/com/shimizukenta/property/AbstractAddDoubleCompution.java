@@ -2,6 +2,7 @@ package com.shimizukenta.property;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * 
@@ -12,7 +13,7 @@ public abstract class AbstractAddDoubleCompution extends AbstractDoubleCompution
 	
 	private static final long serialVersionUID = -1087071334093548290L;
 	
-	private final Collection<Inner> inners = new ArrayList<>();
+	private final List<Inner> inners = new ArrayList<>();
 	
 	public AbstractAddDoubleCompution(Collection<? extends NumberObservable<? extends Number>> observables) {
 		super(ZERO);

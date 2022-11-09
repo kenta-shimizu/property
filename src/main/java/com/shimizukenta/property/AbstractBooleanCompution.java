@@ -4,7 +4,7 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-public class AbstractBooleanCompution extends AbstractCompution<Boolean, BooleanSettable> implements BooleanCompution {
+public abstract class AbstractBooleanCompution extends AbstractCompution<Boolean, BooleanSettable> implements BooleanCompution {
 
 	private static final long serialVersionUID = 2458680400943614137L;
 

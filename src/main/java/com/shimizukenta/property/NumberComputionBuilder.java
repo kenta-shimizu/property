@@ -2,6 +2,9 @@ package com.shimizukenta.property;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Function;
 
 /**
  * 
@@ -25,26 +28,45 @@ public class NumberComputionBuilder extends AbstractComputionBuilder {
 	public NumberCompution add(Collection<? extends NumberObservable<? extends Number>> observables) {
 		
 		if ( isDouble(observables) ) {
-			return buildAddDoubleCompution(observables);
-		}
-		if ( isFloat(observables) ) {
-			
-			//TODO
-		}
-		if ( isLong(observables) ) {
-			
-			//TODO
-		}
-		if ( isInteger(observables) ) {
-			
-			//TODO
+			return buildAddDouble(observables);
 		}
 		
-		return buildAddDoubleCompution(observables);
+		if ( isFloat(observables) ) {
+			return buildFloat(observables, vv -> {
+				float r = 0.0F;
+				for (Number n : vv) {
+					r += n.floatValue();
+				}
+				return Float.valueOf(r);
+			});
+		}
+		
+		if ( isLong(observables) ) {
+			return buildLong(observables, vv -> {
+				long r = 0L;
+				for (Number n : vv) {
+					r += n.longValue();
+				}
+				return Long.valueOf(r);
+			});
+		}
+		
+		if ( isInteger(observables) ) {
+			return buildInteger(observables, vv -> {
+				int r = 0;
+				for (Number n : vv) {
+					r += n.intValue();
+				}
+				return Integer.valueOf(r);
+			});
+		}
+		
+		return buildAddDouble(observables);
 	}
 	
-	private DoubleCompution buildAddDoubleCompution(Collection<? extends NumberObservable<? extends Number>> observables) {
+	private DoubleCompution buildAddDouble(Collection<? extends NumberObservable<? extends Number>> observables) {
 		
+		//TODO
 		return new AbstractAddDoubleCompution(observables) {
 
 			private static final long serialVersionUID = -5302331492985226538L;
@@ -54,25 +76,45 @@ public class NumberComputionBuilder extends AbstractComputionBuilder {
 	public NumberCompution multiply(Collection<? extends NumberObservable<? extends Number>> observables) {
 		
 		if ( isDouble(observables) ) {
-			return buildMultiplyDoubleCompution(observables);
-		}
-		if ( isFloat(observables) ) {
-			
-			//TODO
-		}
-		if ( isLong(observables) ) {
-			
-			//TODO
-		}
-		if ( isInteger(observables) ) {
-			
-			//TODO
+			return buildMultiplyDouble(observables);
 		}
 		
-		return buildMultiplyDoubleCompution(observables);
+		if ( isFloat(observables) ) {
+			return buildFloat(observables, vv -> {
+				float r = 1.0F;
+				for (Number n : vv) {
+					r *= n.floatValue();
+				}
+				return Float.valueOf(r);
+			});
+		}
+		
+		if ( isLong(observables) ) {
+			return buildLong(observables, vv -> {
+				long r = 1L;
+				for (Number n : vv) {
+					r *= n.longValue();
+				}
+				return Long.valueOf(r);
+			});
+		}
+		
+		if ( isInteger(observables) ) {
+			return buildInteger(observables, vv -> {
+				int r = 1;
+				for (Number n : vv) {
+					r *= n.intValue();
+				}
+				return Integer.valueOf(r);
+			});
+		}
+		
+		return buildMultiplyDouble(observables);
 	}
 	
-	private DoubleCompution buildMultiplyDoubleCompution(Collection<? extends NumberObservable<? extends Number>> observables) {
+	private DoubleCompution buildMultiplyDouble(Collection<? extends NumberObservable<? extends Number>> observables) {
+		
+		//TODO
 		return new AbstractMultiplyDoubleCompution(observables) {
 
 			private static final long serialVersionUID = -1421793079027397897L;
@@ -82,26 +124,48 @@ public class NumberComputionBuilder extends AbstractComputionBuilder {
 	
 	public NumberCompution negate(NumberObservable<? extends Number> observable) {
 		
+		final Collection<? extends NumberObservable<? extends Number>> observables = Collections.singleton(observable);
+		
 		if ( isDouble(observable) ) {
-			return buildNegateDoubleCompution(observable);
-		}
-		if ( isFloat(observable) ) {
-			
-			//TODO
-		}
-		if ( isLong(observable) ) {
-			
-			//TODO
-		}
-		if ( isInteger(observable) ) {
-			
-			//TODO
+			return buildNegateDouble(observable);
 		}
 		
-		return buildNegateDoubleCompution(observable);
+		if ( isFloat(observable) ) {
+			return buildFloat(observables, vv -> {
+				float r = 0.0F;
+				for (Number n : vv) {
+					r = - n.floatValue();
+				}
+				return Float.valueOf(r);
+			});
+		}
+		
+		if ( isLong(observable) ) {
+			return buildLong(observables, vv -> {
+				long r = 0L;
+				for (Number n : vv) {
+					r = - n.longValue();
+				}
+				return Long.valueOf(r);
+			});
+		}
+		
+		if ( isInteger(observable) ) {
+			return buildInteger(observables, vv -> {
+				int r = 0;
+				for (Number n : vv) {
+					r = - n.intValue();
+				}
+				return Integer.valueOf(r);
+			});
+		}
+		
+		return buildNegateDouble(observable);
 	}
 	
-	private DoubleCompution buildNegateDoubleCompution(NumberObservable<? extends Number> observable) {
+	private DoubleCompution buildNegateDouble(NumberObservable<? extends Number> observable) {
+		
+		//TODO
 		return new AbstractNegateDoubleCompution(observable) {
 
 			private static final long serialVersionUID = -6421387028892281532L;
@@ -118,25 +182,54 @@ public class NumberComputionBuilder extends AbstractComputionBuilder {
 	public NumberCompution max(Collection<? extends NumberObservable<? extends Number>> observables) {
 		
 		if ( isDouble(observables) ) {
-			return buildMaxDoubleCompution(observables);
-		}
-		if ( isFloat(observables) ) {
-			
-			//TODO
-		}
-		if ( isLong(observables) ) {
-			
-			//TODO
-		}
-		if ( isInteger(observables) ) {
-			
-			//TODO
+			return buildMaxDouble(observables);
 		}
 		
-		return buildMaxDoubleCompution(observables);
+		if ( isFloat(observables) ) {
+			return buildFloat(observables, vv -> {
+				float r = Float.NEGATIVE_INFINITY;
+				for (Number n : vv) {
+					float v = n.floatValue();
+					if ( v > r ) {
+						r = v;
+					}
+				}
+				return Float.valueOf(r);
+			});
+		}
+		
+		if ( isLong(observables) ) {
+			return buildLong(observables, vv -> {
+				long r = Long.MIN_VALUE;
+				for (Number n : vv) {
+					long v = n.longValue();
+					if ( v > r ) {
+						r = v;
+					}
+				}
+				return Long.valueOf(r);
+			});
+		}
+		
+		if ( isInteger(observables) ) {
+			return buildInteger(observables, vv -> {
+				int r = Integer.MIN_VALUE;
+				for (Number n : vv) {
+					int v = n.intValue();
+					if ( v > r ) {
+						r = v;
+					}
+				}
+				return Integer.valueOf(r);
+			});
+		}
+		
+		return buildMaxDouble(observables);
 	}
 	
-	private DoubleCompution buildMaxDoubleCompution(Collection<? extends NumberObservable<? extends Number>> observables) {
+	private DoubleCompution buildMaxDouble(Collection<? extends NumberObservable<? extends Number>> observables) {
+		
+		//TODO
 		return new AbstractMaxDoubleCompution(observables) {
 
 			private static final long serialVersionUID = 9078372399486678375L;
@@ -146,28 +239,99 @@ public class NumberComputionBuilder extends AbstractComputionBuilder {
 	public NumberCompution min(Collection<? extends NumberObservable<? extends Number>> observables) {
 		
 		if ( isDouble(observables) ) {
-			return buildMinDoubleCompution(observables);
-		}
-		if ( isFloat(observables) ) {
-			
-			//TODO
-		}
-		if ( isLong(observables) ) {
-			
-			//TODO
-		}
-		if ( isInteger(observables) ) {
-			
-			//TODO
+			return buildMinDouble(observables);
 		}
 		
-		return buildMinDoubleCompution(observables);
+		if ( isFloat(observables) ) {
+			return buildFloat(observables, vv -> {
+				float r = Float.POSITIVE_INFINITY;
+				for (Number n : vv) {
+					float v = n.floatValue();
+					if ( v < r ) {
+						r = v;
+					}
+				}
+				return Float.valueOf(r);
+			});
+		}
+		
+		if ( isLong(observables) ) {
+			return buildLong(observables, vv -> {
+				long r = Long.MAX_VALUE;
+				for (Number n : vv) {
+					long v = n.longValue();
+					if ( v < r ) {
+						r = v;
+					}
+				}
+				return Long.valueOf(r);
+			});
+		}
+		
+		if ( isInteger(observables) ) {
+			return buildInteger(observables, vv -> {
+				int r = Integer.MAX_VALUE;
+				for (Number n : vv) {
+					int v = n.intValue();
+					if ( v < r ) {
+						r = v;
+					}
+				}
+				return Integer.valueOf(r);
+			});
+		}
+		
+		return buildMinDouble(observables);
 	}
 	
-	private DoubleCompution buildMinDoubleCompution(Collection<? extends NumberObservable<? extends Number>> observables) {
+	private DoubleCompution buildMinDouble(
+			Collection<? extends NumberObservable<? extends Number>> observables) {
+		
+		//TODO
 		return new AbstractMinDoubleCompution(observables) {
 
 			private static final long serialVersionUID = 5191431177016025043L;
+		};
+	}
+	
+	private DoubleCompution buildDouble(
+			Collection<? extends NumberObservable<? extends Number>> observables,
+			Function<List<? extends Number>, Double> compute) {
+		
+//		return new AbstractDoubleCompution(observables, compute) {
+//			
+//		};
+		
+		return null;
+	}
+	
+	private FloatCompution buildFloat(
+			Collection<? extends NumberObservable<? extends Number>> observables,
+			Function<List<? extends Number>, Float> compute) {
+		
+		return new AbstractFloatCompution(observables, compute) {
+			
+			private static final long serialVersionUID = 803445995478588497L;
+		};
+	}
+	
+	private LongCompution buildLong(
+			Collection<? extends NumberObservable<? extends Number>> observables,
+			Function<List<? extends Number>, Long> compute) {
+		
+		return new AbstractLongCompution(observables, compute) {
+			
+			private static final long serialVersionUID = -745885808746970569L;
+		};
+	}
+	
+	private IntegerCompution buildInteger(
+			Collection<? extends NumberObservable<? extends Number>> observables,
+			Function<List<? extends Number>, Integer> compute) {
+		
+		return new AbstractIntegerCompution(observables, compute) {
+			
+			private static final long serialVersionUID = 3175580553554522461L;
 		};
 	}
 

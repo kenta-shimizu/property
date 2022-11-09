@@ -8,7 +8,7 @@ import java.util.Collection;
  * @author kenta-shimizu
  *
  */
-public class AbstractMultiplyDoubleCompution extends AbstractDoubleCompution {
+public abstract class AbstractMultiplyDoubleCompution extends AbstractDoubleCompution {
 	
 	private static final long serialVersionUID = 2087866763289246729L;
 	

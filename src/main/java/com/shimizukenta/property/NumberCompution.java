@@ -38,6 +38,34 @@ public interface NumberCompution extends Compution<Number, NumberSettable<Number
 		return NumberComputionBuilder.getInstance().add(observables);
 	}
 	
+	public static NumberCompution sum(
+			NumberObservable<? extends Number> a,
+			NumberObservable<? extends Number> b) {
+		
+		return add(a, b);
+	}
+	
+	public static NumberCompution sum(
+			NumberObservable<? extends Number> a,
+			NumberObservable<? extends Number> b,
+			NumberObservable<? extends Number> c) {
+		
+		return add(a, b, c);
+	}
+	
+	public static NumberCompution sum(
+			NumberObservable<? extends Number> a,
+			NumberObservable<? extends Number> b,
+			NumberObservable<? extends Number> c,
+			NumberObservable<? extends Number> d) {
+		
+		return add(a, b, c, d);
+	}
+	
+	public static NumberCompution sum(Collection<? extends NumberObservable<? extends Number>> observables) {
+		return add(observables);
+	}
+	
 	public static NumberCompution multiply(
 			NumberObservable<? extends Number> a,
 			NumberObservable<? extends Number> b) {

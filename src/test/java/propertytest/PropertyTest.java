@@ -6,6 +6,7 @@ import com.shimizukenta.property.BooleanCompution;
 import com.shimizukenta.property.BooleanProperty;
 import com.shimizukenta.property.DoubleProperty;
 import com.shimizukenta.property.IntegerProperty;
+import com.shimizukenta.property.LogicalCompution;
 import com.shimizukenta.property.LongProperty;
 import com.shimizukenta.property.NumberCompution;
 import com.shimizukenta.property.TimeProperty;
@@ -51,7 +52,6 @@ public class PropertyTest {
 				
 				ip1.set(2);
 				dp1.set(0.1D);
-
 				
 			}
 			
@@ -59,7 +59,7 @@ public class PropertyTest {
 			final BooleanProperty bp = BooleanProperty.newInstance(false);
 			final IntegerProperty ip = IntegerProperty.newInstance(1);
 			
-			final BooleanCompution bc = BooleanCompution.not(bp);
+			final BooleanCompution bc = LogicalCompution.not(bp);
 			
 			bp.addChangeListener(f -> {
 				echo("bp changed: " + f);

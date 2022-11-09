@@ -4,10 +4,15 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+/**
+ * 
+ * @author kenta-shimizu
+ *
+ */
 public abstract class AbstractBooleanCompution extends AbstractCompution<Boolean, BooleanSettable> implements BooleanCompution {
-
-	private static final long serialVersionUID = 2458680400943614137L;
-
+	
+	private static final long serialVersionUID = 628986372297013412L;
+	
 	protected AbstractBooleanCompution(Boolean initial) {
 		super(initial);
 	}

@@ -49,7 +49,7 @@ public class LogicalComputionBuilder extends AbstractComputionBuilder {
 	public LogicalCompution xor(BooleanObservable a, BooleanObservable b) {
 		return buildLogical(
 				Arrays.asList(a, b),
-				vv -> (vv.get(0).booleanValue() ^ vv.get(1).booleanValue()));
+				vv -> (vv.get(0).booleanValue() ^ vv.get(vv.size() - 1).booleanValue()));
 	}
 	
 	public LogicalCompution nand(BooleanObservable... observables) {

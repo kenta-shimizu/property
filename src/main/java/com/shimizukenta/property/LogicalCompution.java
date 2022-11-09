@@ -9,7 +9,7 @@ import java.util.Collection;
  */
 public interface LogicalCompution extends BooleanCompution {
 	
-	public static BooleanCompution and(BooleanObservable... observables) {
+	public static LogicalCompution and(BooleanObservable... observables) {
 		return LogicalComputionBuilder.getInstance().and(observables);
 	}
 	

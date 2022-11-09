@@ -62,12 +62,4 @@ public interface BooleanCompution extends Compution<Boolean, BooleanSettable>, B
 		return not(or(observables));
 	}
 	
-	//TODO
-	//equalto
-	//notequalTo
-	//lessThan
-	//lessThanOrEqualTo
-	//greaterThan
-	//greaterThanOrEqualTo
-	
 }

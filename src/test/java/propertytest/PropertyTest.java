@@ -22,9 +22,6 @@ public class PropertyTest {
 			
 			echo("Property-Test start.");
 			
-			echo("negative: " + (Double.NEGATIVE_INFINITY < 0.0100000D));
-			echo("positive: " + (Double.POSITIVE_INFINITY > -0.0100000D));
-			
 			{
 				final DoubleProperty dp1 = DoubleProperty.newInstance(0.1D);
 				final DoubleProperty dp2 = DoubleProperty.newInstance(0.2D);

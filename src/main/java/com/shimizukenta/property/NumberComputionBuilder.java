@@ -65,12 +65,13 @@ public class NumberComputionBuilder extends AbstractComputionBuilder {
 	}
 	
 	private DoubleCompution buildAddDouble(Collection<? extends NumberObservable<? extends Number>> observables) {
-		
-		//TODO
-		return new AbstractAddDoubleCompution(observables) {
-
-			private static final long serialVersionUID = -5302331492985226538L;
-		};
+		return buildDouble(observables, vv -> {
+			double r = 0.0D;
+			for (Number n : vv) {
+				r += n.doubleValue();
+			}
+			return Double.valueOf(r);
+		});
 	}
 	
 	public NumberCompution multiply(Collection<? extends NumberObservable<? extends Number>> observables) {
@@ -113,13 +114,13 @@ public class NumberComputionBuilder extends AbstractComputionBuilder {
 	}
 	
 	private DoubleCompution buildMultiplyDouble(Collection<? extends NumberObservable<? extends Number>> observables) {
-		
-		//TODO
-		return new AbstractMultiplyDoubleCompution(observables) {
-
-			private static final long serialVersionUID = -1421793079027397897L;
-			
-		};
+		return buildDouble(observables, vv -> {
+			double r = 1.0D;
+			for (Number n : vv) {
+				r *= n.doubleValue();
+			}
+			return Double.valueOf(r);
+		});
 	}
 	
 	public NumberCompution negate(NumberObservable<? extends Number> observable) {
@@ -127,7 +128,7 @@ public class NumberComputionBuilder extends AbstractComputionBuilder {
 		final Collection<? extends NumberObservable<? extends Number>> observables = Collections.singleton(observable);
 		
 		if ( isDouble(observable) ) {
-			return buildNegateDouble(observable);
+			return buildNegateDouble(observables);
 		}
 		
 		if ( isFloat(observable) ) {
@@ -160,16 +161,17 @@ public class NumberComputionBuilder extends AbstractComputionBuilder {
 			});
 		}
 		
-		return buildNegateDouble(observable);
+		return buildNegateDouble(observables);
 	}
 	
-	private DoubleCompution buildNegateDouble(NumberObservable<? extends Number> observable) {
-		
-		//TODO
-		return new AbstractNegateDoubleCompution(observable) {
-
-			private static final long serialVersionUID = -6421387028892281532L;
-		};
+	private DoubleCompution buildNegateDouble(Collection<? extends NumberObservable<? extends Number>> observables) {
+		return buildDouble(observables, vv -> {
+			double r = 0.0D;
+			for (Number n : vv) {
+				r = - n.doubleValue();
+			}
+			return Double.valueOf(r);
+		});
 	}
 	
 	public NumberCompution substract(
@@ -228,12 +230,16 @@ public class NumberComputionBuilder extends AbstractComputionBuilder {
 	}
 	
 	private DoubleCompution buildMaxDouble(Collection<? extends NumberObservable<? extends Number>> observables) {
-		
-		//TODO
-		return new AbstractMaxDoubleCompution(observables) {
-
-			private static final long serialVersionUID = 9078372399486678375L;
-		};
+		return buildDouble(observables, vv -> {
+			double r = Double.NEGATIVE_INFINITY;
+			for (Number n : vv) {
+				double v = n.doubleValue();
+				if ( v > r ) {
+					r = v;
+				}
+			}
+			return Double.valueOf(r);
+		});
 	}
 	
 	public NumberCompution min(Collection<? extends NumberObservable<? extends Number>> observables) {
@@ -287,22 +293,27 @@ public class NumberComputionBuilder extends AbstractComputionBuilder {
 	private DoubleCompution buildMinDouble(
 			Collection<? extends NumberObservable<? extends Number>> observables) {
 		
-		//TODO
-		return new AbstractMinDoubleCompution(observables) {
-
-			private static final long serialVersionUID = 5191431177016025043L;
-		};
+		return buildDouble(observables, vv -> {
+			double r = Double.POSITIVE_INFINITY;
+			for (Number n : vv) {
+				double v = n.doubleValue();
+				if ( v < r ) {
+					r = v;
+				}
+			}
+			return Double.valueOf(r);
+		});
 	}
 	
 	private DoubleCompution buildDouble(
 			Collection<? extends NumberObservable<? extends Number>> observables,
 			Function<List<? extends Number>, Double> compute) {
 		
-//		return new AbstractDoubleCompution(observables, compute) {
-//			
-//		};
-		
-		return null;
+		return new AbstractDoubleCompution(observables, compute) {
+
+			private static final long serialVersionUID = 803445995478588497L;
+			
+		};
 	}
 	
 	private FloatCompution buildFloat(

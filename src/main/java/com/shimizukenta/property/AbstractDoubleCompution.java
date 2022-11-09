@@ -1,27 +1,46 @@
 package com.shimizukenta.property;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 /**
  * 
  * @author kenta-shimizu
  *
  */
 public abstract class AbstractDoubleCompution extends AbstractNumberCompution implements DoubleCompution {
-
-	private static final long serialVersionUID = 913309491368083166L;
+	
+	private static final long serialVersionUID = 7765635626320082694L;
 	
 	protected static final Double ZERO = Double.valueOf(0.0D);
-	protected static final Double MAX = Double.valueOf(Double.POSITIVE_INFINITY);
-	protected static final Double MIN = Double.valueOf(Double.NEGATIVE_INFINITY);
 	
-	public AbstractDoubleCompution(Double initial) {
-		super(initial);
+	private final List<Inner> inners = new ArrayList<>();
+	private final Function<? super List<? extends Number>, ? extends Number> compute;
+
+	public AbstractDoubleCompution(
+			Collection<? extends NumberObservable<? extends Number>> observables,
+			Function<? super List<? extends Number>, ? extends Number> compute) {
+		
+		super(ZERO);
+		
+		this.compute = compute;
+		
+		observables.forEach(o -> {
+			Inner i = new Inner();
+			this.inners.add(i);
+			i.addChangeListener(o);
+		});
 	}
 	
-	protected void _set(double value) {
-		super._set(Double.valueOf(value));
+	protected void compute() {
+		this._set(this.compute.apply(
+				this.inners.stream()
+				.map(Inner::doubleValue)
+				.collect(Collectors.toList())));
 	}
-	
-	abstract protected void compute();
 	
 	protected class Inner {
 		

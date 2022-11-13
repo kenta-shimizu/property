@@ -151,7 +151,7 @@ public class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 		synchronized ( this._sync ) {
 			boolean f = this.bindObs.add(observable);
 			if ( f ) {
-				observable.set(this.map);
+				observable.set(this._get());
 			}
 			return f;
 		}
@@ -167,8 +167,8 @@ public class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	@Override
 	public void set(Map<K, V> newMap) {
 		synchronized ( this._sync ) {
-			this.map.clear();
-			this.map.putAll(map);
+			this._get().clear();
+			this._get().putAll(newMap);
 			this._notifyChanged();
 		}
 	}

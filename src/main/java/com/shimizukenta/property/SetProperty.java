@@ -1,0 +1,38 @@
+package com.shimizukenta.property;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * 
+ * @author kenta-shimizu
+ *
+ * @param <E> Element
+ */
+public interface SetProperty<E> extends Set<E>, CollectionProperty<E, Set<E>>, SetObservable<E> {
+	
+	/**
+	 * Instance buidler.
+	 * 
+	 * @param <E> Element
+	 * @return new-instance.
+	 */
+	public static <E> SetProperty<E> newInstance() {
+		return newInstance(Collections.emptySet());
+	}
+	
+	/**
+	 * Instance buider.
+	 * 
+	 * @param <E> Element
+	 * @param initial
+	 * @return new-instance.
+	 */
+	public static <E> SetProperty<E> newInstance(Set<E> initial) {
+		return new AbstractSetProperty<E>(new HashSet<>(initial)) {
+			
+			private static final long serialVersionUID = 1830279783393865791L;
+		};
+	}
+}

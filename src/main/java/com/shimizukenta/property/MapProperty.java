@@ -1,6 +1,7 @@
 package com.shimizukenta.property;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +22,7 @@ public interface MapProperty<K, V> extends Map<K, V>, MapObservable<K, V>, Seria
 	 * @return new-instance.
 	 */
 	public static <K, V> MapProperty<K, V> newInstance() {
-		return newInstance(new HashMap<>());
+		return newInstance(Collections.emptyMap());
 	}
 	
 	/**
@@ -32,8 +33,8 @@ public interface MapProperty<K, V> extends Map<K, V>, MapObservable<K, V>, Seria
 	 * @param map
 	 * @return new-instance.
 	 */
-	public static <K, V> MapProperty<K, V> newInstance(Map<K, V> map) {
-		return new AbstractMapProperty<K, V>(map){
+	public static <K, V> MapProperty<K, V> newInstance(Map<K, V> initial) {
+		return new AbstractMapProperty<K, V>(new HashMap<>(initial)){
 
 			private static final long serialVersionUID = -1165018901559222491L;
 		};

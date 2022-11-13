@@ -13,6 +13,70 @@ import java.util.concurrent.TimeoutException;
  */
 public interface NumberObservable<T extends Number> extends Observable<T, NumberSettable<T>> {
 	
+	default public NumberCompution add(NumberObservable<? extends Number> observable) {
+		return NumberCompution.add(this, observable);
+	}
+	
+	default public NumberCompution multiply(NumberObservable<? extends Number> observable) {
+		return NumberCompution.multiply(this, observable);
+	}
+	
+	default public NumberCompution subtract(NumberObservable<? extends Number> observable) {
+		return NumberCompution.subtract(this, observable);
+	}
+	
+	default public NumberCompution negate() {
+		return NumberCompution.negate(this);
+	}
+	
+	default public NumberCompution add(int value) {
+		return this.add(IntegerProperty.newInstance(value));
+	}
+	
+	default public NumberCompution add(long value) {
+		return this.add(LongProperty.newInstance(value));
+	}
+	
+	default public NumberCompution add(float value) {
+		return this.add(FloatProperty.newInstance(value));
+	}
+	
+	default public NumberCompution add(double value) {
+		return this.add(DoubleProperty.newInstance(value));
+	}
+	
+	default public NumberCompution multiply(int value) {
+		return this.multiply(IntegerProperty.newInstance(value));
+	}
+
+	default public NumberCompution multiply(long value) {
+		return this.multiply(LongProperty.newInstance(value));
+	}
+
+	default public NumberCompution multiply(float value) {
+		return this.multiply(FloatProperty.newInstance(value));
+	}
+	
+	default public NumberCompution multiply(double value) {
+		return this.multiply(DoubleProperty.newInstance(value));
+	}
+	
+	default public NumberCompution subtract(int value) {
+		return this.subtract(IntegerProperty.newInstance(value));
+	}
+	
+	default public NumberCompution subtract(long value) {
+		return this.subtract(LongProperty.newInstance(value));
+	}
+	
+	default public NumberCompution subtract(float value) {
+		return this.subtract(FloatProperty.newInstance(value));
+	}
+	
+	default public NumberCompution subtract(double value) {
+		return this.subtract(DoubleProperty.newInstance(value));
+	}
+	
 	default public void waitUntilEqualTo(NumberObservable<? extends Number> observable) throws InterruptedException {
 		ComparativeCompution.equalTo(this, observable).waitUntilTrue();
 	}

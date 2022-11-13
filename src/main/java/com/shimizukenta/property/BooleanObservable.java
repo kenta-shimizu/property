@@ -13,6 +13,30 @@ public interface BooleanObservable extends Observable<Boolean, BooleanSettable> 
 	
 	public void waitUntil(boolean f, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException;
 	
+	default public LogicalCompution and(BooleanObservable observable) {
+		return LogicalCompution.and(this, observable);
+	}
+	
+	default public LogicalCompution or(BooleanObservable observable) {
+		return LogicalCompution.or(this, observable);
+	}
+	
+	default public LogicalCompution not() {
+		return LogicalCompution.not(this);
+	}
+	
+	default public LogicalCompution xor(BooleanObservable observable) {
+		return LogicalCompution.xor(this, observable);
+	}
+	
+	default public LogicalCompution nand(BooleanObservable observable) {
+		return LogicalCompution.nand(this, observable);
+	}
+	
+	default public LogicalCompution nor(BooleanObservable observable) {
+		return LogicalCompution.nor(this, observable);
+	}
+	
 	default public void waitUntil(boolean f, TimeGettable p) throws InterruptedException, TimeoutException {
 		TimeoutAndUnit a = p.get();
 		this.waitUntil(f, a.timeout(), a.unit());

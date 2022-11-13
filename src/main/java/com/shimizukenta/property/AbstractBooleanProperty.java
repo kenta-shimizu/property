@@ -31,7 +31,7 @@ public abstract class AbstractBooleanProperty extends AbstractProperty<Boolean, 
 	
 	private void __set(Boolean f) {
 		synchronized ( this._sync ) {
-			if ( ! Objects.equals(_get(), f) ) {
+			if ( ! Objects.equals(this._get(), f) ) {
 				this._set(f);
 				this._notifyChanged(f);
 				this._sync.notifyAll();
@@ -42,22 +42,20 @@ public abstract class AbstractBooleanProperty extends AbstractProperty<Boolean, 
 	@Override
 	public void waitUntil(boolean f) throws InterruptedException {
 		synchronized ( this._sync ) {
-			if ( _get().booleanValue() == f ) {
-				return;
+			if ( f != this._get().booleanValue() ) {
+				this._sync.wait();
 			}
-			this._sync.wait();
 		}
 	}
 	
 	@Override
 	public void waitUntil(boolean f, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		synchronized ( this._sync ) {
-			if ( _get().booleanValue() == f ) {
-				return;
-			}
-			unit.timedWait(this._sync, timeout);
-			if ( _get().booleanValue() != f ) {
-				throw new TimeoutException();
+			if ( f != this._get().booleanValue() ) {
+				unit.timedWait(this._sync, timeout);
+				if ( f != this._get().booleanValue() ) {
+					throw new TimeoutException();
+				}
 			}
 		}
 	}

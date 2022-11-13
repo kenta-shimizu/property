@@ -35,22 +35,20 @@ public abstract class AbstractBooleanCompution extends AbstractCompution<Boolean
 	@Override
 	public void waitUntil(boolean f) throws InterruptedException {
 		synchronized ( this._sync ) {
-			if ( _get().booleanValue() == f ) {
-				return;
+			if ( f != this._get().booleanValue()) {
+				this._sync.wait();
 			}
-			this._sync.wait();
 		}
 	}
 
 	@Override
 	public void waitUntil(boolean f, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		synchronized ( this._sync ) {
-			if ( _get().booleanValue() == f ) {
-				return;
-			}
-			unit.timedWait(this._sync, timeout);
-			if ( _get().booleanValue() != f ) {
-				throw new TimeoutException();
+			if ( f != this._get().booleanValue() ) {
+				unit.timedWait(this._sync, timeout);
+				if ( f != this._get().booleanValue() ) {
+					throw new TimeoutException();
+				}
 			}
 		}
 	}

@@ -32,9 +32,7 @@ public abstract class AbstractProperty<T, U extends Settable<T>> implements Prop
 	
 	@Override
 	public T get() {
-		synchronized ( this._sync ) {
-			return this._get();
-		}
+		return this._get();
 	}
 	
 	protected final T _get() {

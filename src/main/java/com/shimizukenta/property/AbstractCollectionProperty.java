@@ -29,44 +29,32 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 	
 	@Override
 	public int size() {
-		synchronized ( this._sync ) {
-			return this._get().size();
-		}
+		return this._get().size();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		synchronized ( this._sync ) {
-			return this._get().isEmpty();
-		}
+		return this._get().isEmpty();
 	}
 
 	@Override
 	public boolean contains(Object o) {
-		synchronized ( this._sync ) {
-			return this._get().contains(o);
-		}
+		return this._get().contains(o);
 	}
 
 	@Override
 	public Iterator<E> iterator() {
-		synchronized ( this._sync ) {
-			return this._get().iterator();
-		}
+		return this._get().iterator();
 	}
 	
 	@Override
 	public Object[] toArray() {
-		synchronized ( this._sync ) {
-			return this._get().toArray();
-		}
+		return this._get().toArray();
 	}
 
 	@Override
 	public <U> U[] toArray(U[] a) {
-		synchronized ( this._sync ) {
-			return this._get().toArray(a);
-		}
+		return this._get().toArray(a);
 	}
 	
 	@Override
@@ -93,9 +81,7 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 
 	@Override
 	public boolean containsAll(Collection<?> c) {
-		synchronized ( this._sync ) {
-			return this._get().containsAll(c);
-		}
+		return this._get().containsAll(c);
 	}
 
 	@Override
@@ -209,5 +195,11 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 		}
 	}
 	
+	@Override
+	public String toString() {
+		synchronized ( this._sync ) {
+			return this._get().toString();
+		}
+	}
 
 }

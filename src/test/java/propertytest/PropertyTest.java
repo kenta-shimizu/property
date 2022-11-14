@@ -46,6 +46,16 @@ public class PropertyTest {
 		
 	}
 	
+	protected static void threadStart(InterruptableRunnable r) {
+		new Thread(() -> {
+			try {
+				r.run();
+			}
+			catch ( InterruptedException ignore ) {
+			}
+		}).start();
+	}
+	
 	protected static void test1() throws InterruptedException {
 		
 		echo("");
@@ -115,36 +125,35 @@ public class PropertyTest {
 		final MapProperty<String, String> mp = MapProperty.newInstance();
 		
 		mp.addChangeListener(m -> {
-			echo("map-size: " + m.size());
+			echo("map-toString: " + m.toString());
 		});
 		
 		echo("");
-		echo("put A");
+		echo("put A-A");
 		mp.put("A", "A");
 		
 		echo("");
-		echo("put B");
+		echo("put B-B");
 		mp.put("B", "B");
 		
 		echo("");
-		echo("put A");
+		echo("put A-A");
 		mp.put("A", "A");
 		
 		echo("");
-		echo("put ifAbsent C");
+		echo("put ifAbsent C-C");
 		mp.putIfAbsent("C", "C");
 		
 		echo("");
-		echo("put ifAbsent A value A2");
+		echo("putIfAbsent A-A2");
 		mp.putIfAbsent("A", "A2");
 		
 		echo("");
-		echo("put A value C");
+		echo("put A-A3");
 		mp.put("A", "A3");
-		echo("A is " + mp.get("A"));
 		
 		echo("");
-		echo("computeIfPresent D value D");
+		echo("computeIfPresent D-D");
 		mp.computeIfPresent("D", (key, v) -> "D");
 		
 		echo("");
@@ -163,17 +172,13 @@ public class PropertyTest {
 			mp.waitUntilNotContainsKey("A", 1L, TimeUnit.SECONDS);
 			echo("wait-until-NOT throught");
 			
-			new Thread(() -> {
-				try {
-					Thread.sleep(500L);
-					echo("");
-					echo("try-put: A-AX");
-					echo("");
-					mp.put("A", "AX");
-				}
-				catch ( InterruptedException ignore ) {
-				}
-			}).start();
+			threadStart(() -> {
+				Thread.sleep(500L);
+				echo("");
+				echo("try-put: A-AX");
+				echo("");
+				mp.put("A", "AX");
+			});
 			
 			echo("");
 			echo("wait-until-contain A");
@@ -183,7 +188,7 @@ public class PropertyTest {
 			echo("wait-until-containsKey B: " + mp.waitUntilContainsKey("B", 1L, TimeUnit.SECONDS));
 		}
 		catch ( Throwable t ) {
-			t.printStackTrace();
+			echo(t);
 		}
 		
 		return rr;

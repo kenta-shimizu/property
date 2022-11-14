@@ -50,7 +50,7 @@ public interface MapObservable<K, V> {
 	 * 
 	 * @param newMap
 	 */
-	public void set(Map<K, V> newMap);
+	public void set(Map<? extends K, ? extends V> newMap);
 	
 	public V waitUntilContainsKey(Object key) throws InterruptedException;
 	

@@ -25,6 +25,46 @@ public class NumberComputionBuilder extends AbstractComputionBuilder {
 		super();
 	}
 	
+	public IntegerCompution toInteger(NumberObservable<? extends Number> observable) {
+		return buildInteger(Collections.singleton(observable), vv -> {
+			int r = 0;
+			for ( Number n : vv ) {
+				r = n.intValue();
+			}
+			return Integer.valueOf(r);
+		});
+	}
+	
+	public LongCompution toLong(NumberObservable<? extends Number> observable) {
+		return buildLong(Collections.singleton(observable), vv -> {
+			long r = 0L;
+			for ( Number n : vv ) {
+				r = n.longValue();
+			}
+			return Long.valueOf(r);
+		});
+	}
+	
+	public FloatCompution toFloat(NumberObservable<? extends Number> observable) {
+		return buildFloat(Collections.singleton(observable), vv -> {
+			float r = 0.0F;
+			for ( Number n : vv ) {
+				r = n.floatValue();
+			}
+			return Float.valueOf(r);
+		});
+	}
+	
+	public DoubleCompution toDouble(NumberObservable<? extends Number> observable) {
+		return buildDouble(Collections.singleton(observable), vv -> {
+			double r = 0.0D;
+			for ( Number n : vv ) {
+				r = n.doubleValue();
+			}
+			return Double.valueOf(r);
+		});
+	}
+	
 	public NumberCompution add(Collection<? extends NumberObservable<? extends Number>> observables) {
 		
 		if ( isDouble(observables) ) {

@@ -13,6 +13,22 @@ import java.util.concurrent.TimeoutException;
  */
 public interface NumberObservable<T extends Number> extends Observable<T, NumberSettable<T>> {
 	
+	default public IntegerCompution toInteger() {
+		return NumberComputionBuilder.getInstance().toInteger(this);
+	}
+	
+	default public LongCompution toLong() {
+		return NumberComputionBuilder.getInstance().toLong(this);
+	}
+	
+	default public FloatCompution toFloat() {
+		return NumberComputionBuilder.getInstance().toFloat(this);
+	}
+	
+	default public DoubleCompution toDouble() {
+		return NumberComputionBuilder.getInstance().toDouble(this);
+	}
+	
 	default public NumberCompution add(NumberObservable<? extends Number> observable) {
 		return NumberCompution.add(this, observable);
 	}

@@ -33,7 +33,7 @@ public interface MapProperty<K, V> extends Map<K, V>, MapObservable<K, V>, Seria
 	 * @param map
 	 * @return new-instance.
 	 */
-	public static <K, V> MapProperty<K, V> newInstance(Map<K, V> initial) {
+	public static <K, V> MapProperty<K, V> newInstance(Map<? extends K, ? extends V> initial) {
 		return new AbstractMapProperty<K, V>(new HashMap<>(initial)){
 
 			private static final long serialVersionUID = -1165018901559222491L;

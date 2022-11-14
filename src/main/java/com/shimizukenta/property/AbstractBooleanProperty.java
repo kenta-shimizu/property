@@ -60,4 +60,9 @@ public abstract class AbstractBooleanProperty extends AbstractProperty<Boolean, 
 		}
 	}
 	
+	@Override
+	public String toString() {
+		return this.get().toString();
+	}
+	
 }

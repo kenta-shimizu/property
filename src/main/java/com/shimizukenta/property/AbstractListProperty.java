@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.ListIterator;
 
-public class AbstractListProperty<E> extends AbstractCollectionProperty<E, List<E>> implements ListProperty<E> {
+public abstract class AbstractListProperty<E> extends AbstractCollectionProperty<E, List<E>> implements ListProperty<E> {
 	
 	private static final long serialVersionUID = -1599017743017445594L;
 	
@@ -25,9 +25,7 @@ public class AbstractListProperty<E> extends AbstractCollectionProperty<E, List<
 
 	@Override
 	public E get(int index) {
-		synchronized ( this._sync ) {
-			return this._get().get(index);
-		}
+		return this._get().get(index);
 	}
 
 	@Override
@@ -58,37 +56,27 @@ public class AbstractListProperty<E> extends AbstractCollectionProperty<E, List<
 
 	@Override
 	public int indexOf(Object o) {
-		synchronized ( this._sync ) {
-			return this._get().indexOf(o);
-		}
+		return this._get().indexOf(o);
 	}
 
 	@Override
 	public int lastIndexOf(Object o) {
-		synchronized ( this._sync ) {
-			return this._get().lastIndexOf(o);
-		}
+		return this._get().lastIndexOf(o);
 	}
 
 	@Override
 	public ListIterator<E> listIterator() {
-		synchronized ( this._sync ) {
-			return this._get().listIterator();
-		}
+		return this._get().listIterator();
 	}
 
 	@Override
 	public ListIterator<E> listIterator(int index) {
-		synchronized ( this._sync ) {
-			return this._get().listIterator(index);
-		}
+		return this._get().listIterator(index);
 	}
 
 	@Override
 	public List<E> subList(int fromIndex, int toIndex) {
-		synchronized ( this._sync ) {
-			return this._get().subList(fromIndex, toIndex);
-		}
+		return this._get().subList(fromIndex, toIndex);
 	}
 
 }

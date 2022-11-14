@@ -1,5 +1,6 @@
 package com.shimizukenta.property;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,7 +30,7 @@ public interface SetProperty<E> extends Set<E>, CollectionProperty<E, Set<E>>, S
 	 * @param initial
 	 * @return new-instance.
 	 */
-	public static <E> SetProperty<E> newInstance(Set<E> initial) {
+	public static <E> SetProperty<E> newInstance(Collection<? extends E> initial) {
 		return new AbstractSetProperty<E>(new HashSet<>(initial)) {
 			
 			private static final long serialVersionUID = 1830279783393865791L;

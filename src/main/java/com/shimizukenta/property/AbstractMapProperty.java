@@ -14,7 +14,7 @@ import java.util.concurrent.TimeoutException;
  * @param <K> Key
  * @param <V> Value
  */
-public class AbstractMapProperty<K, V> implements MapProperty<K, V> {
+public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	
 	private static final long serialVersionUID = -5051422061789589475L;
 	
@@ -32,37 +32,27 @@ public class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	
 	@Override
 	public int size() {
-		synchronized ( this._sync ) {
-			return this._get().size();
-		}
+		return this._get().size();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		synchronized ( this._sync ) {
-			return this._get().isEmpty();
-		}
+		return this._get().isEmpty();
 	}
 	
 	@Override
 	public boolean containsKey(Object key) {
-		synchronized ( this._sync ) {
-			return this._get().containsKey(key);
-		}
+		return this._get().containsKey(key);
 	}
 
 	@Override
 	public boolean containsValue(Object value) {
-		synchronized ( this._sync ) {
-			return this._get().containsValue(value);
-		}
+		return this._get().containsValue(value);
 	}
 
 	@Override
 	public V get(Object key) {
-		synchronized ( this._sync ) {
-			return this._get().get(key);
-		}
+		return this._get().get(key);
 	}
 	
 	@Override
@@ -105,23 +95,17 @@ public class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 
 	@Override
 	public Set<K> keySet() {
-		synchronized ( this._sync ) {
-			return this._get().keySet();
-		}
+		return this._get().keySet();
 	}
 
 	@Override
 	public Collection<V> values() {
-		synchronized ( this._sync ) {
-			return this._get().values();
-		}
+		return this._get().values();
 	}
 	
 	@Override
 	public Set<Entry<K, V>> entrySet() {
-		synchronized ( this._sync ) {
-			return this._get().entrySet();
-		}
+		return this._get().entrySet();
 	}
 
 	private final Collection<ChangeListener<? super Map<K, V>>> changeLstnrs = new ArrayList<>();
@@ -165,7 +149,7 @@ public class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	}
 	
 	@Override
-	public void set(Map<K, V> newMap) {
+	public void set(Map<? extends K, ? extends V> newMap) {
 		synchronized ( this._sync ) {
 			this._get().clear();
 			this._get().putAll(newMap);
@@ -194,7 +178,7 @@ public class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	
 	protected class Inner implements ChangeListener<Map<K, V>> {
 		
-		protected final Object _sync = new Object();
+		protected final Object sync = new Object();
 		
 		private final Object key;
 		private final boolean containsKey;
@@ -211,29 +195,29 @@ public class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 		
 		@Override
 		public void changed(Map<K, V> map) {
-			synchronized ( this._sync ) {
+			synchronized ( this.sync ) {
 				this.v = map.get(key);
 				boolean f = v != null;
 				if ( f != this.f ) {
 					this.f = f;
-					this._sync.notifyAll();
+					this.sync.notifyAll();
 				}
 			}
 		}
 		
 		protected V waitUntil() throws InterruptedException {
-			synchronized ( this._sync ) {
+			synchronized ( this.sync ) {
 				if ( this.f != this.containsKey ) {
-					this._sync.wait();
+					this.sync.wait();
 				}
 				return this.v;
 			}
 		}
 		
 		protected V waitUntil(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-			synchronized ( this._sync ) {
+			synchronized ( this.sync ) {
 				if ( this.f != this.containsKey ) {
-					unit.timedWait(this._sync, timeout);
+					unit.timedWait(this.sync, timeout);
 					if ( this.f != this.containsKey ) {
 						throw new TimeoutException();
 					}
@@ -290,5 +274,12 @@ public class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 			this.removeChangeListener(i);
 		}
 	}
-
+	
+	@Override
+	public String toString() {
+		synchronized ( this._sync ) {
+			return this._get().toString();
+		}
+	}
+	
 }

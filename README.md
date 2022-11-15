@@ -9,7 +9,7 @@ Java8 or later.
 
 ```java
 /* Object */
-ObjectProperty<T> objProp = ObjectProperty.newInstance(null);
+ObjectProperty<String> objProp = ObjectProperty.newInstance(null);
 
 /* Primitive */
 IntegerProperty intProp = IntegerProperty.newInstsance(0);
@@ -19,16 +19,16 @@ DoubleProperty doubleProp = DoubleProperty.newInstance(0.0D);
 BooleanProperty boolProp = BooleanProperty.newInstance(false);
 
 /* Collection */
-ListProperty<E> listProp = ListProperty.newInstance();
-SetProperty<E> setProp = SetProperty.newInstance();
-MapProperty<K, V> mapProp = MapProperty.newInstance();
+ListProperty<String> listProp = ListProperty.newInstance();
+SetProperty<Integer> setProp = SetProperty.newInstance();
+MapProperty<String, Integer> mapProp = MapProperty.newInstance();
 ```
 
 ## Set value
 
 ```java
 /* Object */
-objProp.set(T value);
+objProp.set("STRING");
 objProp.set(null);
 
 /* Primitive */
@@ -40,20 +40,20 @@ boolProp.set(true);
 
 /* Collection */
 /* ListProperty<E> implements 'java.util.List<E>' */
-listProp.add(e);
+listProp.add("STRING");
 
 /* SetProperty<E> implements 'java.util.Set<E>' */
-setProp.add(e);
+setProp.add(Integer.valurOf(1));
 
 /* MapProperty<K, V> implements 'java.util.Map<K, V>' */
-mapProp.put(key, value);
+mapProp.put("KEY", Integer.valurOf(1));
 ```
 
 ## Get value
 
 ```java
 /* Object */
-T v = objProp.get();
+String v = objProp.get();
 
 /* Primitive */
 int i = intProp.intValue();
@@ -63,28 +63,22 @@ double d = doubleProp.doubleValue();
 boolean b = boolProp.booleanValue();
 
 /* Collection */
-/* ListProperty implements 'java.util.List' */
-E v = listProp.get(0);
+/* ListProperty<E> implements 'java.util.List<E>' */
+String v = listProp.get(0);
 
 /* SetProperty<E> implements 'java.util.Set<E>' */
 int size = setProp.size();
 
 /* MapProperty<K, V> implements 'java.util.Map<K, V>' */
-V v = mapProp.get(key);
-```
-
-## Observer
-
-```java
-/* Add ChangeListener */
-
-//building...
-
+Integer i = mapProp.get("STRING");
 ```
 
 ## Compution
 
 ### Number Compution
+
+`NumberProperty` can compute `#add(+)`, `#negate(-)`, `#subtract(-)`, `#multiply(*)`, `#sum`, `#max`, `#min`.  
+`NumberCompution` can also compute.
 
 ```java
 /* build instance */
@@ -115,7 +109,7 @@ System.out.println(minABC.intValue());  /* "1" */
 
 a.set(4);   /* a change to 4 */
 
-/* NumberCompution change automatically */
+/* LogicalCompution change automatically */
 System.out.println(sumABC.intValue());  /* "9" */
 System.out.println(maxABC.intValue());  /* "4" */
 System.out.println(minABC.intValue());  /* "2" */
@@ -131,30 +125,42 @@ System.out.println(minABC.intValue());  /* "2" */
 
 ### Logical Compution
 
+`BooleanProperty` can compute `#and(&&)`, `#or(||)`, `#not(!)`, `#xor(^)`, `#nand`, `#nor`.  
+`BooleanCompution` can also compute.
+
 ```java
 /* build instance */
 BooleanProperty a = BooleanProperty.newInstance(false);
 BooleanProperty b = BooleanProperty.newInstance(true);
 
-LogicalCompution and = a.and(b); /* a && b  */
-Sysmtem.out.println(and);        /* "false" */
+BooleanCompution and = a.and(b);         /* a && b  */
+System.out.println(and.booleanValue());  /* "false" */
 
-LogicalCompution or = a.or(b);   /* a || b  */
-Sysmtem.out.println(or);         /* "true"  */
+BooleanCompution or = a.or(b);           /* a || b  */
+System.out.println(or.booleanValue());   /* "true"  */
 
-LogicalCompution not = a.not()   /* ! a     */
-Sysmtem.out.println(not);        /* "true"  */
+BooleanCompution not = a.not();          /* ! a     */
+System.out.println(not.booleanValue());  /* "true"  */
 
-LogicalCompution xor = a.xor(b); /* a ^ b   */
-Sysmtem.out.println(xor);        /* "true"  */
+BooleanCompution xor = a.xor(b);         /* a ^ b   */
+System.out.println(xor.booleanValue());  /* "true"  */
 
 a.set(true); /* a change to true */
 
-/* NumberCompution change automatically */
-Sysmtem.out.println(and);        /* "true"  */
-Sysmtem.out.println(or);         /* "true"  */
-Sysmtem.out.println(not);        /* "false" */
-Sysmtem.out.println(xor);        /* "false" */
+/* LogicalCompution change automatically */
+System.out.println(and.booleanValue());  /* "true"  */
+System.out.println(or.booleanValue());   /* "true"  */
+System.out.println(not.booleanValue());  /* "false" */
+System.out.println(xor.booleanValue());  /* "false" */
+```
+
+## Observer
+
+```java
+/* Add ChangeListener */
+
+//building...
+
 ```
 
 ## Wait Until Methods

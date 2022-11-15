@@ -17,6 +17,7 @@ public class PropertyTest {
 	
 	public static void main(String[] args) {
 		
+		
 		final List<TestModule> tests = Arrays.asList(
 				testMap
 				);

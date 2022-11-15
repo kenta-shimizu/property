@@ -37,6 +37,26 @@ public interface BooleanObservable extends Observable<Boolean, BooleanSettable> 
 		return LogicalCompution.nor(this, observable);
 	}
 	
+	default public LogicalCompution and(boolean f) {
+		return this.and(UnmodifiablePropertyBuilder.getInstance().getBoolean(f));
+	}
+	
+	default public LogicalCompution or(boolean f) {
+		return this.or(UnmodifiablePropertyBuilder.getInstance().getBoolean(f));
+	}
+	
+	default public LogicalCompution xor(boolean f) {
+		return this.xor(UnmodifiablePropertyBuilder.getInstance().getBoolean(f));
+	}
+	
+	default public LogicalCompution nand(boolean f) {
+		return this.nand(UnmodifiablePropertyBuilder.getInstance().getBoolean(f));
+	}
+	
+	default public LogicalCompution nor(boolean f) {
+		return this.nor(UnmodifiablePropertyBuilder.getInstance().getBoolean(f));
+	}
+	
 	default public void waitUntil(boolean f, TimeGettable p) throws InterruptedException, TimeoutException {
 		TimeoutAndUnit a = p.get();
 		this.waitUntil(f, a.timeout(), a.unit());

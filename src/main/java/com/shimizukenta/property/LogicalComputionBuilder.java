@@ -9,10 +9,10 @@ import java.util.function.Predicate;
 public class LogicalComputionBuilder extends AbstractComputionBuilder {
 	
 	public static LogicalComputionBuilder getInstance() {
-		return SingletonHolder.inst;
+		return SingletonBuilderHolder.inst;
 	}
 	
-	private static class SingletonHolder {
+	private static class SingletonBuilderHolder {
 		private static final LogicalComputionBuilder inst = new LogicalComputionBuilder();
 	}
 	

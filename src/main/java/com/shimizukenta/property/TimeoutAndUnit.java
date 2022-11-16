@@ -1,41 +1,43 @@
 package com.shimizukenta.property;
 
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-public class TimeoutAndUnit {
+/**
+ * 
+ * @author kenta-shimizu
+ *
+ */
+public interface TimeoutAndUnit {
+
+	public long timeout();
+
+	public TimeUnit unit();
 	
-	private final long timeout;
-	private final TimeUnit unit;
-	
-	public TimeoutAndUnit(long timeout, TimeUnit unit) {
-		if ( timeout < 0L ) {
-			throw new IllegalArgumentException("timeout must >=0L");
-		}
-		this.timeout = timeout;
-		this.unit = Objects.requireNonNull(unit);
+	default public long getMilliSeconds() {
+		return this.unit().toMillis(this.timeout());
 	}
 	
-	public long timeout() {
-		return this.timeout;
+	public static TimeoutAndUnit of(long timeout, TimeUnit unit) {
+		return new AbstractTimeoutAndUnit(timeout, unit) {
+
+			private static final long serialVersionUID = -1751240708640861755L;
+		};
+	}
+
+	public static TimeoutAndUnit of(int seconds) {
+		return of((long)seconds, TimeUnit.SECONDS);
 	}
 	
-	public TimeUnit unit() {
-		return this.unit;
+	public static TimeoutAndUnit of(long seconds) {
+		return of(seconds, TimeUnit.SECONDS);
 	}
 	
-	@Override
-	public boolean equals(Object other) {
-		if (other != null && (other instanceof TimeoutAndUnit)) {
-			TimeoutAndUnit o = (TimeoutAndUnit)other;
-			return o.timeout == this.timeout && o.unit == this.unit;
-		}
-		return false;
+	public static TimeoutAndUnit of(float seconds) {
+		return of((long)(seconds * 1000.0F), TimeUnit.MILLISECONDS);
 	}
 	
-	@Override
-	public int hashCode() {
-		return Objects.hash(this.timeout, this.unit);
+	public static TimeoutAndUnit of(double seconds) {
+		return of((long)(seconds * 1000000.0D), TimeUnit.MICROSECONDS);
 	}
 	
 }

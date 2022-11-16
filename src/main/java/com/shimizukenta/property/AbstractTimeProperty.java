@@ -23,7 +23,7 @@ public abstract class AbstractTimeProperty extends AbstractProperty<TimeoutAndUn
 	
 	@Override
 	public void set(long timeout, TimeUnit unit) {
-		TimeoutAndUnit v = new TimeoutAndUnit(timeout, unit);
+		TimeoutAndUnit v = TimeoutAndUnit.of(timeout, unit);
 		super.set(v);
 	}
 	

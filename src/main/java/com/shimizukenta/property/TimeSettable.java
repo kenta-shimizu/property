@@ -15,7 +15,7 @@ public interface TimeSettable extends Settable<TimeoutAndUnit> {
 	 * @param seconds
 	 */
 	default public void set(int seconds) {
-		this.set((long)seconds, TimeUnit.SECONDS);
+		this.set(TimeoutAndUnit.of(seconds));
 	}
 	
 	/**
@@ -24,7 +24,7 @@ public interface TimeSettable extends Settable<TimeoutAndUnit> {
 	 * @param seconds
 	 */
 	default public void set(long seconds) {
-		this.set(seconds, TimeUnit.SECONDS);
+		this.set(TimeoutAndUnit.of(seconds));
 	}
 	
 	/**
@@ -33,8 +33,7 @@ public interface TimeSettable extends Settable<TimeoutAndUnit> {
 	 * @param seconds
 	 */
 	default public void set(float seconds) {
-		long ms = (long)(seconds * 1000.0F);
-		this.set(ms, TimeUnit.MILLISECONDS);
+		this.set(TimeoutAndUnit.of(seconds));
 	}
 	
 	/**
@@ -43,8 +42,7 @@ public interface TimeSettable extends Settable<TimeoutAndUnit> {
 	 * @param seconds
 	 */
 	default public void set(double seconds) {
-		long ms = (long)(seconds * 1000.0D);
-		this.set(ms, TimeUnit.MILLISECONDS);
+		this.set(TimeoutAndUnit.of(seconds));
 	}
 	
 	/**
@@ -54,7 +52,7 @@ public interface TimeSettable extends Settable<TimeoutAndUnit> {
 	 * @param unit
 	 */
 	default public void set(long timeout, TimeUnit unit) {
-		this.set(new TimeoutAndUnit(timeout, unit));
+		this.set(TimeoutAndUnit.of(timeout, unit));
 	}
 	
 }

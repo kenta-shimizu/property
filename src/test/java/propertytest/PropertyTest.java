@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import com.shimizukenta.property.BooleanProperty;
+import com.shimizukenta.property.IntegerProperty;
 import com.shimizukenta.property.LogicalCompution;
 import com.shimizukenta.property.MapProperty;
 
@@ -62,6 +63,8 @@ public class PropertyTest {
 		echo("");
 		echo("# Test-1 LogicalCompution");
 		echo("");
+		
+		IntegerProperty i = IntegerProperty.newInstance(1);
 		
 		BooleanProperty b11 = BooleanProperty.newInstance(false);
 		BooleanProperty b12 = BooleanProperty.newInstance(true);
@@ -183,10 +186,10 @@ public class PropertyTest {
 			
 			echo("");
 			echo("wait-until-contain A");
-			echo("Throught get: " + mp.waitUntilContainsKey("A", 1L, TimeUnit.SECONDS));
+			echo("Throught get: " + mp.waitUntilContainsKey("A", 3L, TimeUnit.SECONDS));
 			echo("Throught get: " + mp.waitUntilContainsKey("A"));
 			
-			echo("wait-until-containsKey B: " + mp.waitUntilContainsKey("B", 1L, TimeUnit.SECONDS));
+			echo("wait-until-containsKey B: " + mp.waitUntilContainsKey("B", 3L, TimeUnit.SECONDS));
 		}
 		catch ( Throwable t ) {
 			echo(t);

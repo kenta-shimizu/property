@@ -109,7 +109,7 @@ System.out.println(minABC.intValue());  /* "1" */
 
 a.set(4);   /* a change to 4 */
 
-/* LogicalCompution change automatically */
+/* NumberCompution change automatically */
 System.out.println(sumABC.intValue());  /* "9" */
 System.out.println(maxABC.intValue());  /* "4" */
 System.out.println(minABC.intValue());  /* "2" */

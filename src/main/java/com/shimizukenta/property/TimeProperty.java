@@ -16,9 +16,7 @@ public interface TimeProperty extends Property<TimeoutAndUnit, TimeSettable>, Ti
 	 * @return new-instance
 	 */
 	public static TimeProperty newInstance(int seconds) {
-		return newInstance(
-				(long)seconds,
-				TimeUnit.SECONDS);
+		return newInstance(TimeoutAndUnit.of(seconds));
 	}
 	
 	/**
@@ -28,7 +26,7 @@ public interface TimeProperty extends Property<TimeoutAndUnit, TimeSettable>, Ti
 	 * @return new-instance
 	 */
 	public static TimeProperty newInstance(long seconds) {
-		return newInstance(seconds, TimeUnit.SECONDS);
+		return newInstance(TimeoutAndUnit.of(seconds));
 	}
 	
 	/**
@@ -38,9 +36,7 @@ public interface TimeProperty extends Property<TimeoutAndUnit, TimeSettable>, Ti
 	 * @return new-instance
 	 */
 	public static TimeProperty newInstance(float seconds) {
-		return newInstance(
-				(long)(seconds * 1000.0F),
-				TimeUnit.MILLISECONDS);
+		return newInstance(TimeoutAndUnit.of(seconds));
 	}
 	
 	/**
@@ -50,9 +46,7 @@ public interface TimeProperty extends Property<TimeoutAndUnit, TimeSettable>, Ti
 	 * @return new-instance
 	 */
 	public static TimeProperty newInstance(double seconds) {
-		return newInstance(
-				(long)(seconds * 1000.0D),
-				TimeUnit.MILLISECONDS);
+		return newInstance(TimeoutAndUnit.of(seconds));
 	}
 	
 	/**
@@ -63,7 +57,7 @@ public interface TimeProperty extends Property<TimeoutAndUnit, TimeSettable>, Ti
 	 * @return new-instance
 	 */
 	public static TimeProperty newInstance(long timeout, TimeUnit unit) {
-		return newInstance(new TimeoutAndUnit(timeout, unit));
+		return newInstance(TimeoutAndUnit.of(timeout, unit));
 	}
 	
 	/**

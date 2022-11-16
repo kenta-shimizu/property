@@ -118,9 +118,29 @@ System.out.println(minABC.intValue());  /* "2" */
 
 ### Comparative Compution
 
-```java
-//building...
+`NumberProperty` can compute `#isEqualTo(==)`, `#isNotEqualTo(!=)`, `#isLessThan(<)`, `#isLessThanOrEqualTo(<=)`, `isGreaterThan(>)`, `isGreaterThanOrEqualTo(>=)`.  
+`NumberCompution` can also compute.
 
+```java
+/* build instance */
+IntegerProperty a = IntegerProperty.newInstance(3);
+IntegerProperty b = IntegerProperty.newInstance(4);
+
+BooleanCompution aGT3 = a.isGreaterThan(3);
+System.out.println(aGT3.booleanValue());  /* a >  3, "false" */
+
+BooleanCompution aEQ5 = a.isEqualTo(5);
+System.out.println(aEQ5.booleanValue());  /* a == 5, "false" */
+
+BooleanCompution aLTb = a.isLessThan(b);
+System.out.println(aLTb.booleanValue());  /* a <  b, "true"  */
+
+a.set(5);  /* a change to 5 */
+
+/* ComparaiveCompution change automatically */
+System.out.println(aGT3.booleanValue());  /* a >  3, "true"  */
+System.out.println(aEQ5.booleanValue());  /* a == 5, "true"  */
+System.out.println(aLTb.booleanValue());  /* a <  b, "false" */
 ```
 
 ### Logical Compution
@@ -145,7 +165,7 @@ System.out.println(not.booleanValue());  /* "true"  */
 BooleanCompution xor = a.xor(b);         /* a ^ b   */
 System.out.println(xor.booleanValue());  /* "true"  */
 
-a.set(true); /* a change to true */
+a.set(true);  /* a change to true */
 
 /* LogicalCompution change automatically */
 System.out.println(and.booleanValue());  /* "true"  */
@@ -156,11 +176,29 @@ System.out.println(xor.booleanValue());  /* "false" */
 
 ## Observer
 
+All `Property` and `Compution` can observe by `#addChangeListener`.
+
 ```java
+/* build instance */
+IntegerProperty a = IntegerProperty.newInstance(1);
+IntegerProperty b = IntegerProperty.newInstance(2);
+IntegerProperty c = IntegerProperty.newInstance(3);
+
+NumberCompution sum = NumberCompution.sum(a, b, c);
+
 /* Add ChangeListener */
+sum.addChangeListener(n -> {
+	System.out.println(n.intValue());
+});
 
-//building...
+a.set(4);
+b.set(5);
+c.set(6);
 
+/*  "6", (1+2+3), first     */
+/*  "9", (4+2+3), a changed */
+/* "12", (4+5+3), b changed */
+/* "15", (4+5+6), c changed */
 ```
 
 ## Wait Until Methods

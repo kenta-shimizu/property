@@ -5,10 +5,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import com.shimizukenta.property.BooleanCompution;
 import com.shimizukenta.property.BooleanProperty;
 import com.shimizukenta.property.IntegerProperty;
 import com.shimizukenta.property.LogicalCompution;
 import com.shimizukenta.property.MapProperty;
+import com.shimizukenta.property.NumberCompution;
 
 public class PropertyTest {
 
@@ -17,7 +19,6 @@ public class PropertyTest {
 	}
 	
 	public static void main(String[] args) {
-		
 		
 		final List<TestModule> tests = Arrays.asList(
 				testMap
@@ -59,6 +60,25 @@ public class PropertyTest {
 	}
 	
 	protected static void test1() throws InterruptedException {
+		
+		IntegerProperty a = IntegerProperty.newInstance(3);
+		IntegerProperty b = IntegerProperty.newInstance(5);
+		
+		BooleanCompution aGT3 = a.isGreaterThan(3);
+		System.out.println(aGT3.booleanValue());
+		
+		BooleanCompution aEQ5 = a.isEqualTo(5);
+		System.out.println(aEQ5.booleanValue());
+		
+		BooleanCompution aLTb = a.isLessThan(b);
+		System.out.println(aLTb.booleanValue());
+		
+		a.set(5);
+		
+		System.out.println(aGT3.booleanValue());
+		System.out.println(aEQ5.booleanValue());
+		System.out.println(aLTb.booleanValue());
+		
 		
 		echo("");
 		echo("# Test-1 LogicalCompution");
@@ -189,7 +209,7 @@ public class PropertyTest {
 			echo("Throught get: " + mp.waitUntilContainsKey("A", 3L, TimeUnit.SECONDS));
 			echo("Throught get: " + mp.waitUntilContainsKey("A"));
 			
-			echo("wait-until-containsKey B: " + mp.waitUntilContainsKey("B", 3L, TimeUnit.SECONDS));
+			echo("wait-until-containsKey B: " + mp.waitUntilContainsKey("B", 1L, TimeUnit.SECONDS));
 		}
 		catch ( Throwable t ) {
 			echo(t);

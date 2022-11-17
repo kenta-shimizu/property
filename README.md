@@ -3,7 +3,8 @@
 building ...
 
 This library is similar to JavaFX "javafx.beans.property".  
-Java8 or later.
+Includes Setter/Getter/Obserser and Number/Comparative/Logical compution.  
+Require Java8 or later.
 
 ## Build new instance.
 
@@ -176,7 +177,7 @@ System.out.println(xor.booleanValue());  /* "false" */
 
 ## Observer
 
-All `Property` and `Compution` can observe by `#addChangeListener`.
+All `Property` and `Compution` can observe changed value by `#addChangeListener`.
 
 ```java
 /* build instance */
@@ -191,37 +192,79 @@ sum.addChangeListener(n -> {
 	System.out.println(n.intValue());
 });
 
-a.set(4);
-b.set(5);
-c.set(6);
-
-/*  "6", (1+2+3), first     */
-/*  "9", (4+2+3), a changed */
-/* "12", (4+5+3), b changed */
-/* "15", (4+5+6), c changed */
+           /*  "6", (1+2+3), initial   */
+a.set(4);  /*  "9", (4+2+3), a changed */
+b.set(5);  /* "12", (4+5+3), b changed */
+c.set(6);  /* "15", (4+5+6), c changed */
 ```
 
 ## Wait Until Methods
 
-```java
-//building...
+Waiting until condition is true. (blocking methods)  
+If set timeout and over, throw `java.util.concurrent.TimeoutException`.
 
+```java
+/* build instance */
+final BooleanProperty boolProp = BooleanProperty.newInstance(false);
+final IntegerProperty intProp = IntegerProperty.newInstance(0);
+final ObjectProperty<String> objProp = ObjectProperty.newInstance(null);
+final MapProperty<String, String> mapProp = MapProperty.newInstance();
+
+new Thread(() -> {
+	try {
+		Thread.sleep(1000L);
+		boolProp.set(true);
+		
+		Thread.sleep(1000L);
+		intProp.set(10);
+		
+		Thread.sleep(1000L);
+		objProp.set("STRING");
+		
+		Thread.sleep(1000L);
+		mapProp.put("KEY", "VALUE");
+	}
+	catch ( InterruptedException ignore ) {
+	}
+}).start();
+
+System.out.println("Waiting until boolProp is true.");
+boolProp.waitUntilTrue();
+System.out.println("boolProp is true.");
+
+System.out.println("Waiting until intProp is >5.");
+intProp.waitUntilGreaterThan(5);
+System.out.println("inrProp is >5.");
+
+System.out.println("Waiting until objProp is not null.");
+String objv = objProp.waitUntilNotNull();
+System.out.println("objProp is " + objv);
+
+System.out.println("Waiting until mapProp containsKey(\"KEY\").");
+String mapv = mapProp.waitUntilContainsKey("KEY");
+System.out.println("mapProp get(\"KEY\") is " + mapv);
 ```
 
 ## TimeProperty
 
+`TimeProperty` is utility class instance.  
+Includes `timeout(long)` and `java.util.concurrent.TimeUnit`.  
+Can set to `waitUntil` methods as timeout.
+
 ```java
 /* java.time */
-TimeProperty timeProp = TimeProperty.newInstance(10.0F); /* set 10.0 seconds */
-TimeProperty timeProp = TimeProperty.newInstance(10L, TimeUnit.SECONDS); /* set 10 seconds */
+TimeProperty timeProp = TimeProperty.newInstance(10L, TimeUnit.SECONDS);  /* set 10 seconds */
+TimeProperty timeProp = TimeProperty.newInstance(10.0F);  /* set 10.0 seconds */
 
 /* Setter */
-timeProp.set(5.0F); /* set 5.0 seconds */
+timeProp.set(5.0F);  /* set 5.0 seconds */
 
 /* Utilities */
-timeProp.sleep(); /* TimeUnit#sleep(timeout) */
+timeProp.sleep();  /* TimeUnit#sleep(timeout); */
+timeProp.wait(syncObj);  /* TimeUnit#timedWait(syncObj, timeout); */
+T v = timeProp.future(future);  /* Future<T>#get(timeout, TimeUnit); */
+T v = timeProp.poll(blockingQueue);  /* BlokingQueue#poll(timeout, TimeUnit); */
 
-/* to #waitUntil methods */
-
-//building...
+/* set to #waitUntil methods as timeout */
+boolProp.waitUntilTrue(timeProp);
 ```

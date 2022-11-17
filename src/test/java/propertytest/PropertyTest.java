@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import com.shimizukenta.property.BooleanCompution;
 import com.shimizukenta.property.BooleanProperty;
 import com.shimizukenta.property.IntegerProperty;
 import com.shimizukenta.property.LogicalCompution;
 import com.shimizukenta.property.MapProperty;
-import com.shimizukenta.property.NumberCompution;
+import com.shimizukenta.property.ObjectProperty;
 
 public class PropertyTest {
 
@@ -19,6 +20,51 @@ public class PropertyTest {
 	}
 	
 	public static void main(String[] args) {
+		
+		
+		try {
+final BooleanProperty boolProp = BooleanProperty.newInstance(false);
+final IntegerProperty intProp = IntegerProperty.newInstance(0);
+final ObjectProperty<String> objProp = ObjectProperty.newInstance(null);
+final MapProperty<String, String> mapProp = MapProperty.newInstance();
+
+new Thread(() -> {
+	try {
+		Thread.sleep(1000L);
+		boolProp.set(true);
+		
+		Thread.sleep(1000L);
+		intProp.set(10);
+		
+		Thread.sleep(1000L);
+		objProp.set("STRING");
+		
+		Thread.sleep(1000L);
+		mapProp.put("KEY", "VALUE");
+	}
+	catch ( InterruptedException ignore ) {
+	}
+}).start();
+
+System.out.println("Waiting until boolProp is true.");
+boolProp.waitUntilTrue();
+System.out.println("boolProp is true.");
+
+System.out.println("Waiting until intProp is >5.");
+intProp.waitUntilGreaterThan(5);
+System.out.println("inrProp is >5.");
+
+System.out.println("Waiting until objProp is not null.");
+String objv = objProp.waitUntilNotNull();
+System.out.println("objProp is " + objv);
+
+System.out.println("Waiting until mapProp containsKey(\"KEY\").");
+String mapv = mapProp.waitUntilContainsKey("KEY");
+System.out.println("mapProp get(\"KEY\") is " + mapv);
+			
+		}
+		catch ( InterruptedException ignore ) {
+		}
 		
 		final List<TestModule> tests = Arrays.asList(
 				testMap
@@ -210,6 +256,9 @@ public class PropertyTest {
 			echo("Throught get: " + mp.waitUntilContainsKey("A"));
 			
 			echo("wait-until-containsKey B: " + mp.waitUntilContainsKey("B", 1L, TimeUnit.SECONDS));
+		}
+		catch ( TimeoutException e ) {
+			echo(e);
 		}
 		catch ( Throwable t ) {
 			echo(t);

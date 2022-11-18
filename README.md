@@ -11,15 +11,15 @@ Require Java8 or later.
 ObjectProperty<String> objProp = ObjectProperty.newInstance(null);
 
 /* Primitive */
-IntegerProperty intProp = IntegerProperty.newInstsance(0);
-LongProperty longProp = LongProperty.newInstance(0L);
-FloatProperty floatProp = FloatProperty.newInstance(0.0F);
-DoubleProperty doubleProp = DoubleProperty.newInstance(0.0D);
-BooleanProperty boolProp = BooleanProperty.newInstance(false);
+IntegerProperty intProp    = IntegerProperty.newInstsance(0);
+LongProperty    longProp   = LongProperty.newInstance(0L);
+FloatProperty   floatProp  = FloatProperty.newInstance(0.0F);
+DoubleProperty  doubleProp = DoubleProperty.newInstance(0.0D);
+BooleanProperty boolProp   = BooleanProperty.newInstance(false);
 
 /* Collection */
 ListProperty<String> listProp = ListProperty.newInstance();
-SetProperty<Integer> setProp = SetProperty.newInstance();
+SetProperty<Integer> setProp  = SetProperty.newInstance();
 MapProperty<String, Integer> mapProp = MapProperty.newInstance();
 ```
 
@@ -55,10 +55,10 @@ mapProp.put("KEY", Integer.valurOf(1));
 String v = objProp.get();
 
 /* Primitive */
-int i = intProp.intValue();
-long l = longProp.longValue();
-float f = floatProp.floatValue();
-double d = doubleProp.doubleValue();
+int i     = intProp.intValue();
+long l    = longProp.longValue();
+float f   = floatProp.floatValue();
+double d  = doubleProp.doubleValue();
 boolean b = boolProp.booleanValue();
 
 /* Collection */

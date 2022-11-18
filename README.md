@@ -1,9 +1,7 @@
 # property
 
-building ...
-
 This library is similar to JavaFX "javafx.beans.property".  
-Includes Setter/Getter/Obserser and Number/Comparative/Logical compution.  
+Includes Setter/Getter/Observer and Number/Comparative/Logical compution.  
 Require Java8 or later.
 
 ## Build new instance.
@@ -119,7 +117,7 @@ System.out.println(minABC.intValue());  /* "2" */
 
 ### Comparative Compution
 
-`NumberProperty` can compute `#isEqualTo(==)`, `#isNotEqualTo(!=)`, `#isLessThan(<)`, `#isLessThanOrEqualTo(<=)`, `isGreaterThan(>)`, `isGreaterThanOrEqualTo(>=)`.  
+`NumberProperty` can compute `#isEqualTo(==)`, `#isNotEqualTo(!=)`, `#isLessThan(<)`, `#isLessThanOrEqualTo(<=)`, `#isGreaterThan(>)`, `#isGreaterThanOrEqualTo(>=)`.  
 `NumberCompution` can also compute.
 
 ```java
@@ -263,7 +261,7 @@ timeProp.set(5.0F);  /* set 5.0 seconds */
 timeProp.sleep();  /* TimeUnit#sleep(timeout); */
 timeProp.wait(syncObj);  /* TimeUnit#timedWait(syncObj, timeout); */
 T v = timeProp.future(future);  /* Future<T>#get(timeout, TimeUnit); */
-T v = timeProp.poll(blockingQueue);  /* BlokingQueue#poll(timeout, TimeUnit); */
+T v = timeProp.poll(blockingQueue);  /* BlokingQueue<T>#poll(timeout, TimeUnit); */
 
 /* set to #waitUntil methods as timeout */
 boolProp.waitUntilTrue(timeProp);

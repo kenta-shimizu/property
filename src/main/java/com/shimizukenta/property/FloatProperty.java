@@ -4,6 +4,7 @@
 package com.shimizukenta.property;
 
 /**
+ * 
  * @author kenta-shimizu
  *
  */

@@ -6,8 +6,8 @@ import java.util.Collection;
  * 
  * @author kenta-shimizu
  *
- * @param <E>
- * @param <T>
+ * @param <E> Element
+ * @param <T> Type
  */
 public interface CollectionObservable<E, T extends Collection<E>> {
 	

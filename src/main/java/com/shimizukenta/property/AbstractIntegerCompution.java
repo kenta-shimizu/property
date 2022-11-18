@@ -64,4 +64,9 @@ public abstract class AbstractIntegerCompution extends AbstractNumberCompution i
 		}
 	}
 	
+	@Override
+	public boolean isInteger() {
+		return true;
+	}
+	
 }

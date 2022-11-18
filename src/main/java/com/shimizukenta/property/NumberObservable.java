@@ -13,6 +13,14 @@ import java.util.concurrent.TimeoutException;
  */
 public interface NumberObservable<T extends Number> extends Observable<T, NumberSettable<T>> {
 	
+	public boolean isInteger();
+	
+	public boolean isLong();
+	
+	public boolean isFloat();
+	
+	public boolean isDouble();
+	
 	/* Casts */
 	
 	default public IntegerCompution toInteger() {

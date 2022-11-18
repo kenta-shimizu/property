@@ -28,4 +28,9 @@ public abstract class AbstractDoubleProperty extends AbstractNumberProperty<Doub
 		super.set(Double.valueOf(value));
 	}
 	
+	@Override
+	public boolean isDouble() {
+		return true;
+	}
+	
 }

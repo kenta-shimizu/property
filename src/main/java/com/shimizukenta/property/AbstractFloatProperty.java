@@ -28,4 +28,9 @@ public abstract class AbstractFloatProperty extends AbstractNumberProperty<Float
 		super.set(Float.valueOf(value));
 	}
 	
+	@Override
+	public boolean isFloat() {
+		return true;
+	}
+	
 }

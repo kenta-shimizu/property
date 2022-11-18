@@ -2,7 +2,6 @@ package com.shimizukenta.property;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 
 /**
  * 
@@ -16,7 +15,7 @@ public abstract class AbstractComputionBuilder {
 	}
 	
 	protected boolean isDouble(NumberObservable<? extends Number> observable) {
-		return isDouble(Collections.singleton(observable));
+		return observable.isDouble();
 	}
 	
 	protected boolean isDouble(NumberObservable<? extends Number> a, NumberObservable<? extends Number> b) {
@@ -24,13 +23,11 @@ public abstract class AbstractComputionBuilder {
 	}
 	
 	protected boolean isDouble(Collection<? extends NumberObservable<? extends Number>> observables) {
-		return observables.stream().anyMatch(o -> {
-			return (o instanceof DoubleObservable) || (o instanceof DoubleCompution);
-		});
+		return observables.stream().anyMatch(o -> o.isDouble());
 	}
 	
 	protected boolean isFloat(NumberObservable<? extends Number> observable) {
-		return isFloat(Collections.singleton(observable));
+		return observable.isFloat();
 	}
 	
 	protected boolean isFloat(NumberObservable<? extends Number> a, NumberObservable<? extends Number> b) {
@@ -38,13 +35,11 @@ public abstract class AbstractComputionBuilder {
 	}
 	
 	protected boolean isFloat(Collection<? extends NumberObservable<? extends Number>> observables) {
-		return observables.stream().anyMatch(o -> {
-			return (o instanceof FloatObservable) || (o instanceof FloatCompution);
-		});
+		return observables.stream().anyMatch(o -> o.isFloat());
 	}
 	
 	protected boolean isLong(NumberObservable<? extends Number> observable) {
-		return isLong(Collections.singleton(observable));
+		return observable.isLong();
 	}
 	
 	protected boolean isLong(NumberObservable<? extends Number> a, NumberObservable<? extends Number> b) {
@@ -52,13 +47,11 @@ public abstract class AbstractComputionBuilder {
 	}
 	
 	protected boolean isLong(Collection<? extends NumberObservable<? extends Number>> observables) {
-		return observables.stream().anyMatch(o -> {
-			return (o instanceof LongObservable) || (o instanceof LongCompution);
-		});
+		return observables.stream().anyMatch(o -> o.isLong());
 	}
 	
 	protected boolean isInteger(NumberObservable<? extends Number> observable) {
-		return isInteger(Collections.singleton(observable));
+		return observable.isInteger();
 	}
 	
 	protected boolean isInteger(NumberObservable<? extends Number> a, NumberObservable<? extends Number> b) {
@@ -66,9 +59,7 @@ public abstract class AbstractComputionBuilder {
 	}
 	
 	protected boolean isInteger(Collection<? extends NumberObservable<? extends Number>> observables) {
-		return observables.stream().anyMatch(o -> {
-			return (o instanceof IntegerObservable) || (o instanceof IntegerCompution);
-		});
+		return observables.stream().anyMatch(o -> o.isInteger());
 	}
-
+	
 }

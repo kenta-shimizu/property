@@ -64,4 +64,9 @@ public abstract class AbstractFloatCompution extends AbstractNumberCompution imp
 		}
 	}
 	
+	@Override
+	public boolean isFloat() {
+		return true;
+	}
+	
 }

@@ -63,5 +63,10 @@ public abstract class AbstractLongCompution extends AbstractNumberCompution impl
 			return this.last;
 		}
 	}
-
+	
+	@Override
+	public boolean isLong() {
+		return true;
+	}
+	
 }

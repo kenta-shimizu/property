@@ -28,4 +28,9 @@ public abstract class AbstractLongProperty extends AbstractNumberProperty<Long> 
 		super.set(Long.valueOf(value));
 	}
 	
+	@Override
+	public boolean isLong() {
+		return true;
+	}
+	
 }

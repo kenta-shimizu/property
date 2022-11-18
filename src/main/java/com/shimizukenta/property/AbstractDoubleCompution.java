@@ -63,5 +63,10 @@ public abstract class AbstractDoubleCompution extends AbstractNumberCompution im
 			return this.last;
 		}
 	}
-
+	
+	@Override
+	public boolean isDouble() {
+		return true;
+	}
+	
 }

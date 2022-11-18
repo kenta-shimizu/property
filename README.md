@@ -2,7 +2,7 @@
 
 This library is similar to JavaFX "javafx.beans.property".  
 Includes Setter/Getter/Observer and Number/Comparative/Logical compution.  
-Require Java8 or later.
+Requires Java8 or later.
 
 ## Build new instance.
 
@@ -112,7 +112,6 @@ a.set(4);   /* a change to 4 */
 System.out.println(sumABC.intValue());  /* "9" */
 System.out.println(maxABC.intValue());  /* "4" */
 System.out.println(minABC.intValue());  /* "2" */
-
 ```
 
 ### Comparative Compution

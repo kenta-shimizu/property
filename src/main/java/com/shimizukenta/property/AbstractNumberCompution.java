@@ -30,6 +30,26 @@ public abstract class AbstractNumberCompution extends AbstractCompution<Number, 
 	}
 	
 	@Override
+	public boolean isInteger() {
+		return false;
+	}
+	
+	@Override
+	public boolean isLong() {
+		return false;
+	}
+	
+	@Override
+	public boolean isFloat() {
+		return false;
+	}
+	
+	@Override
+	public boolean isDouble() {
+		return false;
+	}
+	
+	@Override
 	public String toString() {
 		return this.get().toString();
 	}

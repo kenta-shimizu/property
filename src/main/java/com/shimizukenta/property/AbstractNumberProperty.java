@@ -29,6 +29,26 @@ public abstract class AbstractNumberProperty<T extends Number> extends AbstractP
 	}
 	
 	@Override
+	public boolean isInteger() {
+		return false;
+	}
+	
+	@Override
+	public boolean isLong() {
+		return false;
+	}
+	
+	@Override
+	public boolean isFloat() {
+		return false;
+	}
+	
+	@Override
+	public boolean isDouble() {
+		return false;
+	}
+
+	@Override
 	public String toString() {
 		return get().toString();
 	}

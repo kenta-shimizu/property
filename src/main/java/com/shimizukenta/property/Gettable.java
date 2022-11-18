@@ -4,7 +4,7 @@ package com.shimizukenta.property;
  * 
  * @author kenta-shimizu
  *
- * @param <T>
+ * @param <T> Type
  */
 public interface Gettable<T> {
 	

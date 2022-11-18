@@ -28,4 +28,9 @@ public abstract class AbstractIntegerProperty extends AbstractNumberProperty<Int
 		super.set(Integer.valueOf(value));
 	}
 	
+	@Override
+	public boolean isInteger() {
+		return true;
+	}
+	
 }

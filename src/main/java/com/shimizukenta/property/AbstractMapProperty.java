@@ -3,6 +3,7 @@ package com.shimizukenta.property;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -128,51 +129,34 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 		}
 	}
 	
-	private final Collection<MapObservable<K, V>> bindObs = new ArrayList<>();
+	private final ChangeListener<Map<K, V>> changeLstnr = this::_set;
 	
-	@Override
-	public boolean bind(MapObservable<K, V> observable) {
+	protected void _set(Map<? extends K, ? extends V> newMap) {
 		synchronized ( this._sync ) {
-			boolean f = this.bindObs.add(observable);
-			if ( f ) {
-				observable.set(this._get());
+			if (! Objects.equals(newMap, this._get())) {
+				this._get().clear();
+				this._get().putAll(newMap);
+				this._notifyChanged();
 			}
-			return f;
 		}
 	}
 	
 	@Override
-	public boolean unbind(MapObservable<K, V> observable) {
-		synchronized ( this._sync ) {
-			return this.bindObs.remove(observable);
-		}
+	public boolean bind(MapObservable<K, V> observer) {
+		return observer.addChangeListener(this.changeLstnr);
 	}
 	
 	@Override
-	public void set(Map<? extends K, ? extends V> newMap) {
-		synchronized ( this._sync ) {
-			this._get().clear();
-			this._get().putAll(newMap);
-			this._notifyChanged();
-		}
-	}
-	
-	protected void _notifyChangedToListnersAndBinds() {
-		final Map<K, V> m = this._get();
-		
-		for (ChangeListener<? super Map<K, V>> l : this.changeLstnrs ) {
-			l.changed(m);
-		}
-		
-		for (MapObservable<K, V> o : this.bindObs) {
-			o.set(m);
-		}
+	public boolean unbind(MapObservable<K, V> observer) {
+		return observer.removeChangeListener(this.changeLstnr);
 	}
 	
 	protected void _notifyChanged() {
 		synchronized ( this._sync ) {
-			this._notifyChangedToListnersAndBinds();
-			this._sync.notifyAll();
+			final Map<K, V> m = this._get();
+			for (ChangeListener<? super Map<K, V>> l : this.changeLstnrs ) {
+				l.changed(m);
+			}
 		}
 	}
 	
@@ -252,6 +236,12 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	}
 	
 	@Override
+	public V waitUntilContainsKey(Object key, TimeGettable p) throws InterruptedException, TimeoutException {
+		TimeoutAndUnit a = p.get();
+		return this.waitUntilContainsKey(key, a.timeout(), a.unit());
+	}
+	
+	@Override
 	public void waitUntilNotContainsKey(Object key) throws InterruptedException {
 		final Inner i = new Inner(key, false);
 		try {
@@ -273,6 +263,12 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 		finally {
 			this.removeChangeListener(i);
 		}
+	}
+	
+	@Override
+	public void waitUntilNotContainsKey(Object key, TimeGettable p) throws InterruptedException, TimeoutException {
+		TimeoutAndUnit a = p.get();
+		this.waitUntilNotContainsKey(key, a.timeout(), a.unit());
 	}
 	
 	@Override

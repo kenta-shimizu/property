@@ -1,8 +1,9 @@
 package com.shimizukenta.property;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Objects;
 
 /**
  * 
@@ -86,7 +87,7 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
-		synchronized ( this ) {
+		synchronized ( this._sync ) {
 			boolean f = this._get().addAll(c);
 			if ( f ) {
 				this._notifyChagned();
@@ -97,7 +98,7 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 
 	@Override
 	public boolean removeAll(Collection<?> c) {
-		synchronized ( this ) {
+		synchronized ( this._sync ) {
 			boolean f = this._get().removeAll(c);
 			if ( f ) {
 				this._notifyChagned();
@@ -119,7 +120,7 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 
 	@Override
 	public void clear() {
-		synchronized ( this ) {
+		synchronized ( this._sync ) {
 			if ( ! this._get().isEmpty() ) {
 				this._get().clear();
 				this._notifyChagned();
@@ -127,7 +128,7 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 		}
 	}
 	
-	private final Collection<ChangeListener<? super T>> changeLstnrs = new ArrayList<>();
+	private final Collection<ChangeListener<? super T>> changeLstnrs = new HashSet<>();
 	@Override
 	public boolean addChangeListener(ChangeListener<? super T> l) {
 		synchronized ( this._sync ) {
@@ -146,52 +147,32 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 		}
 	}
 	
-	private final Collection<CollectionObservable<E, T>> bindObs = new ArrayList<>();
+	private final ChangeListener<T> bindLstnr = this::_set;
 	
 	@Override
-	public boolean bind(CollectionObservable<E, T> observable) {
+	public boolean bind(CollectionObservable<E, T> observer) {
+		return observer.addChangeListener(this.bindLstnr);
+	}
+	
+	@Override
+	public boolean unbind(CollectionObservable<E, T> observer) {
+		return observer.removeChangeListener(this.bindLstnr);
+	}
+	
+	protected void _set(T c) {
 		synchronized ( this._sync ) {
-			boolean f = this.bindObs.add(observable);
-			if ( f ) {
-				observable.set(this._get());
+			if (! Objects.equals(c, this._get())) {
+				this._get().clear();
+				this._get().addAll(c);
+				this._notifyChagned();
 			}
-			return f;
-		}
-	}
-
-	@Override
-	public boolean unbind(CollectionObservable<E, T> observable) {
-		synchronized ( this._sync ) {
-			return this.bindObs.remove(observable);
-		}
-	}
-	
-	@Override
-	public void set(T c) {
-		synchronized ( this._sync ) {
-			this._get().clear();
-			this._get().addAll(c);
-			this._notifyChagned();
-		}
-	}
-	
-	protected void _notifyChangedToListnersAndBinds() {
-		
-		final T v = this._get();
-		
-		for ( ChangeListener<? super T> l : this.changeLstnrs ) {
-			l.changed(v);
-		}
-		
-		for ( CollectionObservable<E, T> o : this.bindObs ) {
-			o.set(v);
 		}
 	}
 	
 	protected void _notifyChagned() {
-		synchronized ( this._sync ) {
-			this._notifyChangedToListnersAndBinds();
-			this._sync.notifyAll();
+		final T v = this._get();
+		for ( ChangeListener<? super T> l : this.changeLstnrs ) {
+			l.changed(v);
 		}
 	}
 	

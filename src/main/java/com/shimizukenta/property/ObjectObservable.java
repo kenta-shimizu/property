@@ -9,7 +9,7 @@ import java.util.concurrent.TimeoutException;
  *
  * @param <T>
  */
-public interface ObjectObservable<T> extends Observable<T, Settable<T>> {
+public interface ObjectObservable<T> extends Observable<T> {
 	
 	public T waitUntilNotNull() throws InterruptedException;
 	

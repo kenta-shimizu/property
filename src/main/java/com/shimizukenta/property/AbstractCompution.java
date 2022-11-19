@@ -3,7 +3,7 @@ package com.shimizukenta.property;
 import java.util.Collection;
 import java.util.HashSet;
 
-public abstract class AbstractCompution<T, U extends Settable<T>> implements Compution<T, U> {
+public abstract class AbstractCompution<T> implements Compution<T> {
 	
 	private static final long serialVersionUID = -3295956325648873642L;
 	
@@ -48,33 +48,33 @@ public abstract class AbstractCompution<T, U extends Settable<T>> implements Com
 		}
 	}
 	
-	private final Collection<U> binds = new HashSet<>();
-	
-	@Override
-	public boolean bind(U property) {
-		synchronized ( this._sync ) {
-			boolean f = this.binds.add(property);
-			if ( f ) {
-				property.set(this._get());
-			}
-			return f;
-		}
-	}
-
-	@Override
-	public boolean unbind(U property) {
-		synchronized ( this._sync ) {
-			return this.binds.remove(property);
-		}
-	}
+//	private final Collection<U> binds = new HashSet<>();
+//	
+//	@Override
+//	public boolean bind(U property) {
+//		synchronized ( this._sync ) {
+//			boolean f = this.binds.add(property);
+//			if ( f ) {
+//				property.set(this._get());
+//			}
+//			return f;
+//		}
+//	}
+//
+//	@Override
+//	public boolean unbind(U property) {
+//		synchronized ( this._sync ) {
+//			return this.binds.remove(property);
+//		}
+//	}
 	
 	protected void _notifyChanged(T value) {
 		for ( ChangeListener<? super T> l : this.changeLstnrs ) {
 			l.changed(v);
 		}
-		for ( U p : this.binds ) {
-			p.set(v);
-		}
+//		for ( U p : this.binds ) {
+//			p.set(v);
+//		}
 	}
 
 }

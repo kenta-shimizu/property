@@ -1,6 +1,12 @@
 package com.shimizukenta.property;
 
-public interface Observable<T, U extends Settable<T>> {
+/**
+ * 
+ * @author kenta-shimizu
+ *
+ * @param <T> Type
+ */
+public interface Observable<T> {
 	
 	/**
 	 * Add change-listener.
@@ -17,21 +23,5 @@ public interface Observable<T, U extends Settable<T>> {
 	 * @return true if remove success.
 	 */
 	public boolean removeChangeListener(ChangeListener<? super T> l);
-	
-	/**
-	 * Bind Property.
-	 * 
-	 * @param p
-	 * @return true if bind success.
-	 */
-	public boolean bind(U property);
-	
-	/**
-	 * Unbind property.
-	 * 
-	 * @param p
-	 * @return true if unbind success.
-	 */
-	public boolean unbind(U property);
 	
 }

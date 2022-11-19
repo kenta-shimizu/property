@@ -5,7 +5,7 @@ package com.shimizukenta.property;
  * @author kenta-shimizu
  *
  */
-public interface BooleanProperty extends Property<Boolean, BooleanSettable>, BooleanGettable, BooleanSettable, BooleanObservable {
+public interface BooleanProperty extends Property<Boolean>, BooleanGettable, BooleanSettable, BooleanObservable {
 	
 	/**
 	 * BooleanProperty builder.

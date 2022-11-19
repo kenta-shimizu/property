@@ -8,7 +8,7 @@ import java.util.concurrent.TimeoutException;
  * @author kenta-shimizu
  *
  */
-public interface BooleanObservable extends Observable<Boolean, BooleanSettable> {
+public interface BooleanObservable extends Observable<Boolean> {
 	
 	/**
 	 * Waiting until {@code (f == this.get().booleanValue())}.

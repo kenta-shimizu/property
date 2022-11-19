@@ -7,8 +7,8 @@ import java.util.Objects;
  * @author kenta-shimizu
  *
  */
-public abstract class AbstractNumberCompution extends AbstractCompution<Number, NumberSettable<Number>> implements NumberCompution {
-
+public abstract class AbstractNumberCompution extends AbstractCompution<Number> implements NumberCompution {
+	
 	/**
 	 * 
 	 */

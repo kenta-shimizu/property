@@ -4,7 +4,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 
-public abstract class AbstractProperty<T, U extends Settable<T>> implements Property<T, U> {
+//public abstract class AbstractProperty<T, U extends Settable<T>> implements Property<T, U> {
+public abstract class AbstractProperty<T> implements Property<T> {
 	
 	private static final long serialVersionUID = 673883739488369977L;
 	
@@ -59,32 +60,21 @@ public abstract class AbstractProperty<T, U extends Settable<T>> implements Prop
 		}
 	}
 	
-	private final Collection<U> binds = new HashSet<>();
+	private final ChangeListener<T> bindLstnr = this::set;
 	
 	@Override
-	public boolean bind(U property) {
-		synchronized ( this._sync ) {
-			boolean f = this.binds.add(property);
-			if ( f ) {
-				property.set(this._get());
-			}
-			return f;
-		}
+	public boolean bind(Observable<T> observer) {
+		return observer.addChangeListener(bindLstnr);
 	}
 	
 	@Override
-	public boolean unbind(U property) {
-		synchronized ( this._sync ) {
-			return this.binds.remove(property);
-		}
+	public boolean unbind(Observable<T> observer) {
+		return observer.removeChangeListener(bindLstnr);
 	}
 	
 	protected final void _notifyChanged(T v) {
 		for ( ChangeListener<? super T> l : this.changeLstnrs ) {
 			l.changed(v);
-		}
-		for ( U p : this.binds ) {
-			p.set(v);
 		}
 	}
 	

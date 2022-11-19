@@ -11,7 +11,7 @@ import java.util.concurrent.TimeoutException;
  * @author kenta-shimizu
  *
  */
-public abstract class AbstractBooleanProperty extends AbstractProperty<Boolean, BooleanSettable> implements BooleanProperty {
+public abstract class AbstractBooleanProperty extends AbstractProperty<Boolean> implements BooleanProperty {
 	
 	private static final long serialVersionUID = 3470538189679094943L;
 	

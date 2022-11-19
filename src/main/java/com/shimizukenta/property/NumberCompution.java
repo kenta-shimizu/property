@@ -8,7 +8,7 @@ import java.util.Collection;
  * @author kenta-shimizu
  *
  */
-public interface NumberCompution extends Compution<Number, NumberSettable<Number>>, NumberGettable<Number>, NumberObservable<Number> {
+public interface NumberCompution extends Compution<Number>, NumberGettable<Number>, NumberObservable<Number> {
 	
 	public static NumberCompution add(
 			NumberObservable<? extends Number> a,

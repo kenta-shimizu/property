@@ -27,22 +27,4 @@ public interface CollectionObservable<E, T extends Collection<E>> {
 	 */
 	public boolean removeChangeListener(ChangeListener<? super T> l);
 	
-	/**
-	 * Bind Property.
-	 * 
-	 * @param observable
-	 * @return true if bind success.
-	 */
-	public boolean bind(CollectionObservable<E, T> observable);
-	
-	/**
-	 * Unbind property.
-	 * 
-	 * @param observable
-	 * @return true if unbind success.
-	 */
-	public boolean unbind(CollectionObservable<E, T> observable);
-	
-	public void set(T c);
-	
 }

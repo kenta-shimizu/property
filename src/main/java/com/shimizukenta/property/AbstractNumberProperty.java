@@ -9,7 +9,7 @@ import java.util.Objects;
  * @author kenta-shimizu
  *
  */
-public abstract class AbstractNumberProperty<T extends Number> extends AbstractProperty<T, NumberSettable<T>> implements NumberProperty<T> {
+public abstract class AbstractNumberProperty<T extends Number> extends AbstractProperty<T> implements NumberProperty<T> {
 	
 	private static final long serialVersionUID = -5768297706611678591L;
 	

@@ -6,7 +6,7 @@ package com.shimizukenta.property;
  *
  * @param <T>
  */
-public interface ObjectProperty<T> extends Property<T, Settable<T>>, ObjectGettable<T>, ObjectObservable<T> {
+public interface ObjectProperty<T> extends Property<T>, ObjectGettable<T>, ObjectObservable<T> {
 	
 	/**
 	 * Instance builder.

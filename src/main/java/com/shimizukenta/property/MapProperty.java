@@ -12,7 +12,7 @@ import java.util.Map;
  * @param <K> Key
  * @param <V> Value
  */
-public interface MapProperty<K, V> extends Map<K, V>, MapObservable<K, V>, Serializable {
+public interface MapProperty<K, V> extends Map<K, V>, MapSettable<K, V>, MapObservable<K, V>, Serializable {
 	
 	/**
 	 * Instance builder.

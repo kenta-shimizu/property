@@ -11,7 +11,7 @@ import java.util.concurrent.TimeoutException;
  * @author kenta-shimizu
  *
  */
-public interface NumberObservable<T extends Number> extends Observable<T, NumberSettable<T>> {
+public interface NumberObservable<T extends Number> extends Observable<T> {
 	
 	public boolean isInteger();
 	

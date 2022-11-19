@@ -249,7 +249,7 @@ Includes `timeout(long)` and `java.util.concurrent.TimeUnit`.
 Can set to `waitUntil` methods as timeout.
 
 ```java
-/* java.time */
+/* build instance */
 TimeProperty timeProp = TimeProperty.newInstance(10L, TimeUnit.SECONDS);  /* set 10 seconds */
 TimeProperty timeProp = TimeProperty.newInstance(10.0F);  /* set 10.0 seconds */
 

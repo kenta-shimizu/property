@@ -9,7 +9,7 @@ import java.util.concurrent.TimeoutException;
  * @author kenta-shimizu
  *
  */
-public abstract class AbstractBooleanCompution extends AbstractCompution<Boolean, BooleanSettable> implements BooleanCompution {
+public abstract class AbstractBooleanCompution extends AbstractCompution<Boolean> implements BooleanCompution {
 	
 	private static final long serialVersionUID = 628986372297013412L;
 	
@@ -35,7 +35,7 @@ public abstract class AbstractBooleanCompution extends AbstractCompution<Boolean
 	@Override
 	public void waitUntil(boolean f) throws InterruptedException {
 		synchronized ( this._sync ) {
-			if ( f != this._get().booleanValue()) {
+			if ( f != this._get().booleanValue() ) {
 				this._sync.wait();
 			}
 		}

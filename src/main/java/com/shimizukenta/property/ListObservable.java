@@ -6,7 +6,7 @@ import java.util.List;
  * 
  * @author kenta-shimizu
  *
- * @param <E>
+ * @param <E> Element
  */
 public interface ListObservable<E> extends CollectionObservable<E, List<E>> {
 

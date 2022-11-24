@@ -6,6 +6,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
+/**
+ * 
+ * @author kenta-shimizu
+ *
+ */
 public class LogicalComputionBuilder extends AbstractComputionBuilder {
 	
 	public static LogicalComputionBuilder getInstance() {

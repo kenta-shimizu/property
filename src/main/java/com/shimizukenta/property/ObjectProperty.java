@@ -4,7 +4,7 @@ package com.shimizukenta.property;
  * 
  * @author kenta-shimizu
  *
- * @param <T>
+ * @param <T> Type
  */
 public interface ObjectProperty<T> extends Property<T>, ObjectGettable<T>, ObjectObservable<T> {
 	

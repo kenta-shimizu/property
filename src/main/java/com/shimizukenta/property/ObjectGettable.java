@@ -4,14 +4,14 @@ package com.shimizukenta.property;
  * 
  * @author kenta-shimizu
  *
- * @param <T>
+ * @param <T> Type
  */
 public interface ObjectGettable<T> extends Gettable<T> {
 	
 	/**
-	 * Returns true if value is null, otherwise false.
+	 * Returns {@code true} if value is {@code null}, otherwise {@code false}.
 	 * 
-	 * @return true if value is null, otherwise false.
+	 * @return {@code true} if value is {@code null}, otherwise {@code false}.
 	 */
 	default boolean isNull() {
 		return this.get() == null;

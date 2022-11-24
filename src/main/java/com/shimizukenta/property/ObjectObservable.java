@@ -7,7 +7,7 @@ import java.util.concurrent.TimeoutException;
  * 
  * @author kenta-shimizu
  *
- * @param <T>
+ * @param <T> Type
  */
 public interface ObjectObservable<T> extends Observable<T> {
 	

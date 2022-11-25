@@ -43,4 +43,9 @@ public abstract class AbstractTimeoutAndUnit implements TimeoutAndUnit, Serializ
 		return Objects.hash(this.timeout, this.unit);
 	}
 	
+	@Override
+	public String toString() {
+		return "{\"timeout\": " + this.timeout + ", \"unit\": " + this.unit.toString() + "}";
+	}
+	
 }

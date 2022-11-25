@@ -29,18 +29,18 @@ public abstract class AbstractLogicalCompution extends AbstractBooleanCompution 
 		observables.forEach(o -> {
 			Inner i = new Inner();
 			this.inners.add(i);
-			i.addChangeListener(o);
+			o.addChangeListener(i);
 		});
 	}
 	
 	protected void compute() {
-		this._set(this.compute.test(
+		this._syncSetAndNotifyChanged(this.compute.test(
 				this.inners.stream()
 				.map(Inner::booleanValue)
 				.collect(Collectors.toList())));
 	}
 	
-	protected class Inner {
+	protected class Inner implements ChangeListener<Boolean> {
 		
 		private boolean last;
 		
@@ -48,13 +48,12 @@ public abstract class AbstractLogicalCompution extends AbstractBooleanCompution 
 			this.last = false;
 		}
 		
-		protected boolean addChangeListener(BooleanObservable observable) {
-			return observable.addChangeListener(f -> {
-				synchronized ( AbstractLogicalCompution.this._sync ) {
-					this.last = f.booleanValue();
-					AbstractLogicalCompution.this.compute();
-				}
-			});
+		@Override
+		public void changed(Boolean v) {
+			synchronized ( AbstractLogicalCompution.this._sync ) {
+				this.last = v.booleanValue();
+				AbstractLogicalCompution.this.compute();
+			}
 		}
 		
 		protected boolean booleanValue() {

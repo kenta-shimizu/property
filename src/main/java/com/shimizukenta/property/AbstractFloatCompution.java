@@ -31,18 +31,18 @@ public abstract class AbstractFloatCompution extends AbstractNumberCompution imp
 		observables.forEach(o -> {
 			Inner i = new Inner();
 			this.inners.add(i);
-			i.addChangeListener(o);
+			o.addChangeListener(i);
 		});
 	}
 	
 	protected void compute() {
-		this._set(this.compute.apply(
+		this._syncSetAndNotifyChanged(this.compute.apply(
 				this.inners.stream()
 				.map(Inner::floatValue)
 				.collect(Collectors.toList())));
 	}
 	
-	protected class Inner {
+	protected class Inner implements ChangeListener<Number> {
 		
 		private float last;
 		
@@ -50,13 +50,12 @@ public abstract class AbstractFloatCompution extends AbstractNumberCompution imp
 			this.last = 0.0F;
 		}
 		
-		protected boolean addChangeListener(NumberObservable<? extends Number> o) {
-			return o.addChangeListener(n -> {
-				synchronized ( AbstractFloatCompution.this._sync ) {
-					this.last = n.floatValue();
-					AbstractFloatCompution.this.compute();
-				}
-			});
+		@Override
+		public void changed(Number v) {
+			synchronized ( AbstractFloatCompution.this._sync ) {
+				this.last = v.floatValue();
+				AbstractFloatCompution.this.compute();
+			}
 		}
 		
 		protected float floatValue() {

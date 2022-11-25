@@ -1,9 +1,4 @@
-/**
- * 
- */
 package com.shimizukenta.property;
-
-import java.util.Objects;
 
 /**
  * 
@@ -19,13 +14,8 @@ public abstract class AbstractIntegerProperty extends AbstractNumberProperty<Int
 	}
 	
 	@Override
-	public void set(Integer value) {
-		super.set(Objects.requireNonNull(value));
-	}
-	
-	@Override
 	public void set(int value) {
-		super.set(Integer.valueOf(value));
+		this._syncSetAndNotifyChanged(Integer.valueOf(value));
 	}
 	
 	@Override

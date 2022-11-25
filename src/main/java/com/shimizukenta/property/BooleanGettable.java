@@ -14,8 +14,6 @@ public interface BooleanGettable extends Gettable<Boolean> {
 	 * 
 	 * @return the primitive boolean value of this object.
 	 */
-	default public boolean booleanValue() {
-		return this.get().booleanValue();
-	}
+	public boolean booleanValue();
 	
 }

@@ -4,16 +4,16 @@ package com.shimizukenta.property;
  * 
  * @author kenta-shimizu
  *
- * @param <T>
+ * @param <T> Type
  */
 public interface Settable<T> {
 	
-	/**
-	 * Value setter.
-	 * 
-	 * @param value
-	 */
-	public void set(T value);
+//	/**
+//	 * Value setter.
+//	 * 
+//	 * @param value
+//	 */
+//	public void set(T value);
 	
 	/**
 	 * Bind to observer.

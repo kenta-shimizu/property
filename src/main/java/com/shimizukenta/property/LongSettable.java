@@ -12,8 +12,6 @@ public interface LongSettable extends NumberSettable<Long> {
 	 * 
 	 * @param value
 	 */
-	default public void set(long value) {
-		this.set(Long.valueOf(value));
-	}
+	public void set(long value);
 	
 }

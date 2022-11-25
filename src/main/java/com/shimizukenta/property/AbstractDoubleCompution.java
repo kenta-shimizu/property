@@ -20,7 +20,7 @@ public abstract class AbstractDoubleCompution extends AbstractNumberCompution im
 	private final List<Inner> inners = new ArrayList<>();
 	private final Function<? super List<? extends Number>, ? extends Number> compute;
 
-	public AbstractDoubleCompution(
+	public AbstractDoubleCompution (
 			Collection<? extends NumberObservable<? extends Number>> observables,
 			Function<? super List<? extends Number>, ? extends Number> compute) {
 		
@@ -31,18 +31,18 @@ public abstract class AbstractDoubleCompution extends AbstractNumberCompution im
 		observables.forEach(o -> {
 			Inner i = new Inner();
 			this.inners.add(i);
-			i.addChangeListener(o);
+			o.addChangeListener(i);
 		});
 	}
 	
 	protected void compute() {
-		this._set(this.compute.apply(
+		this._syncSetAndNotifyChanged(this.compute.apply(
 				this.inners.stream()
 				.map(Inner::doubleValue)
 				.collect(Collectors.toList())));
 	}
 	
-	protected class Inner {
+	protected class Inner implements ChangeListener<Number> {
 		
 		private double last;
 		
@@ -50,18 +50,18 @@ public abstract class AbstractDoubleCompution extends AbstractNumberCompution im
 			this.last = 0.0D;
 		}
 		
-		protected boolean addChangeListener(NumberObservable<? extends Number> o) {
-			return o.addChangeListener(n -> {
-				synchronized ( AbstractDoubleCompution.this._sync ) {
-					this.last = n.doubleValue();
-					AbstractDoubleCompution.this.compute();
-				}
-			});
+		@Override
+		public void changed(Number v) {
+			synchronized ( AbstractDoubleCompution.this._sync ) {
+				this.last = v.doubleValue();
+				AbstractDoubleCompution.this.compute();
+			}
 		}
 		
 		protected double doubleValue() {
 			return this.last;
 		}
+
 	}
 	
 	@Override

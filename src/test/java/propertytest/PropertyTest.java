@@ -45,6 +45,7 @@ public class PropertyTest {
 				}
 			}).start();
 			
+			
 			System.out.println("Waiting until boolProp is true.");
 			boolProp.waitUntilTrue();
 			System.out.println("boolProp is true.");

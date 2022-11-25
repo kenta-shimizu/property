@@ -31,18 +31,18 @@ public abstract class AbstractIntegerCompution extends AbstractNumberCompution i
 		observables.forEach(o -> {
 			Inner i = new Inner();
 			this.inners.add(i);
-			i.addChangeListener(o);
+			o.addChangeListener(i);
 		});
 	}
 	
 	protected void compute() {
-		this._set(this.compute.apply(
+		this._syncSetAndNotifyChanged(this.compute.apply(
 				this.inners.stream()
 				.map(Inner::intValue)
 				.collect(Collectors.toList())));
 	}
 	
-	protected class Inner {
+	protected class Inner implements ChangeListener<Number> {
 		
 		private int last;
 		
@@ -50,13 +50,12 @@ public abstract class AbstractIntegerCompution extends AbstractNumberCompution i
 			this.last = 0;
 		}
 		
-		protected boolean addChangeListener(NumberObservable<? extends Number> o) {
-			return o.addChangeListener(n -> {
-				synchronized ( AbstractIntegerCompution.this._sync ) {
-					this.last = n.intValue();
-					AbstractIntegerCompution.this.compute();
-				}
-			});
+		@Override
+		public void changed(Number v) {
+			synchronized ( AbstractIntegerCompution.this._sync ) {
+				this.last = v.intValue();
+				AbstractIntegerCompution.this.compute();
+			}
 		}
 		
 		protected int intValue() {

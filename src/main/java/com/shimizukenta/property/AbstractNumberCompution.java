@@ -1,7 +1,5 @@
 package com.shimizukenta.property;
 
-import java.util.Objects;
-
 /**
  * 
  * @author kenta-shimizu
@@ -19,14 +17,33 @@ public abstract class AbstractNumberCompution extends AbstractCompution<Number> 
 	}
 	
 	@Override
-	protected void _set(Number value) {
-		synchronized ( this._sync ) {
-			if ( ! Objects.equals(this._get(), value) ) {
-				super._set(value);
-				this._notifyChanged(value);
-				this._sync.notifyAll();
-			}
-		}
+	public byte byteValue() {
+		return this._simpleGet().byteValue();
+	}
+	
+	@Override
+	public short shortValue() {
+		return this._simpleGet().shortValue();
+	}
+	
+	@Override
+	public int intValue() {
+		return this._simpleGet().intValue();
+	}
+	
+	@Override
+	public long longValue() {
+		return this._simpleGet().longValue();
+	}
+	
+	@Override
+	public float floatValue() {
+		return this._simpleGet().floatValue();
+	}
+	
+	@Override
+	public double doubleValue() {
+		return this._simpleGet().doubleValue();
 	}
 	
 	@Override
@@ -49,9 +66,4 @@ public abstract class AbstractNumberCompution extends AbstractCompution<Number> 
 		return false;
 	}
 	
-	@Override
-	public String toString() {
-		return this.get().toString();
-	}
-
 }

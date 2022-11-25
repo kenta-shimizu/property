@@ -31,7 +31,7 @@ public abstract class AbstractComparativeCompution extends AbstractBooleanComput
 			synchronized ( this._sync ) {
 				if ( ! Objects.equals(this.left, n) ) {
 					this.left = n;
-					this._set(compute.test(n, this.right));
+					this._syncSetAndNotifyChanged(compute.test(n, this.right));
 				}
 			}
 		});
@@ -40,7 +40,7 @@ public abstract class AbstractComparativeCompution extends AbstractBooleanComput
 			synchronized ( this._sync ) {
 				if ( ! Objects.equals(this.right, n) ) {
 					this.right = n;
-					this._set(compute.test(this.left, n));
+					this._syncSetAndNotifyChanged(compute.test(this.left, n));
 				}
 			}
 		});

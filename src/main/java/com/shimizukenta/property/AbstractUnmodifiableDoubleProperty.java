@@ -14,18 +14,13 @@ public abstract class AbstractUnmodifiableDoubleProperty extends AbstractDoubleP
 	}
 	
 	@Override
-	public void set(Double value) {
-		throw new UnsupportedOperationException();
-	}
-	
-	@Override
 	public void set(double value) {
 		throw new UnsupportedOperationException();
 	}
 	
 	@Override
 	public boolean addChangeListener(ChangeListener<? super Double> l) {
-		l.changed(this._get());
+		l.changed(this._simpleGet());
 		return true;
 	}
 	

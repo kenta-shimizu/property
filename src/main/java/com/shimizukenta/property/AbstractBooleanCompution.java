@@ -18,24 +18,25 @@ public abstract class AbstractBooleanCompution extends AbstractCompution<Boolean
 	}
 	
 	@Override
-	protected void _set(Boolean f) {
+	public boolean booleanValue() {
+		return this._simpleGet().booleanValue();
+	}
+	
+	@Override
+	protected void _syncSetAndNotifyChanged(Boolean f) {
 		synchronized ( this._sync ) {
-			if ( ! Objects.equals(this._get(), f) ) {
-				super._set(f);
+			if ( ! Objects.equals(f, this._simpleGet()) ) {
+				this._simpleSet(f);
 				this._notifyChanged(f);
 				this._sync.notifyAll();
 			}
 		}
 	}
 	
-	protected void _set(boolean f) {
-		this._set(Boolean.valueOf(f));
-	}
-	
 	@Override
 	public void waitUntil(boolean f) throws InterruptedException {
 		synchronized ( this._sync ) {
-			if ( f != this._get().booleanValue() ) {
+			if ( f != this.booleanValue() ) {
 				this._sync.wait();
 			}
 		}
@@ -44,18 +45,13 @@ public abstract class AbstractBooleanCompution extends AbstractCompution<Boolean
 	@Override
 	public void waitUntil(boolean f, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		synchronized ( this._sync ) {
-			if ( f != this._get().booleanValue() ) {
+			if ( f != this.booleanValue() ) {
 				unit.timedWait(this._sync, timeout);
-				if ( f != this._get().booleanValue() ) {
+				if ( f != this.booleanValue() ) {
 					throw new TimeoutException();
 				}
 			}
 		}
-	}
-	
-	@Override
-	public String toString() {
-		return this.get().toString();
 	}
 	
 }

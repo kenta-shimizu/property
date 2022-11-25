@@ -11,8 +11,6 @@ public interface IntegerSettable extends NumberSettable<Integer> {
 	 * 
 	 * @param value
 	 */
-	default public void set(int value) {
-		this.set(Integer.valueOf(value));
-	}
+	public void set(int value);
 	
 }

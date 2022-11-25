@@ -14,18 +14,13 @@ public abstract class AbstractUnmodifiableIntegerProperty extends AbstractIntege
 	}
 	
 	@Override
-	public void set(Integer value) {
-		throw new UnsupportedOperationException();
-	}
-	
-	@Override
 	public void set(int value) {
 		throw new UnsupportedOperationException();
 	}
 	
 	@Override
 	public boolean addChangeListener(ChangeListener<? super Integer> l) {
-		l.changed(this._get());
+		l.changed(this._simpleGet());
 		return true;
 	}
 	

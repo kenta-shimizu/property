@@ -12,8 +12,6 @@ public interface DoubleSettable extends NumberSettable<Double> {
 	 * 
 	 * @param value
 	 */
-	default public void set(double value) {
-		this.set(Double.valueOf(value));
-	}
+	public void set(double value);
 	
 }

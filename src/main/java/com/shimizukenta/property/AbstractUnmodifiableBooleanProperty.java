@@ -14,18 +14,13 @@ public abstract class AbstractUnmodifiableBooleanProperty extends AbstractBoolea
 	}
 	
 	@Override
-	public void set(Boolean f) {
-		throw new UnsupportedOperationException();
-	}
-	
-	@Override
 	public void set(boolean f) {
 		throw new UnsupportedOperationException();
 	}
 	
 	@Override
 	public boolean addChangeListener(ChangeListener<? super Boolean> l) {
-		l.changed(this._get());
+		l.changed(this._simpleGet());
 		return true;
 	}
 	

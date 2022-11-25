@@ -1,9 +1,4 @@
-/**
- * 
- */
 package com.shimizukenta.property;
-
-import java.util.Objects;
 
 /**
  * 
@@ -19,13 +14,8 @@ public abstract class AbstractLongProperty extends AbstractNumberProperty<Long> 
 	}
 	
 	@Override
-	public void set(Long value) {
-		super.set(Objects.requireNonNull(value));
-	}
-	
-	@Override
 	public void set(long value) {
-		super.set(Long.valueOf(value));
+		this._syncSetAndNotifyChanged(Long.valueOf(value));
 	}
 	
 	@Override

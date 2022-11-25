@@ -1,13 +1,10 @@
-/**
- * 
- */
 package com.shimizukenta.property;
 
-import java.util.Objects;
-
 /**
+ * 
  * @author kenta-shimizu
  *
+ * @param <T> Type
  */
 public abstract class AbstractNumberProperty<T extends Number> extends AbstractProperty<T> implements NumberProperty<T> {
 	
@@ -18,14 +15,33 @@ public abstract class AbstractNumberProperty<T extends Number> extends AbstractP
 	}
 	
 	@Override
-	public void set(T value) {
-		synchronized ( this._sync ) {
-			if ( ! Objects.equals(this._get(), value) ) {
-				this._set(value);
-				this._notifyChanged(value);
-				this._sync.notifyAll();
-			}
-		}
+	public byte byteValue() {
+		return this._simpleGet().byteValue();
+	}
+	
+	@Override
+	public short shortValue() {
+		return this._simpleGet().shortValue();
+	}
+	
+	@Override
+	public int intValue() {
+		return this._simpleGet().intValue();
+	}
+	
+	@Override
+	public long longValue() {
+		return this._simpleGet().longValue();
+	}
+	
+	@Override
+	public float floatValue() {
+		return this._simpleGet().floatValue();
+	}
+	
+	@Override
+	public double doubleValue() {
+		return this._simpleGet().doubleValue();
 	}
 	
 	@Override
@@ -46,11 +62,6 @@ public abstract class AbstractNumberProperty<T extends Number> extends AbstractP
 	@Override
 	public boolean isDouble() {
 		return false;
-	}
-
-	@Override
-	public String toString() {
-		return get().toString();
 	}
 	
 }

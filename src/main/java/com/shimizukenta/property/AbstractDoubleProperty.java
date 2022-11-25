@@ -1,9 +1,4 @@
-/**
- * 
- */
 package com.shimizukenta.property;
-
-import java.util.Objects;
 
 /**
  * 
@@ -19,13 +14,8 @@ public abstract class AbstractDoubleProperty extends AbstractNumberProperty<Doub
 	}
 	
 	@Override
-	public void set(Double value) {
-		super.set(Objects.requireNonNull(value));
-	}
-	
-	@Override
 	public void set(double value) {
-		super.set(Double.valueOf(value));
+		this._syncSetAndNotifyChanged(Double.valueOf(value));
 	}
 	
 	@Override

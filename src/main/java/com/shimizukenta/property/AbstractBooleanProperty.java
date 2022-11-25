@@ -20,19 +20,19 @@ public abstract class AbstractBooleanProperty extends AbstractProperty<Boolean> 
 	}
 	
 	@Override
-	public void set(Boolean value) {
-		this.__set(Objects.requireNonNull(value));
+	public boolean booleanValue() {
+		return this._simpleGet().booleanValue();
 	}
 	
 	@Override
 	public void set(boolean value) {
-		this.__set(Boolean.valueOf(value));
+		this._syncSetAndNotifyChanged(Boolean.valueOf(value));
 	}
 	
-	private void __set(Boolean f) {
+	protected void _syncSetAndNotifyChanged(Boolean f) {
 		synchronized ( this._sync ) {
-			if ( ! Objects.equals(this._get(), f) ) {
-				this._set(f);
+			if (! Objects.equals(f, this._simpleGet())) {
+				this._simpleSet(f);
 				this._notifyChanged(f);
 				this._sync.notifyAll();
 			}
@@ -42,7 +42,7 @@ public abstract class AbstractBooleanProperty extends AbstractProperty<Boolean> 
 	@Override
 	public void waitUntil(boolean f) throws InterruptedException {
 		synchronized ( this._sync ) {
-			if ( f != this._get().booleanValue() ) {
+			if ( f != this.booleanValue() ) {
 				this._sync.wait();
 			}
 		}
@@ -51,18 +51,13 @@ public abstract class AbstractBooleanProperty extends AbstractProperty<Boolean> 
 	@Override
 	public void waitUntil(boolean f, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		synchronized ( this._sync ) {
-			if ( f != this._get().booleanValue() ) {
+			if ( f != this.booleanValue() ) {
 				unit.timedWait(this._sync, timeout);
-				if ( f != this._get().booleanValue() ) {
+				if ( f != this.booleanValue() ) {
 					throw new TimeoutException();
 				}
 			}
 		}
-	}
-	
-	@Override
-	public String toString() {
-		return this.get().toString();
 	}
 	
 }

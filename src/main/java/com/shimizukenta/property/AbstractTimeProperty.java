@@ -19,18 +19,33 @@ public abstract class AbstractTimeProperty extends AbstractProperty<TimeoutAndUn
 	
 	@Override
 	public void set(TimeoutAndUnit value) {
-		super.set(Objects.requireNonNull(value));
+		this._syncSetAndNotifyChanged(Objects.requireNonNull(value));
 	}
 	
-	@Override
+	public void set(int seconds) {
+		this._syncSetAndNotifyChanged(TimeoutAndUnit.of(seconds));
+	}
+	
+	public void set(long seconds) {
+		this._syncSetAndNotifyChanged(TimeoutAndUnit.of(seconds));
+	}
+	
+	public void set(float seconds) {
+		this._syncSetAndNotifyChanged(TimeoutAndUnit.of(seconds));
+	}
+	
+	public void set(double seconds) {
+		this._syncSetAndNotifyChanged(TimeoutAndUnit.of(seconds));
+	}
+	
 	public void set(long timeout, TimeUnit unit) {
-		TimeoutAndUnit v = TimeoutAndUnit.of(timeout, unit);
-		super.set(v);
+		this._syncSetAndNotifyChanged(TimeoutAndUnit.of(timeout, unit));
 	}
+
 	
 	@Override
-	public String toString() {
-		TimeoutAndUnit a = this.get();
-		return "{\"timeout\": " + a.timeout() + ", \"unit\": " + a.unit() + "}";
+	public TimeoutAndUnit get() {
+		return this._simpleGet();
 	}
+	
 }

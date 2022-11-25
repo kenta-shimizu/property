@@ -15,8 +15,6 @@ public interface FloatSettable extends NumberSettable<Float> {
 	 * 
 	 * @param value
 	 */
-	default public void set(float value) {
-		this.set(Float.valueOf(value));
-	}
+	public void set(float value);
 	
 }

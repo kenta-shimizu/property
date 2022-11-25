@@ -14,18 +14,13 @@ public abstract class AbstractUnmodifiableFloatProperty extends AbstractFloatPro
 	}
 	
 	@Override
-	public void set(Float value) {
-		throw new UnsupportedOperationException();
-	}
-	
-	@Override
 	public void set(float value) {
 		throw new UnsupportedOperationException();
 	}
 	
 	@Override
 	public boolean addChangeListener(ChangeListener<? super Float> l) {
-		l.changed(this._get());
+		l.changed(this._simpleGet());
 		return true;
 	}
 	

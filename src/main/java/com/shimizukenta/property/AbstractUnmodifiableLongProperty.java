@@ -9,18 +9,13 @@ public abstract class AbstractUnmodifiableLongProperty extends AbstractLongPrope
 	}
 	
 	@Override
-	public void set(Long value) {
-		throw new UnsupportedOperationException();
-	}
-	
-	@Override
 	public void set(long value) {
 		throw new UnsupportedOperationException();
 	}
 	
 	@Override
 	public boolean addChangeListener(ChangeListener<? super Long> l) {
-		l.changed(this._get());
+		l.changed(this._simpleGet());
 		return true;
 	}
 	

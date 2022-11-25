@@ -12,6 +12,16 @@ public abstract class AbstractObjectProperty<T> extends AbstractProperty<T> impl
 		super(initial);
 	}
 	
+	@Override
+	public void set(T value) {
+		this._syncSetAndNotifyChanged(value);
+	}
+	
+	@Override
+	public T get() {
+		return this._simpleGet();
+	}
+	
 	protected class Inner implements ChangeListener<T> {
 		
 		private final Object sync = new Object();
@@ -26,6 +36,7 @@ public abstract class AbstractObjectProperty<T> extends AbstractProperty<T> impl
 			this.v = null;
 		}
 		
+		@Override
 		public void changed(T value) {
 			synchronized ( this.sync ) {
 				this.v = value;
@@ -82,7 +93,13 @@ public abstract class AbstractObjectProperty<T> extends AbstractProperty<T> impl
 			this.removeChangeListener(i);
 		}
 	}
-
+	
+	@Override
+	public T waitUntilNotNull(TimeGettable p) throws InterruptedException, TimeoutException {
+		TimeoutAndUnit a = p.get();
+		return this.waitUntilNotNull(a.timeout(), a.unit());
+	}
+	
 	@Override
 	public void waitUntilNull() throws InterruptedException {
 		final Inner i = new Inner(true);
@@ -108,7 +125,14 @@ public abstract class AbstractObjectProperty<T> extends AbstractProperty<T> impl
 	}
 	
 	@Override
-	public String toString() {
-		return Objects.toString(this.get());
+	public void waitUntilNull(TimeGettable p) throws InterruptedException, TimeoutException {
+		TimeoutAndUnit a = p.get();
+		this.waitUntilNull(a.timeout(), a.unit());
 	}
+	
+	@Override
+	public String toString() {
+		return Objects.toString(this._simpleGet());
+	}
+	
 }

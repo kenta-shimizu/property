@@ -1,5 +1,6 @@
 package com.shimizukenta.property;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -7,7 +8,6 @@ import java.util.concurrent.TimeUnit;
  * @author kenta-shimizu
  *
  */
-//public interface TimeProperty extends Property<TimeoutAndUnit, TimeSettable>, TimeGettable, TimeSettable, TimeObservable {
 public interface TimeProperty extends Property<TimeoutAndUnit>, TimeGettable, TimeSettable, TimeObservable {
 	
 	/**
@@ -69,7 +69,8 @@ public interface TimeProperty extends Property<TimeoutAndUnit>, TimeGettable, Ti
 	 */
 	public static TimeProperty newInstance(TimeoutAndUnit value) {
 		
-		return new AbstractTimeProperty(value) {
+		return new AbstractTimeProperty(Objects.requireNonNull(value)) {
+			
 			private static final long serialVersionUID = 905918685867216201L;
 		};
 	}

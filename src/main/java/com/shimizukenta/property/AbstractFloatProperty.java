@@ -1,9 +1,4 @@
-/**
- * 
- */
 package com.shimizukenta.property;
-
-import java.util.Objects;
 
 /**
  * 
@@ -19,13 +14,8 @@ public abstract class AbstractFloatProperty extends AbstractNumberProperty<Float
 	}
 	
 	@Override
-	public void set(Float value) {
-		super.set(Objects.requireNonNull(value));
-	}
-
-	@Override
 	public void set(float value) {
-		super.set(Float.valueOf(value));
+		this._syncSetAndNotifyChanged(Float.valueOf(value));
 	}
 	
 	@Override

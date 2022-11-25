@@ -2,6 +2,7 @@ package com.shimizukenta.property;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Objects;
 
 public abstract class AbstractCompution<T> implements Compution<T> {
 	
@@ -15,16 +16,20 @@ public abstract class AbstractCompution<T> implements Compution<T> {
 		this.v = initial;
 	}
 	
-	protected void _set(T value) {
+	protected void _syncSetAndNotifyChanged(T value) {
+		synchronized ( this._sync ) {
+			if ( ! Objects.equals(this.v, value) ) {
+				this._simpleSet(value);
+				this._notifyChanged(this.v);
+			}
+		}
+	}
+	
+	protected final void _simpleSet(T value) {
 		this.v = value;
 	}
 	
-	@Override
-	public T get() {
-		return this._get();
-	}
-	
-	protected final T _get() {
+	protected final T _simpleGet() {
 		return this.v;
 	}
 	
@@ -35,7 +40,7 @@ public abstract class AbstractCompution<T> implements Compution<T> {
 		synchronized ( this._sync ) {
 			boolean f = this.changeLstnrs.add(l);
 			if ( f ) {
-				l.changed(this._get());
+				l.changed(this._simpleGet());
 			}
 			return f;
 		}
@@ -48,33 +53,15 @@ public abstract class AbstractCompution<T> implements Compution<T> {
 		}
 	}
 	
-//	private final Collection<U> binds = new HashSet<>();
-//	
-//	@Override
-//	public boolean bind(U property) {
-//		synchronized ( this._sync ) {
-//			boolean f = this.binds.add(property);
-//			if ( f ) {
-//				property.set(this._get());
-//			}
-//			return f;
-//		}
-//	}
-//
-//	@Override
-//	public boolean unbind(U property) {
-//		synchronized ( this._sync ) {
-//			return this.binds.remove(property);
-//		}
-//	}
-	
 	protected void _notifyChanged(T value) {
 		for ( ChangeListener<? super T> l : this.changeLstnrs ) {
 			l.changed(v);
 		}
-//		for ( U p : this.binds ) {
-//			p.set(v);
-//		}
 	}
-
+	
+	@Override
+	public String toString() {
+		return this._simpleGet().toString();
+	}
+	
 }

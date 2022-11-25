@@ -18,6 +18,13 @@ import java.util.concurrent.TimeoutException;
 public interface TimeGettable extends Gettable<TimeoutAndUnit> {
 	
 	/**
+	 * Value getter.
+	 * 
+	 * @return value.
+	 */
+	public TimeoutAndUnit get();
+	
+	/**
 	 * Returns {@link #get()}.timeout().
 	 * 
 	 * @return get().timeout()

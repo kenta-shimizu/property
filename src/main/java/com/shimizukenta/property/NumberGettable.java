@@ -14,9 +14,7 @@ public interface NumberGettable<T extends Number> extends Gettable<T> {
 	 * 
 	 * @return the numeric value represented by this object after conversion to type byte.
 	 */
-	default public byte byteValue() {
-		return this.get().byteValue();
-	}
+	public byte byteValue();
 	
 	/**
 	 * Returns the value of the specified number as a short.
@@ -25,10 +23,7 @@ public interface NumberGettable<T extends Number> extends Gettable<T> {
 	 * 
 	 * @return the numeric value represented by this object after conversion to type short.
 	 */
-	default public short shortValue() {
-		return this.get().shortValue();
-		
-	}
+	public short shortValue();
 	
 	/**
 	 * Returns the value of the specified number as a int.
@@ -37,9 +32,7 @@ public interface NumberGettable<T extends Number> extends Gettable<T> {
 	 * 
 	 * @return the numeric value represented by this object after conversion to type int.
 	 */
-	default public int intValue() {
-		return this.get().intValue();
-	}
+	public int intValue();
 	
 	/**
 	 * Returns the value of the specified number as a long.
@@ -48,9 +41,7 @@ public interface NumberGettable<T extends Number> extends Gettable<T> {
 	 * 
 	 * @return the numeric value represented by this object after conversion to type long.
 	 */
-	default public long longValue() {
-		return this.get().longValue();
-	}
+	public long longValue();
 	
 	/**
 	 * Returns the value of the specified number as a float.
@@ -59,9 +50,7 @@ public interface NumberGettable<T extends Number> extends Gettable<T> {
 	 * 
 	 * @return the numeric value represented by this object after conversion to type float.
 	 */
-	default public float floatValue() {
-		return this.get().floatValue();
-	}
+	public float floatValue();
 	
 	/**
 	 * Returns the value of the specified number as a double.
@@ -70,8 +59,6 @@ public interface NumberGettable<T extends Number> extends Gettable<T> {
 	 * 
 	 * @return the numeric value represented by this object after conversion to type double.
 	 */
-	default public double doubleValue() {
-		return this.get().doubleValue();
-	}
+	public double doubleValue();
 	
 }

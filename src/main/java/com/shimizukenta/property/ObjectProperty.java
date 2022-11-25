@@ -6,12 +6,12 @@ package com.shimizukenta.property;
  *
  * @param <T> Type
  */
-public interface ObjectProperty<T> extends Property<T>, ObjectGettable<T>, ObjectObservable<T> {
+public interface ObjectProperty<T> extends Property<T>, ObjectGettable<T>, ObjectSettable<T>, ObjectObservable<T> {
 	
 	/**
 	 * Instance builder.
 	 * 
-	 * @param <T>
+	 * @param <T> Type
 	 * @param initial
 	 * @return new-instance.
 	 */

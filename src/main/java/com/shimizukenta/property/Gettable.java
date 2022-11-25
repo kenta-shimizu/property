@@ -8,11 +8,4 @@ package com.shimizukenta.property;
  */
 public interface Gettable<T> {
 	
-	/** 
-	 * Value getter.
-	 * 
-	 * @return value.
-	 */
-	public T get();
-	
 }

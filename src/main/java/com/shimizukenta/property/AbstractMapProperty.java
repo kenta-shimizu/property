@@ -1,7 +1,7 @@
 package com.shimizukenta.property;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -27,39 +27,39 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 		this.map = initial;
 	}
 	
-	protected Map<K, V> _get() {
+	protected Map<K, V> _simpleGet() {
 		return this.map;
 	}
 	
 	@Override
 	public int size() {
-		return this._get().size();
+		return this._simpleGet().size();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return this._get().isEmpty();
+		return this._simpleGet().isEmpty();
 	}
 	
 	@Override
 	public boolean containsKey(Object key) {
-		return this._get().containsKey(key);
+		return this._simpleGet().containsKey(key);
 	}
 
 	@Override
 	public boolean containsValue(Object value) {
-		return this._get().containsValue(value);
+		return this._simpleGet().containsValue(value);
 	}
 
 	@Override
 	public V get(Object key) {
-		return this._get().get(key);
+		return this._simpleGet().get(key);
 	}
 	
 	@Override
 	public V put(K key, V value) {
 		synchronized ( this._sync ) {
-			V v = this._get().put(key, value);
+			V v = this._simpleGet().put(key, value);
 			this._notifyChanged();
 			return v;
 		}
@@ -68,7 +68,7 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	@Override
 	public V remove(Object key) {
 		synchronized ( this._sync ) {
-			V v = this._get().remove(key);
+			V v = this._simpleGet().remove(key);
 			if ( v != null ) {
 				this._notifyChanged();
 			}
@@ -79,7 +79,7 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	@Override
 	public void putAll(Map<? extends K, ? extends V> m) {
 		synchronized ( this._sync ) {
-			this._get().putAll(m);
+			this._simpleGet().putAll(m);
 			this._notifyChanged();
 		}
 	}
@@ -87,8 +87,8 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	@Override
 	public void clear() {
 		synchronized ( this._sync ) {
-			if ( ! this._get().isEmpty() ) {
-				this._get().clear();
+			if ( ! this._simpleGet().isEmpty() ) {
+				this._simpleGet().clear();
 				this._notifyChanged();
 			}
 		}
@@ -96,27 +96,27 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 
 	@Override
 	public Set<K> keySet() {
-		return this._get().keySet();
+		return this._simpleGet().keySet();
 	}
 
 	@Override
 	public Collection<V> values() {
-		return this._get().values();
+		return this._simpleGet().values();
 	}
 	
 	@Override
 	public Set<Entry<K, V>> entrySet() {
-		return this._get().entrySet();
+		return this._simpleGet().entrySet();
 	}
 
-	private final Collection<ChangeListener<? super Map<K, V>>> changeLstnrs = new ArrayList<>();
+	private final Collection<ChangeListener<? super Map<K, V>>> changeLstnrs = new HashSet<>();
 	
 	@Override
 	public boolean addChangeListener(ChangeListener<? super Map<K, V>> l) {
 		synchronized ( this._sync ) {
 			boolean f = this.changeLstnrs.add(l);
 			if ( f ) {
-				l.changed(this._get());
+				l.changed(this._simpleGet());
 			}
 			return f;
 		}
@@ -129,13 +129,13 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 		}
 	}
 	
-	private final ChangeListener<Map<K, V>> changeLstnr = this::_set;
+	private final ChangeListener<Map<K, V>> changeLstnr = this::_syncSetAndNotifyChanged;
 	
-	protected void _set(Map<? extends K, ? extends V> newMap) {
+	protected void _syncSetAndNotifyChanged(Map<? extends K, ? extends V> newMap) {
 		synchronized ( this._sync ) {
-			if (! Objects.equals(newMap, this._get())) {
-				this._get().clear();
-				this._get().putAll(newMap);
+			if (! Objects.equals(newMap, this._simpleGet())) {
+				this._simpleGet().clear();
+				this._simpleGet().putAll(newMap);
 				this._notifyChanged();
 			}
 		}
@@ -153,7 +153,7 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	
 	protected void _notifyChanged() {
 		synchronized ( this._sync ) {
-			final Map<K, V> m = this._get();
+			final Map<K, V> m = this._simpleGet();
 			for (ChangeListener<? super Map<K, V>> l : this.changeLstnrs ) {
 				l.changed(m);
 			}
@@ -273,9 +273,7 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	
 	@Override
 	public String toString() {
-		synchronized ( this._sync ) {
-			return this._get().toString();
-		}
+		return this._simpleGet().toString();
 	}
 	
 }

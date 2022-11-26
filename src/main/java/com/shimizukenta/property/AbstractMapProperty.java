@@ -160,7 +160,7 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 		}
 	}
 	
-	protected class Inner implements ChangeListener<Map<K, V>> {
+	private class InnerContainsKey implements ChangeListener<Map<K, V>> {
 		
 		protected final Object sync = new Object();
 		
@@ -169,7 +169,7 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 		private boolean f;
 		private V v;
 		
-		protected Inner(Object key, boolean containsKey) {
+		private InnerContainsKey(Object key, boolean containsKey) {
 			
 			this.key = key;
 			this.containsKey = containsKey;
@@ -181,7 +181,7 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 		public void changed(Map<K, V> map) {
 			synchronized ( this.sync ) {
 				this.v = map.get(key);
-				boolean f = v != null;
+				boolean f = this.v != null;
 				if ( f != this.f ) {
 					this.f = f;
 					this.sync.notifyAll();
@@ -189,7 +189,7 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 			}
 		}
 		
-		protected V waitUntil() throws InterruptedException {
+		private V waitUntil() throws InterruptedException {
 			synchronized ( this.sync ) {
 				if ( this.f != this.containsKey ) {
 					this.sync.wait();
@@ -198,7 +198,7 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 			}
 		}
 		
-		protected V waitUntil(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		private V waitUntil(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 			synchronized ( this.sync ) {
 				if ( this.f != this.containsKey ) {
 					unit.timedWait(this.sync, timeout);
@@ -213,7 +213,7 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	
 	@Override
 	public V waitUntilContainsKey(Object key) throws InterruptedException {
-		final Inner i = new Inner(key, true);
+		final InnerContainsKey i = new InnerContainsKey(key, true);
 		try {
 			this.addChangeListener(i);
 			return i.waitUntil();
@@ -225,7 +225,7 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	
 	@Override
 	public V waitUntilContainsKey(Object key, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		final Inner i = new Inner(key, true);
+		final InnerContainsKey i = new InnerContainsKey(key, true);
 		try {
 			this.addChangeListener(i);
 			return i.waitUntil(timeout, unit);
@@ -243,7 +243,7 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	
 	@Override
 	public void waitUntilNotContainsKey(Object key) throws InterruptedException {
-		final Inner i = new Inner(key, false);
+		final InnerContainsKey i = new InnerContainsKey(key, false);
 		try {
 			this.addChangeListener(i);
 			i.waitUntil();
@@ -255,7 +255,7 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	
 	@Override
 	public void waitUntilNotContainsKey(Object key, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		final Inner i = new Inner(key, false);
+		final InnerContainsKey i = new InnerContainsKey(key, false);
 		try {
 			this.addChangeListener(i);
 			i.waitUntil(timeout, unit);
@@ -269,6 +269,106 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	public void waitUntilNotContainsKey(Object key, TimeGettable p) throws InterruptedException, TimeoutException {
 		TimeoutAndUnit a = p.get();
 		this.waitUntilNotContainsKey(key, a.timeout(), a.unit());
+	}
+	
+	private class InnerEmpty implements ChangeListener<Map<K, V>> {
+		
+		private final Object sync = new Object();
+		private final boolean isEmpty;
+		private boolean f;
+		
+		private InnerEmpty(boolean isEmpty) {
+			this.isEmpty = isEmpty;
+			this.f = false;
+		}
+		
+		@Override
+		public void changed(Map<K, V> map) {
+			synchronized ( this.sync ) {
+				boolean f = map.isEmpty();
+				if ( f != this.f ) {
+					this.f = f;
+					this.sync.notifyAll();
+				}
+			}
+		}
+		
+		private void waitUntil() throws InterruptedException {
+			synchronized ( this.sync ) {
+				if ( this.f != this.isEmpty ) {
+					this.sync.wait();
+				}
+			}
+		}
+		
+		private void waitUntil(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+			synchronized ( this.sync ) {
+				if ( this.f != this.isEmpty ) {
+					unit.timedWait(this.sync, timeout);
+					if ( this.f != this.isEmpty ) {
+						throw new TimeoutException();
+					}
+				}
+			}
+		}
+	}
+	
+	@Override
+	public void waitUntilEmpty() throws InterruptedException {
+		final InnerEmpty i = new InnerEmpty(true);
+		try {
+			this.addChangeListener(i);
+			i.waitUntil();
+		}
+		finally {
+			this.removeChangeListener(i);
+		}
+	}
+	
+	@Override
+	public void waitUntilEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		final InnerEmpty i = new InnerEmpty(true);
+		try {
+			this.addChangeListener(i);
+			i.waitUntil(timeout, unit);
+		}
+		finally {
+			this.removeChangeListener(i);
+		}
+	}
+	
+	@Override
+	public void waitUntilEmpty(TimeGettable p) throws InterruptedException, TimeoutException {
+		TimeoutAndUnit a = p.get();
+		this.waitUntilEmpty(a.timeout(), a.unit());
+	}
+	
+	@Override
+	public void waitUntilNotEmpty() throws InterruptedException {
+		final InnerEmpty i = new InnerEmpty(false);
+		try {
+			this.addChangeListener(i);
+			i.waitUntil();
+		}
+		finally {
+			this.removeChangeListener(i);
+		}
+	}
+	
+	public void waitUntilNotEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		final InnerEmpty i = new InnerEmpty(false);
+		try {
+			this.addChangeListener(i);
+			i.waitUntil(timeout, unit);
+		}
+		finally {
+			this.removeChangeListener(i);
+		}
+	}
+	
+	public void waitUntilNotEmpty(TimeGettable p) throws InterruptedException, TimeoutException {
+		TimeoutAndUnit a = p.get();
+		this.waitUntilNotEmpty(a.timeout(), a.unit());
 	}
 	
 	@Override

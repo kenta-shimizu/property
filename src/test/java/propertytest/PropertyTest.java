@@ -9,6 +9,7 @@ import java.util.concurrent.TimeoutException;
 import com.shimizukenta.property.BooleanCompution;
 import com.shimizukenta.property.BooleanProperty;
 import com.shimizukenta.property.IntegerProperty;
+import com.shimizukenta.property.ListProperty;
 import com.shimizukenta.property.LogicalCompution;
 import com.shimizukenta.property.MapProperty;
 import com.shimizukenta.property.ObjectProperty;
@@ -26,6 +27,8 @@ public class PropertyTest {
 			final IntegerProperty intProp = IntegerProperty.newInstance(0);
 			final ObjectProperty<String> objProp = ObjectProperty.newInstance(null);
 			final MapProperty<String, String> mapProp = MapProperty.newInstance();
+			
+//			final ListProperty listProp = ListProperty.newInstance();
 			
 			new Thread(() -> {
 				try {

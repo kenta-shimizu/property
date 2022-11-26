@@ -1,7 +1,7 @@
 # property
 
 This library is similar to JavaFX "javafx.beans.property".  
-Includes Setter/Getter/Observer and Number/Comparative/Logical compution.  
+Includes Setter/Getter/Observer, Number/Comparative/Logical compution and blocking methods to wait until condition is true.  
 Requires Java8 or later.
 
 ## Build new instance.

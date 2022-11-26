@@ -45,6 +45,8 @@ public interface TimeGettable extends Gettable<TimeoutAndUnit> {
 	/**
 	 * Thread sleep.
 	 * 
+	 * <p>Equivalent {@link TimeUnit#sleep(long)}.</p>
+	 * 
 	 * @throws InterruptedException
 	 */
 	default public void sleep() throws InterruptedException {
@@ -54,6 +56,8 @@ public interface TimeGettable extends Gettable<TimeoutAndUnit> {
 	
 	/**
 	 * Thread join.
+	 * 
+	 * <p>Equivalent {@link TimeUnit#timedJoin(Thread, long)}</p>
 	 * 
 	 * @param thread
 	 * @throws InterruptedException

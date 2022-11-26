@@ -4,8 +4,8 @@ package com.shimizukenta.property;
  * 
  * @author kenta-shimizu
  *
- * @param <K> Key
- * @param <V> Value
+ * @param <K> Key Type
+ * @param <V> Value Type
  */
 public interface MapSettable<K, V> {
 	

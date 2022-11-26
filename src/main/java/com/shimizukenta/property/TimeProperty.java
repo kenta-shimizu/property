@@ -4,6 +4,7 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * Build instance via {@link #newInstance(long, TimeUnit)}.
  * 
  * @author kenta-shimizu
  *

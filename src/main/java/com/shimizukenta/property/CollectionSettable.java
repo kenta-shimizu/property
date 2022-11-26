@@ -15,7 +15,7 @@ public interface CollectionSettable<E, T extends Collection<E>> {
 	 * Bind to observer.
 	 * 
 	 * @param observable
-	 * @return true if bind success.
+	 * @return {@code true} if bind success, otherwise {@code false}.
 	 */
 	public boolean bind(CollectionObservable<E, T> observer);
 	
@@ -23,7 +23,7 @@ public interface CollectionSettable<E, T extends Collection<E>> {
 	 * Unbind to observer.
 	 * 
 	 * @param observer
-	 * @return true if unbind success.
+	 * @return {@code true} if unbind success, otherwise {@code false}.
 	 */
 	public boolean unbind(CollectionObservable<E, T> observer);
 	

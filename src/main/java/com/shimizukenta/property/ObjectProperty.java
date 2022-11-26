@@ -1,6 +1,7 @@
 package com.shimizukenta.property;
 
 /**
+ * Build instance via {@link #newInstance(Object)}.
  * 
  * @author kenta-shimizu
  *

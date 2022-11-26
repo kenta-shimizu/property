@@ -19,7 +19,7 @@ public interface Settable<T> {
 	 * Bind to observer.
 	 * 
 	 * @param observer
-	 * @return true if bind success.
+	 * @return {@code true} if bind success, otherwise {@code false}.
 	 */
 	public boolean bind(Observable<T> observer);
 	
@@ -27,7 +27,7 @@ public interface Settable<T> {
 	 * Unbind to observer.
 	 * 
 	 * @param observer
-	 * @return true if bind success.
+	 * @return {@code true} if unbind success, otherwise {@code false}.
 	 */
 	public boolean unbind(Observable<T> observer);
 	

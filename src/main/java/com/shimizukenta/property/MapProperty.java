@@ -6,19 +6,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Build instance via {@link #newInstance()}.
  * 
  * @author kenta-shimizu
  *
- * @param <K> Key
- * @param <V> Value
+ * @param <K> Key Type
+ * @param <V> Value Type
  */
 public interface MapProperty<K, V> extends Map<K, V>, MapSettable<K, V>, MapObservable<K, V>, Serializable {
 	
 	/**
 	 * Instance builder.
 	 * 
-	 * @param <K> Key
-	 * @param <V> Value
+	 * @param <K> Key Type
+	 * @param <V> Value Type
 	 * @return new-instance.
 	 */
 	public static <K, V> MapProperty<K, V> newInstance() {
@@ -28,8 +29,8 @@ public interface MapProperty<K, V> extends Map<K, V>, MapSettable<K, V>, MapObse
 	/**
 	 * Instance builder.
 	 * 
-	 * @param <K> Key
-	 * @param <V> Value
+	 * @param <K> Key Type
+	 * @param <V> Value Type
 	 * @param map
 	 * @return new-instance.
 	 */

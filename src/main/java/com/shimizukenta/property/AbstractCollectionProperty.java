@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * 
@@ -175,6 +177,317 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 		for ( ChangeListener<? super T> l : this.changeLstnrs ) {
 			l.changed(v);
 		}
+	}
+	
+	private class InnerContains implements ChangeListener<T> {
+		
+		private final Object sync = new Object();
+		private final Object refObj;
+		private final boolean contains;
+		private boolean last;
+		
+		private InnerContains(Object o, boolean contains) {
+			this.refObj = Objects.requireNonNull(o);
+			this.contains = contains;
+			this.last = false;
+		}
+		
+		@Override
+		public void changed(T value) {
+			synchronized ( this.sync ) {
+				boolean f = value.contains(this.refObj);
+				if ( f != this.last ) {
+					this.last = f;
+					this.sync.notifyAll();
+				}
+			}
+		}
+		
+		private void waitUntil() throws InterruptedException {
+			synchronized ( this.sync ) {
+				if ( this.last != this.contains ) {
+					this.sync.wait();
+				}
+			}
+		}
+		
+		private void waitUntil(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+			synchronized ( this.sync ) {
+				if ( this.last != this.contains ) {
+					unit.timedWait(this.sync, timeout);
+					if ( this.last != this.contains ) {
+						throw new TimeoutException();
+					}
+				}
+			}
+		}
+	}
+	
+	@Override
+	public void waitUntilContains(Object o) throws InterruptedException {
+		final InnerContains i = new InnerContains(o, true);
+		try {
+			this.addChangeListener(i);
+			i.waitUntil();
+		}
+		finally {
+			this.removeChangeListener(i);
+		}
+	}
+	
+	@Override
+	public void waitUntilContains(Object o, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		final InnerContains i = new InnerContains(o, true);
+		try {
+			this.addChangeListener(i);
+			i.waitUntil(timeout, unit);
+		}
+		finally {
+			this.removeChangeListener(i);
+		}
+	}
+	
+	@Override
+	public void waitUntilContains(Object o, TimeGettable p) throws InterruptedException, TimeoutException {
+		TimeoutAndUnit a = p.get();
+		this.waitUntilContains(o, a.timeout(), a.unit());
+	}
+	
+	@Override
+	public void waitUntilNotContains(Object o) throws InterruptedException {
+		final InnerContains i = new InnerContains(o, false);
+		try {
+			this.addChangeListener(i);
+			i.waitUntil();
+		}
+		finally {
+			this.removeChangeListener(i);
+		}
+	}
+	
+	@Override
+	public void waitUntilNotContains(Object o, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		final InnerContains i = new InnerContains(o, false);
+		try {
+			this.addChangeListener(i);
+			i.waitUntil(timeout, unit);
+		}
+		finally {
+			this.removeChangeListener(i);
+		}
+	}
+	
+	@Override
+	public void waitUntilNotContains(Object o, TimeGettable p) throws InterruptedException, TimeoutException {
+		TimeoutAndUnit a = p.get();
+		this.waitUntilNotContains(o, a.timeout(), a.unit());
+	}
+	
+	private class InnerContainsAll implements ChangeListener<T> {
+		
+		private final Object sync = new Object();
+		private final boolean containsAll;
+		private final Collection<?> refCollection;
+		private boolean last;
+		
+		private InnerContainsAll(Collection<?> c, boolean containsAll) {
+			this.refCollection = c;
+			this.containsAll = containsAll;
+			this.last = false;
+		}
+		
+		@Override
+		public void changed(T value) {
+			synchronized ( this.sync ) {
+				boolean f = value.containsAll(this.refCollection);
+				if ( f != this.last ) {
+					this.last = f;
+					this.sync.notifyAll();
+				}
+			}
+		}
+		
+		private void waitUntil() throws InterruptedException {
+			synchronized ( this.sync ) {
+				if ( this.last != this.containsAll ) {
+					this.sync.wait();
+				}
+			}
+		}
+		
+		private void waitUntil(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+			synchronized ( this.sync ) {
+				if ( this.last != this.containsAll ) {
+					unit.timedWait(this.sync, timeout);
+					if ( this.last != this.containsAll ) {
+						throw new TimeoutException();
+					}
+				}
+			}
+		}
+	}
+	
+	@Override
+	public void waitUntilContainsAll(Collection<?> c) throws InterruptedException {
+		final InnerContainsAll i = new InnerContainsAll(c, true);
+		try {
+			this.addChangeListener(i);
+			i.waitUntil();
+		}
+		finally {
+			this.removeChangeListener(i);
+		}
+	}
+	
+	@Override
+	public void waitUntilContainsAll(Collection<?> c, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		final InnerContainsAll i = new InnerContainsAll(c, true);
+		try {
+			this.addChangeListener(i);
+			i.waitUntil(timeout, unit);
+		}
+		finally {
+			this.removeChangeListener(i);
+		}
+	}
+	
+	@Override
+	public void waitUntilContainsAll(Collection<?> c, TimeGettable p) throws InterruptedException, TimeoutException {
+		TimeoutAndUnit a = p.get();
+		this.waitUntilContainsAll(c, a.timeout(), a.unit());
+	}
+	
+	@Override
+	public void waitUntilNotContainsAll(Collection<?> c) throws InterruptedException {
+		final InnerContainsAll i = new InnerContainsAll(c, false);
+		try {
+			this.addChangeListener(i);
+			i.waitUntil();
+		}
+		finally {
+			this.removeChangeListener(i);
+		}
+	}
+	
+	@Override
+	public void waitUntilNotContainsAll(Collection<?> c, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		final InnerContainsAll i = new InnerContainsAll(c, false);
+		try {
+			this.addChangeListener(i);
+			i.waitUntil(timeout, unit);
+		}
+		finally {
+			this.removeChangeListener(i);
+		}
+	}
+	
+	@Override
+	public void waitUntilNotContainsAll(Collection<?> c, TimeGettable p) throws InterruptedException, TimeoutException {
+		TimeoutAndUnit a = p.get();
+		this.waitUntilNotContainsAll(c, a.timeout(), a.unit());
+	}
+	
+	private class InnerIsEmpty implements ChangeListener<T> {
+		
+		private final Object sync = new Object();
+		private final boolean isEmpty;
+		private boolean last;
+		
+		private InnerIsEmpty(boolean isEmpty) {
+			this.isEmpty = isEmpty;
+			this.last = false;
+		}
+		
+		@Override
+		public void changed(T value) {
+			synchronized ( this.sync ) {
+				boolean f = value.isEmpty();
+				if ( f != this.last ) {
+					this.last = f;
+					this.sync.notifyAll();
+				}
+			}
+		}
+		
+		private void waitUntil() throws InterruptedException {
+			synchronized ( this.sync ) {
+				if ( this.last != this.isEmpty ) {
+					this.sync.wait();
+				}
+			}
+		}
+		
+		private void waitUntil(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+			synchronized ( this.sync ) {
+				if ( this.last != this.isEmpty ) {
+					unit.timedWait(this.sync, timeout);
+					if ( this.last != this.isEmpty ) {
+						throw new TimeoutException();
+					}
+				}
+			}
+		}
+		
+	}
+	
+	@Override
+	public void waitUntilIsEmpty() throws InterruptedException {
+		final InnerIsEmpty i = new InnerIsEmpty(true);
+		try {
+			this.addChangeListener(i);
+			i.waitUntil();
+		}
+		finally {
+			this.removeChangeListener(i);
+		}
+	}
+	
+	@Override
+	public void waitUntilIsEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		final InnerIsEmpty i = new InnerIsEmpty(true);
+		try {
+			this.addChangeListener(i);
+			i.waitUntil(timeout, unit);
+		}
+		finally {
+			this.removeChangeListener(i);
+		}
+	}
+	
+	@Override
+	public void waitUntilIsEmpty(TimeGettable p) throws InterruptedException, TimeoutException {
+		TimeoutAndUnit a = p.get();
+		this.waitUntilIsEmpty(a.timeout(), a.unit());
+	}
+	
+	@Override
+	public void waitUntilIsNotEmpty() throws InterruptedException {
+		final InnerIsEmpty i = new InnerIsEmpty(false);
+		try {
+			this.addChangeListener(i);
+			i.waitUntil();
+		}
+		finally {
+			this.removeChangeListener(i);
+		}
+	}
+	
+	@Override
+	public void waitUntilIsNotEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		final InnerIsEmpty i = new InnerIsEmpty(false);
+		try {
+			this.addChangeListener(i);
+			i.waitUntil(timeout, unit);
+		}
+		finally {
+			this.removeChangeListener(i);
+		}
+	}
+	
+	@Override
+	public void waitUntilIsNotEmpty(TimeGettable p) throws InterruptedException, TimeoutException {
+		TimeoutAndUnit a = p.get();
+		this.waitUntilIsNotEmpty(a.timeout(), a.unit());
 	}
 	
 	@Override

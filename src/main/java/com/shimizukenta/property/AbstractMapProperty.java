@@ -171,7 +171,7 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 		
 		private InnerContainsKey(Object key, boolean containsKey) {
 			
-			this.key = key;
+			this.key = Objects.requireNonNull(key);
 			this.containsKey = containsKey;
 			this.f = false;
 			this.v = null;
@@ -271,13 +271,13 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 		this.waitUntilNotContainsKey(key, a.timeout(), a.unit());
 	}
 	
-	private class InnerEmpty implements ChangeListener<Map<K, V>> {
+	private class InnerIsEmpty implements ChangeListener<Map<K, V>> {
 		
 		private final Object sync = new Object();
 		private final boolean isEmpty;
 		private boolean f;
 		
-		private InnerEmpty(boolean isEmpty) {
+		private InnerIsEmpty(boolean isEmpty) {
 			this.isEmpty = isEmpty;
 			this.f = false;
 		}
@@ -315,7 +315,7 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	
 	@Override
 	public void waitUntilEmpty() throws InterruptedException {
-		final InnerEmpty i = new InnerEmpty(true);
+		final InnerIsEmpty i = new InnerIsEmpty(true);
 		try {
 			this.addChangeListener(i);
 			i.waitUntil();
@@ -327,7 +327,7 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	
 	@Override
 	public void waitUntilEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		final InnerEmpty i = new InnerEmpty(true);
+		final InnerIsEmpty i = new InnerIsEmpty(true);
 		try {
 			this.addChangeListener(i);
 			i.waitUntil(timeout, unit);
@@ -345,7 +345,7 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	
 	@Override
 	public void waitUntilNotEmpty() throws InterruptedException {
-		final InnerEmpty i = new InnerEmpty(false);
+		final InnerIsEmpty i = new InnerIsEmpty(false);
 		try {
 			this.addChangeListener(i);
 			i.waitUntil();
@@ -356,7 +356,7 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	}
 	
 	public void waitUntilNotEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		final InnerEmpty i = new InnerEmpty(false);
+		final InnerIsEmpty i = new InnerIsEmpty(false);
 		try {
 			this.addChangeListener(i);
 			i.waitUntil(timeout, unit);

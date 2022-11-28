@@ -11,30 +11,6 @@ import java.util.concurrent.TimeoutException;
 public interface BooleanObservable extends Observable<Boolean> {
 	
 	/**
-	 * Waiting until {@code (f == this.get().booleanValue())}.
-	 * 
-	 * <p>This is blocking method.</p>
-	 * 
-	 * @param f is {@code boolean}.
-	 * @throws InterruptedException
-	 */
-	public void waitUntil(boolean f) throws InterruptedException;
-	
-	/**
-	 * Waiting until {@code (f == this.get().booleanValue())}.
-	 * 
-	 * <p>This is blocking method.</p>
-	 * 
-	 * 
-	 * @param f is {@code boolean}.
-	 * @param timeout
-	 * @param unit
-	 * @throws InterruptedException
-	 * @throws TimeoutException throw if timeout.
-	 */
-	public void waitUntil(boolean f, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException;
-	
-	/**
 	 * Returns (this && observable) LogicalCompution instance.
 	 * 
 	 * @param observable
@@ -149,13 +125,40 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * <p>This is blocking method.</p>
 	 * 
 	 * @param f is {@code boolean}.
+	 * @throws InterruptedException
+	 */
+	default public void waitUntil(boolean f) throws InterruptedException {
+		BooleanWaitUntil.getInstance().waitUntil(this, f);
+	}
+	
+	/**
+	 * Waiting until {@code (f == this.get().booleanValue())}.
+	 * 
+	 * <p>This is blocking method.</p>
+	 * 
+	 * 
+	 * @param f is {@code boolean}.
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException throw if timeout.
+	 */
+	default public void waitUntil(boolean f, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		BooleanWaitUntil.getInstance().waitUntil(this, f, timeout, unit);
+	}
+	
+	/**
+	 * Waiting until {@code (f == this.get().booleanValue())}.
+	 * 
+	 * <p>This is blocking method.</p>
+	 * 
+	 * @param f is {@code boolean}.
 	 * @param p is TimeProperty
 	 * @throws InterruptedException
 	 * @throws TimeoutException throw if timeout.
 	 */
 	default public void waitUntil(boolean f, TimeGettable p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntil(f, a.timeout(), a.unit());
+		BooleanWaitUntil.getInstance().waitUntil(this, f, p);
 	}
 	
 	/**
@@ -166,7 +169,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilTrue() throws InterruptedException {
-		this.waitUntil(true);
+		BooleanWaitUntil.getInstance().waitUntil(this, true);
 	}
 	
 	/**
@@ -181,7 +184,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * @throws TimeoutException throw if timeout.
 	 */
 	default public void waitUntilTrue(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntil(true, timeout, unit);
+		BooleanWaitUntil.getInstance().waitUntil(this, true, timeout, unit);
 	}
 	
 	/**
@@ -194,7 +197,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * @throws TimeoutException throw if timeout.
 	 */
 	default public void waitUntilTrue(TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntil(true, p);
+		BooleanWaitUntil.getInstance().waitUntil(this, true, p);
 	}
 	
 	/**
@@ -205,7 +208,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilFalse() throws InterruptedException {
-		this.waitUntil(false);
+		BooleanWaitUntil.getInstance().waitUntil(this, false);
 	}
 	
 	/**
@@ -220,7 +223,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * @throws TimeoutException throw if timeout.
 	 */
 	default public void waitUntilFalse(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntil(false, timeout, unit);
+		BooleanWaitUntil.getInstance().waitUntil(this, false, timeout, unit);
 	}
 	
 	/**
@@ -233,7 +236,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * @throws TimeoutException throw if timeout.
 	 */
 	default public void waitUntilFalse(TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntil(false, p);
+		BooleanWaitUntil.getInstance().waitUntil(this, false, p);
 	}
 	
 }

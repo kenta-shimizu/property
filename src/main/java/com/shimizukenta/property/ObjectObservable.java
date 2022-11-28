@@ -22,7 +22,9 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * @return value
 	 * @throws InterruptedException
 	 */
-	public T waitUntilNotNull() throws InterruptedException;
+	default public T waitUntilNotNull() throws InterruptedException {
+		return ObjectWaitUntil.getInstance().waitUntil(this, false);
+	}
 	
 	/**
 	 * Wait until value is <b>NOT</b> {@code null}, and return value.
@@ -38,7 +40,9 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	public T waitUntilNotNull(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException;
+	default public T waitUntilNotNull(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		return ObjectWaitUntil.getInstance().waitUntil(this, false, timeout, unit);
+	}
 	
 	/**
 	 * Wait until value is <b>NOT</b> {@code null}, and return value.
@@ -53,7 +57,9 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	public T waitUntilNotNull(TimeGettable p) throws InterruptedException, TimeoutException;
+	default public T waitUntilNotNull(TimeGettable p) throws InterruptedException, TimeoutException {
+		return ObjectWaitUntil.getInstance().waitUntil(this, false, p);
+	}
 	
 	/**
 	 * Wait until value is {@code null}.
@@ -65,7 +71,9 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * 
 	 * @throws InterruptedException
 	 */
-	public void waitUntilNull() throws InterruptedException;
+	default public void waitUntilNull() throws InterruptedException {
+		ObjectWaitUntil.getInstance().waitUntil(this, true);
+	}
 	
 	/**
 	 * Wait until value is {@code null}.
@@ -80,7 +88,9 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	public void waitUntilNull(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException;
+	default public void waitUntilNull(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		ObjectWaitUntil.getInstance().waitUntil(this, true, timeout, unit);
+	}
 	
 	/**
 	 * Wait until value is {@code null}.
@@ -94,6 +104,8 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	public void waitUntilNull(TimeGettable p) throws InterruptedException, TimeoutException;
+	default public void waitUntilNull(TimeGettable p) throws InterruptedException, TimeoutException {
+		ObjectWaitUntil.getInstance().waitUntil(this, true, p);
+	}
 	
 }

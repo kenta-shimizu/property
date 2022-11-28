@@ -248,12 +248,6 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 	}
 	
 	@Override
-	public void waitUntilContains(Object o, TimeGettable p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilContains(o, a.timeout(), a.unit());
-	}
-	
-	@Override
 	public void waitUntilNotContains(Object o) throws InterruptedException {
 		final InnerContains i = new InnerContains(o, false);
 		try {
@@ -275,12 +269,6 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 		finally {
 			this.removeChangeListener(i);
 		}
-	}
-	
-	@Override
-	public void waitUntilNotContains(Object o, TimeGettable p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilNotContains(o, a.timeout(), a.unit());
 	}
 	
 	private class InnerContainsAll implements ChangeListener<T> {
@@ -352,12 +340,6 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 	}
 	
 	@Override
-	public void waitUntilContainsAll(Collection<?> c, TimeGettable p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilContainsAll(c, a.timeout(), a.unit());
-	}
-	
-	@Override
 	public void waitUntilNotContainsAll(Collection<?> c) throws InterruptedException {
 		final InnerContainsAll i = new InnerContainsAll(c, false);
 		try {
@@ -379,12 +361,6 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 		finally {
 			this.removeChangeListener(i);
 		}
-	}
-	
-	@Override
-	public void waitUntilNotContainsAll(Collection<?> c, TimeGettable p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilNotContainsAll(c, a.timeout(), a.unit());
 	}
 	
 	private class InnerIsEmpty implements ChangeListener<T> {
@@ -455,12 +431,6 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 	}
 	
 	@Override
-	public void waitUntilIsEmpty(TimeGettable p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilIsEmpty(a.timeout(), a.unit());
-	}
-	
-	@Override
 	public void waitUntilIsNotEmpty() throws InterruptedException {
 		final InnerIsEmpty i = new InnerIsEmpty(false);
 		try {
@@ -482,12 +452,6 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 		finally {
 			this.removeChangeListener(i);
 		}
-	}
-	
-	@Override
-	public void waitUntilIsNotEmpty(TimeGettable p) throws InterruptedException, TimeoutException {
-		TimeoutAndUnit a = p.get();
-		this.waitUntilIsNotEmpty(a.timeout(), a.unit());
 	}
 	
 	@Override

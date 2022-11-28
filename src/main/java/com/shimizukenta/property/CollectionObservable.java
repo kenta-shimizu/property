@@ -71,7 +71,10 @@ public interface CollectionObservable<E, T extends Collection<E>> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	public void waitUntilContains(Object o, TimeGettable p) throws InterruptedException, TimeoutException;
+	default public void waitUntilContains(Object o, TimeGettable p) throws InterruptedException, TimeoutException {
+		TimeoutAndUnit a = p.get();
+		this.waitUntilContains(o, a.timeout(), a.unit());
+	}
 	
 	/**
 	 * Wait until {@link Collection#contains(Object)} is {@code false}.
@@ -115,7 +118,10 @@ public interface CollectionObservable<E, T extends Collection<E>> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	public void waitUntilNotContains(Object o, TimeGettable p) throws InterruptedException, TimeoutException;
+	default public void waitUntilNotContains(Object o, TimeGettable p) throws InterruptedException, TimeoutException {
+		TimeoutAndUnit a = p.get();
+		this.waitUntilNotContains(o, a.timeout(), a.unit());
+	}
 	
 	/**
 	 * Wait until {@link Collection#containsAll(Collection)} is {@code true}.
@@ -159,7 +165,10 @@ public interface CollectionObservable<E, T extends Collection<E>> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	public void waitUntilContainsAll(Collection<?> c, TimeGettable p) throws InterruptedException, TimeoutException;
+	default public void waitUntilContainsAll(Collection<?> c, TimeGettable p) throws InterruptedException, TimeoutException {
+		TimeoutAndUnit a = p.get();
+		this.waitUntilContainsAll(c, a.timeout(), a.unit());
+	}
 	
 	/**
 	 * Wait until {@link Collection#containsAll(Collection)} is {@code false}.
@@ -203,7 +212,10 @@ public interface CollectionObservable<E, T extends Collection<E>> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	public void waitUntilNotContainsAll(Collection<?> c, TimeGettable p) throws InterruptedException, TimeoutException;
+	default public void waitUntilNotContainsAll(Collection<?> c, TimeGettable p) throws InterruptedException, TimeoutException {
+		TimeoutAndUnit a = p.get();
+		this.waitUntilNotContainsAll(c, a.timeout(), a.unit());
+	}
 	
 	/**
 	 * Wait until {@link Collection#isEmpty()} is {@code true}.
@@ -244,7 +256,10 @@ public interface CollectionObservable<E, T extends Collection<E>> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	public void waitUntilIsEmpty(TimeGettable p) throws InterruptedException, TimeoutException;
+	default public void waitUntilIsEmpty(TimeGettable p) throws InterruptedException, TimeoutException {
+		TimeoutAndUnit a = p.get();
+		this.waitUntilIsEmpty(a.timeout(), a.unit());
+	}
 	
 	/**
 	 * Wait until {@link Collection#isEmpty()} is {@code false}.
@@ -285,7 +300,10 @@ public interface CollectionObservable<E, T extends Collection<E>> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	public void waitUntilIsNotEmpty(TimeGettable p) throws InterruptedException, TimeoutException;
+	default public void waitUntilIsNotEmpty(TimeGettable p) throws InterruptedException, TimeoutException {
+		TimeoutAndUnit a = p.get();
+		this.waitUntilIsNotEmpty(a.timeout(), a.unit());
+	}
 	
 	//TODO
 //	public int waitUntilSizeIsEqualTo(int value) throws InterruptedException;
@@ -307,6 +325,7 @@ public interface CollectionObservable<E, T extends Collection<E>> {
 //	public int waitUntilSizeIsGreaterThanOrEqualTo(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException;
 //	public int waitUntilSizeIsGreaterThanOrEqualTo(int value, TimeGettable p) throws InterruptedException, TimeoutException;
 //	
+	//TODO
 //	public int waitUntilSizeIsEqualTo(IntegerObservable o) throws InterruptedException;
 //	public int waitUntilSizeIsEqualTo(IntegerObservable o, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException;
 //	public int waitUntilSizeIsEqualTo(IntegerObservable o, TimeGettable p) throws InterruptedException, TimeoutException;

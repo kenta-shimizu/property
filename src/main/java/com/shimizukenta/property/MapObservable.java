@@ -41,7 +41,9 @@ public interface MapObservable<K, V> {
 	 * @return {@link Map#get(Object)}
 	 * @throws InterruptedException
 	 */
-	public V waitUntilContainsKey(Object key) throws InterruptedException;
+	default public V waitUntilContainsKey(Object key) throws InterruptedException {
+		return MapWaitUntil.getInstance().waitUntilContainsKey(this, true, key);
+	}
 	
 	/**
 	 * Wait until {@link Map#containsKey(Object)} is {@code true}, and return value.
@@ -58,7 +60,9 @@ public interface MapObservable<K, V> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	public V waitUntilContainsKey(Object key, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException;
+	default public V waitUntilContainsKey(Object key, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		return MapWaitUntil.getInstance().waitUntilContainsKey(this, true, key, timeout, unit);
+	}
 	
 	/**
 	 * Wait until {@link Map#containsKey(Object)} is {@code true}, and return value.
@@ -74,7 +78,9 @@ public interface MapObservable<K, V> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	public V waitUntilContainsKey(Object key, TimeGettable p) throws InterruptedException, TimeoutException;
+	default public V waitUntilContainsKey(Object key, TimeGettable p) throws InterruptedException, TimeoutException {
+		return MapWaitUntil.getInstance().waitUntilContainsKey(this, true, key, p);
+	}
 	
 	/**
 	 * Wait until {@link Map#containsKey(Object)} is {@code false}.
@@ -87,7 +93,9 @@ public interface MapObservable<K, V> {
 	 * @param key
 	 * @throws InterruptedException
 	 */
-	public void waitUntilNotContainsKey(Object key) throws InterruptedException;
+	default public void waitUntilNotContainsKey(Object key) throws InterruptedException {
+		MapWaitUntil.getInstance().waitUntilContainsKey(this, false, key);
+	}
 	
 	/**
 	 * Wait until {@link Map#containsKey(Object)} is {@code false}.
@@ -103,7 +111,9 @@ public interface MapObservable<K, V> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	public void waitUntilNotContainsKey(Object key, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException;
+	default public void waitUntilNotContainsKey(Object key, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		MapWaitUntil.getInstance().waitUntilContainsKey(this, false, key, timeout, unit);
+	}
 	
 	/**
 	 * Wait until {@link Map#containsKey(Object)} is {@code false}.
@@ -118,7 +128,9 @@ public interface MapObservable<K, V> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	public void waitUntilNotContainsKey(Object key, TimeGettable p) throws InterruptedException, TimeoutException;
+	default public void waitUntilNotContainsKey(Object key, TimeGettable p) throws InterruptedException, TimeoutException {
+		MapWaitUntil.getInstance().waitUntilContainsKey(this, false, key, p);
+	}
 	
 	/**
 	 * Wait until {@link Map#isEmpty()} is {@code true}.
@@ -130,7 +142,9 @@ public interface MapObservable<K, V> {
 	 * 
 	 * @throws InterruptedException
 	 */
-	public void waitUntilEmpty() throws InterruptedException;
+	default public void waitUntilEmpty() throws InterruptedException {
+		MapWaitUntil.getInstance().waitUntilIsEmpty(this, true);
+	}
 	
 	/**
 	 * Wait until {@link Map#isEmpty()} is {@code true}.
@@ -145,7 +159,9 @@ public interface MapObservable<K, V> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	public void waitUntilEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException;
+	default public void waitUntilEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		MapWaitUntil.getInstance().waitUntilIsEmpty(this, true, timeout, unit);
+	}
 	
 	/**
 	 * Wait until {@link Map#isEmpty()} is {@code true}.
@@ -159,7 +175,9 @@ public interface MapObservable<K, V> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	public void waitUntilEmpty(TimeGettable p) throws InterruptedException, TimeoutException;
+	default public void waitUntilEmpty(TimeGettable p) throws InterruptedException, TimeoutException {
+		MapWaitUntil.getInstance().waitUntilIsEmpty(this, true, p);
+	}
 	
 	/**
 	 * Wait until {@link Map#isEmpty()} is {@code false}.
@@ -171,7 +189,9 @@ public interface MapObservable<K, V> {
 	 * 
 	 * @throws InterruptedException
 	 */
-	public void waitUntilNotEmpty() throws InterruptedException;
+	default public void waitUntilNotEmpty() throws InterruptedException {
+		MapWaitUntil.getInstance().waitUntilIsEmpty(this, false);
+	}
 	
 	/**
 	 * Wait until {@link Map#isEmpty()} is {@code false}.
@@ -186,7 +206,9 @@ public interface MapObservable<K, V> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout
 	 */
-	public void waitUntilNotEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException;
+	default public void waitUntilNotEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		MapWaitUntil.getInstance().waitUntilIsEmpty(this, false, timeout, unit);
+	}
 	
 	/**
 	 * Wait until {@link Map#isEmpty()} is {@code false}.
@@ -200,6 +222,8 @@ public interface MapObservable<K, V> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	public void waitUntilNotEmpty(TimeGettable p) throws InterruptedException, TimeoutException;
+	default public void waitUntilNotEmpty(TimeGettable p) throws InterruptedException, TimeoutException {
+		MapWaitUntil.getInstance().waitUntilIsEmpty(this, false, p);
+	}
 	
 }

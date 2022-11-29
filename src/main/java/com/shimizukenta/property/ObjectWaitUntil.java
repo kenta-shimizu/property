@@ -5,7 +5,7 @@ import java.util.concurrent.TimeoutException;
 
 public class ObjectWaitUntil extends AbstractWaitUntil {
 
-	private ObjectWaitUntil() {
+	protected ObjectWaitUntil() {
 		super();
 	}
 	
@@ -56,8 +56,8 @@ public class ObjectWaitUntil extends AbstractWaitUntil {
 		}
 	}
 	
-	public <T> T waitUntil(ObjectObservable<T> observable, boolean condition) throws InterruptedException {
-		final InnerIsNull<T> i = new InnerIsNull<>(condition);
+	public <T> T isNull(ObjectObservable<T> observable, boolean isNull) throws InterruptedException {
+		final InnerIsNull<T> i = new InnerIsNull<>(isNull);
 		try {
 			observable.addChangeListener(i);
 			return i.waitUntilAndGet();
@@ -67,8 +67,8 @@ public class ObjectWaitUntil extends AbstractWaitUntil {
 		}
 	}
 	
-	public <T> T waitUntil(ObjectObservable<T> observable, boolean condition, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		final InnerIsNull<T> i = new InnerIsNull<>(condition);
+	public <T> T isNull(ObjectObservable<T> observable, boolean isNull, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		final InnerIsNull<T> i = new InnerIsNull<>(isNull);
 		try {
 			observable.addChangeListener(i);
 			return i.waitUntilAndGet(timeout, unit);
@@ -78,8 +78,8 @@ public class ObjectWaitUntil extends AbstractWaitUntil {
 		}
 	}
 	
-	public <T> T waitUntil(ObjectObservable<T> observable, boolean condition, TimeGettable p) throws InterruptedException, TimeoutException {
-		final InnerIsNull<T> i = new InnerIsNull<>(condition);
+	public <T> T isNull(ObjectObservable<T> observable, boolean isNull, TimeGettable p) throws InterruptedException, TimeoutException {
+		final InnerIsNull<T> i = new InnerIsNull<>(isNull);
 		try {
 			observable.addChangeListener(i);
 			return i.waitUntilAndGet(p);

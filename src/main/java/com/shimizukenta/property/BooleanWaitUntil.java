@@ -10,7 +10,7 @@ import java.util.concurrent.TimeoutException;
  */
 public class BooleanWaitUntil extends AbstractWaitUntil {
 
-	private BooleanWaitUntil() {
+	protected BooleanWaitUntil() {
 		super();
 	}
 	

@@ -23,7 +23,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * @throws InterruptedException
 	 */
 	default public T waitUntilNotNull() throws InterruptedException {
-		return ObjectWaitUntil.getInstance().waitUntil(this, false);
+		return ObjectWaitUntil.getInstance().isNull(this, false);
 	}
 	
 	/**
@@ -41,7 +41,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public T waitUntilNotNull(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		return ObjectWaitUntil.getInstance().waitUntil(this, false, timeout, unit);
+		return ObjectWaitUntil.getInstance().isNull(this, false, timeout, unit);
 	}
 	
 	/**
@@ -58,7 +58,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public T waitUntilNotNull(TimeGettable p) throws InterruptedException, TimeoutException {
-		return ObjectWaitUntil.getInstance().waitUntil(this, false, p);
+		return ObjectWaitUntil.getInstance().isNull(this, false, p);
 	}
 	
 	/**
@@ -72,7 +72,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilNull() throws InterruptedException {
-		ObjectWaitUntil.getInstance().waitUntil(this, true);
+		ObjectWaitUntil.getInstance().isNull(this, true);
 	}
 	
 	/**
@@ -89,7 +89,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilNull(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		ObjectWaitUntil.getInstance().waitUntil(this, true, timeout, unit);
+		ObjectWaitUntil.getInstance().isNull(this, true, timeout, unit);
 	}
 	
 	/**
@@ -105,7 +105,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilNull(TimeGettable p) throws InterruptedException, TimeoutException {
-		ObjectWaitUntil.getInstance().waitUntil(this, true, p);
+		ObjectWaitUntil.getInstance().isNull(this, true, p);
 	}
 	
 }

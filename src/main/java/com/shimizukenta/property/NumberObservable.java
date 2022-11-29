@@ -258,440 +258,440 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/* Wait Until Bases */
 	
 	default public void waitUntilEqualTo(NumberObservable<? extends Number> observable) throws InterruptedException {
-		this.isEqualTo(observable).waitUntilTrue();
+		ComparativeWaitUntil.getInstance().isEqualTo(this, observable);
 	}
 	
 	default public void waitUntilEqualTo(NumberObservable<? extends Number> observable, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isEqualTo(observable).waitUntilTrue(timeout, unit);
+		ComparativeWaitUntil.getInstance().isEqualTo(this, observable, timeout, unit);
 	}
 	
 	default public void waitUntilEqualTo(NumberObservable<? extends Number> observable, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isEqualTo(observable).waitUntilTrue(p);
+		ComparativeWaitUntil.getInstance().isEqualTo(this, observable, p);
 	}
 	
 	default public void waitUntilNotEqualTo(NumberObservable<? extends Number> observable) throws InterruptedException {
-		this.isNotEqualTo(observable).waitUntilTrue();
+		ComparativeWaitUntil.getInstance().isNotEqualTo(this, observable);
 	}
 	
 	default public void waitUntilNotEqualTo(NumberObservable<? extends Number> observable, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isNotEqualTo(observable).waitUntilTrue(timeout, unit);
+		ComparativeWaitUntil.getInstance().isNotEqualTo(this, observable, timeout, unit);
 	}
 	
 	default public void waitUntilNotEqualTo(NumberObservable<? extends Number> observable, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isNotEqualTo(observable).waitUntilTrue(p);
+		ComparativeWaitUntil.getInstance().isNotEqualTo(this, observable, p);
 	}
 	
 	default public void waitUntilLessThan(NumberObservable<? extends Number> observable) throws InterruptedException {
-		this.isLessThan(observable).waitUntilTrue();
+		ComparativeWaitUntil.getInstance().isLessThan(this, observable);
 	}
 	
 	default public void waitUntilLessThan(NumberObservable<? extends Number> observable, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isLessThan(observable).waitUntilTrue(timeout, unit);
+		ComparativeWaitUntil.getInstance().isLessThan(this, observable, timeout, unit);
 	}
 	
 	default public void waitUntilLessThan(NumberObservable<? extends Number> observable, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isLessThan(observable).waitUntilTrue(p);
+		ComparativeWaitUntil.getInstance().isLessThan(this, observable, p);
 	}
 	
 	default public void waitUntilLessThanOrEqualTo(NumberObservable<? extends Number> observable) throws InterruptedException {
-		this.isLessThanOrEqualTo(observable).waitUntilTrue();
+		ComparativeWaitUntil.getInstance().isLessThanOrEqualTo(this, observable);
 	}
 	
 	default public void waitUntilLessThanOrEqualTo(NumberObservable<? extends Number> observable, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isLessThanOrEqualTo(observable).waitUntilTrue(timeout, unit);
+		ComparativeWaitUntil.getInstance().isLessThanOrEqualTo(this, observable, timeout, unit);
 	}
 	
 	default public void waitUntilLessThanOrEqualTo(NumberObservable<? extends Number> observable, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isLessThanOrEqualTo(observable).waitUntilTrue(p);
+		ComparativeWaitUntil.getInstance().isLessThanOrEqualTo(this, observable, p);
 	}
 	
 	default public void waitUntilGreaterThan(NumberObservable<? extends Number> observable) throws InterruptedException {
-		this.isGreaterThan(observable).waitUntilTrue();
+		ComparativeWaitUntil.getInstance().isGreaterThan(this, observable);
 	}
 	
 	default public void waitUntilGreaterThan(NumberObservable<? extends Number> observable, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isGreaterThan(observable).waitUntilTrue(timeout, unit);
+		ComparativeWaitUntil.getInstance().isGreaterThan(this, observable, timeout, unit);
 	}
 	
 	default public void waitUntilGreaterThan(NumberObservable<? extends Number> observable, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isGreaterThan(observable).waitUntilTrue(p);
+		ComparativeWaitUntil.getInstance().isGreaterThan(this, observable, p);
 	}
 	
-	
 	default public void waitUntilGreaterThanOrEqualTo(NumberObservable<? extends Number> observable) throws InterruptedException {
-		this.isGreaterThanOrEqualTo(observable).waitUntilTrue();
+		ComparativeWaitUntil.getInstance().isGreaterThanOrEqualTo(this, observable);
 	}
 	
 	default public void waitUntilGreaterThanOrEqualTo(NumberObservable<? extends Number> observable, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isGreaterThanOrEqualTo(observable).waitUntilTrue(timeout, unit);
+		ComparativeWaitUntil.getInstance().isGreaterThanOrEqualTo(this, observable, timeout, unit);
 	}
 	
 	default public void waitUntilGreaterThanOrEqualTo(NumberObservable<? extends Number> observable, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isGreaterThanOrEqualTo(observable).waitUntilTrue(p);
+		ComparativeWaitUntil.getInstance().isGreaterThanOrEqualTo(this, observable, p);
 	}
 	
 	/* Wait until Primitives */
 	
 	default public void waitUntilEqualTo(int value) throws InterruptedException {
-		this.isEqualTo(value).waitUntilTrue();
+		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
 	}
 	
 	default public void waitUntilEqualTo(long value) throws InterruptedException {
-		this.isEqualTo(value).waitUntilTrue();
+		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value));
 	}
 	
 	default public void waitUntilEqualTo(float value) throws InterruptedException {
-		this.isEqualTo(value).waitUntilTrue();
+		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
 	}
 	
 	default public void waitUntilEqualTo(double value) throws InterruptedException {
-		this.isEqualTo(value).waitUntilTrue();
+		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
 	}
 	
 	default public void waitUntilEqualTo(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isEqualTo(value).waitUntilTrue(timeout, unit);
+		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value), timeout, unit);
 	}
 	
 	default public void waitUntilEqualTo(long value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isEqualTo(value).waitUntilTrue(timeout, unit);
+		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value), timeout, unit);
 	}
 	
 	default public void waitUntilEqualTo(float value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isEqualTo(value).waitUntilTrue(timeout, unit);
+		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value), timeout, unit);
 	}
 	
 	default public void waitUntilEqualTo(double value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isEqualTo(value).waitUntilTrue(timeout, unit);
+		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value), timeout, unit);
 	}
 	
 	default public void waitUntilEqualTo(int value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isEqualTo(value).waitUntilTrue(p);
+		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value), p);
 	}
 	
 	default public void waitUntilEqualTo(long value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isEqualTo(value).waitUntilTrue(p);
+		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value), p);
 	}
 	
 	default public void waitUntilEqualTo(float value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isEqualTo(value).waitUntilTrue(p);
+		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value), p);
 	}
 	
 	default public void waitUntilEqualTo(double value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isEqualTo(value).waitUntilTrue(p);
+		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value), p);
 	}
 	
 	default public void waitUntilNotEqualTo(int value) throws InterruptedException {
-		this.isNotEqualTo(value).waitUntilTrue();
+		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
 	}
 	
 	default public void waitUntilNotEqualTo(long value) throws InterruptedException {
-		this.isNotEqualTo(value).waitUntilTrue();
+		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value));
 	}
 	
 	default public void waitUntilNotEqualTo(float value) throws InterruptedException {
-		this.isNotEqualTo(value).waitUntilTrue();
+		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
 	}
 	
 	default public void waitUntilNotEqualTo(double value) throws InterruptedException {
-		this.isNotEqualTo(value).waitUntilTrue();
+		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
 	}
 	
 	default public void waitUntilNotEqualTo(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isNotEqualTo(value).waitUntilTrue(timeout, unit);
+		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value), timeout, unit);
 	}
 	
 	default public void waitUntilNotEqualTo(long value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isNotEqualTo(value).waitUntilTrue(timeout, unit);
+		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value), timeout, unit);
 	}
 	
 	default public void waitUntilNotEqualTo(float value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isNotEqualTo(value).waitUntilTrue(timeout, unit);
+		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value), timeout, unit);
 	}
 	
 	default public void waitUntilNotEqualTo(double value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isNotEqualTo(value).waitUntilTrue(timeout, unit);
+		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value), timeout, unit);
 	}
 	
 	default public void waitUntilNotEqualTo(int value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isNotEqualTo(value).waitUntilTrue(p);
+		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value), p);
 	}
 	
 	default public void waitUntilNotEqualTo(long value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isNotEqualTo(value).waitUntilTrue(p);
+		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value), p);
 	}
 	
 	default public void waitUntilNotEqualTo(float value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isNotEqualTo(value).waitUntilTrue(p);
+		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value), p);
 	}
 	
 	default public void waitUntilNotEqualTo(double value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isNotEqualTo(value).waitUntilTrue(p);
+		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value), p);
 	}
 	
 	default public void waitUntilLessThan(int value) throws InterruptedException {
-		this.isLessThan(value).waitUntilTrue();
+		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
 	}
 	
 	default public void waitUntilLessThan(long value) throws InterruptedException {
-		this.isLessThan(value).waitUntilTrue();
+		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newLong(value));
 	}
 	
 	default public void waitUntilLessThan(float value) throws InterruptedException {
-		this.isLessThan(value).waitUntilTrue();
+		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
 	}
 	
 	default public void waitUntilLessThan(double value) throws InterruptedException {
-		this.isLessThan(value).waitUntilTrue();
+		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
 	}
 	
 	default public void waitUntilLessThan(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isLessThan(value).waitUntilTrue(timeout, unit);
+		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newInteger(value), timeout, unit);
 	}
 	
 	default public void waitUntilLessThan(long value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isLessThan(value).waitUntilTrue(timeout, unit);
+		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newLong(value), timeout, unit);
 	}
 	
 	default public void waitUntilLessThan(float value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isLessThan(value).waitUntilTrue(timeout, unit);
+		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newFloat(value), timeout, unit);
 	}
 	
 	default public void waitUntilLessThan(double value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isLessThan(value).waitUntilTrue(timeout, unit);
+		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newDouble(value), timeout, unit);
 	}
 	
 	default public void waitUntilLessThan(int value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isLessThan(value).waitUntilTrue(p);
+		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newInteger(value), p);
 	}
 	
 	default public void waitUntilLessThan(long value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isLessThan(value).waitUntilTrue(p);
+		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newLong(value), p);
 	}
 	
 	default public void waitUntilLessThan(float value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isLessThan(value).waitUntilTrue(p);
+		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newFloat(value), p);
 	}
 	
 	default public void waitUntilLessThan(double value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isLessThan(value).waitUntilTrue(p);
+		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newDouble(value), p);
 	}
 	
 	default public void waitUntilLessThanOrEqualTo(int value) throws InterruptedException {
-		this.isLessThanOrEqualTo(value).waitUntilTrue();
+		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
 	}
 	
 	default public void waitUntilLessThanOrEqualTo(long value) throws InterruptedException {
-		this.isLessThanOrEqualTo(value).waitUntilTrue();
+		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value));
 	}
 	
 	default public void waitUntilLessThanOrEqualTo(float value) throws InterruptedException {
-		this.isLessThanOrEqualTo(value).waitUntilTrue();
+		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
 	}
 	
 	default public void waitUntilLessThanOrEqualTo(double value) throws InterruptedException {
-		this.isLessThanOrEqualTo(value).waitUntilTrue();
+		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
 	}
 	
 	default public void waitUntilLessThanOrEqualTo(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isLessThanOrEqualTo(value).waitUntilTrue(timeout, unit);
+		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value), timeout, unit);
 	}
 	
 	default public void waitUntilLessThanOrEqualTo(long value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isLessThanOrEqualTo(value).waitUntilTrue(timeout, unit);
+		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value), timeout, unit);
 	}
 	
 	default public void waitUntilLessThanOrEqualTo(float value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isLessThanOrEqualTo(value).waitUntilTrue(timeout, unit);
+		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value), timeout, unit);
 	}
 	
 	default public void waitUntilLessThanOrEqualTo(double value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isLessThanOrEqualTo(value).waitUntilTrue(timeout, unit);
+		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value), timeout, unit);
 	}
 	
 	default public void waitUntilLessThanOrEqualTo(int value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isLessThanOrEqualTo(value).waitUntilTrue(p);
+		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value), p);
 	}
 	
 	default public void waitUntilLessThanOrEqualTo(long value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isLessThanOrEqualTo(value).waitUntilTrue(p);
+		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value), p);
 	}
 	
 	default public void waitUntilLessThanOrEqualTo(float value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isLessThanOrEqualTo(value).waitUntilTrue(p);
+		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value), p);
 	}
 	
 	default public void waitUntilLessThanOrEqualTo(double value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isLessThanOrEqualTo(value).waitUntilTrue(p);
+		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value), p);
 	}
 	
 	default public void waitUntilGreaterThan(int value) throws InterruptedException {
-		this.isGreaterThan(value).waitUntilTrue();
+		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
 	}
 	
 	default public void waitUntilGreaterThan(long value) throws InterruptedException {
-		this.isGreaterThan(value).waitUntilTrue();
+		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newLong(value));
 	}
 	
 	default public void waitUntilGreaterThan(float value) throws InterruptedException {
-		this.isGreaterThan(value).waitUntilTrue();
+		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
 	}
 	
 	default public void waitUntilGreaterThan(double value) throws InterruptedException {
-		this.isGreaterThan(value).waitUntilTrue();
+		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
 	}
 	
 	default public void waitUntilGreaterThan(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isGreaterThan(value).waitUntilTrue(timeout, unit);
+		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newInteger(value), timeout, unit);
 	}
 	
 	default public void waitUntilGreaterThan(long value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isGreaterThan(value).waitUntilTrue(timeout, unit);
+		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newLong(value), timeout, unit);
 	}
 	
 	default public void waitUntilGreaterThan(float value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isGreaterThan(value).waitUntilTrue(timeout, unit);
+		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newFloat(value), timeout, unit);
 	}
 	
 	default public void waitUntilGreaterThan(double value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isGreaterThan(value).waitUntilTrue(timeout, unit);
+		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newDouble(value), timeout, unit);
 	}
 	
 	default public void waitUntilGreaterThan(int value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isGreaterThan(value).waitUntilTrue(p);
+		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newInteger(value), p);
 	}
 	
 	default public void waitUntilGreaterThan(long value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isGreaterThan(value).waitUntilTrue(p);
+		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newLong(value), p);
 	}
 	
 	default public void waitUntilGreaterThan(float value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isGreaterThan(value).waitUntilTrue(p);
+		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newFloat(value), p);
 	}
 	
 	default public void waitUntilGreaterThan(double value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isGreaterThan(value).waitUntilTrue(p);
+		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newDouble(value), p);
 	}
 	
 	default public void waitUntilGreaterThanOrEqualTo(int value) throws InterruptedException {
-		this.isGreaterThanOrEqualTo(value).waitUntilTrue();
+		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
 	}
 	
 	default public void waitUntilGreaterThanOrEqualTo(long value) throws InterruptedException {
-		this.isGreaterThanOrEqualTo(value).waitUntilTrue();
+		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value));
 	}
 	
 	default public void waitUntilGreaterThanOrEqualTo(float value) throws InterruptedException {
-		this.isGreaterThanOrEqualTo(value).waitUntilTrue();
+		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
 	}
 	
 	default public void waitUntilGreaterThanOrEqualTo(double value) throws InterruptedException {
-		this.isGreaterThanOrEqualTo(value).waitUntilTrue();
+		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
 	}
 	
 	default public void waitUntilGreaterThanOrEqualTo(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isGreaterThanOrEqualTo(value).waitUntilTrue(timeout, unit);
+		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value), timeout, unit);
 	}
 	
 	default public void waitUntilGreaterThanOrEqualTo(long value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value), timeout, unit);
 		this.isGreaterThanOrEqualTo(value).waitUntilTrue(timeout, unit);
 	}
 	
 	default public void waitUntilGreaterThanOrEqualTo(float value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isGreaterThanOrEqualTo(value).waitUntilTrue(timeout, unit);
+		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value), timeout, unit);
 	}
 	
 	default public void waitUntilGreaterThanOrEqualTo(double value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isGreaterThanOrEqualTo(value).waitUntilTrue(timeout, unit);
+		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value), timeout, unit);
 	}
 	
 	default public void waitUntilGreaterThanOrEqualTo(int value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isGreaterThanOrEqualTo(value).waitUntilTrue(p);
+		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value), p);
 	}
 	
 	default public void waitUntilGreaterThanOrEqualTo(long value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isGreaterThanOrEqualTo(value).waitUntilTrue(p);
+		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value), p);
 	}
 	
 	default public void waitUntilGreaterThanOrEqualTo(float value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isGreaterThanOrEqualTo(value).waitUntilTrue(p);
+		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value), p);
 	}
 	
 	default public void waitUntilGreaterThanOrEqualTo(double value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isGreaterThanOrEqualTo(value).waitUntilTrue(p);
+		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value), p);
 	}
 	
 	/* Wait Until ZEROs */
 	
 	default public void waitUntilEqualToZero() throws InterruptedException {
-		this.isEqualToZero().waitUntilTrue();
+		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
 	}
 	
 	default public void waitUntilEqualToZero(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isEqualToZero().waitUntilTrue(timeout, unit);
+		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), timeout, unit);
 	}
 	
 	default public void waitUntilEqualToZero(TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isEqualToZero().waitUntilTrue(p);
+		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), p);
 	}
 	
 	default public void waitUntilNotEqualToZero() throws InterruptedException {
-		this.isNotEqualToZero().waitUntilTrue();
+		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
 	}
 	
 	default public void waitUntilNotEqualToZero(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isNotEqualToZero().waitUntilTrue(timeout, unit);
+		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), timeout, unit);
 	}
 	
 	default public void waitUntilNotEqualToZero(TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isNotEqualToZero().waitUntilTrue(p);
+		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), p);
 	}
 	
 	default public void waitUntilLessThanZero() throws InterruptedException {
-		this.isLessThanZero().waitUntilTrue();
+		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
 	}
 	
 	default public void waitUntilLessThanZero(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isLessThanZero().waitUntilTrue(timeout, unit);
+		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), timeout, unit);
 	}
 	
 	default public void waitUntilLessThanZero(TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isLessThanZero().waitUntilTrue(p);
+		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), p);
 	}
 	
 	default public void waitUntilLessThanOrEqualToZero() throws InterruptedException {
-		this.isLessThanOrEqualToZero().waitUntilTrue();
+		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
 	}
 	
 	default public void waitUntilLessThanOrEqualToZero(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isLessThanOrEqualToZero().waitUntilTrue(timeout, unit);
+		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), timeout, unit);
 	}
 	
 	default public void waitUntilLessThanOrEqualToZero(TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isLessThanOrEqualToZero().waitUntilTrue(p);
+		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), p);
 	}
 	
 	default public void waitUntilGreaterThanZero() throws InterruptedException {
-		this.isGreaterThanZero().waitUntilTrue();
+		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
 	}
 	
 	default public void waitUntilGreaterThanZero(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isGreaterThanZero().waitUntilTrue(timeout, unit);
+		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), timeout, unit);
 	}
 	
 	default public void waitUntilGreaterThanZero(TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isGreaterThanZero().waitUntilTrue(p);
+		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), p);
 	}
 	
 	default public void waitUntilGreaterThanOrEqualToZero() throws InterruptedException {
-		this.isGreaterThanOrEqualToZero().waitUntilTrue();
+		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
 	}
 	
 	default public void waitUntilGreaterThanOrEqualToZero(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.isGreaterThanOrEqualToZero().waitUntilTrue(timeout, unit);
+		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), timeout, unit);
 	}
 	
 	default public void waitUntilGreaterThanOrEqualToZero(TimeGettable p) throws InterruptedException, TimeoutException {
-		this.isGreaterThanOrEqualToZero().waitUntilTrue(p);
+		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), p);
 	}
-
+	
 }

@@ -11,7 +11,7 @@ import java.util.concurrent.TimeoutException;
  */
 public class MapWaitUntil extends AbstractWaitUntil {
 
-	private MapWaitUntil() {
+	protected MapWaitUntil() {
 		super();
 	}
 	
@@ -64,7 +64,7 @@ public class MapWaitUntil extends AbstractWaitUntil {
 		}
 	}
 	
-	public <K, V> V waitUntilContainsKey(MapObservable<K, V> observable, boolean containsKey, Object key) throws InterruptedException {
+	public <K, V> V containsKey(MapObservable<K, V> observable, boolean containsKey, Object key) throws InterruptedException {
 		final InnerContainsKey<K, V> i = new InnerContainsKey<>(containsKey, key);
 		try {
 			observable.addChangeListener(i);
@@ -75,7 +75,7 @@ public class MapWaitUntil extends AbstractWaitUntil {
 		}
 	}
 	
-	public <K, V> V waitUntilContainsKey(MapObservable<K, V> observable, boolean containsKey, Object key, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+	public <K, V> V containsKey(MapObservable<K, V> observable, boolean containsKey, Object key, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		final InnerContainsKey<K, V> i = new InnerContainsKey<>(containsKey, key);
 		try {
 			observable.addChangeListener(i);
@@ -86,7 +86,7 @@ public class MapWaitUntil extends AbstractWaitUntil {
 		}
 	}
 	
-	public <K, V> V waitUntilContainsKey(MapObservable<K, V> observable, boolean containsKey, Object key, TimeGettable p) throws InterruptedException, TimeoutException {
+	public <K, V> V containsKey(MapObservable<K, V> observable, boolean containsKey, Object key, TimeGettable p) throws InterruptedException, TimeoutException {
 		final InnerContainsKey<K, V> i = new InnerContainsKey<>(containsKey, key);
 		try {
 			observable.addChangeListener(i);
@@ -109,7 +109,7 @@ public class MapWaitUntil extends AbstractWaitUntil {
 		}
 	}
 	
-	public <K, V> void waitUntilIsEmpty(MapObservable<K, V> observable, boolean isEmpty) throws InterruptedException {
+	public <K, V> void isEmpty(MapObservable<K, V> observable, boolean isEmpty) throws InterruptedException {
 		final InnerIsEmpty<K, V> i = new InnerIsEmpty<>(isEmpty);
 		try {
 			observable.addChangeListener(i);
@@ -120,7 +120,7 @@ public class MapWaitUntil extends AbstractWaitUntil {
 		}
 	}
 	
-	public <K, V> void waitUntilIsEmpty(MapObservable<K, V> observable, boolean isEmpty, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+	public <K, V> void isEmpty(MapObservable<K, V> observable, boolean isEmpty, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		final InnerIsEmpty<K, V> i = new InnerIsEmpty<>(isEmpty);
 		try {
 			observable.addChangeListener(i);
@@ -131,7 +131,7 @@ public class MapWaitUntil extends AbstractWaitUntil {
 		}
 	}
 	
-	public <K, V> void waitUntilIsEmpty(MapObservable<K, V> observable, boolean isEmpty, TimeGettable p) throws InterruptedException, TimeoutException {
+	public <K, V> void isEmpty(MapObservable<K, V> observable, boolean isEmpty, TimeGettable p) throws InterruptedException, TimeoutException {
 		final InnerIsEmpty<K, V> i = new InnerIsEmpty<>(isEmpty);
 		try {
 			observable.addChangeListener(i);

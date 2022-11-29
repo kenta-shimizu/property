@@ -23,12 +23,12 @@ public class PropertyTest {
 	public static void main(String[] args) {
 		
 		try {
+			
 			final BooleanProperty boolProp = BooleanProperty.newInstance(false);
 			final IntegerProperty intProp = IntegerProperty.newInstance(0);
 			final ObjectProperty<String> objProp = ObjectProperty.newInstance(null);
 			final MapProperty<String, String> mapProp = MapProperty.newInstance();
-			
-//			final ListProperty listProp = ListProperty.newInstance();
+			final ListProperty<String> listProp = ListProperty.newInstance();
 			
 			new Thread(() -> {
 				try {
@@ -43,6 +43,12 @@ public class PropertyTest {
 					
 					Thread.sleep(1000L);
 					mapProp.put("KEY", "VALUE");
+					
+					Thread.sleep(1000L);
+					listProp.add("AAA");
+					
+					Thread.sleep(1000L);
+					listProp.clear();
 				}
 				catch ( InterruptedException ignore ) {
 				}
@@ -64,6 +70,14 @@ public class PropertyTest {
 			System.out.println("Waiting until mapProp containsKey(\"KEY\").");
 			String mapv = mapProp.waitUntilContainsKey("KEY");
 			System.out.println("mapProp get(\"KEY\") is " + mapv);
+			
+			System.out.println("Waiting until listProp size >0.");
+			listProp.waitUntilSizeIsGreaterThan(0);
+			System.out.println("listProp size is >0.");
+			
+			System.out.println("Waiting until listProp is empty.");
+			listProp.waitUntilIsEmpty();
+			System.out.println("listProp size is empty.");
 			
 		}
 		catch ( InterruptedException ignore ) {

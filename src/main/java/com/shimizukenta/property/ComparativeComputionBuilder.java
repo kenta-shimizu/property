@@ -9,16 +9,16 @@ import java.util.function.BiPredicate;
  */
 public class ComparativeComputionBuilder extends AbstractComputionBuilder {
 	
-	public static ComparativeComputionBuilder getInstance() {
-		return SingletonHolder.inst;
+	private ComparativeComputionBuilder() {
+		super();
 	}
 	
 	private static class SingletonHolder {
 		private static final ComparativeComputionBuilder inst = new ComparativeComputionBuilder();
 	}
 	
-	private ComparativeComputionBuilder() {
-		super();
+	public static ComparativeComputionBuilder getInstance() {
+		return SingletonHolder.inst;
 	}
 	
 	public ComparativeCompution equalTo(

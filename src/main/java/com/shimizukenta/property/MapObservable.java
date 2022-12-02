@@ -73,7 +73,7 @@ public interface MapObservable<K, V> {
 	 * </p>
 	 * 
 	 * @param key
-	 * @param p
+	 * @param p is TimeProperty
 	 * @return {@link Map#get(Object)}
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
@@ -124,7 +124,7 @@ public interface MapObservable<K, V> {
 	 * </p>
 	 * 
 	 * @param key
-	 * @param p
+	 * @param p is TimeProperty
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
@@ -171,7 +171,7 @@ public interface MapObservable<K, V> {
 	 * If already empty, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param p
+	 * @param p is TimeProperty
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
@@ -218,7 +218,7 @@ public interface MapObservable<K, V> {
 	 * If already <b>NOT</b> empty, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param p
+	 * @param p is TimeProperty
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */

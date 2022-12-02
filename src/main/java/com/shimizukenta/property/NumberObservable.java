@@ -13,33 +13,74 @@ import java.util.concurrent.TimeoutException;
  */
 public interface NumberObservable<T extends Number> extends Observable<T> {
 	
+	/**
+	 * Returns {@code true} if Number is instance of Integer, otherwise {@code false}.
+	 * 
+	 * @return {@code true} if Number is instance of Integer, otherwise {@code false}.
+	 */
 	public boolean isInteger();
 	
+	/**
+	 * Returns {@code true} if Number is instance of Long, otherwise {@code false}.
+	 * 
+	 * @return {@code true} if Number is instance of Long, otherwise {@code false}.
+	 */
 	public boolean isLong();
 	
+	/**
+	 * Returns {@code true} if Number is instance of Float, otherwise {@code false}.
+	 * 
+	 * @return {@code true} if Number is instance of Float, otherwise {@code false}.
+	 */
 	public boolean isFloat();
 	
+	/**
+	 * Returns {@code true} if Number is instance of Double, otherwise {@code false}.
+	 * 
+	 * @return {@code true} if Number is instance of Double, otherwise {@code false}.
+	 */
 	public boolean isDouble();
 	
 	/* Casts */
 	
+	/**
+	 * Returns IntegerCompution coverted instance.
+	 * 
+	 * @return IntegerComution converted instance.
+	 */
 	default public IntegerCompution toInteger() {
 		return NumberComputionBuilder.getInstance().toInteger(this);
 	}
 	
+	/**
+	 * Returns LongComputionn converted instance.
+	 * 
+	 * @return LongCompution converted instance.
+	 */
 	default public LongCompution toLong() {
 		return NumberComputionBuilder.getInstance().toLong(this);
 	}
 	
+	/**
+	 * Returns FloatCompution converted instance.
+	 * 
+	 * @return FloatCompution converted instance.
+	 */
 	default public FloatCompution toFloat() {
 		return NumberComputionBuilder.getInstance().toFloat(this);
 	}
 	
+	/**
+	 * Returns DoubleCompution converted instance.
+	 * 
+	 * @return DoubleCompution comerted instance.
+	 */
 	default public DoubleCompution toDouble() {
 		return NumberComputionBuilder.getInstance().toDouble(this);
 	}
 	
 	/* Number Compution Bases */
+	
 	
 	default public NumberCompution add(NumberObservable<? extends Number> observable) {
 		return NumberCompution.add(this, observable);
@@ -257,439 +298,1789 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	
 	/* Wait Until Bases */
 	
+	/**
+	 * Wait until this value == observable value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param observable
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilEqualTo(NumberObservable<? extends Number> observable) throws InterruptedException {
 		ComparativeWaitUntil.getInstance().isEqualTo(this, observable);
 	}
 	
+	/**
+	 * Wait until this.value == observable.value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param observable
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilEqualTo(NumberObservable<? extends Number> observable, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		ComparativeWaitUntil.getInstance().isEqualTo(this, observable, timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value == observable.value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param observable
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilEqualTo(NumberObservable<? extends Number> observable, TimeGettable p) throws InterruptedException, TimeoutException {
 		ComparativeWaitUntil.getInstance().isEqualTo(this, observable, p);
 	}
 	
+	/**
+	 * Wait until this.value != observable.value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param observable
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilNotEqualTo(NumberObservable<? extends Number> observable) throws InterruptedException {
 		ComparativeWaitUntil.getInstance().isNotEqualTo(this, observable);
 	}
 	
+	/**
+	 * Wait until this.value != observable.value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param observable
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilNotEqualTo(NumberObservable<? extends Number> observable, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		ComparativeWaitUntil.getInstance().isNotEqualTo(this, observable, timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value != observable.value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param observable
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilNotEqualTo(NumberObservable<? extends Number> observable, TimeGettable p) throws InterruptedException, TimeoutException {
 		ComparativeWaitUntil.getInstance().isNotEqualTo(this, observable, p);
 	}
 	
+	/**
+	 * Wait until this.value < observable.value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param observable
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilLessThan(NumberObservable<? extends Number> observable) throws InterruptedException {
 		ComparativeWaitUntil.getInstance().isLessThan(this, observable);
 	}
 	
+	/**
+	 * Wait until this.value < observable.value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param observable
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilLessThan(NumberObservable<? extends Number> observable, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		ComparativeWaitUntil.getInstance().isLessThan(this, observable, timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value < observable.value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param observable
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilLessThan(NumberObservable<? extends Number> observable, TimeGettable p) throws InterruptedException, TimeoutException {
 		ComparativeWaitUntil.getInstance().isLessThan(this, observable, p);
 	}
 	
+	/**
+	 * Wait until this.value <= observable.value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param observable
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilLessThanOrEqualTo(NumberObservable<? extends Number> observable) throws InterruptedException {
 		ComparativeWaitUntil.getInstance().isLessThanOrEqualTo(this, observable);
 	}
 	
+	/**
+	 * Wait until this.value <= observable.value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param observable
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilLessThanOrEqualTo(NumberObservable<? extends Number> observable, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		ComparativeWaitUntil.getInstance().isLessThanOrEqualTo(this, observable, timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value <= observable.value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param observable
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilLessThanOrEqualTo(NumberObservable<? extends Number> observable, TimeGettable p) throws InterruptedException, TimeoutException {
 		ComparativeWaitUntil.getInstance().isLessThanOrEqualTo(this, observable, p);
 	}
 	
+	/**
+	 * Wait until this.value > observable.value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param observable
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilGreaterThan(NumberObservable<? extends Number> observable) throws InterruptedException {
 		ComparativeWaitUntil.getInstance().isGreaterThan(this, observable);
 	}
 	
+	/**
+	 * Wait until this.value > observable.value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param observable
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilGreaterThan(NumberObservable<? extends Number> observable, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		ComparativeWaitUntil.getInstance().isGreaterThan(this, observable, timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value > observable.value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param observable
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilGreaterThan(NumberObservable<? extends Number> observable, TimeGettable p) throws InterruptedException, TimeoutException {
 		ComparativeWaitUntil.getInstance().isGreaterThan(this, observable, p);
 	}
 	
+	/**
+	 * Wait until this.value >= observable.value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param observable
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilGreaterThanOrEqualTo(NumberObservable<? extends Number> observable) throws InterruptedException {
 		ComparativeWaitUntil.getInstance().isGreaterThanOrEqualTo(this, observable);
 	}
 	
+	/**
+	 * Wait until this.value >= observable.value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param observable
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilGreaterThanOrEqualTo(NumberObservable<? extends Number> observable, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		ComparativeWaitUntil.getInstance().isGreaterThanOrEqualTo(this, observable, timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value >= observable.value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param observable
+	 * @param p
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilGreaterThanOrEqualTo(NumberObservable<? extends Number> observable, TimeGettable p) throws InterruptedException, TimeoutException {
 		ComparativeWaitUntil.getInstance().isGreaterThanOrEqualTo(this, observable, p);
 	}
 	
 	/* Wait until Primitives */
 	
+	/**
+	 * Wait until this.value == value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilEqualTo(int value) throws InterruptedException {
 		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
 	}
 	
+	/**
+	 * Wait until this.value == value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilEqualTo(long value) throws InterruptedException {
 		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value));
 	}
 	
+	/**
+	 * Wait until this.value == value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilEqualTo(float value) throws InterruptedException {
 		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
 	}
 	
+	/**
+	 * Wait until this.value == value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilEqualTo(double value) throws InterruptedException {
 		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
 	}
 	
+	/**
+	 * Wait until this.value == value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilEqualTo(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value == value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilEqualTo(long value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value == value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilEqualTo(float value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value == value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilEqualTo(double value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value == value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param p
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilEqualTo(int value, TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value), p);
 	}
 	
+	/**
+	 * Wait until this.value == value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilEqualTo(long value, TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value), p);
 	}
 	
+	/**
+	 * Wait until this.value == value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilEqualTo(float value, TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value), p);
 	}
 	
+	/**
+	 * Wait until this.value == value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilEqualTo(double value, TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value), p);
 	}
 	
+	/**
+	 * Wait until this.value != value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilNotEqualTo(int value) throws InterruptedException {
 		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
 	}
 	
+	/**
+	 * Wait until this.value != value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilNotEqualTo(long value) throws InterruptedException {
 		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value));
 	}
 	
+	/**
+	 * Wait until this.value != value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilNotEqualTo(float value) throws InterruptedException {
 		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
 	}
 	
+	/**
+	 * Wait until this.value != value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilNotEqualTo(double value) throws InterruptedException {
 		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
 	}
 	
+	/**
+	 * Wait until this.value != value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilNotEqualTo(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value != value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilNotEqualTo(long value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value != value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilNotEqualTo(float value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value != value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilNotEqualTo(double value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value != value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilNotEqualTo(int value, TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value), p);
 	}
 	
+	/**
+	 * Wait until this.value != value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilNotEqualTo(long value, TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value), p);
 	}
 	
+	/**
+	 * Wait until this.value != value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilNotEqualTo(float value, TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value), p);
 	}
 	
+	/**
+	 * Wait until this.value != value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilNotEqualTo(double value, TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value), p);
 	}
 	
+	/**
+	 * Wait until this.value < value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilLessThan(int value) throws InterruptedException {
 		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
 	}
 	
+	/**
+	 * Wait until this.value < value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilLessThan(long value) throws InterruptedException {
 		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newLong(value));
 	}
 	
+	/**
+	 * Wait until this.value < value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilLessThan(float value) throws InterruptedException {
 		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
 	}
 	
+	/**
+	 * Wait until this.value < value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilLessThan(double value) throws InterruptedException {
 		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
 	}
 	
+	/**
+	 * Wait until this.value < value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilLessThan(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newInteger(value), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value < value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilLessThan(long value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newLong(value), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value < value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilLessThan(float value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newFloat(value), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value < value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilLessThan(double value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newDouble(value), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value < value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilLessThan(int value, TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newInteger(value), p);
 	}
 	
+	/**
+	 * Wait until this.value < value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilLessThan(long value, TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newLong(value), p);
 	}
 	
+	/**
+v	 * Wait until this.value < value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilLessThan(float value, TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newFloat(value), p);
 	}
 	
+	/**
+	 * Wait until this.value < value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilLessThan(double value, TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newDouble(value), p);
 	}
 	
+	/**
+	 * Wait until this.value <= value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilLessThanOrEqualTo(int value) throws InterruptedException {
 		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
 	}
 	
+	/**
+	 * Wait until this.value <= value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilLessThanOrEqualTo(long value) throws InterruptedException {
 		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value));
 	}
 	
+	/**
+	 * Wait until this.value <= value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilLessThanOrEqualTo(float value) throws InterruptedException {
 		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
 	}
 	
+	/**
+	 * Wait until this.value <= value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilLessThanOrEqualTo(double value) throws InterruptedException {
 		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
 	}
 	
+	/**
+	 * Wait until this.value <= value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilLessThanOrEqualTo(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value <= value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilLessThanOrEqualTo(long value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value <= value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilLessThanOrEqualTo(float value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value <= value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilLessThanOrEqualTo(double value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value <= value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilLessThanOrEqualTo(int value, TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value), p);
 	}
 	
+	/**
+v	 * Wait until this.value <= value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilLessThanOrEqualTo(long value, TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value), p);
 	}
 	
+	/**
+	 * Wait until this.value <= value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilLessThanOrEqualTo(float value, TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value), p);
 	}
 	
+	/**
+	 * Wait until this.value <= value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilLessThanOrEqualTo(double value, TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value), p);
 	}
 	
+	/**
+	 * Wait until this.value > value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilGreaterThan(int value) throws InterruptedException {
 		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
 	}
 	
+	/**
+	 * Wait until this.value > value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilGreaterThan(long value) throws InterruptedException {
 		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newLong(value));
 	}
 	
+	/**
+	 * Wait until this.value > value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilGreaterThan(float value) throws InterruptedException {
 		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
 	}
 	
+	/**
+	 * Wait until this.value > value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilGreaterThan(double value) throws InterruptedException {
 		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
 	}
 	
+	/**
+	 * Wait until this.value > value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilGreaterThan(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newInteger(value), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value > value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilGreaterThan(long value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newLong(value), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value > value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilGreaterThan(float value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newFloat(value), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value > value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilGreaterThan(double value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newDouble(value), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value > value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilGreaterThan(int value, TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newInteger(value), p);
 	}
 	
+	/**
+	 * Wait until this.value > value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilGreaterThan(long value, TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newLong(value), p);
 	}
 	
+	/**
+	 * Wait until this.value > value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilGreaterThan(float value, TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newFloat(value), p);
 	}
 	
+	/**
+	 * Wait until this.value > value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilGreaterThan(double value, TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newDouble(value), p);
 	}
 	
+	/**
+	 * Wait until this.value >= value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilGreaterThanOrEqualTo(int value) throws InterruptedException {
 		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
 	}
 	
+	/**
+	 * Wait until this.value >= value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilGreaterThanOrEqualTo(long value) throws InterruptedException {
 		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value));
 	}
 	
+	/**
+	 * Wait until this.value >= value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilGreaterThanOrEqualTo(float value) throws InterruptedException {
 		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
 	}
 	
+	/**
+	 * Wait until this.value >= value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilGreaterThanOrEqualTo(double value) throws InterruptedException {
 		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
 	}
 	
+	/**
+	 * Wait until this.value >= value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilGreaterThanOrEqualTo(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value >= value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilGreaterThanOrEqualTo(long value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value), timeout, unit);
 		this.isGreaterThanOrEqualTo(value).waitUntilTrue(timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value >= value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilGreaterThanOrEqualTo(float value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value >= value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilGreaterThanOrEqualTo(double value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value >= value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilGreaterThanOrEqualTo(int value, TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value), p);
 	}
 	
+	/**
+	 * Wait until this.value >= value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilGreaterThanOrEqualTo(long value, TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value), p);
 	}
 	
+	/**
+	 * Wait until this.value >= value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilGreaterThanOrEqualTo(float value, TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value), p);
 	}
 	
+	/**
+	 * Wait until this.value >= value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param value
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilGreaterThanOrEqualTo(double value, TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value), p);
 	}
 	
 	/* Wait Until ZEROs */
 	
+	/**
+	 * Wait until this.value == 0.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilEqualToZero() throws InterruptedException {
 		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
 	}
 	
+	/**
+	 * Wait until this.value == 0.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilEqualToZero(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value == 0.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilEqualToZero(TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), p);
 	}
 	
+	/**
+	 * Wait until this.value != 0.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilNotEqualToZero() throws InterruptedException {
 		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
 	}
 	
+	/**
+	 * Wait until this.value != 0.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilNotEqualToZero(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value != 0.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilNotEqualToZero(TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), p);
 	}
 	
+	/**
+	 * Wait until this.value < 0.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilLessThanZero() throws InterruptedException {
 		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
 	}
 	
+	/**
+	 * Wait until this.value < 0.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilLessThanZero(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value < 0.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilLessThanZero(TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), p);
 	}
 	
+	/**
+	 * Wait until this.value <= 0.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilLessThanOrEqualToZero() throws InterruptedException {
 		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
 	}
 	
+	/**
+	 * Wait until this.value <= 0.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilLessThanOrEqualToZero(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value <= 0.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilLessThanOrEqualToZero(TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), p);
 	}
 	
+	/**
+	 * Wait until this.value > 0.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilGreaterThanZero() throws InterruptedException {
 		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
 	}
 	
+	/**
+	 * Wait until this.value > 0.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilGreaterThanZero(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value > 0.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param p is TimeProperty
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilGreaterThanZero(TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), p);
 	}
 	
+	/**
+	 * Wait until this.value >= 0.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @throws InterruptedException
+	 */
 	default public void waitUntilGreaterThanOrEqualToZero() throws InterruptedException {
 		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
 	}
 	
+	/**
+	 * Wait until this.value >= 0.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilGreaterThanOrEqualToZero(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), timeout, unit);
 	}
 	
+	/**
+	 * Wait until this.value >= 0.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param p
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public void waitUntilGreaterThanOrEqualToZero(TimeGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), p);
 	}

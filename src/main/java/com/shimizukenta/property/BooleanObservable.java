@@ -122,7 +122,10 @@ public interface BooleanObservable extends Observable<Boolean> {
 	/**
 	 * Waiting until {@code (f == this.get().booleanValue())}.
 	 * 
-	 * <p>This is blocking method.</p>
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
 	 * 
 	 * @param f is {@code boolean}.
 	 * @throws InterruptedException
@@ -134,7 +137,10 @@ public interface BooleanObservable extends Observable<Boolean> {
 	/**
 	 * Waiting until {@code (f == this.get().booleanValue())}.
 	 * 
-	 * <p>This is blocking method.</p>
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
 	 * 
 	 * 
 	 * @param f is {@code boolean}.
@@ -150,7 +156,10 @@ public interface BooleanObservable extends Observable<Boolean> {
 	/**
 	 * Waiting until {@code (f == this.get().booleanValue())}.
 	 * 
-	 * <p>This is blocking method.</p>
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
 	 * 
 	 * @param f is {@code boolean}.
 	 * @param p is TimeProperty
@@ -164,7 +173,10 @@ public interface BooleanObservable extends Observable<Boolean> {
 	/**
 	 * Waiting until {@code (this.get().booleanValue() == true)}.
 	 * 
-	 * <p>This is blocking method.</p>
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
 	 * 
 	 * @throws InterruptedException
 	 */
@@ -175,8 +187,10 @@ public interface BooleanObservable extends Observable<Boolean> {
 	/**
 	 * Waiting until {@code (this.get().booleanValue() == true)}.
 	 * 
-	 * <p>This is blocking method.</p>
-	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
 	 * 
 	 * @param timeout
 	 * @param unit
@@ -190,7 +204,10 @@ public interface BooleanObservable extends Observable<Boolean> {
 	/**
 	 * Waiting until {@code (this.get().booleanValue() == true)}.
 	 * 
-	 * <p>This is blocking method.</p>
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
 	 * 
 	 * @param p is TimeProperty
 	 * @throws InterruptedException
@@ -203,7 +220,10 @@ public interface BooleanObservable extends Observable<Boolean> {
 	/**
 	 * Waiting until {@code (this.get().booleanValue() == false)}.
 	 * 
-	 * <p>This is blocking method.</p>
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
 	 * 
 	 * @throws InterruptedException
 	 */
@@ -214,8 +234,10 @@ public interface BooleanObservable extends Observable<Boolean> {
 	/**
 	 * Waiting until {@code (this.get().booleanValue() == false)}.
 	 * 
-	 * <p>This is blocking method.</p>
-	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
 	 * 
 	 * @param timeout
 	 * @param unit
@@ -229,7 +251,10 @@ public interface BooleanObservable extends Observable<Boolean> {
 	/**
 	 * Waiting until {@code (this.get().booleanValue() == false)}.
 	 * 
-	 * <p>This is blocking method.</p>
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is {@code true}, pass through immediately.<br />
+	 * </p>
 	 * 
 	 * @param p is TimeProperty
 	 * @throws InterruptedException

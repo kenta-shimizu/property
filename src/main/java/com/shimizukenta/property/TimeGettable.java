@@ -45,7 +45,9 @@ public interface TimeGettable extends Gettable<TimeoutAndUnit> {
 	/**
 	 * Thread sleep.
 	 * 
-	 * <p>Equivalent {@link TimeUnit#sleep(long)}.</p>
+	 * <p>
+	 * Equivalent {@link TimeUnit#sleep(long)}.<br />
+	 * </p>
 	 * 
 	 * @throws InterruptedException
 	 */
@@ -57,7 +59,9 @@ public interface TimeGettable extends Gettable<TimeoutAndUnit> {
 	/**
 	 * Thread join.
 	 * 
-	 * <p>Equivalent {@link TimeUnit#timedJoin(Thread, long)}</p>
+	 * <p>
+	 * Equivalent {@link TimeUnit#timedJoin(Thread, long)}.<br />
+	 * </p>
 	 * 
 	 * @param thread
 	 * @throws InterruptedException
@@ -70,6 +74,10 @@ public interface TimeGettable extends Gettable<TimeoutAndUnit> {
 	/**
 	 * Synchronized wait.
 	 * 
+	 * <p>
+	 * Equivalent {@link TimeUnit#timedWait(Object, long)}.<br />
+	 * </p>
+	 * 
 	 * @param sync
 	 * @throws InterruptedException
 	 */
@@ -80,6 +88,10 @@ public interface TimeGettable extends Gettable<TimeoutAndUnit> {
 	
 	/**
 	 * BlockingQueue poll.
+	 * 
+	 * <p>
+	 * Equivalent {@link BlockingQueue#poll(long, TimeUnit)}.<br />
+	 * </p>
 	 * 
 	 * @param <T>
 	 * @param queue
@@ -94,6 +106,10 @@ public interface TimeGettable extends Gettable<TimeoutAndUnit> {
 	/**
 	 * Future get.
 	 * 
+	 * <p>
+	 * Equivalent {@link Future#get(long, TimeUnit)}.<br />
+	 * </p>
+	 * 
 	 * @param <T>
 	 * @param future
 	 * @return future-result
@@ -101,13 +117,17 @@ public interface TimeGettable extends Gettable<TimeoutAndUnit> {
 	 * @throws TimeoutException
 	 * @throws ExecutionException
 	 */
-	default public <T> T future(Future<T> future) throws InterruptedException, TimeoutException, ExecutionException {
+	default public <T> T futureGet(Future<T> future) throws InterruptedException, TimeoutException, ExecutionException {
 		TimeoutAndUnit a = this.get();
 		return future.get(a.timeout(), a.unit());
 	}
 	
 	/**
 	 * ExecutorService invokeAll.
+	 * 
+	 * <p>
+	 * {@link ExecutorService#invokeAll(Collection, long, TimeUnit)}.<br />
+	 * </p>
 	 * 
 	 * @param <T>
 	 * @param executorService
@@ -125,6 +145,10 @@ public interface TimeGettable extends Gettable<TimeoutAndUnit> {
 	
 	/**
 	 * ExecutorService invokeAny.
+	 * 
+	 * <p>
+	 * Equivalent {@link ExecutorService#invokeAny(Collection, long, TimeUnit)}.<br />
+	 * </p>
 	 * 
 	 * @param <T>
 	 * @param executorService

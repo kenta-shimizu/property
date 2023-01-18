@@ -3,6 +3,11 @@ package com.shimizukenta.property;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+/**
+ * 
+ * @author kenta-shimizu
+ *
+ */
 public class ObjectWaitUntil extends AbstractWaitUntil {
 
 	protected ObjectWaitUntil() {

@@ -1,5 +1,10 @@
 package com.shimizukenta.property;
 
+/**
+ * 
+ * @author kenta-shimizu
+ *
+ */
 public abstract class AbstractUnmodifiableLongProperty extends AbstractLongProperty {
 	
 	private static final long serialVersionUID = -683392877916524097L;

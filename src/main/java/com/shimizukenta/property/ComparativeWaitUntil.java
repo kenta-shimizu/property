@@ -4,6 +4,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.function.BiPredicate;
 
+/**
+ * 
+ * @author kenta-shimizu
+ *
+ */
 public class ComparativeWaitUntil extends AbstractWaitUntil {
 
 	protected ComparativeWaitUntil() {

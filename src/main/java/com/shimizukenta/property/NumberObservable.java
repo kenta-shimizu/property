@@ -81,117 +81,276 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	
 	/* Number Compution Bases */
 	
-	
+	/**
+	 * Returns NumberCompution of this.value + observable.value.
+	 * 
+	 * @param observable
+	 * @return NumberCompution of this.value + observable.value.
+	 */
 	default public NumberCompution add(NumberObservable<? extends Number> observable) {
 		return NumberCompution.add(this, observable);
 	}
 	
+	/**
+	 * NumberCompution of this.value * observable.value.
+	 * 
+	 * @param observable
+	 * @return NumberCompution of this.value * observable.value.
+	 */
 	default public NumberCompution multiply(NumberObservable<? extends Number> observable) {
 		return NumberCompution.multiply(this, observable);
 	}
 	
+	/**
+	 * Returns NumberCompution of this.value - observable.value.
+	 * 
+	 * @param observable
+	 * @return NumberCompution of this.value - observable.value.
+	 */
 	default public NumberCompution subtract(NumberObservable<? extends Number> observable) {
 		return NumberCompution.subtract(this, observable);
 	}
 	
+	/**
+	 * Returns NumberCompution of -(this.value).
+	 * 
+	 * @return NumberCompution of -(this.value).
+	 */
 	default public NumberCompution negate() {
 		return NumberCompution.negate(this);
 	}
 	
 	/* Number Compution Premitives */
 	
+	/**
+	 * Returns NumberCompution of this.value + value.
+	 * 
+	 * @param value
+	 * @return NumberCompution of this.value + value.
+	 */
 	default public NumberCompution add(int value) {
 		return this.add(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
 	}
 	
+	/**
+	 * Returns NumberCompution of this.value + value.
+	 * 
+	 * @param value
+	 * @return NumberCompution of this.value + value.
+	 */
 	default public NumberCompution add(long value) {
 		return this.add(UnmodifiablePropertyBuilder.getInstance().newLong(value));
 	}
 	
+	/**
+	 * Returns NumberCompution of this.value + value.
+	 * 
+	 * @param value
+	 * @return NumberCompution of this.value + value.
+	 */
 	default public NumberCompution add(float value) {
 		return this.add(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
 	}
 	
+	/**
+	 * Returns NumberCompution of this.value + value.
+	 * 
+	 * @param value
+	 * @return NumberCompution of this.value + value.
+	 */
 	default public NumberCompution add(double value) {
 		return this.add(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
 	}
 	
+	/**
+	 * Returns NumberCompution of this.value * value.
+	 * 
+	 * @param value
+	 * @return NumberCompution of this.value * value.
+	 */
 	default public NumberCompution multiply(int value) {
 		return this.multiply(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
 	}
 
+	/**
+	 * Returns NumberCompution of this.value * value.
+	 * 
+	 * @param value
+	 * @return NumberCompution of this.value * value.
+	 */
 	default public NumberCompution multiply(long value) {
 		return this.multiply(UnmodifiablePropertyBuilder.getInstance().newLong(value));
 	}
 
+	/**
+	 * Returns NumberCompution of this.value * value.
+	 * 
+	 * @param value
+	 * @return NumberCompution of this.value * value.
+	 */
 	default public NumberCompution multiply(float value) {
 		return this.multiply(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
 	}
 	
+	/**
+	 * Returns NumberCompution of this.value * value.
+	 * 
+	 * @param value
+	 * @return NumberCompution of this.value * value.
+	 */
 	default public NumberCompution multiply(double value) {
 		return this.multiply(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
 	}
 	
+	/**
+	 * Returns NumberCompution of this.value - value.
+	 * 
+	 * @param value
+	 * @return NumberCompution of this.value - value.
+	 */
 	default public NumberCompution subtract(int value) {
 		return this.subtract(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
 	}
 	
+	/**
+	 * Returns NumberCompution of this.value - value.
+	 * 
+	 * @param value
+	 * @return NumberCompution of this.value - value.
+	 */
 	default public NumberCompution subtract(long value) {
 		return this.subtract(UnmodifiablePropertyBuilder.getInstance().newLong(value));
 	}
 	
+	/**
+	 * Returns NumberCompution of this.value - value.
+	 * 
+	 * @param value
+	 * @return NumberCompution of this.value - value.
+	 */
 	default public NumberCompution subtract(float value) {
 		return this.subtract(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
 	}
 	
+	/**
+	 * Returns NumberCompution of this.value - value.
+	 * 
+	 * @param value
+	 * @return NumberCompution of this.value - value.
+	 */
 	default public NumberCompution subtract(double value) {
 		return this.subtract(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
 	}
 	
 	/* Comparative Compution Bases */
 	
+	/**
+	 * Returns ComparativeCompution of this.value == observable.value.
+	 * 
+	 * @param observable
+	 * @return
+	 */
 	default ComparativeCompution isEqualTo(NumberObservable<? extends Number> observable) {
 		return ComparativeCompution.equalTo(this, observable);
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value != observable.value.
+	 * 
+	 * @param observable
+	 * @return ComparativeCompution of this.value != observable.value.
+	 */
 	default ComparativeCompution isNotEqualTo(NumberObservable<? extends Number> observable) {
 		return ComparativeCompution.notEqualTo(this, observable);
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value < observable.value.
+	 * 
+	 * @param observable
+	 * @return ComparativeCompution of this.value < observable.value.
+	 */
 	default ComparativeCompution isLessThan(NumberObservable<? extends Number> observable) {
 		return ComparativeCompution.lessThan(this, observable);
 	}
-
+	
+	/**
+	 * Returns ComparativeCompution of this.value <= observable.value.
+	 * @param observable
+	 * @return ComparativeCompution of this.value <= observable.value.
+	 */
 	default ComparativeCompution isLessThanOrEqualTo(NumberObservable<? extends Number> observable) {
 		return ComparativeCompution.lessThanOrEqualTo(this, observable);
 	}
-
+	
+	/**
+	 * Returns ComparativeCompution of this.value > observable.value.
+	 * 
+	 * @param observable
+	 * @return ComparativeCompution of this.value > observable.value.
+	 */
 	default ComparativeCompution isGreaterThan(NumberObservable<? extends Number> observable) {
 		return ComparativeCompution.greaterThan(this, observable);
 	}
-
+	
+	/**
+	 * Returns ComparativeCompution of this.value >= observable.value.
+	 * 
+	 * @param observable
+	 * @return ComparativeCompution of this.value >= observable.value.
+	 */
 	default ComparativeCompution isGreaterThanOrEqualTo(NumberObservable<? extends Number> observable) {
 		return ComparativeCompution.greaterThanOrEqualTo(this, observable);
 	}
 	
 	/* Comparative Compution Primitives */
 	
+	/**
+	 * Returns ComparativeCompution of this.value == value.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value == value.
+	 */
 	default ComparativeCompution isEqualTo(int value) {
 		return this.isEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value == value.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value == value.
+	 */
 	default ComparativeCompution isEqualTo(long value) {
 		return this.isEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value));
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value == value.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value == value.
+	 */
 	default ComparativeCompution isEqualTo(float value) {
 		return this.isEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value == value.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value == value.
+	 */
 	default ComparativeCompution isEqualTo(double value) {
 		return this.isEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value != value.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value != value.
+	 */
 	default ComparativeCompution isNotEqualTo(int value) {
 		return this.isNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
 	}
@@ -200,98 +359,242 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 		return this.isNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value));
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value != value.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value != value.
+	 */
 	default ComparativeCompution isNotEqualTo(float value) {
 		return this.isNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value != value.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value != value.
+	 */
 	default ComparativeCompution isNotEqualTo(double value) {
 		return this.isNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value != value.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value != value.
+	 */
 	default ComparativeCompution isLessThan(int value) {
 		return this.isLessThan(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value < value.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value < value.
+	 */
 	default ComparativeCompution isLessThan(long value) {
 		return this.isLessThan(UnmodifiablePropertyBuilder.getInstance().newLong(value));
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value < value.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value < value.
+	 */
 	default ComparativeCompution isLessThan(float value) {
 		return this.isLessThan(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value < value.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value < value.
+	 */
 	default ComparativeCompution isLessThan(double value) {
 		return this.isLessThan(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value <= value.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value <= value.
+	 */
 	default ComparativeCompution isLessThanOrEqualTo(int value) {
 		return this.isLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value <= value.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value <= value.
+	 */
 	default ComparativeCompution isLessThanOrEqualTo(long value) {
 		return this.isLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value));
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value <= value.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value <= value.
+	 */
 	default ComparativeCompution isLessThanOrEqualTo(float value) {
 		return this.isLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value <= value.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value <= value.
+	 */
 	default ComparativeCompution isLessThanOrEqualTo(double value) {
 		return this.isLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value > value.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value > value.
+	 */
 	default ComparativeCompution isGreaterThan(int value) {
 		return this.isGreaterThan(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value > value.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value > value.
+	 */
 	default ComparativeCompution isGreaterThan(long value) {
 		return this.isGreaterThan(UnmodifiablePropertyBuilder.getInstance().newLong(value));
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value > value.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value > value.
+	 */
 	default ComparativeCompution isGreaterThan(float value) {
 		return this.isGreaterThan(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value > value.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value > value.
+	 */
 	default ComparativeCompution isGreaterThan(double value) {
 		return this.isGreaterThan(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value >= value.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value >= value.
+	 */
 	default ComparativeCompution isGreaterThanOrEqualTo(int value) {
 		return this.isGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value >= value.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value >= value.
+	 */
 	default ComparativeCompution isGreaterThanOrEqualTo(long value) {
 		return this.isGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value));
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value >= value.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value >= value.
+	 */
 	default ComparativeCompution isGreaterThanOrEqualTo(float value) {
 		return this.isGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value >= value.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value >= value.
+	 */
 	default ComparativeCompution isGreaterThanOrEqualTo(double value) {
 		return this.isGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value == 0.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value == 0.
+	 */
 	default ComparativeCompution isEqualToZero() {
 		return this.isEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value != 0.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value != 0.
+	 */
 	default ComparativeCompution isNotEqualToZero() {
 		return this.isNotEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value < 0.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value < 0.
+	 */
 	default ComparativeCompution isLessThanZero() {
 		return this.isLessThan(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
 	}
 
+	/**
+	 * Returns ComparativeCompution of this.value <= 0.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value <= 0.
+	 */
 	default ComparativeCompution isLessThanOrEqualToZero() {
 		return this.isLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
 	}
 
+	/**
+	 * Returns ComparativeCompution of this.value > 0.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value > 0.
+	 */
 	default ComparativeCompution isGreaterThanZero() {
 		return this.isGreaterThan(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
 	}
 
+	/**
+	 * Returns ComparativeCompution of this.value >= 0.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value >= 0.
+	 */
 	default ComparativeCompution isGreaterThanOrEqualToZero() {
 		return this.isGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
 	}

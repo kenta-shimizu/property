@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * Build instance via {@link #newInstance()}.
  * 
  * @author kenta-shimizu
  *

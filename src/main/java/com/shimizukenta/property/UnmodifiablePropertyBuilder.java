@@ -94,4 +94,24 @@ public class UnmodifiablePropertyBuilder {
 		private static final IntegerProperty inst = buildInteger(0);
 	}
 	
+	public <T> ObjectProperty<T> newObject(T v) {
+		return buildObject(v);
+	}
+	
+	private static <T> ObjectProperty<T> buildObject(T v) {
+		return new AbstractUnmodifiableObjectProperty<T>(v) {
+			
+			private static final long serialVersionUID = 96387695515132968L;
+		};
+	}
+	
+	private static class SingletonNullObjectHolder {
+		private static final Object nullObj = null;
+		private static final ObjectProperty<Object> inst = buildObject(nullObj);
+	}
+	
+	public ObjectProperty<Object> getNullObject() {
+		return SingletonNullObjectHolder.inst;
+	}
+	
 }

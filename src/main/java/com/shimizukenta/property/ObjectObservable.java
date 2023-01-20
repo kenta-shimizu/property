@@ -12,6 +12,58 @@ import java.util.concurrent.TimeoutException;
 public interface ObjectObservable<T> extends Observable<T> {
 	
 	/**
+	 * Returns isEqualTo ComparativeCompution instance.
+	 * 
+	 * @param <U> type
+	 * @param observable
+	 * @return isEqualTo ComparativeCompution instance
+	 */
+	default public <U> ComparativeCompution isEqualTo(ObjectObservable<U> observable) {
+		if ( observable == null ) {
+			return ComparativeCompution.equalTo(this, UnmodifiablePropertyBuilder.getInstance().getNullObject());
+		} else {
+			return ComparativeCompution.equalTo(this, observable);
+		}
+	}
+	
+	/**
+	 * Returns isEqualTo ComparativeCompution instance.
+	 * 
+	 * @param <U> type
+	 * @param ref
+	 * @return isEqualTo ComparativeCompution instance
+	 */
+	default public <U> ComparativeCompution isEqualTo(U ref) {
+		return ComparativeCompution.equalTo(this, UnmodifiablePropertyBuilder.getInstance().newObject(ref));
+	}
+	
+	/**
+	 * Returns isNotEqualTo ComparativeCompution instance.
+	 * 
+	 * @param <U> type
+	 * @param observable
+	 * @return isNotEqualTo ComparativeCompution instance
+	 */
+	default public <U> ComparativeCompution isNotEqualTo(ObjectObservable<U> observable) {
+		if ( observable == null ) {
+			return ComparativeCompution.notEqualTo(this, UnmodifiablePropertyBuilder.getInstance().getNullObject());
+		} else {
+			return ComparativeCompution.notEqualTo(this, observable);
+		}
+	}
+	
+	/**
+	 * Returns isNotEqualTo ComparativeCompution instance.
+	 * 
+	 * @param <U> type
+	 * @param ref
+	 * @return isNotEqualTo ComparativeCompution instance
+	 */
+	default public <U> ComparativeCompution isNotEqualTo(U ref) {
+		return ComparativeCompution.notEqualTo(this, UnmodifiablePropertyBuilder.getInstance().newObject(ref));
+	}
+	
+	/**
 	 * Wait until value is <b>NOT</b> {@code null}, and return value.
 	 * 
 	 * <p>

@@ -8,16 +8,16 @@ import java.util.function.BiPredicate;
  * @author kenta-shimizu
  *
  */
-public abstract class AbstractComparativeCompution extends AbstractBooleanCompution implements ComparativeCompution {
+public abstract class AbstractNumberComparativeCompution extends AbstractBooleanCompution implements ComparativeCompution {
 	
-	private static final long serialVersionUID = -816757692555711048L;
+	private static final long serialVersionUID = 1718185692682962826L;
 	
 	private static final Integer ZERO = Integer.valueOf(0);
 	
 	private Number left;
 	private Number right;
 	
-	public AbstractComparativeCompution(
+	public AbstractNumberComparativeCompution(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right,
 			BiPredicate<? super Number, ? super Number> compute) {

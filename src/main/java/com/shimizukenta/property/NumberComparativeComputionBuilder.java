@@ -7,17 +7,17 @@ import java.util.function.BiPredicate;
  * @author kenta-shimizu
  *
  */
-public class ComparativeComputionBuilder extends AbstractComputionBuilder {
+public class NumberComparativeComputionBuilder extends AbstractComputionBuilder {
 	
-	private ComparativeComputionBuilder() {
+	private NumberComparativeComputionBuilder() {
 		super();
 	}
 	
 	private static class SingletonHolder {
-		private static final ComparativeComputionBuilder inst = new ComparativeComputionBuilder();
+		private static final NumberComparativeComputionBuilder inst = new NumberComparativeComputionBuilder();
 	}
 	
-	public static ComparativeComputionBuilder getInstance() {
+	public static NumberComparativeComputionBuilder getInstance() {
 		return SingletonHolder.inst;
 	}
 	
@@ -30,19 +30,19 @@ public class ComparativeComputionBuilder extends AbstractComputionBuilder {
 		}
 		
 		if ( this.isFloat(left, right) ) {
-			return buildComparative(
+			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.floatValue() == r.floatValue());
 		}
 		
 		if ( this.isLong(left, right) ) {
-			return buildComparative(
+			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.longValue() == r.longValue());
 		}
 		
 		if ( this.isInteger(left, right) ) {
-			return buildComparative(
+			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.intValue() == r.intValue());
 		}
@@ -54,7 +54,7 @@ public class ComparativeComputionBuilder extends AbstractComputionBuilder {
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
-		return buildComparative(
+		return buildNumberComparative(
 				left, right,
 				(l, r) -> l.doubleValue() == r.doubleValue());
 	}
@@ -68,19 +68,19 @@ public class ComparativeComputionBuilder extends AbstractComputionBuilder {
 		}
 		
 		if ( this.isFloat(left, right) ) {
-			return buildComparative(
+			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.floatValue() != r.floatValue());
 		}
 		
 		if ( this.isLong(left, right) ) {
-			return buildComparative(
+			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.longValue() != r.longValue());
 		}
 		
 		if ( this.isInteger(left, right) ) {
-			return buildComparative(
+			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.intValue() != r.intValue());
 		}
@@ -92,7 +92,7 @@ public class ComparativeComputionBuilder extends AbstractComputionBuilder {
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
-		return buildComparative(
+		return buildNumberComparative(
 				left, right,
 				(l, r) -> l.doubleValue() != r.doubleValue());
 	}
@@ -106,19 +106,19 @@ public class ComparativeComputionBuilder extends AbstractComputionBuilder {
 		}
 		
 		if ( this.isFloat(left, right) ) {
-			return buildComparative(
+			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.floatValue() < r.floatValue());
 		}
 		
 		if ( this.isLong(left, right) ) {
-			return buildComparative(
+			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.longValue() < r.longValue());
 		}
 		
 		if ( this.isInteger(left, right) ) {
-			return buildComparative(
+			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.intValue() < r.intValue());
 		}
@@ -130,7 +130,7 @@ public class ComparativeComputionBuilder extends AbstractComputionBuilder {
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
-		return buildComparative(
+		return buildNumberComparative(
 				left, right,
 				(l, r) -> l.doubleValue() < r.doubleValue());
 	}
@@ -144,19 +144,19 @@ public class ComparativeComputionBuilder extends AbstractComputionBuilder {
 		}
 		
 		if ( this.isFloat(left, right) ) {
-			return buildComparative(
+			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.floatValue() <= r.floatValue());
 		}
 		
 		if ( this.isLong(left, right) ) {
-			return buildComparative(
+			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.longValue() <= r.longValue());
 		}
 		
 		if ( this.isInteger(left, right) ) {
-			return buildComparative(
+			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.intValue() <= r.intValue());
 		}
@@ -168,7 +168,7 @@ public class ComparativeComputionBuilder extends AbstractComputionBuilder {
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
-		return buildComparative(
+		return buildNumberComparative(
 				left, right,
 				(l, r) -> l.doubleValue() <= r.doubleValue());
 	}
@@ -182,19 +182,19 @@ public class ComparativeComputionBuilder extends AbstractComputionBuilder {
 		}
 		
 		if ( this.isFloat(left, right) ) {
-			return buildComparative(
+			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.floatValue() > r.floatValue());
 		}
 		
 		if ( this.isLong(left, right) ) {
-			return buildComparative(
+			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.longValue() > r.longValue());
 		}
 		
 		if ( this.isInteger(left, right) ) {
-			return buildComparative(
+			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.intValue() > r.intValue());
 		}
@@ -206,7 +206,7 @@ public class ComparativeComputionBuilder extends AbstractComputionBuilder {
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
-		return buildComparative(
+		return buildNumberComparative(
 				left, right,
 				(l, r) -> l.doubleValue() > r.doubleValue());
 	}
@@ -220,19 +220,19 @@ public class ComparativeComputionBuilder extends AbstractComputionBuilder {
 		}
 		
 		if ( this.isFloat(left, right) ) {
-			return buildComparative(
+			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.floatValue() >= r.floatValue());
 		}
 		
 		if ( this.isLong(left, right) ) {
-			return buildComparative(
+			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.longValue() >= r.longValue());
 		}
 		
 		if ( this.isInteger(left, right) ) {
-			return buildComparative(
+			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.intValue() >= r.intValue());
 		}
@@ -244,20 +244,20 @@ public class ComparativeComputionBuilder extends AbstractComputionBuilder {
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
-		return buildComparative(
+		return buildNumberComparative(
 				left, right,
 				(l, r) -> l.doubleValue() >= r.doubleValue());
 	}
 	
-	private ComparativeCompution buildComparative(
+	private ComparativeCompution buildNumberComparative(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right,
 			BiPredicate<Number, Number> compute) {
 		
-		return new AbstractComparativeCompution(left, right, compute) {
+		return new AbstractNumberComparativeCompution(left, right, compute) {
 
 			private static final long serialVersionUID = 6239537024871859844L;
 		};
 	}
-
+	
 }

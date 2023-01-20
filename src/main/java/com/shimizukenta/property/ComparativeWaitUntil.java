@@ -25,7 +25,7 @@ public class ComparativeWaitUntil extends AbstractWaitUntil {
 		return SingletonHolder.inst;
 	}
 	
-	private class Inner extends AbstractInner {
+	private class NumberInner extends AbstractInner {
 		
 		private final Object sync = new Object();
 		
@@ -33,7 +33,7 @@ public class ComparativeWaitUntil extends AbstractWaitUntil {
 		private Number left;
 		private Number right;
 		
-		private Inner(boolean f, BiPredicate<Number, Number> bp) {
+		private NumberInner(boolean f, BiPredicate<Number, Number> bp) {
 			super(f);
 			this.bp = bp;
 			this.left = initialZero;
@@ -83,68 +83,68 @@ public class ComparativeWaitUntil extends AbstractWaitUntil {
 		return left.isDouble() || right.isDouble();
 	}
 	
-	private Inner buildIsEqualTo(boolean f, NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
+	private NumberInner buildIsEqualTo(boolean f, NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
 		
 		if ( isDouble(left, right) ) {
 			return buildConvertDoubleIsEqualTo(f);
 		}
 		
 		if ( isFloat(left, right) ) {
-			return new Inner(f, (l, r) -> l.floatValue() == r.floatValue());
+			return new NumberInner(f, (l, r) -> l.floatValue() == r.floatValue());
 		}
 		
 		if ( isLong(left, right) ) {
-			return new Inner(f, (l, r) -> l.longValue() == r.longValue());
+			return new NumberInner(f, (l, r) -> l.longValue() == r.longValue());
 		}
 		
 		if ( isInteger(left, right) ) {
-			return new Inner(f, (l, r) -> l.intValue() == r.intValue());
+			return new NumberInner(f, (l, r) -> l.intValue() == r.intValue());
 		}
 		
 		return buildConvertDoubleIsEqualTo(f);
 	}
 	
-	private Inner buildConvertDoubleIsEqualTo(boolean f) {
-		return new Inner(f, (l, r) -> l.doubleValue() == r.doubleValue());
+	private NumberInner buildConvertDoubleIsEqualTo(boolean f) {
+		return new NumberInner(f, (l, r) -> l.doubleValue() == r.doubleValue());
 	}
 	
-	private Inner buildIsLessThan(boolean f, NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
+	private NumberInner buildIsLessThan(boolean f, NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
 		
 		if ( isDouble(left, right) ) {
 			return buildConvertDoubleIsLessThan(f);
 		}
 		
 		if ( isFloat(left, right) ) {
-			return new Inner(f, (l, r) -> l.floatValue() < r.floatValue());
+			return new NumberInner(f, (l, r) -> l.floatValue() < r.floatValue());
 		}
 		
 		if ( isLong(left, right) ) {
-			return new Inner(f, (l, r) -> l.longValue() < r.longValue());
+			return new NumberInner(f, (l, r) -> l.longValue() < r.longValue());
 		}
 		
 		if ( isInteger(left, right) ) {
-			return new Inner(f, (l, r) -> l.intValue() < r.intValue());
+			return new NumberInner(f, (l, r) -> l.intValue() < r.intValue());
 		}
 		
 		return buildConvertDoubleIsLessThan(f);
 	}
 	
-	private Inner buildConvertDoubleIsLessThan(boolean f) {
-		return new Inner(f, (l, r) -> l.doubleValue() < r.doubleValue());
+	private NumberInner buildConvertDoubleIsLessThan(boolean f) {
+		return new NumberInner(f, (l, r) -> l.doubleValue() < r.doubleValue());
 	}
 	
-	private void addListeners(Inner i, NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
+	private void addListeners(NumberInner i, NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
 		left.addChangeListener(i.leftListener());
 		right.addChangeListener(i.rightListener());
 	}
 	
-	private void removeListeners(Inner i, NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
+	private void removeListeners(NumberInner i, NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
 		left.removeChangeListener(i.leftListener());
 		right.removeChangeListener(i.rightListener());
 	}
 	
 	public void isEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) throws InterruptedException {
-		final Inner i = this.buildIsEqualTo(true, left, right);
+		final NumberInner i = this.buildIsEqualTo(true, left, right);
 		try {
 			this.addListeners(i, left, right);
 			i.waitUntil();
@@ -155,7 +155,7 @@ public class ComparativeWaitUntil extends AbstractWaitUntil {
 	}
 	
 	public void isEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		final Inner i = this.buildIsEqualTo(true, left, right);
+		final NumberInner i = this.buildIsEqualTo(true, left, right);
 		try {
 			this.addListeners(i, left, right);
 			i.waitUntil(timeout, unit);
@@ -166,7 +166,7 @@ public class ComparativeWaitUntil extends AbstractWaitUntil {
 	}
 	
 	public void isEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right, TimeGettable p) throws InterruptedException, TimeoutException {
-		final Inner i = this.buildIsEqualTo(true, left, right);
+		final NumberInner i = this.buildIsEqualTo(true, left, right);
 		try {
 			this.addListeners(i, left, right);
 			i.waitUntil(p);
@@ -177,7 +177,7 @@ public class ComparativeWaitUntil extends AbstractWaitUntil {
 	}
 	
 	public void isNotEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) throws InterruptedException {
-		final Inner i = this.buildIsEqualTo(false, left, right);
+		final NumberInner i = this.buildIsEqualTo(false, left, right);
 		try {
 			this.addListeners(i, left, right);
 			i.waitUntil();
@@ -188,7 +188,7 @@ public class ComparativeWaitUntil extends AbstractWaitUntil {
 	}
 	
 	public void isNotEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		final Inner i = this.buildIsEqualTo(false, left, right);
+		final NumberInner i = this.buildIsEqualTo(false, left, right);
 		try {
 			this.addListeners(i, left, right);
 			i.waitUntil(timeout, unit);
@@ -199,7 +199,7 @@ public class ComparativeWaitUntil extends AbstractWaitUntil {
 	}
 	
 	public void isNotEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right, TimeGettable p) throws InterruptedException, TimeoutException {
-		final Inner i = this.buildIsEqualTo(false, left, right);
+		final NumberInner i = this.buildIsEqualTo(false, left, right);
 		try {
 			this.addListeners(i, left, right);
 			i.waitUntil(p);
@@ -210,7 +210,7 @@ public class ComparativeWaitUntil extends AbstractWaitUntil {
 	}
 	
 	public void isLessThan(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) throws InterruptedException {
-		final Inner i = this.buildIsLessThan(true, left, right);
+		final NumberInner i = this.buildIsLessThan(true, left, right);
 		try {
 			this.addListeners(i, left, right);
 			i.waitUntil();
@@ -221,7 +221,7 @@ public class ComparativeWaitUntil extends AbstractWaitUntil {
 	}
 	
 	public void isLessThan(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		final Inner i = this.buildIsLessThan(true, left, right);
+		final NumberInner i = this.buildIsLessThan(true, left, right);
 		try {
 			this.addListeners(i, left, right);
 			i.waitUntil(timeout, unit);
@@ -232,7 +232,7 @@ public class ComparativeWaitUntil extends AbstractWaitUntil {
 	}
 	
 	public void isLessThan(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right, TimeGettable p) throws InterruptedException, TimeoutException {
-		final Inner i = this.buildIsLessThan(true, left, right);
+		final NumberInner i = this.buildIsLessThan(true, left, right);
 		try {
 			this.addListeners(i, left, right);
 			i.waitUntil(p);
@@ -243,7 +243,7 @@ public class ComparativeWaitUntil extends AbstractWaitUntil {
 	}
 	
 	public void isLessThanOrEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) throws InterruptedException {
-		final Inner i = this.buildIsLessThan(false, right, left);
+		final NumberInner i = this.buildIsLessThan(false, right, left);
 		try {
 			this.addListeners(i, right, left);
 			i.waitUntil();
@@ -254,7 +254,7 @@ public class ComparativeWaitUntil extends AbstractWaitUntil {
 	}
 	
 	public void isLessThanOrEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		final Inner i = this.buildIsLessThan(false, right, left);
+		final NumberInner i = this.buildIsLessThan(false, right, left);
 		try {
 			this.addListeners(i, right, left);
 			i.waitUntil(timeout, unit);
@@ -265,7 +265,7 @@ public class ComparativeWaitUntil extends AbstractWaitUntil {
 	}
 	
 	public void isLessThanOrEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right, TimeGettable p) throws InterruptedException, TimeoutException {
-		final Inner i = this.buildIsLessThan(false, right, left);
+		final NumberInner i = this.buildIsLessThan(false, right, left);
 		try {
 			this.addListeners(i, right, left);
 			i.waitUntil(p);
@@ -276,7 +276,7 @@ public class ComparativeWaitUntil extends AbstractWaitUntil {
 	}
 	
 	public void isGreaterThan(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) throws InterruptedException {
-		final Inner i = this.buildIsLessThan(true, right, left);
+		final NumberInner i = this.buildIsLessThan(true, right, left);
 		try {
 			this.addListeners(i, right, left);
 			i.waitUntil();
@@ -287,7 +287,7 @@ public class ComparativeWaitUntil extends AbstractWaitUntil {
 	}
 	
 	public void isGreaterThan(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		final Inner i = this.buildIsLessThan(true, right, left);
+		final NumberInner i = this.buildIsLessThan(true, right, left);
 		try {
 			this.addListeners(i, right, left);
 			i.waitUntil(timeout, unit);
@@ -298,7 +298,7 @@ public class ComparativeWaitUntil extends AbstractWaitUntil {
 	}
 	
 	public void isGreaterThan(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right, TimeGettable p) throws InterruptedException, TimeoutException {
-		final Inner i = this.buildIsLessThan(true, right, left);
+		final NumberInner i = this.buildIsLessThan(true, right, left);
 		try {
 			this.addListeners(i, right, left);
 			i.waitUntil(p);
@@ -309,7 +309,7 @@ public class ComparativeWaitUntil extends AbstractWaitUntil {
 	}
 	
 	public void isGreaterThanOrEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) throws InterruptedException {
-		final Inner i = this.buildIsLessThan(false, left, right);
+		final NumberInner i = this.buildIsLessThan(false, left, right);
 		try {
 			this.addListeners(i, left, right);
 			i.waitUntil();
@@ -320,7 +320,7 @@ public class ComparativeWaitUntil extends AbstractWaitUntil {
 	}
 	
 	public void isGreaterThanOrEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		final Inner i = this.buildIsLessThan(false, left, right);
+		final NumberInner i = this.buildIsLessThan(false, left, right);
 		try {
 			this.addListeners(i, left, right);
 			i.waitUntil(timeout, unit);
@@ -331,7 +331,7 @@ public class ComparativeWaitUntil extends AbstractWaitUntil {
 	}
 	
 	public void isGreaterThanOrEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right, TimeGettable p) throws InterruptedException, TimeoutException {
-		final Inner i = this.buildIsLessThan(false, left, right);
+		final NumberInner i = this.buildIsLessThan(false, left, right);
 		try {
 			this.addListeners(i, left, right);
 			i.waitUntil(p);
@@ -339,6 +339,18 @@ public class ComparativeWaitUntil extends AbstractWaitUntil {
 		finally {
 			this.removeListeners(i, left, right);
 		}
+	}
+	
+	public <T, U> void isEqualTo(ObjectObservable<T> a, ObjectObservable<U> b) {
+		
+		//TODO
+		
+	}
+	
+	public <T, U> void isNotEqualTo(ObjectObservable<T> a, ObjectObservable<U> b) {
+		
+		//TODO
+		
 	}
 	
 }

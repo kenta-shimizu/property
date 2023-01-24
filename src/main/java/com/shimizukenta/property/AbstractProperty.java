@@ -65,7 +65,7 @@ public abstract class AbstractProperty<T> implements Property<T> {
 		return observer.removeChangeListener(bindLstnr);
 	}
 	
-	protected final void _notifyChanged(T v) {
+	protected void _notifyChanged(T v) {
 		for ( ChangeListener<? super T> l : this.changeLstnrs ) {
 			l.changed(v);
 		}
@@ -73,7 +73,7 @@ public abstract class AbstractProperty<T> implements Property<T> {
 	
 	@Override
 	public String toString() {
-		return this._simpleGet().toString();
+		return Objects.toString(this._simpleGet());
 	}
 	
 }

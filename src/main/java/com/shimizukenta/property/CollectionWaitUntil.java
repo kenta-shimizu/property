@@ -300,7 +300,7 @@ public class CollectionWaitUntil extends AbstractWaitUntil {
 		final InnerSizeObservable<E, T> x = new InnerSizeObservable<>();
 		try {
 			observable.addChangeListener(x);
-			ComparativeWaitUntil.getInstance().isEqualTo(x, i);
+			NumberWaitUntil.getInstance().isEqualTo(x, i);
 		}
 		finally {
 			observable.removeChangeListener(x);
@@ -311,7 +311,7 @@ public class CollectionWaitUntil extends AbstractWaitUntil {
 		final InnerSizeObservable<E, T> x = new InnerSizeObservable<>();
 		try {
 			observable.addChangeListener(x);
-			ComparativeWaitUntil.getInstance().isEqualTo(x, i, timeout, unit);
+			NumberWaitUntil.getInstance().isEqualTo(x, i, timeout, unit);
 		}
 		finally {
 			observable.removeChangeListener(x);
@@ -322,7 +322,7 @@ public class CollectionWaitUntil extends AbstractWaitUntil {
 		final InnerSizeObservable<E, T> x = new InnerSizeObservable<>();
 		try {
 			observable.addChangeListener(x);
-			ComparativeWaitUntil.getInstance().isEqualTo(x, i, p);
+			NumberWaitUntil.getInstance().isEqualTo(x, i, p);
 		}
 		finally {
 			observable.removeChangeListener(x);
@@ -333,7 +333,7 @@ public class CollectionWaitUntil extends AbstractWaitUntil {
 		final InnerSizeObservable<E, T> x = new InnerSizeObservable<>();
 		try {
 			observable.addChangeListener(x);
-			ComparativeWaitUntil.getInstance().isNotEqualTo(x, i);
+			NumberWaitUntil.getInstance().isNotEqualTo(x, i);
 		}
 		finally {
 			observable.removeChangeListener(x);
@@ -344,7 +344,7 @@ public class CollectionWaitUntil extends AbstractWaitUntil {
 		final InnerSizeObservable<E, T> x = new InnerSizeObservable<>();
 		try {
 			observable.addChangeListener(x);
-			ComparativeWaitUntil.getInstance().isNotEqualTo(x, i, timeout, unit);
+			NumberWaitUntil.getInstance().isNotEqualTo(x, i, timeout, unit);
 		}
 		finally {
 			observable.removeChangeListener(x);
@@ -355,7 +355,7 @@ public class CollectionWaitUntil extends AbstractWaitUntil {
 		final InnerSizeObservable<E, T> x = new InnerSizeObservable<>();
 		try {
 			observable.addChangeListener(x);
-			ComparativeWaitUntil.getInstance().isNotEqualTo(x, i, p);
+			NumberWaitUntil.getInstance().isNotEqualTo(x, i, p);
 		}
 		finally {
 			observable.removeChangeListener(x);
@@ -366,7 +366,7 @@ public class CollectionWaitUntil extends AbstractWaitUntil {
 		final InnerSizeObservable<E, T> x = new InnerSizeObservable<>();
 		try {
 			observable.addChangeListener(x);
-			ComparativeWaitUntil.getInstance().isLessThan(x, i);
+			NumberWaitUntil.getInstance().isLessThan(x, i);
 		}
 		finally {
 			observable.removeChangeListener(x);
@@ -377,7 +377,7 @@ public class CollectionWaitUntil extends AbstractWaitUntil {
 		final InnerSizeObservable<E, T> x = new InnerSizeObservable<>();
 		try {
 			observable.addChangeListener(x);
-			ComparativeWaitUntil.getInstance().isLessThan(x, i, timeout, unit);
+			NumberWaitUntil.getInstance().isLessThan(x, i, timeout, unit);
 		}
 		finally {
 			observable.removeChangeListener(x);
@@ -388,7 +388,7 @@ public class CollectionWaitUntil extends AbstractWaitUntil {
 		final InnerSizeObservable<E, T> x = new InnerSizeObservable<>();
 		try {
 			observable.addChangeListener(x);
-			ComparativeWaitUntil.getInstance().isLessThan(x, i, p);
+			NumberWaitUntil.getInstance().isLessThan(x, i, p);
 		}
 		finally {
 			observable.removeChangeListener(x);
@@ -399,7 +399,7 @@ public class CollectionWaitUntil extends AbstractWaitUntil {
 		final InnerSizeObservable<E, T> x = new InnerSizeObservable<>();
 		try {
 			observable.addChangeListener(x);
-			ComparativeWaitUntil.getInstance().isLessThanOrEqualTo(x, i);
+			NumberWaitUntil.getInstance().isLessThanOrEqualTo(x, i);
 		}
 		finally {
 			observable.removeChangeListener(x);
@@ -410,7 +410,7 @@ public class CollectionWaitUntil extends AbstractWaitUntil {
 		final InnerSizeObservable<E, T> x = new InnerSizeObservable<>();
 		try {
 			observable.addChangeListener(x);
-			ComparativeWaitUntil.getInstance().isLessThanOrEqualTo(x, i, timeout, unit);
+			NumberWaitUntil.getInstance().isLessThanOrEqualTo(x, i, timeout, unit);
 		}
 		finally {
 			observable.removeChangeListener(x);
@@ -421,7 +421,7 @@ public class CollectionWaitUntil extends AbstractWaitUntil {
 		final InnerSizeObservable<E, T> x = new InnerSizeObservable<>();
 		try {
 			observable.addChangeListener(x);
-			ComparativeWaitUntil.getInstance().isLessThanOrEqualTo(x, i, p);
+			NumberWaitUntil.getInstance().isLessThanOrEqualTo(x, i, p);
 		}
 		finally {
 			observable.removeChangeListener(x);
@@ -432,7 +432,7 @@ public class CollectionWaitUntil extends AbstractWaitUntil {
 		final InnerSizeObservable<E, T> x = new InnerSizeObservable<>();
 		try {
 			observable.addChangeListener(x);
-			ComparativeWaitUntil.getInstance().isGreaterThan(x, i);
+			NumberWaitUntil.getInstance().isGreaterThan(x, i);
 		}
 		finally {
 			observable.removeChangeListener(x);
@@ -443,7 +443,7 @@ public class CollectionWaitUntil extends AbstractWaitUntil {
 		final InnerSizeObservable<E, T> x = new InnerSizeObservable<>();
 		try {
 			observable.addChangeListener(x);
-			ComparativeWaitUntil.getInstance().isGreaterThan(x, i, timeout, unit);
+			NumberWaitUntil.getInstance().isGreaterThan(x, i, timeout, unit);
 		}
 		finally {
 			observable.removeChangeListener(x);
@@ -454,7 +454,7 @@ public class CollectionWaitUntil extends AbstractWaitUntil {
 		final InnerSizeObservable<E, T> x = new InnerSizeObservable<>();
 		try {
 			observable.addChangeListener(x);
-			ComparativeWaitUntil.getInstance().isGreaterThan(x, i, p);
+			NumberWaitUntil.getInstance().isGreaterThan(x, i, p);
 		}
 		finally {
 			observable.removeChangeListener(x);
@@ -465,7 +465,7 @@ public class CollectionWaitUntil extends AbstractWaitUntil {
 		final InnerSizeObservable<E, T> x = new InnerSizeObservable<>();
 		try {
 			observable.addChangeListener(x);
-			ComparativeWaitUntil.getInstance().isGreaterThanOrEqualTo(x, i);
+			NumberWaitUntil.getInstance().isGreaterThanOrEqualTo(x, i);
 		}
 		finally {
 			observable.removeChangeListener(x);
@@ -476,7 +476,7 @@ public class CollectionWaitUntil extends AbstractWaitUntil {
 		final InnerSizeObservable<E, T> x = new InnerSizeObservable<>();
 		try {
 			observable.addChangeListener(x);
-			ComparativeWaitUntil.getInstance().isGreaterThanOrEqualTo(x, i, timeout, unit);
+			NumberWaitUntil.getInstance().isGreaterThanOrEqualTo(x, i, timeout, unit);
 		}
 		finally {
 			observable.removeChangeListener(x);
@@ -487,7 +487,7 @@ public class CollectionWaitUntil extends AbstractWaitUntil {
 		final InnerSizeObservable<E, T> x = new InnerSizeObservable<>();
 		try {
 			observable.addChangeListener(x);
-			ComparativeWaitUntil.getInstance().isGreaterThanOrEqualTo(x, i, p);
+			NumberWaitUntil.getInstance().isGreaterThanOrEqualTo(x, i, p);
 		}
 		finally {
 			observable.removeChangeListener(x);

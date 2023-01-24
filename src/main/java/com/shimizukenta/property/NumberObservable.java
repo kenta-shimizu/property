@@ -613,7 +613,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilEqualTo(NumberObservable<? extends Number> observable) throws InterruptedException {
-		ComparativeWaitUntil.getInstance().isEqualTo(this, observable);
+		NumberWaitUntil.getInstance().isEqualTo(this, observable);
 	}
 	
 	/**
@@ -631,7 +631,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilEqualTo(NumberObservable<? extends Number> observable, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		ComparativeWaitUntil.getInstance().isEqualTo(this, observable, timeout, unit);
+		NumberWaitUntil.getInstance().isEqualTo(this, observable, timeout, unit);
 	}
 	
 	/**
@@ -648,7 +648,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilEqualTo(NumberObservable<? extends Number> observable, TimeGettable p) throws InterruptedException, TimeoutException {
-		ComparativeWaitUntil.getInstance().isEqualTo(this, observable, p);
+		NumberWaitUntil.getInstance().isEqualTo(this, observable, p);
 	}
 	
 	/**
@@ -663,7 +663,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilNotEqualTo(NumberObservable<? extends Number> observable) throws InterruptedException {
-		ComparativeWaitUntil.getInstance().isNotEqualTo(this, observable);
+		NumberWaitUntil.getInstance().isNotEqualTo(this, observable);
 	}
 	
 	/**
@@ -681,7 +681,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilNotEqualTo(NumberObservable<? extends Number> observable, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		ComparativeWaitUntil.getInstance().isNotEqualTo(this, observable, timeout, unit);
+		NumberWaitUntil.getInstance().isNotEqualTo(this, observable, timeout, unit);
 	}
 	
 	/**
@@ -698,7 +698,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilNotEqualTo(NumberObservable<? extends Number> observable, TimeGettable p) throws InterruptedException, TimeoutException {
-		ComparativeWaitUntil.getInstance().isNotEqualTo(this, observable, p);
+		NumberWaitUntil.getInstance().isNotEqualTo(this, observable, p);
 	}
 	
 	/**
@@ -713,7 +713,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilLessThan(NumberObservable<? extends Number> observable) throws InterruptedException {
-		ComparativeWaitUntil.getInstance().isLessThan(this, observable);
+		NumberWaitUntil.getInstance().isLessThan(this, observable);
 	}
 	
 	/**
@@ -731,7 +731,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilLessThan(NumberObservable<? extends Number> observable, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		ComparativeWaitUntil.getInstance().isLessThan(this, observable, timeout, unit);
+		NumberWaitUntil.getInstance().isLessThan(this, observable, timeout, unit);
 	}
 	
 	/**
@@ -748,7 +748,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilLessThan(NumberObservable<? extends Number> observable, TimeGettable p) throws InterruptedException, TimeoutException {
-		ComparativeWaitUntil.getInstance().isLessThan(this, observable, p);
+		NumberWaitUntil.getInstance().isLessThan(this, observable, p);
 	}
 	
 	/**
@@ -763,7 +763,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilLessThanOrEqualTo(NumberObservable<? extends Number> observable) throws InterruptedException {
-		ComparativeWaitUntil.getInstance().isLessThanOrEqualTo(this, observable);
+		NumberWaitUntil.getInstance().isLessThanOrEqualTo(this, observable);
 	}
 	
 	/**
@@ -781,7 +781,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilLessThanOrEqualTo(NumberObservable<? extends Number> observable, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		ComparativeWaitUntil.getInstance().isLessThanOrEqualTo(this, observable, timeout, unit);
+		NumberWaitUntil.getInstance().isLessThanOrEqualTo(this, observable, timeout, unit);
 	}
 	
 	/**
@@ -798,7 +798,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilLessThanOrEqualTo(NumberObservable<? extends Number> observable, TimeGettable p) throws InterruptedException, TimeoutException {
-		ComparativeWaitUntil.getInstance().isLessThanOrEqualTo(this, observable, p);
+		NumberWaitUntil.getInstance().isLessThanOrEqualTo(this, observable, p);
 	}
 	
 	/**
@@ -813,7 +813,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilGreaterThan(NumberObservable<? extends Number> observable) throws InterruptedException {
-		ComparativeWaitUntil.getInstance().isGreaterThan(this, observable);
+		NumberWaitUntil.getInstance().isGreaterThan(this, observable);
 	}
 	
 	/**
@@ -831,7 +831,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilGreaterThan(NumberObservable<? extends Number> observable, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		ComparativeWaitUntil.getInstance().isGreaterThan(this, observable, timeout, unit);
+		NumberWaitUntil.getInstance().isGreaterThan(this, observable, timeout, unit);
 	}
 	
 	/**
@@ -848,7 +848,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilGreaterThan(NumberObservable<? extends Number> observable, TimeGettable p) throws InterruptedException, TimeoutException {
-		ComparativeWaitUntil.getInstance().isGreaterThan(this, observable, p);
+		NumberWaitUntil.getInstance().isGreaterThan(this, observable, p);
 	}
 	
 	/**
@@ -863,7 +863,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(NumberObservable<? extends Number> observable) throws InterruptedException {
-		ComparativeWaitUntil.getInstance().isGreaterThanOrEqualTo(this, observable);
+		NumberWaitUntil.getInstance().isGreaterThanOrEqualTo(this, observable);
 	}
 	
 	/**
@@ -881,7 +881,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(NumberObservable<? extends Number> observable, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		ComparativeWaitUntil.getInstance().isGreaterThanOrEqualTo(this, observable, timeout, unit);
+		NumberWaitUntil.getInstance().isGreaterThanOrEqualTo(this, observable, timeout, unit);
 	}
 	
 	/**
@@ -898,7 +898,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(NumberObservable<? extends Number> observable, TimeGettable p) throws InterruptedException, TimeoutException {
-		ComparativeWaitUntil.getInstance().isGreaterThanOrEqualTo(this, observable, p);
+		NumberWaitUntil.getInstance().isGreaterThanOrEqualTo(this, observable, p);
 	}
 	
 	/* Wait until Primitives */

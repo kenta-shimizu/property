@@ -1,7 +1,9 @@
 package com.shimizukenta.property;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import java.util.function.BiPredicate;
 
 /**
  * 
@@ -22,75 +24,82 @@ public class ObjectWaitUntil extends AbstractWaitUntil {
 		return SingletonHolder.inst;
 	}
 	
-	private class InnerIsNull<T> extends AbstractInner implements ChangeListener<T> {
+	private class IsNullInner<T> extends AbstractComparativeCompution<T, Object> {
 		
-		private T lastObj;
+		private static final long serialVersionUID = 6104298618775119632L;
 		
-		private InnerIsNull(boolean isNull) {
-			super(isNull);
-			lastObj = null;
+		private T last;
+		
+		public IsNullInner(BiPredicate<Object, Object> compute) {
+			super(compute);
+			this.last = null;
 		}
 		
 		@Override
-		public void changed(T value) {
-			synchronized ( this.sync ) {
-				this.lastObj = value;
-				this.set(this.lastObj == null);
+		protected void leftChanged(T v) {
+			synchronized ( this._sync ) {
+				this.last = v;
+				super.leftChanged(v);
 			}
 		}
 		
-		public T waitUntilAndGet() throws InterruptedException {
-			synchronized ( this.sync ) {
-				this.waitUntil();
-				return this.lastObj;
+		public T waitUntilAndGet(boolean isNull) throws InterruptedException {
+			synchronized ( this._sync ) {
+				super.waitUntil(isNull);
+				return this.last;
 			}
 		}
 		
-		public T waitUntilAndGet(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-			synchronized ( this.sync ) {
-				this.waitUntil(timeout, unit);
-				return this.lastObj;
+		public T waitUntilAndGet(boolean isNull, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+			synchronized ( this._sync ) {
+				super.waitUntil(isNull, timeout, unit);
+				return this.last;
 			}
 		}
 		
-		public T waitUntilAndGet(TimeGettable p) throws InterruptedException, TimeoutException {
-			synchronized ( this.sync ) {
-				this.waitUntil(p);
-				return this.lastObj;
+		public T waitUntilAndGet(boolean isNull, TimeGettable p) throws InterruptedException, TimeoutException {
+			synchronized ( this._sync ) {
+				super.waitUntil(isNull, p);
+				return this.last;
 			}
 		}
+		
+	}
+	
+	private <T> IsNullInner<T> buildIsNullInner(ObjectObservable<T> observer) {
+		final IsNullInner<T> i = new IsNullInner<>((a, b) -> Objects.equals(a, b));
+		i.bindLeft(observer);
+		i.bindRight(UnmodifiablePropertyBuilder.getInstance().getNullObject());
+		return i;
 	}
 	
 	public <T> T isNull(ObjectObservable<T> observable, boolean isNull) throws InterruptedException {
-		final InnerIsNull<T> i = new InnerIsNull<>(isNull);
+		final IsNullInner<T> i = buildIsNullInner(observable);
 		try {
-			observable.addChangeListener(i);
-			return i.waitUntilAndGet();
+			return i.waitUntilAndGet(isNull);
 		}
 		finally {
-			observable.removeChangeListener(i);
+			i.unbindLeft(observable);
 		}
 	}
 	
 	public <T> T isNull(ObjectObservable<T> observable, boolean isNull, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		final InnerIsNull<T> i = new InnerIsNull<>(isNull);
+		final IsNullInner<T> i = buildIsNullInner(observable);
 		try {
-			observable.addChangeListener(i);
-			return i.waitUntilAndGet(timeout, unit);
+			return i.waitUntilAndGet(isNull, timeout, unit);
 		}
 		finally {
-			observable.removeChangeListener(i);
+			i.unbindLeft(observable);
 		}
 	}
 	
 	public <T> T isNull(ObjectObservable<T> observable, boolean isNull, TimeGettable p) throws InterruptedException, TimeoutException {
-		final InnerIsNull<T> i = new InnerIsNull<>(isNull);
+		final IsNullInner<T> i = buildIsNullInner(observable);
 		try {
-			observable.addChangeListener(i);
-			return i.waitUntilAndGet(p);
+			return i.waitUntilAndGet(isNull, p);
 		}
 		finally {
-			observable.removeChangeListener(i);
+			i.unbindLeft(observable);
 		}
 	}
 	

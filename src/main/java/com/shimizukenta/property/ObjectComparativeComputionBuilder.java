@@ -17,29 +17,32 @@ public class ObjectComparativeComputionBuilder extends AbstractComputionBuilder 
 		return SingletonHolder.inst;
 	}
 	
-	public <T, U> ComparativeCompution equalTo(
+	public <T, U> AbstractComparativeCompution<T, U> equalTo(
 			ObjectObservable<T> a,
 			ObjectObservable<U> b) {
 		
 		return buildObjectComparative(a, b, (aa, bb) -> Objects.equals(aa, bb));
 	}
 	
-	public <T, U> ComparativeCompution notEqualTo(
+	public <T, U> AbstractComparativeCompution<T, U> notEqualTo(
 			ObjectObservable<T> a,
 			ObjectObservable<U> b) {
 		
-		return buildObjectComparative(a, b, (aa, bb) -> ! Objects.equals(aa, bb));
+		return buildObjectComparative(a, b, (aa, bb) -> (! Objects.equals(aa, bb)));
 	}
 	
-	private <T, U> ComparativeCompution buildObjectComparative(
-			ObjectObservable<T> a,
-			ObjectObservable<U> b,
+	private <T, U> AbstractComparativeCompution<T, U> buildObjectComparative(
+			ObjectObservable<T> left,
+			ObjectObservable<U> right,
 			BiPredicate<Object, Object> compute) {
 		
-		final AbstractObjectComparativeCompution<T, U> i =  new AbstractObjectComparativeCompution<T, U>(a, b, compute) {
-			
-			private static final long serialVersionUID = -8304155634232757312L;
+		final AbstractComparativeCompution<T, U> i =  new AbstractComparativeCompution<T, U>(compute) {
+
+			private static final long serialVersionUID = -156911330079558280L;
 		};
+		
+		i.bindLeft(left);
+		i.bindRight(right);
 		
 		return i;
 	}

@@ -21,7 +21,7 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 		return SingletonHolder.inst;
 	}
 	
-	public ComparativeCompution equalTo(
+	public AbstractComparativeCompution<Number, Number> equalTo(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
@@ -50,7 +50,7 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 		return this.buildDoubleEqualTo(left, right);
 	}
 	
-	private ComparativeCompution buildDoubleEqualTo(
+	private AbstractComparativeCompution<Number, Number> buildDoubleEqualTo(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
@@ -59,7 +59,7 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 				(l, r) -> l.doubleValue() == r.doubleValue());
 	}
 	
-	public ComparativeCompution notEqualTo(
+	public AbstractComparativeCompution<Number, Number> notEqualTo(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
@@ -88,7 +88,7 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 		return this.buildDoubleNotEqualTo(left, right);
 	}
 	
-	private ComparativeCompution buildDoubleNotEqualTo(
+	private AbstractComparativeCompution<Number, Number> buildDoubleNotEqualTo(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
@@ -97,7 +97,7 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 				(l, r) -> l.doubleValue() != r.doubleValue());
 	}
 	
-	public ComparativeCompution lessThan(
+	public AbstractComparativeCompution<Number, Number> lessThan(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
@@ -126,7 +126,7 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 		return this.buildDoubleLessThan(left, right);
 	}
 	
-	private ComparativeCompution buildDoubleLessThan(
+	private AbstractComparativeCompution<Number, Number> buildDoubleLessThan(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
@@ -135,7 +135,7 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 				(l, r) -> l.doubleValue() < r.doubleValue());
 	}
 	
-	public ComparativeCompution lessThanOrEqualTo(
+	public AbstractComparativeCompution<Number, Number> lessThanOrEqualTo(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
@@ -164,7 +164,7 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 		return this.buildDoubleLessThanOrEqualTo(left, right);
 	}
 	
-	private ComparativeCompution buildDoubleLessThanOrEqualTo(
+	private AbstractComparativeCompution<Number, Number> buildDoubleLessThanOrEqualTo(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
@@ -173,7 +173,7 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 				(l, r) -> l.doubleValue() <= r.doubleValue());
 	}
 	
-	public ComparativeCompution greaterThan(
+	public AbstractComparativeCompution<Number, Number> greaterThan(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
@@ -202,7 +202,7 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 		return this.buildDoubleGreaterThan(left, right);
 	}
 	
-	private ComparativeCompution buildDoubleGreaterThan(
+	private AbstractComparativeCompution<Number, Number> buildDoubleGreaterThan(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
@@ -211,7 +211,7 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 				(l, r) -> l.doubleValue() > r.doubleValue());
 	}
 	
-	public ComparativeCompution greaterThanOrEqualTo(
+	public AbstractComparativeCompution<Number, Number> greaterThanOrEqualTo(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
@@ -240,7 +240,7 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 		return this.buildDoubleGreaterThanOrEqualTo(left, right);
 	}
 	
-	private ComparativeCompution buildDoubleGreaterThanOrEqualTo(
+	private AbstractComparativeCompution<Number, Number> buildDoubleGreaterThanOrEqualTo(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
@@ -249,15 +249,22 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 				(l, r) -> l.doubleValue() >= r.doubleValue());
 	}
 	
-	private ComparativeCompution buildNumberComparative(
+	private static final Integer ZERO = Integer.valueOf(0);
+	
+	private AbstractComparativeCompution<Number, Number> buildNumberComparative(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right,
 			BiPredicate<Number, Number> compute) {
 		
-		return new AbstractNumberComparativeCompution(left, right, compute) {
-
-			private static final long serialVersionUID = 6239537024871859844L;
+		final AbstractComparativeCompution<Number, Number> i = new AbstractComparativeCompution<Number, Number>(compute, ZERO, ZERO) {
+			
+			private static final long serialVersionUID = 5610468194150491897L;
 		};
+		
+		i.bindLeft(left);
+		i.bindRight(right);
+		
+		return i;
 	}
 	
 }

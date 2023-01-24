@@ -23,7 +23,6 @@ public class PropertyTest {
 	public static void main(String[] args) {
 		
 		try {
-			
 			final BooleanProperty boolProp = BooleanProperty.newInstance(false);
 			final IntegerProperty intProp = IntegerProperty.newInstance(0);
 			final ObjectProperty<String> objProp = ObjectProperty.newInstance(null);
@@ -32,7 +31,7 @@ public class PropertyTest {
 			
 			new Thread(() -> {
 				try {
-					Thread.sleep(1000L);
+					Thread.sleep(1500L);
 					boolProp.set(true);
 					
 					Thread.sleep(1000L);
@@ -40,6 +39,9 @@ public class PropertyTest {
 					
 					Thread.sleep(1000L);
 					objProp.set("STRING");
+					
+					Thread.sleep(1000L);
+					objProp.set(null);
 					
 					Thread.sleep(1000L);
 					mapProp.put("KEY", "VALUE");
@@ -58,26 +60,38 @@ public class PropertyTest {
 			System.out.println("Waiting until boolProp is true.");
 			boolProp.waitUntilTrue();
 			System.out.println("boolProp is true.");
+			System.out.println();
 			
 			System.out.println("Waiting until intProp is >5.");
 			intProp.waitUntilGreaterThan(5);
 			System.out.println("inrProp is >5.");
+			System.out.println();
 			
 			System.out.println("Waiting until objProp is not null.");
+//			objProp.waitUntilNull();
 			String objv = objProp.waitUntilNotNull();
 			System.out.println("objProp is " + objv);
+			System.out.println();
+			
+			System.out.println("Waiting until objProp is null.");
+			objProp.waitUntilNull();
+			System.out.println("objProp is null");
+			System.out.println();
 			
 			System.out.println("Waiting until mapProp containsKey(\"KEY\").");
 			String mapv = mapProp.waitUntilContainsKey("KEY");
 			System.out.println("mapProp get(\"KEY\") is " + mapv);
+			System.out.println();
 			
 			System.out.println("Waiting until listProp size >0.");
 			listProp.waitUntilSizeIsGreaterThan(0);
 			System.out.println("listProp size is >0.");
+			System.out.println();
 			
 			System.out.println("Waiting until listProp is empty.");
 			listProp.waitUntilIsEmpty();
 			System.out.println("listProp size is empty.");
+			System.out.println();
 			
 		}
 		catch ( InterruptedException ignore ) {

@@ -11,7 +11,7 @@ import java.util.function.Function;
  * @author kenta-shimizu
  *
  */
-public class NumberComputionBuilder extends AbstractComputionBuilder {
+public class NumberComputionBuilder {
 	
 	public static NumberComputionBuilder getInstance() {
 		return SingletonHolder.inst;
@@ -22,7 +22,7 @@ public class NumberComputionBuilder extends AbstractComputionBuilder {
 	}
 	
 	private NumberComputionBuilder() {
-		super();
+		/* Nothing */
 	}
 	
 	public IntegerCompution toInteger(NumberObservable<? extends Number> observable) {
@@ -167,11 +167,11 @@ public class NumberComputionBuilder extends AbstractComputionBuilder {
 		
 		final Collection<? extends NumberObservable<? extends Number>> observables = Collections.singleton(observable);
 		
-		if ( isDouble(observable) ) {
+		if ( observable.isDouble() ) {
 			return buildNegateDouble(observables);
 		}
 		
-		if ( isFloat(observable) ) {
+		if ( observable.isFloat() ) {
 			return buildFloat(observables, vv -> {
 				float r = 0.0F;
 				for (Number n : vv) {
@@ -181,7 +181,7 @@ public class NumberComputionBuilder extends AbstractComputionBuilder {
 			});
 		}
 		
-		if ( isLong(observable) ) {
+		if ( observable.isLong() ) {
 			return buildLong(observables, vv -> {
 				long r = 0L;
 				for (Number n : vv) {
@@ -191,7 +191,7 @@ public class NumberComputionBuilder extends AbstractComputionBuilder {
 			});
 		}
 		
-		if ( isInteger(observable) ) {
+		if ( observable.isInteger() ) {
 			return buildInteger(observables, vv -> {
 				int r = 0;
 				for (Number n : vv) {
@@ -385,5 +385,21 @@ public class NumberComputionBuilder extends AbstractComputionBuilder {
 			private static final long serialVersionUID = 3175580553554522461L;
 		};
 	}
-
+	
+	private static boolean isDouble(Collection<? extends NumberObservable<? extends Number>> observables) {
+		return observables.stream().anyMatch(o -> o.isDouble());
+	}
+	
+	private static boolean isFloat(Collection<? extends NumberObservable<? extends Number>> observables) {
+		return observables.stream().anyMatch(o -> o.isFloat());
+	}
+	
+	private static boolean isLong(Collection<? extends NumberObservable<? extends Number>> observables) {
+		return observables.stream().anyMatch(o -> o.isLong());
+	}
+	
+	private static boolean isInteger(Collection<? extends NumberObservable<? extends Number>> observables) {
+		return observables.stream().anyMatch(o -> o.isInteger());
+	}
+	
 }

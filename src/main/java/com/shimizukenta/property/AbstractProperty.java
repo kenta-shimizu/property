@@ -56,24 +56,28 @@ public abstract class AbstractProperty<T> implements Property<T> {
 	private final ChangeListener<T> bindLstnr = this::_syncSetAndNotifyChanged;
 	
 	@Override
-	public boolean bind(Observable<T> observer) {
+	public boolean bind(Observable<? extends T> observer) {
 		return observer.addChangeListener(bindLstnr);
 	}
 	
 	@Override
-	public boolean unbind(Observable<T> observer) {
+	public boolean unbind(Observable<? extends T> observer) {
 		return observer.removeChangeListener(bindLstnr);
 	}
 	
 	protected void _notifyChanged(T v) {
-		for ( ChangeListener<? super T> l : this.changeLstnrs ) {
-			l.changed(v);
+		synchronized ( this._sync ) {
+			for ( ChangeListener<? super T> l : this.changeLstnrs ) {
+				l.changed(v);
+			}
 		}
 	}
 	
 	@Override
 	public String toString() {
-		return Objects.toString(this._simpleGet());
+		synchronized ( this._sync ) {
+			return Objects.toString(this._simpleGet());
+		}
 	}
 	
 }

@@ -3,7 +3,7 @@ package com.shimizukenta.property;
 import java.util.Objects;
 import java.util.function.BiPredicate;
 
-public abstract class AbstractComparativeCompution<T, U> extends AbstractBooleanCompution implements ComparativeCompution {
+public abstract class AbstractBiPredicateCompution<T, U> extends AbstractBooleanCompution implements ComparativeCompution {
 	
 	private static final long serialVersionUID = -8029429736383936055L;
 	
@@ -12,7 +12,7 @@ public abstract class AbstractComparativeCompution<T, U> extends AbstractBoolean
 	private T left;
 	private U right;
 	
-	public AbstractComparativeCompution(
+	protected AbstractBiPredicateCompution(
 			BiPredicate<? super T, ? super U> compute,
 			T leftInitial,
 			U rightInitial) {
@@ -24,7 +24,7 @@ public abstract class AbstractComparativeCompution<T, U> extends AbstractBoolean
 		this.right = rightInitial;
 	}
 	
-	public AbstractComparativeCompution(
+	protected AbstractBiPredicateCompution(
 			BiPredicate<? super T, ? super U> compute) {
 		this(compute, null, null);
 	}

@@ -61,17 +61,9 @@ public abstract class AbstractCompution<T> implements Compution<T> {
 	
 	@Override
 	public String toString() {
-		return Objects.toString(this._simpleGet());
-	}
-	
-	private final ChangeListener<T> bindLstnr = this::_syncSetAndNotifyChanged;
-	
-	public boolean bind(Observable<T> observer) {
-		return observer.addChangeListener(this.bindLstnr);
-	}
-	
-	public boolean unbind(Observable<T> observer) {
-		return observer.removeChangeListener(this.bindLstnr);
+		synchronized ( this._sync ) {
+			return Objects.toString(this._simpleGet());
+		}
 	}
 	
 }

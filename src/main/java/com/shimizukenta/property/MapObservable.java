@@ -11,23 +11,54 @@ import java.util.concurrent.TimeoutException;
  * @param <K> Key Type
  * @param <V> Value Type
  */
-public interface MapObservable<K, V> {
+public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	
 	/**
-	 * Add change-listener.
+	/**
+	 * Returns {@link BooleanCompution} of {@link Map#containsKey(Object)} == {@code true}.
 	 * 
-	 * @param listener
-	 * @return {@code true} if add success, otherwise {@code false}.
+	 * @param key
+	 * @return {@link BooleanCompution} of {@link Map#containsKey(Object)} == {@code true}
 	 */
-	public boolean addChangeListener(ChangeListener<? super Map<K, V>> listener);
+	default public BooleanCompution computeContainsKey(Object key) {
+		return MapUtils.isContainsKey(this, key);
+	}
 	
 	/**
-	 * Remove change-listener.
+	 * Returns {@link BooleanCompution} of {@link Map#containsKey(Object)} == {@code false}.
 	 * 
-	 * @param listener
-	 * @return {@code true} if remove success, otherwise {@code false}.
+	 * @param key
+	 * @return {@link BooleanCompution} of {@link Map#containsKey(Object)} == {@code false}
 	 */
-	public boolean removeChangeListener(ChangeListener<? super Map<K, V>> listener);
+	default public BooleanCompution computeNotContainsKey(Object key) {
+		return MapUtils.isNotContainsKey(this, key);
+	}
+	
+	/**
+	 * Returns {@link BooleanCompution} of {@link Map#isEmpty()} == {@code true}.
+	 * 
+	 * @return {@link BooleanCompution} of {@link Map#isEmpty()} == {@code true}
+	 */
+	default public BooleanCompution computeIsEmpty() {
+		return MapUtils.isEmpty(this);
+	}
+	
+	/**
+	 * Returns {@link BooleanCompution} of {@link Map#isEmpty()} == {@code false}.
+	 * 
+	 * @return {@link BooleanCompution} of {@link Map#isEmpty()} == {@code false}
+	 */
+	default public BooleanCompution computeIsNotEmpty() {
+		return MapUtils.isNotEmpty(this);
+	}
+	
+	//TODO
+//	default public SetCompution<K> computeKeySet() {
+//		
+//		//TODO
+//		
+//		return null;
+//	}
 	
 	/**
 	 * Wait until {@link Map#containsKey(Object)} is {@code true}, and return value.
@@ -42,7 +73,7 @@ public interface MapObservable<K, V> {
 	 * @throws InterruptedException
 	 */
 	default public V waitUntilContainsKey(Object key) throws InterruptedException {
-		return MapWaitUntil.getInstance().containsKey(this, true, key);
+		return MapUtils.waitUntilContainsKey(this, key);
 	}
 	
 	/**
@@ -61,7 +92,7 @@ public interface MapObservable<K, V> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public V waitUntilContainsKey(Object key, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		return MapWaitUntil.getInstance().containsKey(this, true, key, timeout, unit);
+		return MapUtils.waitUntilContainsKey(this, key, timeout, unit);
 	}
 	
 	/**
@@ -79,7 +110,7 @@ public interface MapObservable<K, V> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public V waitUntilContainsKey(Object key, TimeGettable p) throws InterruptedException, TimeoutException {
-		return MapWaitUntil.getInstance().containsKey(this, true, key, p);
+		return MapUtils.waitUntilContainsKey(this, key, p);
 	}
 	
 	/**
@@ -94,7 +125,7 @@ public interface MapObservable<K, V> {
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilNotContainsKey(Object key) throws InterruptedException {
-		MapWaitUntil.getInstance().containsKey(this, false, key);
+		MapUtils.waitUntilNotContainsKey(this, key);
 	}
 	
 	/**
@@ -112,7 +143,7 @@ public interface MapObservable<K, V> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilNotContainsKey(Object key, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		MapWaitUntil.getInstance().containsKey(this, false, key, timeout, unit);
+		MapUtils.waitUntilNotContainsKey(this, key, timeout, unit);
 	}
 	
 	/**
@@ -129,7 +160,7 @@ public interface MapObservable<K, V> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilNotContainsKey(Object key, TimeGettable p) throws InterruptedException, TimeoutException {
-		MapWaitUntil.getInstance().containsKey(this, false, key, p);
+		MapUtils.waitUntilNotContainsKey(this, key, p);
 	}
 	
 	/**
@@ -143,7 +174,7 @@ public interface MapObservable<K, V> {
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilIsEmpty() throws InterruptedException {
-		MapWaitUntil.getInstance().isEmpty(this, true);
+		MapUtils.waitUntilIsEmpty(this);
 	}
 	
 	/**
@@ -160,7 +191,7 @@ public interface MapObservable<K, V> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilIsEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		MapWaitUntil.getInstance().isEmpty(this, true, timeout, unit);
+		MapUtils.waitUntilIsEmpty(this, timeout, unit);
 	}
 	
 	/**
@@ -176,7 +207,7 @@ public interface MapObservable<K, V> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilIsEmpty(TimeGettable p) throws InterruptedException, TimeoutException {
-		MapWaitUntil.getInstance().isEmpty(this, true, p);
+		MapUtils.waitUntilIsEmpty(this, p);
 	}
 	
 	/**
@@ -190,7 +221,7 @@ public interface MapObservable<K, V> {
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilIsNotEmpty() throws InterruptedException {
-		MapWaitUntil.getInstance().isEmpty(this, false);
+		MapUtils.waitUntilIsNotEmpty(this);
 	}
 	
 	/**
@@ -207,7 +238,7 @@ public interface MapObservable<K, V> {
 	 * @throws TimeoutException if timeout
 	 */
 	default public void waitUntilIsNotEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		MapWaitUntil.getInstance().isEmpty(this, false, timeout, unit);
+		MapUtils.waitUntilIsNotEmpty(this, timeout, unit);
 	}
 	
 	/**
@@ -223,7 +254,7 @@ public interface MapObservable<K, V> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilIsNotEmpty(TimeGettable p) throws InterruptedException, TimeoutException {
-		MapWaitUntil.getInstance().isEmpty(this, false, p);
+		MapUtils.waitUntilIsNotEmpty(this, p);
 	}
 	
 }

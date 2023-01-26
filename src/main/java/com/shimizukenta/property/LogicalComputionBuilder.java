@@ -11,7 +11,7 @@ import java.util.function.Predicate;
  * @author kenta-shimizu
  *
  */
-public class LogicalComputionBuilder extends AbstractComputionBuilder {
+public class LogicalComputionBuilder {
 	
 	public static LogicalComputionBuilder getInstance() {
 		return SingletonBuilderHolder.inst;
@@ -22,7 +22,7 @@ public class LogicalComputionBuilder extends AbstractComputionBuilder {
 	}
 	
 	private LogicalComputionBuilder() {
-		super();
+		/* Nothing */
 	}
 	
 	public LogicalCompution and(BooleanObservable... observables) {

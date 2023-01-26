@@ -259,7 +259,7 @@ timeProp.set(5.0F);  /* set 5.0 seconds */
 /* Utilities */
 timeProp.sleep();  /* TimeUnit#sleep(timeout); */
 timeProp.wait(syncObj);  /* TimeUnit#timedWait(syncObj, timeout); */
-T v = timeProp.future(future);  /* Future<T>#get(timeout, TimeUnit); */
+T v = timeProp.futureGet(future);  /* Future<T>#get(timeout, TimeUnit); */
 T v = timeProp.poll(blockingQueue);  /* BlokingQueue<T>#poll(timeout, TimeUnit); */
 
 /* set to #waitUntil methods as timeout */

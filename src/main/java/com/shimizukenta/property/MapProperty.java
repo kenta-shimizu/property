@@ -35,7 +35,7 @@ public interface MapProperty<K, V> extends Map<K, V>, MapSettable<K, V>, MapObse
 	 * @return new-instance.
 	 */
 	public static <K, V> MapProperty<K, V> newInstance(Map<? extends K, ? extends V> initial) {
-		return new AbstractMapProperty<K, V>(new HashMap<>(initial)){
+		return new AbstractMapProperty<K, V>(new HashMap<K, V>(initial)){
 
 			private static final long serialVersionUID = -1165018901559222491L;
 		};

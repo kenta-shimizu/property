@@ -15,7 +15,7 @@ public interface ComparativeCompution extends BooleanCompution {
 	 * @return (left == right) ComparativeCompution instance.
 	 */
 	public static ComparativeCompution equalTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
-		return NumberComparativeComputionBuilder.getInstance().equalTo(left, right);
+		return NumericComparativeComputionBuilder.getInstance().equalTo(left, right);
 	}
 	
 	/**
@@ -26,7 +26,7 @@ public interface ComparativeCompution extends BooleanCompution {
 	 * @return (left != right) ComparativeCompution instance.
 	 */
 	public static ComparativeCompution notEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
-		return NumberComparativeComputionBuilder.getInstance().notEqualTo(left, right);
+		return NumericComparativeComputionBuilder.getInstance().notEqualTo(left, right);
 	}
 	
 	/**
@@ -37,7 +37,7 @@ public interface ComparativeCompution extends BooleanCompution {
 	 * @return (left < right) ComparativeCompution instance.
 	 */
 	public static ComparativeCompution lessThan(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
-		return NumberComparativeComputionBuilder.getInstance().lessThan(left, right);
+		return NumericComparativeComputionBuilder.getInstance().lessThan(left, right);
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public interface ComparativeCompution extends BooleanCompution {
 	 * @return (left <= right) ComparativeCompution instance.
 	 */
 	public static ComparativeCompution lessThanOrEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
-		return NumberComparativeComputionBuilder.getInstance().lessThanOrEqualTo(left, right);
+		return NumericComparativeComputionBuilder.getInstance().lessThanOrEqualTo(left, right);
 	}
 	
 	/**
@@ -59,7 +59,7 @@ public interface ComparativeCompution extends BooleanCompution {
 	 * @return (left > right) ComparativeCompution instance.
 	 */
 	public static ComparativeCompution greaterThan(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
-		return NumberComparativeComputionBuilder.getInstance().greaterThan(left, right);
+		return NumericComparativeComputionBuilder.getInstance().greaterThan(left, right);
 	}
 	
 	/**
@@ -70,7 +70,7 @@ public interface ComparativeCompution extends BooleanCompution {
 	 * @return (left >= right) ComparativeCompution instance.
 	 */
 	public static ComparativeCompution greaterThanOrEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
-		return NumberComparativeComputionBuilder.getInstance().greaterThanOrEqualTo(left, right);
+		return NumericComparativeComputionBuilder.getInstance().greaterThanOrEqualTo(left, right);
 	}
 	
 	/**
@@ -83,7 +83,7 @@ public interface ComparativeCompution extends BooleanCompution {
 	 * @return Object EqualTo ComparativeCompution
 	 */
 	public static <T, U> ComparativeCompution equalTo(ObjectObservable<T> a, ObjectObservable<U> b) {
-		return ObjectComparativeComputionBuilder.getInstance().equalTo(a, b);
+		return ObjectUtils.buildIsEqualTo(a, b);
 	}
 	
 	/**
@@ -96,7 +96,7 @@ public interface ComparativeCompution extends BooleanCompution {
 	 * @return Object NotEqualTo ComparativeCompution
 	 */
 	public static <T, U> ComparativeCompution notEqualTo(ObjectObservable<T> a, ObjectObservable<U> b) {
-		return ObjectComparativeComputionBuilder.getInstance().notEqualTo(a, b);
+		return ObjectUtils.buildIsNotEqualTo(a, b);
 	}
 	
 }

@@ -8,64 +8,64 @@ import java.util.concurrent.TimeoutException;
  * @author kenta-shimizu
  *
  */
-public class NumberWaitUntil extends AbstractWaitUntil {
+public class NumericComparativeWaitUntil {
 
-	protected NumberWaitUntil() {
-		super();
+	private NumericComparativeWaitUntil() {
+		/* Nothing */
 	}
 	
 	private static class SingletonHolder {
-		private static final NumberWaitUntil inst = new NumberWaitUntil();
+		private static final NumericComparativeWaitUntil inst = new NumericComparativeWaitUntil();
 	}
 	
-	public static NumberWaitUntil getInstance() {
+	public static NumericComparativeWaitUntil getInstance() {
 		return SingletonHolder.inst;
 	}
 	
-	private AbstractComparativeCompution<Number, Number> buildIsEqualTo(
+	private AbstractBiPredicateCompution<Number, Number> buildIsEqualTo(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
-		return NumberComparativeComputionBuilder.getInstance().equalTo(left, right);
+		return NumericComparativeComputionBuilder.getInstance().equalTo(left, right);
 	}
 	
-	private AbstractComparativeCompution<Number, Number> buildIsNotEqualTo(
+	private AbstractBiPredicateCompution<Number, Number> buildIsNotEqualTo(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
-		return NumberComparativeComputionBuilder.getInstance().notEqualTo(left, right);
+		return NumericComparativeComputionBuilder.getInstance().notEqualTo(left, right);
 	}
 	
-	private AbstractComparativeCompution<Number, Number> buildIsLessThan(
+	private AbstractBiPredicateCompution<Number, Number> buildIsLessThan(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
-		return NumberComparativeComputionBuilder.getInstance().lessThan(left, right);
+		return NumericComparativeComputionBuilder.getInstance().lessThan(left, right);
 	}
 	
-	private AbstractComparativeCompution<Number, Number> buildIsLessThanOrEqualTo(
+	private AbstractBiPredicateCompution<Number, Number> buildIsLessThanOrEqualTo(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
-		return NumberComparativeComputionBuilder.getInstance().lessThanOrEqualTo(left, right);
+		return NumericComparativeComputionBuilder.getInstance().lessThanOrEqualTo(left, right);
 	}
 	
-	private AbstractComparativeCompution<Number, Number> buildIsGreaterThan(
+	private AbstractBiPredicateCompution<Number, Number> buildIsGreaterThan(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
-		return NumberComparativeComputionBuilder.getInstance().greaterThan(left, right);
+		return NumericComparativeComputionBuilder.getInstance().greaterThan(left, right);
 	}
 	
-	private AbstractComparativeCompution<Number, Number> buildIsGreaterThanOrEqualTo(
+	private AbstractBiPredicateCompution<Number, Number> buildIsGreaterThanOrEqualTo(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
-		return NumberComparativeComputionBuilder.getInstance().greaterThanOrEqualTo(left, right);
+		return NumericComparativeComputionBuilder.getInstance().greaterThanOrEqualTo(left, right);
 	}
 	
 	private void waitUntil(
-			AbstractComparativeCompution<Number, Number> i,
+			AbstractBiPredicateCompution<Number, Number> i,
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) throws InterruptedException {
 		
@@ -79,7 +79,7 @@ public class NumberWaitUntil extends AbstractWaitUntil {
 	}
 	
 	private void waitUntil(
-			AbstractComparativeCompution<Number, Number> i,
+			AbstractBiPredicateCompution<Number, Number> i,
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right,
 			long timeout,
@@ -95,7 +95,7 @@ public class NumberWaitUntil extends AbstractWaitUntil {
 	}
 	
 	private void waitUntil(
-			AbstractComparativeCompution<Number, Number> i,
+			AbstractBiPredicateCompution<Number, Number> i,
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right,
 			TimeGettable p) throws InterruptedException, TimeoutException {

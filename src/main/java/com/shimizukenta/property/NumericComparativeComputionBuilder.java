@@ -1,5 +1,6 @@
 package com.shimizukenta.property;
 
+import java.util.Arrays;
 import java.util.function.BiPredicate;
 
 /**
@@ -7,41 +8,41 @@ import java.util.function.BiPredicate;
  * @author kenta-shimizu
  *
  */
-public class NumberComparativeComputionBuilder extends AbstractComputionBuilder {
+public class NumericComparativeComputionBuilder {
 	
-	private NumberComparativeComputionBuilder() {
-		super();
+	private NumericComparativeComputionBuilder() {
+		/* Nothing */
 	}
 	
 	private static class SingletonHolder {
-		private static final NumberComparativeComputionBuilder inst = new NumberComparativeComputionBuilder();
+		private static final NumericComparativeComputionBuilder inst = new NumericComparativeComputionBuilder();
 	}
 	
-	public static NumberComparativeComputionBuilder getInstance() {
+	public static NumericComparativeComputionBuilder getInstance() {
 		return SingletonHolder.inst;
 	}
 	
-	public AbstractComparativeCompution<Number, Number> equalTo(
+	public AbstractBiPredicateCompution<Number, Number> equalTo(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
-		if ( this.isDouble(left, right) ) {
+		if ( isDouble(left, right) ) {
 			return this.buildDoubleEqualTo(left, right);
 		}
 		
-		if ( this.isFloat(left, right) ) {
+		if ( isFloat(left, right) ) {
 			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.floatValue() == r.floatValue());
 		}
 		
-		if ( this.isLong(left, right) ) {
+		if ( isLong(left, right) ) {
 			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.longValue() == r.longValue());
 		}
 		
-		if ( this.isInteger(left, right) ) {
+		if ( isInteger(left, right) ) {
 			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.intValue() == r.intValue());
@@ -50,7 +51,7 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 		return this.buildDoubleEqualTo(left, right);
 	}
 	
-	private AbstractComparativeCompution<Number, Number> buildDoubleEqualTo(
+	private AbstractBiPredicateCompution<Number, Number> buildDoubleEqualTo(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
@@ -59,27 +60,27 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 				(l, r) -> l.doubleValue() == r.doubleValue());
 	}
 	
-	public AbstractComparativeCompution<Number, Number> notEqualTo(
+	public AbstractBiPredicateCompution<Number, Number> notEqualTo(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
-		if ( this.isDouble(left, right) ) {
+		if ( isDouble(left, right) ) {
 			return this.buildDoubleNotEqualTo(left, right);
 		}
 		
-		if ( this.isFloat(left, right) ) {
+		if ( isFloat(left, right) ) {
 			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.floatValue() != r.floatValue());
 		}
 		
-		if ( this.isLong(left, right) ) {
+		if ( isLong(left, right) ) {
 			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.longValue() != r.longValue());
 		}
 		
-		if ( this.isInteger(left, right) ) {
+		if ( isInteger(left, right) ) {
 			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.intValue() != r.intValue());
@@ -88,7 +89,7 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 		return this.buildDoubleNotEqualTo(left, right);
 	}
 	
-	private AbstractComparativeCompution<Number, Number> buildDoubleNotEqualTo(
+	private AbstractBiPredicateCompution<Number, Number> buildDoubleNotEqualTo(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
@@ -97,27 +98,27 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 				(l, r) -> l.doubleValue() != r.doubleValue());
 	}
 	
-	public AbstractComparativeCompution<Number, Number> lessThan(
+	public AbstractBiPredicateCompution<Number, Number> lessThan(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
-		if ( this.isDouble(left, right) ) {
+		if ( isDouble(left, right) ) {
 			return this.buildDoubleLessThan(left, right);
 		}
 		
-		if ( this.isFloat(left, right) ) {
+		if ( isFloat(left, right) ) {
 			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.floatValue() < r.floatValue());
 		}
 		
-		if ( this.isLong(left, right) ) {
+		if ( isLong(left, right) ) {
 			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.longValue() < r.longValue());
 		}
 		
-		if ( this.isInteger(left, right) ) {
+		if ( isInteger(left, right) ) {
 			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.intValue() < r.intValue());
@@ -126,7 +127,7 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 		return this.buildDoubleLessThan(left, right);
 	}
 	
-	private AbstractComparativeCompution<Number, Number> buildDoubleLessThan(
+	private AbstractBiPredicateCompution<Number, Number> buildDoubleLessThan(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
@@ -135,27 +136,27 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 				(l, r) -> l.doubleValue() < r.doubleValue());
 	}
 	
-	public AbstractComparativeCompution<Number, Number> lessThanOrEqualTo(
+	public AbstractBiPredicateCompution<Number, Number> lessThanOrEqualTo(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
-		if ( this.isDouble(left, right) ) {
+		if ( isDouble(left, right) ) {
 			return this.buildDoubleLessThanOrEqualTo(left, right);
 		}
 		
-		if ( this.isFloat(left, right) ) {
+		if ( isFloat(left, right) ) {
 			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.floatValue() <= r.floatValue());
 		}
 		
-		if ( this.isLong(left, right) ) {
+		if ( isLong(left, right) ) {
 			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.longValue() <= r.longValue());
 		}
 		
-		if ( this.isInteger(left, right) ) {
+		if ( isInteger(left, right) ) {
 			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.intValue() <= r.intValue());
@@ -164,7 +165,7 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 		return this.buildDoubleLessThanOrEqualTo(left, right);
 	}
 	
-	private AbstractComparativeCompution<Number, Number> buildDoubleLessThanOrEqualTo(
+	private AbstractBiPredicateCompution<Number, Number> buildDoubleLessThanOrEqualTo(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
@@ -173,27 +174,27 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 				(l, r) -> l.doubleValue() <= r.doubleValue());
 	}
 	
-	public AbstractComparativeCompution<Number, Number> greaterThan(
+	public AbstractBiPredicateCompution<Number, Number> greaterThan(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
-		if ( this.isDouble(left, right) ) {
+		if ( isDouble(left, right) ) {
 			return this.buildDoubleGreaterThan(left, right);
 		}
 		
-		if ( this.isFloat(left, right) ) {
+		if ( isFloat(left, right) ) {
 			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.floatValue() > r.floatValue());
 		}
 		
-		if ( this.isLong(left, right) ) {
+		if ( isLong(left, right) ) {
 			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.longValue() > r.longValue());
 		}
 		
-		if ( this.isInteger(left, right) ) {
+		if ( isInteger(left, right) ) {
 			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.intValue() > r.intValue());
@@ -202,7 +203,7 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 		return this.buildDoubleGreaterThan(left, right);
 	}
 	
-	private AbstractComparativeCompution<Number, Number> buildDoubleGreaterThan(
+	private AbstractBiPredicateCompution<Number, Number> buildDoubleGreaterThan(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
@@ -211,27 +212,27 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 				(l, r) -> l.doubleValue() > r.doubleValue());
 	}
 	
-	public AbstractComparativeCompution<Number, Number> greaterThanOrEqualTo(
+	public AbstractBiPredicateCompution<Number, Number> greaterThanOrEqualTo(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
-		if ( this.isDouble(left, right) ) {
+		if ( isDouble(left, right) ) {
 			return this.buildDoubleGreaterThanOrEqualTo(left, right);
 		}
 		
-		if ( this.isFloat(left, right) ) {
+		if ( isFloat(left, right) ) {
 			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.floatValue() >= r.floatValue());
 		}
 		
-		if ( this.isLong(left, right) ) {
+		if ( isLong(left, right) ) {
 			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.longValue() >= r.longValue());
 		}
 		
-		if ( this.isInteger(left, right) ) {
+		if ( isInteger(left, right) ) {
 			return buildNumberComparative(
 					left, right,
 					(l, r) -> l.intValue() >= r.intValue());
@@ -240,7 +241,7 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 		return this.buildDoubleGreaterThanOrEqualTo(left, right);
 	}
 	
-	private AbstractComparativeCompution<Number, Number> buildDoubleGreaterThanOrEqualTo(
+	private AbstractBiPredicateCompution<Number, Number> buildDoubleGreaterThanOrEqualTo(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
@@ -251,12 +252,12 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 	
 	private static final Integer ZERO = Integer.valueOf(0);
 	
-	private AbstractComparativeCompution<Number, Number> buildNumberComparative(
+	private AbstractBiPredicateCompution<Number, Number> buildNumberComparative(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right,
 			BiPredicate<Number, Number> compute) {
 		
-		final AbstractComparativeCompution<Number, Number> i = new AbstractComparativeCompution<Number, Number>(compute, ZERO, ZERO) {
+		final AbstractBiPredicateCompution<Number, Number> i = new AbstractBiPredicateCompution<Number, Number>(compute, ZERO, ZERO) {
 			
 			private static final long serialVersionUID = 5610468194150491897L;
 		};
@@ -265,6 +266,22 @@ public class NumberComparativeComputionBuilder extends AbstractComputionBuilder 
 		i.bindRight(right);
 		
 		return i;
+	}
+	
+	private static  boolean isDouble(NumberObservable<? extends Number> a, NumberObservable<? extends Number> b) {
+		return Arrays.asList(a, b).stream().anyMatch(o -> o.isDouble());
+	}
+	
+	private static boolean isFloat(NumberObservable<? extends Number> a, NumberObservable<? extends Number> b) {
+		return Arrays.asList(a, b).stream().anyMatch(o -> o.isFloat());
+	}
+	
+	private static boolean isLong(NumberObservable<? extends Number> a, NumberObservable<? extends Number> b) {
+		return Arrays.asList(a, b).stream().anyMatch(o -> o.isLong());
+	}
+	
+	private static boolean isInteger(NumberObservable<? extends Number> a, NumberObservable<? extends Number> b) {
+		return Arrays.asList(a, b).stream().anyMatch(o -> o.isInteger());
 	}
 	
 }

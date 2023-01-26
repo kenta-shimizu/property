@@ -8,20 +8,13 @@ package com.shimizukenta.property;
  */
 public interface Settable<T> {
 	
-//	/**
-//	 * Value setter.
-//	 * 
-//	 * @param value
-//	 */
-//	public void set(T value);
-	
 	/**
 	 * Bind to observer.
 	 * 
 	 * @param observer
 	 * @return {@code true} if bind success, otherwise {@code false}.
 	 */
-	public boolean bind(Observable<T> observer);
+	public boolean bind(Observable<? extends T> observer);
 	
 	/**
 	 * Unbind to observer.
@@ -29,6 +22,6 @@ public interface Settable<T> {
 	 * @param observer
 	 * @return {@code true} if unbind success, otherwise {@code false}.
 	 */
-	public boolean unbind(Observable<T> observer);
+	public boolean unbind(Observable<? extends T> observer);
 	
 }

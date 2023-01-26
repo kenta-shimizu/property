@@ -26,32 +26,44 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	}
 	
 	protected Map<K, V> _simpleGet() {
-		return this.map;
+		synchronized ( this._sync ) {
+			return this.map;
+		}
 	}
 	
 	@Override
 	public int size() {
-		return this._simpleGet().size();
+		synchronized ( this._sync ) {
+			return this._simpleGet().size();
+		}
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return this._simpleGet().isEmpty();
+		synchronized ( this._sync ) {
+			return this._simpleGet().isEmpty();
+		}
 	}
 	
 	@Override
 	public boolean containsKey(Object key) {
-		return this._simpleGet().containsKey(key);
+		synchronized ( this._sync ) {
+			return this._simpleGet().containsKey(key);
+		}
 	}
 
 	@Override
 	public boolean containsValue(Object value) {
-		return this._simpleGet().containsValue(value);
+		synchronized ( this._sync ) {
+			return this._simpleGet().containsValue(value);
+		}
 	}
 
 	@Override
 	public V get(Object key) {
-		return this._simpleGet().get(key);
+		synchronized ( this._sync ) {
+			return this._simpleGet().get(key);
+		}
 	}
 	
 	@Override
@@ -94,19 +106,25 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 
 	@Override
 	public Set<K> keySet() {
-		return this._simpleGet().keySet();
+		synchronized ( this._sync ) {
+			return this._simpleGet().keySet();
+		}
 	}
 
 	@Override
 	public Collection<V> values() {
-		return this._simpleGet().values();
+		synchronized ( this._sync ) {
+			return this._simpleGet().values();
+		}
 	}
 	
 	@Override
 	public Set<Entry<K, V>> entrySet() {
-		return this._simpleGet().entrySet();
+		synchronized ( this._sync ) {
+			return this._simpleGet().entrySet();
+		}
 	}
-
+	
 	private final Collection<ChangeListener<? super Map<K, V>>> changeLstnrs = new HashSet<>();
 	
 	@Override
@@ -127,9 +145,7 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 		}
 	}
 	
-	private final ChangeListener<Map<K, V>> changeLstnr = this::_syncSetAndNotifyChanged;
-	
-	protected void _syncSetAndNotifyChanged(Map<? extends K, ? extends V> newMap) {
+	protected void _syncSetAndNotifyChanged(Map<K, V> newMap) {
 		synchronized ( this._sync ) {
 			if (! Objects.equals(newMap, this._simpleGet())) {
 				this._simpleGet().clear();
@@ -138,6 +154,8 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 			}
 		}
 	}
+	
+	private final ChangeListener<Map<K, V>> changeLstnr = this::_syncSetAndNotifyChanged;
 	
 	@Override
 	public boolean bind(MapObservable<K, V> observer) {
@@ -160,7 +178,9 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	
 	@Override
 	public String toString() {
-		return this._simpleGet().toString();
+		synchronized ( this._sync ) {
+			return Objects.toString(this._simpleGet());
+		}
 	}
 	
 }

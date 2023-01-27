@@ -5,32 +5,44 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.function.Predicate;
 
+/**
+ * 
+ * @author kenta-shimizu
+ *
+ * @param <T> Type
+ */
 public abstract class AbstractPredicateCompution<T> extends AbstractBooleanCompution {
 	
 	private static final long serialVersionUID = -9033466111311749543L;
 	
-	private final Predicate<? super T> compute;
+	protected final Predicate<? super T> _compute;
 	private T last;
 	
-	protected AbstractPredicateCompution(
+	public AbstractPredicateCompution(
 			Predicate<? super T> compute,
 			T initial) {
 		
 		super(Boolean.valueOf(compute.test(initial)));
 		
-		this.compute = compute;
+		this._compute = compute;
 		this.last = initial;
 	}
 	
-	protected AbstractPredicateCompution(Predicate<? super T> compute) {
+	public AbstractPredicateCompution(Predicate<? super T> compute) {
 		this(compute, null);
+	}
+	
+	public T getLastValue() {
+		synchronized ( this._sync ) {
+			return this.last;
+		}
 	}
 	
 	protected void changedValue(T v) {
 		synchronized ( this._sync ) {
 			if ( ! Objects.equals(v, this.last) ) {
 				this.last = v;
-				this._syncSetAndNotifyChanged(Boolean.valueOf(this.compute.test(v)));
+				this._syncSetAndNotifyChanged(Boolean.valueOf(this._compute.test(v)));
 			}
 		}
 	}
@@ -48,21 +60,21 @@ public abstract class AbstractPredicateCompution<T> extends AbstractBooleanCompu
 	public T waitUntilAndGet(boolean condition) throws InterruptedException {
 		synchronized ( this._sync ) {
 			this.waitUntil(condition);
-			return this.last;
+			return this.getLastValue();
 		}
 	}
 	
 	public T waitUntilAndGet(boolean condition, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		synchronized ( this._sync ) {
 			this.waitUntil(condition, timeout, unit);
-			return this.last;
+			return this.getLastValue();
 		}
 	}
 	
 	public T waitUntilAndGet(boolean condition, TimeGettable p) throws InterruptedException, TimeoutException {
 		synchronized ( this._sync ) {
 			this.waitUntil(condition, p);
-			return this.last;
+			return this.getLastValue();
 		}
 	}
 	

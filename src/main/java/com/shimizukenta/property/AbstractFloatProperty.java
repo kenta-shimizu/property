@@ -9,7 +9,7 @@ public abstract class AbstractFloatProperty extends AbstractNumberProperty<Float
 
 	private static final long serialVersionUID = 7439939403442859342L;
 
-	protected AbstractFloatProperty(float initial) {
+	public AbstractFloatProperty(float initial) {
 		super(Float.valueOf(initial));
 	}
 	

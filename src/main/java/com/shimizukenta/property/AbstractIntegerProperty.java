@@ -9,7 +9,7 @@ public abstract class AbstractIntegerProperty extends AbstractNumberProperty<Int
 	
 	private static final long serialVersionUID = -305818540574009744L;
 	
-	protected AbstractIntegerProperty(int initial) {
+	public AbstractIntegerProperty(int initial) {
 		super(Integer.valueOf(initial));
 	}
 	

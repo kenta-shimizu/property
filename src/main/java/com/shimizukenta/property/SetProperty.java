@@ -12,7 +12,7 @@ import java.util.Set;
  *
  * @param <E> Element
  */
-public interface SetProperty<E> extends Set<E>, CollectionProperty<E, Set<E>>, SetObservable<E> {
+public interface SetProperty<E> extends Set<E>, CollectionProperty<E, Set<E>>, SetObservable<E>, SetSettable<E> {
 	
 	/**
 	 * Instance buidler.

@@ -4,6 +4,12 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 
+/**
+ * 
+ * @author kenta-shimizu
+ *
+ * @param <T> Type
+ */
 public abstract class AbstractCompution<T> implements Compution<T> {
 	
 	private static final long serialVersionUID = -3295956325648873642L;
@@ -12,7 +18,7 @@ public abstract class AbstractCompution<T> implements Compution<T> {
 	
 	protected final Object _sync = new Object();
 	
-	protected AbstractCompution(T initial) {
+	public AbstractCompution(T initial) {
 		this.v = initial;
 	}
 	

@@ -3,6 +3,13 @@ package com.shimizukenta.property;
 import java.util.Objects;
 import java.util.function.BiPredicate;
 
+/**
+ * 
+ * @author kenta-shimizu
+ *
+ * @param <T> Type of left
+ * @param <U> Type of right
+ */
 public abstract class AbstractBiPredicateCompution<T, U> extends AbstractBooleanCompution implements ComparativeCompution {
 	
 	private static final long serialVersionUID = -8029429736383936055L;
@@ -12,7 +19,7 @@ public abstract class AbstractBiPredicateCompution<T, U> extends AbstractBoolean
 	private T left;
 	private U right;
 	
-	protected AbstractBiPredicateCompution(
+	public AbstractBiPredicateCompution(
 			BiPredicate<? super T, ? super U> compute,
 			T leftInitial,
 			U rightInitial) {
@@ -24,12 +31,12 @@ public abstract class AbstractBiPredicateCompution<T, U> extends AbstractBoolean
 		this.right = rightInitial;
 	}
 	
-	protected AbstractBiPredicateCompution(
+	public AbstractBiPredicateCompution(
 			BiPredicate<? super T, ? super U> compute) {
 		this(compute, null, null);
 	}
 	
-	protected void leftChanged(T v) {
+	protected void _leftChanged(T v) {
 		synchronized ( this._sync ) {
 			if (! Objects.equals(v, this.left)) {
 				this.left = v;
@@ -38,7 +45,7 @@ public abstract class AbstractBiPredicateCompution<T, U> extends AbstractBoolean
 		}
 	}
 	
-	protected void rightChanged(U v) {
+	protected void _rightChanged(U v) {
 		synchronized ( this._sync ) {
 			if (! Objects.equals(v, this.right)) {
 				this.right = v;
@@ -47,8 +54,8 @@ public abstract class AbstractBiPredicateCompution<T, U> extends AbstractBoolean
 		}
 	}
 	
-	private final ChangeListener<T> leftLstnr = this::leftChanged;
-	private final ChangeListener<U> rightLstnr = this::rightChanged;
+	private final ChangeListener<T> leftLstnr = this::_leftChanged;
+	private final ChangeListener<U> rightLstnr = this::_rightChanged;
 	
 	public boolean bindLeft(Observable<? extends T> observer) {
 		return observer.addChangeListener(this.leftLstnr);

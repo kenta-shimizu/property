@@ -79,12 +79,13 @@ public class PropertyTest {
 			System.out.println();
 			
 			System.out.println("Waiting until mapProp containsKey(\"KEY\").");
-			String mapv = mapProp.waitUntilContainsKey("KEY");
+			String mapv = mapProp.waitUntilContainsKeyAndGet("KEY");
 			System.out.println("mapProp get(\"KEY\") is " + mapv);
 			System.out.println();
 			
 			System.out.println("Waiting until listProp size >0.");
-			listProp.waitUntilSizeIsGreaterThan(0);
+//			listProp.waitUntilSizeIsGreaterThan(0);
+			listProp.waitUntilIsNotEmpty();
 			System.out.println("listProp size is >0.");
 			System.out.println();
 			
@@ -281,10 +282,10 @@ public class PropertyTest {
 			
 			echo("");
 			echo("wait-until-contain A");
-			echo("Throught get: " + mp.waitUntilContainsKey("A", 3L, TimeUnit.SECONDS));
-			echo("Throught get: " + mp.waitUntilContainsKey("A"));
+			echo("Throught get: " + mp.waitUntilContainsKeyAndGet("A", 3L, TimeUnit.SECONDS));
+			echo("Throught get: " + mp.waitUntilContainsKeyAndGet("A"));
 			
-			echo("wait-until-containsKey B: " + mp.waitUntilContainsKey("B", 1L, TimeUnit.SECONDS));
+			echo("wait-until-containsKey B: " + mp.waitUntilContainsKeyAndGet("B", 1L, TimeUnit.SECONDS));
 		}
 		catch ( TimeoutException e ) {
 			echo(e);

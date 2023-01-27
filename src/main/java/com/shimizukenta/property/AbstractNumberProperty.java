@@ -10,7 +10,7 @@ public abstract class AbstractNumberProperty<T extends Number> extends AbstractP
 	
 	private static final long serialVersionUID = -5768297706611678591L;
 	
-	protected AbstractNumberProperty(T initial) {
+	public AbstractNumberProperty(T initial) {
 		super(initial);
 	}
 	

@@ -83,7 +83,7 @@ public interface ComparativeCompution extends BooleanCompution {
 	 * @return Object EqualTo ComparativeCompution
 	 */
 	public static <T, U> ComparativeCompution equalTo(ObjectObservable<T> a, ObjectObservable<U> b) {
-		return ObjectUtils.buildIsEqualTo(a, b);
+		return ObjectUtils.computeIsEqualTo(a, b);
 	}
 	
 	/**
@@ -96,7 +96,7 @@ public interface ComparativeCompution extends BooleanCompution {
 	 * @return Object NotEqualTo ComparativeCompution
 	 */
 	public static <T, U> ComparativeCompution notEqualTo(ObjectObservable<T> a, ObjectObservable<U> b) {
-		return ObjectUtils.buildIsNotEqualTo(a, b);
+		return ObjectUtils.computeIsNotEqualTo(a, b);
 	}
 	
 }

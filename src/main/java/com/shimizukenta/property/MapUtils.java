@@ -1,6 +1,7 @@
 package com.shimizukenta.property;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -25,6 +26,16 @@ public final class MapUtils {
 				Predicate<? super Map<K, V>> compute) {
 
 			super(compute, new HashMap<K, V>());
+		}
+		
+		@Override
+		protected void changedValue(Map<K, V> v) {
+			synchronized ( this._sync ) {
+				final Map<K, V> x = this.getLastValue();
+				x.clear();
+				x.putAll(v);
+				this._syncSetAndNotifyChanged(Boolean.valueOf(this._compute.test(x)));
+			}
 		}
 		
 		public V waitUntilContainsKeyAndGet(Object key) throws InterruptedException {
@@ -71,27 +82,27 @@ public final class MapUtils {
 		return buildInnerMap(observer, m -> m.containsKey(key));
 	}
 	
-	public static <K, V> AbstractPredicateCompution<Map<K, V>> isContainsKey(
+	public static <K, V> AbstractPredicateCompution<Map<K, V>> computeContainsKey(
 			Observable<Map<K, V>> observer,
 			Object key) {
 		
 		return buildIsContainsKey(observer, key);
 	}
 	
-	public static <K, V> AbstractPredicateCompution<Map<K, V>> isNotContainsKey(
+	public static <K, V> AbstractPredicateCompution<Map<K, V>> computeNotContainsKey(
 			Observable<Map<K, V>> observer,
 			Object key) {
 		
 		return buildInnerMap(observer, m -> ! m.containsKey(key));
 	}
 	
-	public static <K, V> AbstractPredicateCompution<Map<K, V>> isEmpty(
+	public static <K, V> AbstractPredicateCompution<Map<K, V>> computeIsEmpty(
 			Observable<Map<K, V>> observer) {
 		
 		return buildInnerMap(observer, Map::isEmpty);
 	}
 	
-	public static <K, V> AbstractPredicateCompution<Map<K, V>> isNotEmpty(
+	public static <K, V> AbstractPredicateCompution<Map<K, V>> computeIsNotEmpty(
 			Observable<Map<K, V>> observer) {
 		
 		return buildInnerMap(observer, m -> ! m.isEmpty());
@@ -182,7 +193,7 @@ public final class MapUtils {
 			Observable<Map<K, V>> observer,
 			Object key) throws InterruptedException {
 		
-		waitUntilPredicate(isNotContainsKey(observer, key), observer);
+		waitUntilPredicate(computeNotContainsKey(observer, key), observer);
 	}
 	
 	public static <K, V> void waitUntilNotContainsKey(
@@ -191,7 +202,7 @@ public final class MapUtils {
 			long timeout,
 			TimeUnit unit) throws InterruptedException, TimeoutException {
 		
-		waitUntilPredicate(isNotContainsKey(observer, key), observer, timeout, unit);
+		waitUntilPredicate(computeNotContainsKey(observer, key), observer, timeout, unit);
 	}
 	
 	public static <K, V> void waitUntilNotContainsKey(
@@ -199,13 +210,13 @@ public final class MapUtils {
 			Object key,
 			TimeGettable p) throws InterruptedException, TimeoutException {
 		
-		waitUntilPredicate(isNotContainsKey(observer, key), observer, p);
+		waitUntilPredicate(computeNotContainsKey(observer, key), observer, p);
 	}
 	
 	public static <K, V> void waitUntilIsEmpty(
 			Observable<Map<K, V>> observer) throws InterruptedException {
 		
-		waitUntilPredicate(isEmpty(observer), observer);
+		waitUntilPredicate(computeIsEmpty(observer), observer);
 	}
 	
 	public static <K, V> void waitUntilIsEmpty(
@@ -213,20 +224,20 @@ public final class MapUtils {
 			long timeout,
 			TimeUnit unit) throws InterruptedException, TimeoutException {
 		
-		waitUntilPredicate(isEmpty(observer), observer, timeout, unit);
+		waitUntilPredicate(computeIsEmpty(observer), observer, timeout, unit);
 	}
 	
 	public static <K, V> void waitUntilIsEmpty(
 			Observable<Map<K, V>> observer,
 			TimeGettable p) throws InterruptedException, TimeoutException {
 		
-		waitUntilPredicate(isEmpty(observer), observer, p);
+		waitUntilPredicate(computeIsEmpty(observer), observer, p);
 	}
 	
 	public static <K, V> void waitUntilIsNotEmpty(
 			Observable<Map<K, V>> observer) throws InterruptedException {
 		
-		waitUntilPredicate(isNotEmpty(observer), observer);
+		waitUntilPredicate(computeIsNotEmpty(observer), observer);
 	}
 	
 	public static <K, V> void waitUntilIsNotEmpty(
@@ -234,14 +245,40 @@ public final class MapUtils {
 			long timeout,
 			TimeUnit unit) throws InterruptedException, TimeoutException {
 		
-		waitUntilPredicate(isNotEmpty(observer), observer, timeout, unit);
+		waitUntilPredicate(computeIsNotEmpty(observer), observer, timeout, unit);
 	}
 	
 	public static <K, V> void waitUntilIsNotEmpty(
 			Observable<Map<K, V>> observer,
 			TimeGettable p) throws InterruptedException, TimeoutException {
 		
-		waitUntilPredicate(isNotEmpty(observer), observer, p);
+		waitUntilPredicate(computeIsNotEmpty(observer), observer, p);
+	}
+	
+	private static class InnerKeySet<K, V> extends AbstractSetCompution<K> {
+		
+		private static final long serialVersionUID = -1028393058729307902L;
+		
+		public InnerKeySet() {
+			super(new HashSet<>());
+		}
+		
+		private void changedMap(Map<K, V> newMap) {
+			this._syncSetAndNotifyChanged(newMap.keySet());
+		}
+		
+		private final ChangeListener<Map<K, V>> bindLstnr = this::changedMap;
+		
+		public boolean bindMap(Observable<Map<K, V>> observer) {
+			return observer.addChangeListener(this.bindLstnr);
+		}
+	}
+	
+	
+	public static <K, V> SetCompution<K> computeKeySet(Observable<Map<K, V>> observer) {
+		final InnerKeySet<K, V> i = new InnerKeySet<>();
+		i.bindMap(observer);
+		return i;
 	}
 	
 }

@@ -4,29 +4,17 @@ import java.util.Collection;
 import java.util.List;
 import java.util.ListIterator;
 
-/**
- * 
- * @author kenta-shimizu
- *
- * @param <E> Element
- */
-public abstract class AbstractListProperty<E> extends AbstractCollectionProperty<E, List<E>> implements ListProperty<E> {
+public abstract class AbstractListCompution<E> extends AbstractCollectionCompution<E, List<E>> implements ListCompution<E> {
 	
-	private static final long serialVersionUID = -1599017743017445594L;
+	private static final long serialVersionUID = -7273441815983971442L;
 	
-	public AbstractListProperty(List<E> initial) {
+	public AbstractListCompution(List<E> initial) {
 		super(initial);
 	}
 	
 	@Override
 	public boolean addAll(int index, Collection<? extends E> c) {
-		synchronized ( this._sync ) {
-			boolean f = this._simpleGet().addAll(index, c);
-			if ( f ) {
-				this._notifyChagned();
-			}
-			return f;
-		}
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -38,28 +26,17 @@ public abstract class AbstractListProperty<E> extends AbstractCollectionProperty
 
 	@Override
 	public E set(int index, E element) {
-		synchronized ( this._sync ) {
-			E v = this._simpleGet().set(index, element);
-			this._notifyChagned();
-			return v;
-		}
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public void add(int index, E element) {
-		synchronized ( this._sync ) {
-			this._simpleGet().add(index, element);
-			this._notifyChagned();
-		}
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public E remove(int index) {
-		synchronized ( this._sync ) {
-			E v = this._simpleGet().remove(index);
-			this._notifyChagned();
-			return v;
-		}
+		throw new UnsupportedOperationException();
 	}
 
 	@Override

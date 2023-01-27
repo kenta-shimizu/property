@@ -12,13 +12,15 @@ public abstract class AbstractBooleanCompution extends AbstractCompution<Boolean
 	
 	private static final long serialVersionUID = 628986372297013412L;
 	
-	protected AbstractBooleanCompution(Boolean initial) {
+	public AbstractBooleanCompution(Boolean initial) {
 		super(initial);
 	}
 	
 	@Override
 	public boolean booleanValue() {
-		return this._simpleGet().booleanValue();
+		synchronized ( this._sync ) {
+			return this._simpleGet().booleanValue();
+		}
 	}
 	
 	@Override

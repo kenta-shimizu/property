@@ -21,7 +21,7 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * @return {@link BooleanCompution} of {@link Map#containsKey(Object)} == {@code true}
 	 */
 	default public BooleanCompution computeContainsKey(Object key) {
-		return MapUtils.isContainsKey(this, key);
+		return MapUtils.computeContainsKey(this, key);
 	}
 	
 	/**
@@ -31,7 +31,7 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * @return {@link BooleanCompution} of {@link Map#containsKey(Object)} == {@code false}
 	 */
 	default public BooleanCompution computeNotContainsKey(Object key) {
-		return MapUtils.isNotContainsKey(this, key);
+		return MapUtils.computeNotContainsKey(this, key);
 	}
 	
 	/**
@@ -40,7 +40,7 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * @return {@link BooleanCompution} of {@link Map#isEmpty()} == {@code true}
 	 */
 	default public BooleanCompution computeIsEmpty() {
-		return MapUtils.isEmpty(this);
+		return MapUtils.computeIsEmpty(this);
 	}
 	
 	/**
@@ -49,16 +49,17 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * @return {@link BooleanCompution} of {@link Map#isEmpty()} == {@code false}
 	 */
 	default public BooleanCompution computeIsNotEmpty() {
-		return MapUtils.isNotEmpty(this);
+		return MapUtils.computeIsNotEmpty(this);
 	}
 	
-	//TODO
-//	default public SetCompution<K> computeKeySet() {
-//		
-//		//TODO
-//		
-//		return null;
-//	}
+	/**
+	 * Returns {@link SetCompution} of {@link Map#keySet()}.
+	 * 
+	 * @return {@link SetCompution} of {@link Map#keySet()}
+	 */
+	default public SetCompution<K> computeKeySet() {
+		return MapUtils.computeKeySet(this);
+	}
 	
 	/**
 	 * Wait until {@link Map#containsKey(Object)} is {@code true}, and return value.
@@ -72,7 +73,7 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * @return {@link Map#get(Object)}
 	 * @throws InterruptedException
 	 */
-	default public V waitUntilContainsKey(Object key) throws InterruptedException {
+	default public V waitUntilContainsKeyAndGet(Object key) throws InterruptedException {
 		return MapUtils.waitUntilContainsKey(this, key);
 	}
 	
@@ -91,7 +92,7 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public V waitUntilContainsKey(Object key, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+	default public V waitUntilContainsKeyAndGet(Object key, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		return MapUtils.waitUntilContainsKey(this, key, timeout, unit);
 	}
 	
@@ -109,7 +110,7 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public V waitUntilContainsKey(Object key, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public V waitUntilContainsKeyAndGet(Object key, TimeGettable p) throws InterruptedException, TimeoutException {
 		return MapUtils.waitUntilContainsKey(this, key, p);
 	}
 	

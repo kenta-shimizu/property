@@ -1,10 +1,16 @@
 package com.shimizukenta.property;
 
+/**
+ * 
+ * @author kenta-shimizu
+ *
+ * @param <T> Type
+ */
 public abstract class AbstractUnmodifiableObjectProperty<T> extends AbstractObjectProperty<T> {
 	
 	private static final long serialVersionUID = 1122655569059560817L;
 	
-	protected AbstractUnmodifiableObjectProperty(T initial) {
+	public AbstractUnmodifiableObjectProperty(T initial) {
 		super(initial);
 	}
 	

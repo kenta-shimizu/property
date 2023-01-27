@@ -9,7 +9,7 @@ public abstract class AbstractLongProperty extends AbstractNumberProperty<Long> 
 	
 	private static final long serialVersionUID = 9186020409952044558L;
 
-	protected AbstractLongProperty(long initial) {
+	public AbstractLongProperty(long initial) {
 		super(Long.valueOf(initial));
 	}
 	

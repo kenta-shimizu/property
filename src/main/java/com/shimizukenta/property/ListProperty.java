@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @param <E> Element
  */
-public interface ListProperty<E> extends List<E>, CollectionProperty<E, List<E>>, ListObservable<E> {
+public interface ListProperty<E> extends List<E>, CollectionProperty<E, List<E>>, ListObservable<E>, ListSettable<E> {
 	
 	/**
 	 * Instance builder.

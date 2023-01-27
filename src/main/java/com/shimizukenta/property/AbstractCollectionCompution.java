@@ -10,17 +10,17 @@ import java.util.Objects;
  * @author kenta-shimizu
  *
  * @param <E> Element
- * @param <T> Elements
+ * @param <T> Type
  */
-public abstract class AbstractCollectionProperty<E, T extends Collection<E>> implements CollectionProperty<E, T> {
+public abstract class AbstractCollectionCompution<E, T extends Collection<E>> implements CollectionCompution<E, T> {
 	
-	private static final long serialVersionUID = 3399378304619203215L;
-	
+	private static final long serialVersionUID = -6611104182991862616L;
+
 	protected final Object _sync = new Object();
 	
 	private T v;
 	
-	public AbstractCollectionProperty(T initial) {
+	public AbstractCollectionCompution(T initial) {
 		this.v = initial;
 	}
 	
@@ -72,24 +72,12 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 	
 	@Override
 	public boolean add(E e) {
-		synchronized ( this._sync ) {
-			boolean f = this._simpleGet().add(e);
-			if ( f ) {
-				this._notifyChagned();
-			}
-			return f;
-		}
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public boolean remove(Object o) {
-		synchronized ( this._sync ) {
-			boolean f = this._simpleGet().remove(o);
-			if ( f ) {
-				this._notifyChagned();
-			}
-			return f;
-		}
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -101,44 +89,23 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
-		synchronized ( this._sync ) {
-			boolean f = this._simpleGet().addAll(c);
-			if ( f ) {
-				this._notifyChagned();
-			}
-			return f;
-		}
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public boolean removeAll(Collection<?> c) {
-		synchronized ( this._sync ) {
-			boolean f = this._simpleGet().removeAll(c);
-			if ( f ) {
-				this._notifyChagned();
-			}
-			return f;
-		}
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public boolean retainAll(Collection<?> c) {
-		synchronized ( this._sync ) {
-			boolean f = this._simpleGet().retainAll(c);
-			if ( f ) {
-				this._notifyChagned();
-			}
-			return f;
-		}
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public void clear() {
 		synchronized ( this._sync ) {
-			if ( ! this._simpleGet().isEmpty() ) {
-				this._simpleGet().clear();
-				this._notifyChagned();
-			}
+			throw new UnsupportedOperationException();
 		}
 	}
 	
@@ -165,7 +132,7 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 	protected void _syncSetAndNotifyChanged(T c) {
 		synchronized ( this._sync ) {
 			final T x = this._simpleGet();
-			if (! Objects.equals(c, x)) {
+			if ( ! Objects.equals(x, c) ) {
 				x.clear();
 				x.addAll(c);
 				this._notifyChagned();
@@ -175,12 +142,10 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 	
 	private final ChangeListener<T> bindLstnr = this::_syncSetAndNotifyChanged;
 	
-	@Override
 	public boolean bind(CollectionObservable<E, T> observer) {
 		return observer.addChangeListener(this.bindLstnr);
 	}
 	
-	@Override
 	public boolean unbind(CollectionObservable<E, T> observer) {
 		return observer.removeChangeListener(this.bindLstnr);
 	}
@@ -198,5 +163,5 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 			return Objects.toString(this._simpleGet());
 		}
 	}
-
+	
 }

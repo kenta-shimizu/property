@@ -4,13 +4,19 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 
+/**
+ * 
+ * @author kenta-shimizu
+ *
+ * @param <T> Type
+ */
 public abstract class AbstractProperty<T> implements Property<T> {
 	
 	private static final long serialVersionUID = 673883739488369977L;
 	
 	private T v;
 	
-	protected AbstractProperty(T initial) {
+	public AbstractProperty(T initial) {
 		this.v = initial;
 	}
 	

@@ -21,7 +21,7 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	
 	private final Map<K, V> map;
 	
-	protected AbstractMapProperty(Map<K, V> initial) {
+	public AbstractMapProperty(Map<K, V> initial) {
 		this.map = initial;
 	}
 	
@@ -147,9 +147,10 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	
 	protected void _syncSetAndNotifyChanged(Map<K, V> newMap) {
 		synchronized ( this._sync ) {
-			if (! Objects.equals(newMap, this._simpleGet())) {
-				this._simpleGet().clear();
-				this._simpleGet().putAll(newMap);
+			final Map<K, V> x = this._simpleGet();
+			if ( ! Objects.equals(newMap, x) ) {
+				x.clear();
+				x.putAll(newMap);
 				this._notifyChanged();
 			}
 		}

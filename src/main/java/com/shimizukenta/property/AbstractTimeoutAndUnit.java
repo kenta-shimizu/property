@@ -4,6 +4,11 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 
+ * @author kenta-shimizu
+ *
+ */
 public abstract class AbstractTimeoutAndUnit implements TimeoutAndUnit, Serializable {
 	
 	private static final long serialVersionUID = -8263697919297198015L;
@@ -11,7 +16,7 @@ public abstract class AbstractTimeoutAndUnit implements TimeoutAndUnit, Serializ
 	private final long timeout;
 	private final TimeUnit unit;
 	
-	protected AbstractTimeoutAndUnit(long timeout, TimeUnit unit) {
+	public AbstractTimeoutAndUnit(long timeout, TimeUnit unit) {
 		if ( timeout < 0L ) {
 			throw new IllegalArgumentException("timeout must >=0L");
 		}

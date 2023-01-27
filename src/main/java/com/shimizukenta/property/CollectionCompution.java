@@ -10,6 +10,6 @@ import java.util.Collection;
  * @param <E> Element
  * @param <T> Type
  */
-public interface CollectionProperty<E, T extends Collection<E>> extends Collection<E>, CollectionObservable<E, T>, CollectionSettable<E, T>, Serializable {
+public interface CollectionCompution<E, T extends Collection<E>> extends Collection<E>, CollectionObservable<E, T>, Serializable {
 
 }

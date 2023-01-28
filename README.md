@@ -229,9 +229,9 @@ System.out.println("Waiting until boolProp is true.");
 boolProp.waitUntilTrue();
 System.out.println("boolProp is true.");
 
-System.out.println("Waiting until intProp is >5.");
-intProp.waitUntilGreaterThan(5);
-System.out.println("inrProp is >5.");
+System.out.println("Waiting until intProp is noy empty.");
+intProp.waitUntilIsNotEmpty();
+System.out.println("inrProp is not empty.");
 
 System.out.println("Waiting until objProp is not null.");
 String objv = objProp.waitUntilNotNull();

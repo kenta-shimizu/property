@@ -17,6 +17,11 @@ public abstract class AbstractFloatCompution extends AbstractNumberCompution imp
 	
 	protected static final Float ZERO = Float.valueOf(0.0F);
 	
+	@Override
+	public boolean isFloat() {
+		return true;
+	}
+	
 	private final List<Inner> inners = new ArrayList<>();
 	private final Function<? super List<? extends Number>, ? extends Number> compute;
 	
@@ -61,11 +66,6 @@ public abstract class AbstractFloatCompution extends AbstractNumberCompution imp
 		protected float floatValue() {
 			return this.last;
 		}
-	}
-	
-	@Override
-	public boolean isFloat() {
-		return true;
 	}
 	
 }

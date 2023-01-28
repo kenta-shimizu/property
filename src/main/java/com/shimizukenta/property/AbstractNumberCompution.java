@@ -18,52 +18,44 @@ public abstract class AbstractNumberCompution extends AbstractCompution<Number> 
 	
 	@Override
 	public byte byteValue() {
-		return this._simpleGet().byteValue();
+		synchronized ( this._sync ) {
+			return this._simpleGet().byteValue();
+		}
 	}
 	
 	@Override
 	public short shortValue() {
-		return this._simpleGet().shortValue();
+		synchronized ( this._sync ) {
+			return this._simpleGet().shortValue();
+		}
 	}
 	
 	@Override
 	public int intValue() {
-		return this._simpleGet().intValue();
+		synchronized ( this._sync ) {
+			return this._simpleGet().intValue();
+		}
 	}
 	
 	@Override
 	public long longValue() {
-		return this._simpleGet().longValue();
+		synchronized ( this._sync ) {
+			return this._simpleGet().longValue();
+		}
 	}
 	
 	@Override
 	public float floatValue() {
-		return this._simpleGet().floatValue();
+		synchronized ( this._sync ) {
+			return this._simpleGet().floatValue();
+		}
 	}
 	
 	@Override
 	public double doubleValue() {
-		return this._simpleGet().doubleValue();
-	}
-	
-	@Override
-	public boolean isInteger() {
-		return false;
-	}
-	
-	@Override
-	public boolean isLong() {
-		return false;
-	}
-	
-	@Override
-	public boolean isFloat() {
-		return false;
-	}
-	
-	@Override
-	public boolean isDouble() {
-		return false;
+		synchronized ( this._sync ) {
+			return this._simpleGet().doubleValue();
+		}
 	}
 	
 }

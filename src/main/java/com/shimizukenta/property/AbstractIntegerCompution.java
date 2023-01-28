@@ -15,6 +15,11 @@ public abstract class AbstractIntegerCompution extends AbstractNumberCompution i
 	
 	private static final long serialVersionUID = 8925963972017058242L;
 	
+	@Override
+	public boolean isInteger() {
+		return true;
+	}
+	
 	protected static final Integer ZERO = Integer.valueOf(0);
 	
 	private final List<Inner> inners = new ArrayList<>();
@@ -61,11 +66,6 @@ public abstract class AbstractIntegerCompution extends AbstractNumberCompution i
 		protected int intValue() {
 			return this.last;
 		}
-	}
-	
-	@Override
-	public boolean isInteger() {
-		return true;
 	}
 	
 }

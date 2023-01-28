@@ -22,5 +22,5 @@ public abstract class AbstractFloatProperty extends AbstractNumberProperty<Float
 	public boolean isFloat() {
 		return true;
 	}
-	
+
 }

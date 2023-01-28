@@ -18,28 +18,36 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * 
 	 * @return {@code true} if Number is instance of Integer, otherwise {@code false}.
 	 */
-	public boolean isInteger();
+	default public boolean isInteger() {
+		return false;
+	}
 	
 	/**
 	 * Returns {@code true} if Number is instance of Long, otherwise {@code false}.
 	 * 
 	 * @return {@code true} if Number is instance of Long, otherwise {@code false}.
 	 */
-	public boolean isLong();
+	default public boolean isLong() {
+		return false;
+	}
 	
 	/**
 	 * Returns {@code true} if Number is instance of Float, otherwise {@code false}.
 	 * 
 	 * @return {@code true} if Number is instance of Float, otherwise {@code false}.
 	 */
-	public boolean isFloat();
+	default public boolean isFloat() {
+		return false;
+	}
 	
 	/**
 	 * Returns {@code true} if Number is instance of Double, otherwise {@code false}.
 	 * 
 	 * @return {@code true} if Number is instance of Double, otherwise {@code false}.
 	 */
-	public boolean isDouble();
+	default public boolean isDouble() {
+		return false;
+	}
 	
 	/* Casts */
 	

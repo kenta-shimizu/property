@@ -15,6 +15,11 @@ public abstract class AbstractDoubleCompution extends AbstractNumberCompution im
 	
 	private static final long serialVersionUID = 7765635626320082694L;
 	
+	@Override
+	public boolean isDouble() {
+		return true;
+	}
+
 	protected static final Double ZERO = Double.valueOf(0.0D);
 	
 	private final List<Inner> inners = new ArrayList<>();
@@ -62,11 +67,6 @@ public abstract class AbstractDoubleCompution extends AbstractNumberCompution im
 			return this.last;
 		}
 
-	}
-	
-	@Override
-	public boolean isDouble() {
-		return true;
 	}
 	
 }

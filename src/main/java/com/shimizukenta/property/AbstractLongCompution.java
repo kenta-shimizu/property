@@ -17,6 +17,11 @@ public abstract class AbstractLongCompution extends AbstractNumberCompution impl
 	
 	protected static final Long ZERO = Long.valueOf(0L);
 	
+	@Override
+	public boolean isLong() {
+		return true;
+	}
+	
 	private final List<Inner> inners = new ArrayList<>();
 	private final Function<? super List<? extends Number>, ? extends Number> compute;
 	
@@ -61,11 +66,6 @@ public abstract class AbstractLongCompution extends AbstractNumberCompution impl
 		protected long longValue() {
 			return this.last;
 		}
-	}
-	
-	@Override
-	public boolean isLong() {
-		return true;
 	}
 	
 }

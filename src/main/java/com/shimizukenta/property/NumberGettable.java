@@ -4,6 +4,7 @@ package com.shimizukenta.property;
  * 
  * @author kenta-shimizu
  *
+ * @param <T> Type
  */
 public interface NumberGettable<T extends Number> extends Gettable<T> {
 	

@@ -4,7 +4,7 @@ package com.shimizukenta.property;
  * @author kenta-shimizu
  *
  */
-public interface LongProperty extends NumberProperty<Long>, LongGettable, LongSettable, LongObservable {
+public interface LongProperty extends NumberProperty<Long>, LongSettable {
 	
 	/**
 	 * LongProperty builder.

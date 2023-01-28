@@ -18,7 +18,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * @param observable
 	 * @return isEqualTo ComparativeCompution instance
 	 */
-	default public <U> ComparativeCompution computeEqualTo(ObjectObservable<U> observer) {
+	default public <U> ComparativeCompution computeIsEqualTo(ObjectObservable<U> observer) {
 		return ObjectUtils.computeIsEqualTo(this, observer);
 	}
 	
@@ -29,8 +29,8 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * @param ref
 	 * @return isEqualTo ComparativeCompution instance
 	 */
-	default public <U> ComparativeCompution computeEqualTo(U ref) {
-		return this.computeEqualTo(ObjectUtils.newUnmodifiable(ref));
+	default public <U> ComparativeCompution computeIsEqualTo(U ref) {
+		return this.computeIsEqualTo(ObjectUtils.newUnmodifiable(ref));
 	}
 	
 	/**
@@ -40,7 +40,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * @param observable
 	 * @return isNotEqualTo ComparativeCompution instance
 	 */
-	default public <U> ComparativeCompution computeNotEqualTo(ObjectObservable<U> observer) {
+	default public <U> ComparativeCompution computeIsNotEqualTo(ObjectObservable<U> observer) {
 		return ObjectUtils.computeIsNotEqualTo(this, observer);
 	}
 	
@@ -51,8 +51,8 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * @param ref
 	 * @return isNotEqualTo ComparativeCompution instance
 	 */
-	default public <U> ComparativeCompution computeNotEqualTo(U ref) {
-		return this.computeNotEqualTo(ObjectUtils.newUnmodifiable(ref));
+	default public <U> ComparativeCompution computeIsNotEqualTo(U ref) {
+		return this.computeIsNotEqualTo(ObjectUtils.newUnmodifiable(ref));
 	}
 	
 	/**
@@ -178,13 +178,14 @@ public interface ObjectObservable<T> extends Observable<T> {
 	
 	//TODO
 	//comment
-	default public BooleanCompution computeEqualToNull() {
+	default public BooleanCompution computeIsEqualToNull() {
 		return ObjectUtils.computeIsNull(this);
 	}
 	
 	//TODO
 	//comment
-	default public BooleanCompution computeNotEqualToNull() {
+	
+	default public BooleanCompution computeIsNotEqualToNull() {
 		return ObjectUtils.computeIsNotNull(this);
 	}
 	

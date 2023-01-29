@@ -10,39 +10,18 @@ import java.util.Collection;
  */
 public interface NumberCompution extends Compution<Number>, NumberGettable<Number>, NumberObservable<Number> {
 	
-	public static NumberCompution add(
-			NumberObservable<? extends Number> a,
-			NumberObservable<? extends Number> b) {
-		
-		return add(Arrays.asList(a, b));
-	}
-	
-	public static NumberCompution add(
-			NumberObservable<? extends Number> a,
-			NumberObservable<? extends Number> b,
-			NumberObservable<? extends Number> c) {
-		
-		return add(Arrays.asList(a, b, c));
-	}
-	
-	public static NumberCompution add(
-			NumberObservable<? extends Number> a,
-			NumberObservable<? extends Number> b,
-			NumberObservable<? extends Number> c,
-			NumberObservable<? extends Number> d) {
-		
-		return add(Arrays.asList(a, b, c, d));
-	}
-	
-	public static NumberCompution add(Collection<? extends NumberObservable<? extends Number>> observables) {
-		return NumberComputionBuilder.getInstance().add(observables);
-	}
+//	public static NumberCompution add(
+//			NumberObservable<? extends Number> a,
+//			NumberObservable<? extends Number> b) {
+//		
+//		return sum(Arrays.asList(a, b));
+//	}
 	
 	public static NumberCompution sum(
 			NumberObservable<? extends Number> a,
 			NumberObservable<? extends Number> b) {
 		
-		return add(a, b);
+		return sum(a, b);
 	}
 	
 	public static NumberCompution sum(
@@ -50,7 +29,7 @@ public interface NumberCompution extends Compution<Number>, NumberGettable<Numbe
 			NumberObservable<? extends Number> b,
 			NumberObservable<? extends Number> c) {
 		
-		return add(a, b, c);
+		return sum(a, b, c);
 	}
 	
 	public static NumberCompution sum(
@@ -59,11 +38,12 @@ public interface NumberCompution extends Compution<Number>, NumberGettable<Numbe
 			NumberObservable<? extends Number> c,
 			NumberObservable<? extends Number> d) {
 		
-		return add(a, b, c, d);
+		return sum(a, b, c, d);
 	}
 	
-	public static NumberCompution sum(Collection<? extends NumberObservable<? extends Number>> observables) {
-		return add(observables);
+	public static NumberCompution sum(Collection<? extends NumberObservable<? extends Number>> observers) {
+		
+		return NumberUtils.sum(observers);
 	}
 	
 	public static NumberCompution multiply(
@@ -90,16 +70,16 @@ public interface NumberCompution extends Compution<Number>, NumberGettable<Numbe
 		return multiply(Arrays.asList(a, b, c, d));
 	}
 	
-	public static NumberCompution multiply(Collection<? extends NumberObservable<? extends Number>> observables) {
-		return NumberComputionBuilder.getInstance().multiply(observables);
+	public static NumberCompution multiply(Collection<? extends NumberObservable<? extends Number>> observers) {
+		return NumberUtils.multiply(observers);
 	}
 	
-	public static NumberCompution negate(NumberObservable<? extends Number> observable) {
-		return NumberComputionBuilder.getInstance().negate(observable);
+	public static NumberCompution negate(NumberObservable<? extends Number> observer) {
+		return NumberUtils.negate(observer);
 	}
 	
-	public static NumberCompution subtract(NumberObservable<? extends Number> a, NumberObservable<? extends Number> b) {
-		return NumberComputionBuilder.getInstance().substract(a, b);
+	public static NumberCompution subtract(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
+		return NumberUtils.subtrate(left, right);
 	}
 	
 	public static NumberCompution max(
@@ -126,8 +106,8 @@ public interface NumberCompution extends Compution<Number>, NumberGettable<Numbe
 		return max(Arrays.asList(a, b, c, d));
 	}
 	
-	public static NumberCompution max(Collection<? extends NumberObservable<? extends Number>> observables) {
-		return NumberComputionBuilder.getInstance().max(observables);
+	public static NumberCompution max(Collection<? extends NumberObservable<? extends Number>> observers) {
+		return NumberUtils.max(observers);
 	}
 	
 	public static NumberCompution min(
@@ -154,8 +134,8 @@ public interface NumberCompution extends Compution<Number>, NumberGettable<Numbe
 		return min(Arrays.asList(a, b, c, d));
 	}
 	
-	public static NumberCompution min(Collection<? extends NumberObservable<? extends Number>> observables) {
-		return NumberComputionBuilder.getInstance().min(observables);
+	public static NumberCompution min(Collection<? extends NumberObservable<? extends Number>> observers) {
+		return NumberUtils.min(observers);
 	}
 	
 }

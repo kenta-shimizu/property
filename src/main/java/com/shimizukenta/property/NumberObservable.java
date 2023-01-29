@@ -57,7 +57,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return IntegerComution converted instance.
 	 */
 	default public IntegerCompution toInteger() {
-		return NumberComputionBuilder.getInstance().toInteger(this);
+		return NumberUtils.toInteger(this);
 	}
 	
 	/**
@@ -66,7 +66,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return LongCompution converted instance.
 	 */
 	default public LongCompution toLong() {
-		return NumberComputionBuilder.getInstance().toLong(this);
+		return NumberUtils.toLong(this);
 	}
 	
 	/**
@@ -75,7 +75,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return FloatCompution converted instance.
 	 */
 	default public FloatCompution toFloat() {
-		return NumberComputionBuilder.getInstance().toFloat(this);
+		return NumberUtils.toFloat(this);
 	}
 	
 	/**
@@ -84,7 +84,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return DoubleCompution comerted instance.
 	 */
 	default public DoubleCompution toDouble() {
-		return NumberComputionBuilder.getInstance().toDouble(this);
+		return NumberUtils.toDouble(this);
 	}
 	
 	/* Number Compution Bases */
@@ -96,7 +96,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return NumberCompution of this.value + observable.value.
 	 */
 	default public NumberCompution add(NumberObservable<? extends Number> observable) {
-		return NumberCompution.add(this, observable);
+		return NumberCompution.sum(this, observable);
 	}
 	
 	/**

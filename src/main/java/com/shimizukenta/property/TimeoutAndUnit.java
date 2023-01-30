@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
  * This interface instance is a pair of timeout and TimeUnit.
  * 
  * @author kenta-shimizu
+ * @see TimeUnit
  *
  */
 public interface TimeoutAndUnit {

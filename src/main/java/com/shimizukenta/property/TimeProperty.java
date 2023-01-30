@@ -4,9 +4,19 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Build instance via {@link #newInstance(long, TimeUnit)}.
+ * TimeoutAndUnit value Property, includes Getter, Setter, Observer.
+ * 
+ * <p>
+ * Build instance via {@link #newInstance(long, TimeUnit)}.<br />
+ * </p>
  * 
  * @author kenta-shimizu
+ * @see TimeUnit
+ * @see TimeoutAndUnit
+ * @see TimeGettable
+ * @see TimeSettable
+ * @see TimeObservable
+ * @see Property
  *
  */
 public interface TimeProperty extends Property<TimeoutAndUnit>, TimeGettable, TimeSettable, TimeObservable {

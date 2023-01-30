@@ -1,6 +1,7 @@
 package com.shimizukenta.property;
 
 /**
+ * Super Getter interface.
  * 
  * @author kenta-shimizu
  *

@@ -5,11 +5,15 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
+ * Map value Observer.
  * 
  * @author kenta-shimizu
  *
  * @param <K> Key Type
  * @param <V> Value Type
+ * @see Observable
+ * @see Map
+ * 
  */
 public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	

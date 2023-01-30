@@ -1,8 +1,18 @@
 package com.shimizukenta.property;
 
 /**
+ * Boolean value Property, includes Getter, Setter, Observer.
+ * 
+ * <p>
+ * Build instance via {@link #newInstance(boolean)}.<br />
+ * </p>
  * 
  * @author kenta-shimizu
+ * @see Boolean
+ * @see BooleanGettable
+ * @see BooleanSettable
+ * @see BooleanObservable
+ * @see Property
  *
  */
 public interface BooleanProperty extends Property<Boolean>, BooleanGettable, BooleanSettable, BooleanObservable {
@@ -10,7 +20,7 @@ public interface BooleanProperty extends Property<Boolean>, BooleanGettable, Boo
 	/**
 	 * BooleanProperty builder.
 	 * 
-	 * @param initial
+	 * @param initial is boolean
 	 * @return new-instance.
 	 */
 	public static BooleanProperty newInstance(boolean initial) {

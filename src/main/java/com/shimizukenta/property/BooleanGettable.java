@@ -1,9 +1,11 @@
 package com.shimizukenta.property;
 
 /**
+ * Boolean value Getter.
  * 
  * @author kenta-shimizu
- *
+ * @see Boolean
+ * @see Gettable
  */
 public interface BooleanGettable extends Gettable<Boolean> {
 	

@@ -1,10 +1,13 @@
 package com.shimizukenta.property;
 
 /**
+ * Object value Getter.
  * 
  * @author kenta-shimizu
  *
  * @param <T> Type
+ * @see Gettable
+ * 
  */
 public interface ObjectGettable<T> extends Gettable<T> {
 	

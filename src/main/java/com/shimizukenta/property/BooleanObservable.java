@@ -4,8 +4,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
+ * Boolean value Observer.
  * 
  * @author kenta-shimizu
+ * @see Boolean
+ * @see Observable
  *
  */
 public interface BooleanObservable extends Observable<Boolean> {

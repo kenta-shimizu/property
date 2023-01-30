@@ -6,12 +6,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Build instance via {@link #newInstance()}.
+ * Map value Property, includes Getter, Setter, Observer.d
+ * 
+ * <p>
+ * Build instance via {@link #newInstance()}.<br />
+ * </p>
  * 
  * @author kenta-shimizu
  *
  * @param <K> Key Type
  * @param <V> Value Type
+ * @see MapSettable
+ * @see MapObservable
+ * @see Map
+ * 
  */
 public interface MapProperty<K, V> extends Map<K, V>, MapSettable<K, V>, MapObservable<K, V>, Serializable {
 	

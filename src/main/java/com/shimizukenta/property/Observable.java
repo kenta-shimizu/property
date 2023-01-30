@@ -1,6 +1,7 @@
 package com.shimizukenta.property;
 
 /**
+ * Super Observer interface.
  * 
  * @author kenta-shimizu
  *

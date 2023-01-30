@@ -1,6 +1,7 @@
 package com.shimizukenta.property;
 
 /**
+ * Super Setter interface.
  * 
  * @author kenta-shimizu
  *

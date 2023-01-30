@@ -1,11 +1,20 @@
 package com.shimizukenta.property;
 
 /**
- * Build instance via {@link #newInstance(Object)}.
+ * Object value Property, includes Getter, Setter, Observer.
+ * 
+ * <p>
+ * Build instance via {@link #newInstance(Object)}.<br />
+ * </p>
  * 
  * @author kenta-shimizu
  *
  * @param <T> Type
+ * @see ObjectGettable
+ * @see ObjectSettable
+ * @see ObjectObservable
+ * @see Property
+ * 
  */
 public interface ObjectProperty<T> extends Property<T>, ObjectGettable<T>, ObjectSettable<T>, ObjectObservable<T> {
 	

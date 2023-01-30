@@ -5,6 +5,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.function.Predicate;
 
+/**
+ * 
+ * @author kenta-shimizu
+ *
+ */
 public class CollectionUtils {
 
 	private CollectionUtils() {

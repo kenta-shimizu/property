@@ -11,14 +11,18 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
+ * TimeoutAndUnit value Getter.
  * 
  * @author kenta-shimizu
- *
+ * @see TimeUnit
+ * @see TimeoutAndUnit
+ * @see Gettable
+ * 
  */
 public interface TimeGettable extends Gettable<TimeoutAndUnit> {
 	
 	/**
-	 * Value getter.
+	 * Value Getter.
 	 * 
 	 * @return value.
 	 */

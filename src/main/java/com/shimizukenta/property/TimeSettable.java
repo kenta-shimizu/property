@@ -3,8 +3,12 @@ package com.shimizukenta.property;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * TimeoutAndUnit value Setter.
  * 
  * @author kenta-shimizu
+ * @see TimeUnit
+ * @see TimeoutAndUnit
+ * @see Settable
  *
  */
 public interface TimeSettable extends Settable<TimeoutAndUnit> {

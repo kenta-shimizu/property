@@ -1,11 +1,15 @@
 package com.shimizukenta.property;
 
+import java.util.Map;
+
 /**
+ * Map value Setter.
  * 
  * @author kenta-shimizu
  *
  * @param <K> Key Type
  * @param <V> Value Type
+ * @see Map
  */
 public interface MapSettable<K, V> {
 	

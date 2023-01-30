@@ -4,10 +4,13 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
+ * Object value Observer.
  * 
  * @author kenta-shimizu
  *
  * @param <T> Type
+ * @see Observable
+ * 
  */
 public interface ObjectObservable<T> extends Observable<T> {
 	

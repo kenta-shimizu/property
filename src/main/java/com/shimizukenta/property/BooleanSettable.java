@@ -1,9 +1,12 @@
 package com.shimizukenta.property;
 
 /**
+ * Boolean value Setter.
  * 
  * @author kenta-shimizu
- *
+ * @see Boolean
+ * @see Settable
+ * 
  */
 public interface BooleanSettable extends Settable<Boolean> {
 	

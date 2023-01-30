@@ -29,4 +29,14 @@ public abstract class AbstractUnmodifiableBooleanProperty extends AbstractBoolea
 		return true;
 	}
 	
+	@Override
+	public boolean bind(Observable<? extends Boolean> observer) {
+		throw new UnsupportedOperationException();
+	}
+	
+	@Override
+	public boolean unbind(Observable<? extends Boolean> observer) {
+		throw new UnsupportedOperationException();
+	}
+
 }

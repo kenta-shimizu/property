@@ -2,8 +2,10 @@ package com.shimizukenta.property;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.function.BiFunction;
+import java.util.function.BiPredicate;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -62,25 +64,59 @@ public class NumberUtils {
 		return observers.stream().anyMatch(o -> o.isInteger());
 	}
 	
+	public static AbstractUnmodifiableIntegerProperty unmodifiableInteger(int v) {
+		return new AbstractUnmodifiableIntegerProperty(v) {
+			
+			private static final long serialVersionUID = 2763128385052210963L;
+		};
+	}
 	
-	public static IntegerCompution toInteger(NumberObservable<? extends Number> o) {
+	public static AbstractUnmodifiableLongProperty unmodifiableLong(long v) {
+		return new AbstractUnmodifiableLongProperty(v) {
+			
+			private static final long serialVersionUID = -4322447626845819876L;
+			
+		};
+	}
+	
+	public static AbstractUnmodifiableFloatProperty unmodifiableFloat(float v) {
+		return new AbstractUnmodifiableFloatProperty(v) {
+			
+			private static final long serialVersionUID = -5717571651965795638L;
+		};
+	}
+	
+	public static AbstractUnmodifiableDoubleProperty unmodifiableDouble(double v) {
+		return new AbstractUnmodifiableDoubleProperty(v) {
+			
+			private static final long serialVersionUID = -7632858837733284592L;
+		};
+	}
+	
+	private static AbstractUnmodifiableIntegerProperty UNMOD_ZERO = unmodifiableInteger(0);
+	
+	public static AbstractUnmodifiableIntegerProperty getUnmodifiableZero() {
+		return UNMOD_ZERO;
+	}
+	
+	public static AbstractIntegerCompution toInteger(NumberObservable<? extends Number> o) {
 		return new InnerMonoInteger(n -> Integer.valueOf(n.intValue()), o);
 	}
 	
-	public static LongCompution toLong(NumberObservable<? extends Number> o) {
+	public static AbstractLongCompution toLong(NumberObservable<? extends Number> o) {
 		return new InnerMonoLong(n -> Long.valueOf(n.longValue()), o);
 	}
 	
-	public static FloatCompution toFloat(NumberObservable<? extends Number> o) {
+	public static AbstractFloatCompution toFloat(NumberObservable<? extends Number> o) {
 		return new InnerMonoFloat(n -> Float.valueOf(n.floatValue()), o);
 	}
 	
-	public static DoubleCompution toDouble(NumberObservable<? extends Number> o) {
+	public static AbstractDoubleCompution toDouble(NumberObservable<? extends Number> o) {
 		return new InnerMonoDouble(n -> Double.valueOf(n.doubleValue()), o);
 	}
 	
 	
-	public static NumberCompution sum(Collection<? extends NumberObservable<? extends Number>> c) {
+	public static AbstractNumberCompution sum(Collection<? extends NumberObservable<? extends Number>> c) {
 		
 		if ( isDouble(c) ) {
 			return sumDouble(c);
@@ -122,7 +158,7 @@ public class NumberUtils {
 		return sumDouble(c);
 	}
 	
-	private static DoubleCompution sumDouble(Collection<? extends NumberObservable<? extends Number>> c) {
+	private static AbstractDoubleCompution sumDouble(Collection<? extends NumberObservable<? extends Number>> c) {
 		return new InnerCollectionDouble(
 				nn -> {
 					double v = 0.0D;
@@ -133,7 +169,7 @@ public class NumberUtils {
 				}, c);
 	}
 	
-	public static NumberCompution multiply(Collection<? extends NumberObservable<? extends Number>> c) {
+	public static AbstractNumberCompution multiply(Collection<? extends NumberObservable<? extends Number>> c) {
 		
 		if ( isDouble(c) ) {
 			return multiplyDouble(c);
@@ -175,7 +211,7 @@ public class NumberUtils {
 		return multiplyDouble(c);
 	}
 	
-	private static DoubleCompution multiplyDouble(Collection<? extends NumberObservable<? extends Number>> c) {
+	private static AbstractDoubleCompution multiplyDouble(Collection<? extends NumberObservable<? extends Number>> c) {
 		return new InnerCollectionDouble(
 				nn -> {
 					double v = 1.0D;
@@ -187,7 +223,7 @@ public class NumberUtils {
 	}
 	
 	
-	public static NumberCompution max(Collection<? extends NumberObservable<? extends Number>> c) {
+	public static AbstractNumberCompution max(Collection<? extends NumberObservable<? extends Number>> c) {
 		
 		if ( isDouble(c) ) {
 			return maxDouble(c);
@@ -238,7 +274,7 @@ public class NumberUtils {
 		return maxDouble(c);
 	}
 	
-	private static DoubleCompution maxDouble(Collection<? extends NumberObservable<? extends Number>> c) {
+	private static AbstractDoubleCompution maxDouble(Collection<? extends NumberObservable<? extends Number>> c) {
 		return new InnerCollectionDouble(
 				nn -> {
 					double v = Double.MIN_VALUE;
@@ -253,7 +289,7 @@ public class NumberUtils {
 	}
 	
 	
-	public static NumberCompution min(Collection<? extends NumberObservable<? extends Number>> c) {
+	public static AbstractNumberCompution min(Collection<? extends NumberObservable<? extends Number>> c) {
 		
 		if ( isDouble(c) ) {
 			return minDouble(c);
@@ -305,7 +341,7 @@ public class NumberUtils {
 		return minDouble(c);
 	}
 	
-	private static DoubleCompution minDouble(Collection<? extends NumberObservable<? extends Number>> c) {
+	private static AbstractDoubleCompution minDouble(Collection<? extends NumberObservable<? extends Number>> c) {
 		return new InnerCollectionDouble(
 				nn -> {
 					double v = Double.MAX_VALUE;
@@ -320,7 +356,7 @@ public class NumberUtils {
 	}
 	
 	
-	public static NumberCompution negate(NumberObservable<? extends Number> o) {
+	public static AbstractNumberCompution negate(NumberObservable<? extends Number> o) {
 		
 		if ( isDouble(o) ) {
 			return negateDouble(o);
@@ -341,7 +377,7 @@ public class NumberUtils {
 		return negateDouble(o);
 	}
 	
-	private static DoubleCompution negateDouble(NumberObservable<? extends Number> o) {
+	private static AbstractDoubleCompution negateDouble(NumberObservable<? extends Number> o) {
 		return new InnerMonoDouble(n -> Double.valueOf(- n.doubleValue()), o);
 	}
 	
@@ -368,7 +404,7 @@ public class NumberUtils {
 		return subtrateDouble(left, right);
 	}
 	
-	private static DoubleCompution subtrateDouble(
+	private static AbstractDoubleCompution subtrateDouble(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
@@ -376,7 +412,7 @@ public class NumberUtils {
 	}
 	
 	
-	private static class InnerMonoDouble extends AbstractXDoubleCompution {
+	private static class InnerMonoDouble extends AbstractDoubleCompution {
 		
 		private static final long serialVersionUID = 618814770456239140L;
 		
@@ -387,12 +423,14 @@ public class NumberUtils {
 			super();
 			
 			o.addChangeListener(n -> {
-				this._syncSetAndNotifyChanged(compute.apply(n));
+				synchronized ( this._sync ) {
+					this._syncSetAndNotifyChanged(compute.apply(n));
+				}
 			});
 		}
 	}
 	
-	private static class InnerBiDouble extends AbstractXDoubleCompution {
+	private static class InnerBiDouble extends AbstractDoubleCompution {
 		
 		private static final long serialVersionUID = 5910278463014712219L;
 		
@@ -410,19 +448,23 @@ public class NumberUtils {
 			this.rr = Integer.valueOf(0);
 			
 			left.addChangeListener(n -> {
-				this.ll = n;
-				this._syncSetAndNotifyChanged(compute.apply(this.ll, this.rr));
+				synchronized ( this._sync ) {
+					this.ll = n;
+					this._syncSetAndNotifyChanged(compute.apply(this.ll, this.rr));
+				}
 			});
 			
 			right.addChangeListener(n -> {
-				this.rr = n;
-				this._syncSetAndNotifyChanged(compute.apply(this.ll, this.rr));
+				synchronized ( this._sync ) {
+					this.rr = n;
+					this._syncSetAndNotifyChanged(compute.apply(this.ll, this.rr));
+				}
 			});
 			
 		}
 	}
 	
-	private static class InnerCollectionDouble extends AbstractXDoubleCompution {
+	private static class InnerCollectionDouble extends AbstractDoubleCompution {
 		
 		private static final long serialVersionUID = -7357880935855506552L;
 		
@@ -455,20 +497,18 @@ public class NumberUtils {
 			@Override
 			public void changed(Number n) {
 				synchronized ( InnerCollectionDouble.this._sync ) {
-					if (! Objects.equals(n, this.last)) {
-						this.last = n;
-						InnerCollectionDouble.this._syncSetAndNotifyChanged(
-							InnerCollectionDouble.this.compute.apply(
-									InnerCollectionDouble.this.ii.stream()
-									.map(x -> x.last)
-									.collect(Collectors.toList())));
-					}
+					this.last = n;
+					InnerCollectionDouble.this._syncSetAndNotifyChanged(
+						InnerCollectionDouble.this.compute.apply(
+								InnerCollectionDouble.this.ii.stream()
+								.map(x -> x.last)
+								.collect(Collectors.toList())));
 				}
 			}
 		}
 	}
 	
-	private static class InnerMonoFloat extends AbstractXFloatCompution {
+	private static class InnerMonoFloat extends AbstractFloatCompution {
 		
 		private static final long serialVersionUID = 5644463084688658066L;
 		
@@ -479,12 +519,14 @@ public class NumberUtils {
 			super();
 			
 			o.addChangeListener(n -> {
-				this._syncSetAndNotifyChanged(compute.apply(n));
+				synchronized ( this._sync ) {
+					this._syncSetAndNotifyChanged(compute.apply(n));
+				}
 			});
 		}
 	}
 	
-	private static class InnerBiFloat extends AbstractXFloatCompution {
+	private static class InnerBiFloat extends AbstractFloatCompution {
 		
 		private static final long serialVersionUID = -7588697025601206572L;
 		
@@ -502,19 +544,23 @@ public class NumberUtils {
 			this.rr = Integer.valueOf(0);
 			
 			left.addChangeListener(n -> {
-				this.ll = n;
-				this._syncSetAndNotifyChanged(compute.apply(this.ll, this.rr));
+				synchronized ( this._sync ) {
+					this.ll = n;
+					this._syncSetAndNotifyChanged(compute.apply(this.ll, this.rr));
+				}
 			});
 			
 			right.addChangeListener(n -> {
-				this.rr = n;
-				this._syncSetAndNotifyChanged(compute.apply(this.ll, this.rr));
+				synchronized ( this._sync ) {
+					this.rr = n;
+					this._syncSetAndNotifyChanged(compute.apply(this.ll, this.rr));
+				}
 			});
 			
 		}
 	}
 	
-	private static class InnerCollectionFloat extends AbstractXFloatCompution {
+	private static class InnerCollectionFloat extends AbstractFloatCompution {
 		
 		private static final long serialVersionUID = 1501050646643232885L;
 		
@@ -547,20 +593,18 @@ public class NumberUtils {
 			@Override
 			public void changed(Number n) {
 				synchronized ( InnerCollectionFloat.this._sync ) {
-					if (! Objects.equals(n, this.last)) {
-						this.last = n;
-						InnerCollectionFloat.this._syncSetAndNotifyChanged(
-							InnerCollectionFloat.this.compute.apply(
-									InnerCollectionFloat.this.ii.stream()
-									.map(x -> x.last)
-									.collect(Collectors.toList())));
-					}
+					this.last = n;
+					InnerCollectionFloat.this._syncSetAndNotifyChanged(
+						InnerCollectionFloat.this.compute.apply(
+								InnerCollectionFloat.this.ii.stream()
+								.map(x -> x.last)
+								.collect(Collectors.toList())));
 				}
 			}
 		}
 	}
 	
-	private static class InnerMonoLong extends AbstractXLongCompution {
+	private static class InnerMonoLong extends AbstractLongCompution {
 		
 		private static final long serialVersionUID = -4415969225922324642L;
 		
@@ -571,12 +615,14 @@ public class NumberUtils {
 			super();
 			
 			o.addChangeListener(n -> {
-				this._syncSetAndNotifyChanged(compute.apply(n));
+				synchronized ( this._sync ) {
+					this._syncSetAndNotifyChanged(compute.apply(n));
+				}
 			});
 		}
 	}
 	
-	private static class InnerBiLong extends AbstractXLongCompution {
+	private static class InnerBiLong extends AbstractLongCompution {
 		
 		private static final long serialVersionUID = -6906142855226203986L;
 		
@@ -594,19 +640,23 @@ public class NumberUtils {
 			this.rr = Integer.valueOf(0);
 			
 			left.addChangeListener(n -> {
-				this.ll = n;
-				this._syncSetAndNotifyChanged(compute.apply(this.ll, this.rr));
+				synchronized  ( this._sync ) {
+					this.ll = n;
+					this._syncSetAndNotifyChanged(compute.apply(this.ll, this.rr));
+				}
 			});
 			
 			right.addChangeListener(n -> {
-				this.rr = n;
-				this._syncSetAndNotifyChanged(compute.apply(this.ll, this.rr));
+				synchronized ( this._sync ) {
+					this.rr = n;
+					this._syncSetAndNotifyChanged(compute.apply(this.ll, this.rr));
+				}
 			});
 			
 		}
 	}
 	
-	private static class InnerCollectionLong extends AbstractXLongCompution {
+	private static class InnerCollectionLong extends AbstractLongCompution {
 		
 		private static final long serialVersionUID = -8190167768164461682L;
 		
@@ -639,20 +689,18 @@ public class NumberUtils {
 			@Override
 			public void changed(Number n) {
 				synchronized ( InnerCollectionLong.this._sync ) {
-					if (! Objects.equals(n, this.last)) {
-						this.last = n;
-						InnerCollectionLong.this._syncSetAndNotifyChanged(
-							InnerCollectionLong.this.compute.apply(
-									InnerCollectionLong.this.ii.stream()
-									.map(x -> x.last)
-									.collect(Collectors.toList())));
-					}
+					this.last = n;
+					InnerCollectionLong.this._syncSetAndNotifyChanged(
+						InnerCollectionLong.this.compute.apply(
+								InnerCollectionLong.this.ii.stream()
+								.map(x -> x.last)
+								.collect(Collectors.toList())));
 				}
 			}
 		}
 	}
 	
-	private static class InnerMonoInteger extends AbstractXIntegerCompution {
+	private static class InnerMonoInteger extends AbstractIntegerCompution {
 		
 		private static final long serialVersionUID = 6378002639155298062L;
 		
@@ -663,12 +711,14 @@ public class NumberUtils {
 			super();
 			
 			o.addChangeListener(n -> {
-				this._syncSetAndNotifyChanged(compute.apply(n));
+				synchronized ( this._sync ) {
+					this._syncSetAndNotifyChanged(compute.apply(n));
+				}
 			});
 		}
 	}
 	
-	private static class InnerBiInteger extends AbstractXIntegerCompution {
+	private static class InnerBiInteger extends AbstractIntegerCompution {
 		
 		private static final long serialVersionUID = 4682522814212682485L;
 		
@@ -686,19 +736,23 @@ public class NumberUtils {
 			this.rr = Integer.valueOf(0);
 			
 			left.addChangeListener(n -> {
-				this.ll = n;
-				this._syncSetAndNotifyChanged(compute.apply(this.ll, this.rr));
+				synchronized ( this._sync ) {
+					this.ll = n;
+					this._syncSetAndNotifyChanged(compute.apply(this.ll, this.rr));
+				}
 			});
 			
 			right.addChangeListener(n -> {
-				this.rr = n;
-				this._syncSetAndNotifyChanged(compute.apply(this.ll, this.rr));
+				synchronized ( this._sync ) {
+					this.rr = n;
+					this._syncSetAndNotifyChanged(compute.apply(this.ll, this.rr));
+				}
 			});
 			
 		}
 	}
 	
-	private static class InnerCollectionInteger extends AbstractXIntegerCompution {
+	private static class InnerCollectionInteger extends AbstractIntegerCompution {
 		
 		private static final long serialVersionUID = 668196625823765702L;
 		
@@ -731,17 +785,307 @@ public class NumberUtils {
 			@Override
 			public void changed(Number n) {
 				synchronized ( InnerCollectionInteger.this._sync ) {
-					if (! Objects.equals(n, this.last)) {
-						this.last = n;
-						InnerCollectionInteger.this._syncSetAndNotifyChanged(
-							InnerCollectionInteger.this.compute.apply(
-									InnerCollectionInteger.this.ii.stream()
-									.map(x -> x.last)
-									.collect(Collectors.toList())));
-					}
+					this.last = n;
+					InnerCollectionInteger.this._syncSetAndNotifyChanged(
+						InnerCollectionInteger.this.compute.apply(
+								InnerCollectionInteger.this.ii.stream()
+								.map(x -> x.last)
+								.collect(Collectors.toList())));
 				}
 			}
 		}
 	}
-
+	
+	
+	public static AbstractBiPredicateCompution<Number, Number> isEqualTo(
+			NumberObservable<? extends Number> left,
+			NumberObservable<? extends Number> right) {
+		
+		if ( isDouble(left, right) ) {
+			return buildDoubleIsEqualTo(left, right);
+		}
+		
+		if ( isFloat(left, right) ) {
+			return buildNumberComparative(
+					left, right,
+					(l, r) -> l.floatValue() == r.floatValue());
+		}
+		
+		if ( isLong(left, right) ) {
+			return buildNumberComparative(
+					left, right,
+					(l, r) -> l.longValue() == r.longValue());
+		}
+		
+		if ( isInteger(left, right) ) {
+			return buildNumberComparative(
+					left, right,
+					(l, r) -> l.intValue() == r.intValue());
+		}
+		
+		return buildDoubleIsEqualTo(left, right);
+	}
+	
+	private static AbstractBiPredicateCompution<Number, Number> buildDoubleIsEqualTo(
+			NumberObservable<? extends Number> left,
+			NumberObservable<? extends Number> right) {
+		
+		return buildNumberComparative(
+				left, right,
+				(l, r) -> l.doubleValue() == r.doubleValue());
+	}
+	
+	public static AbstractBiPredicateCompution<Number, Number> isNotEqualTo(
+			NumberObservable<? extends Number> left,
+			NumberObservable<? extends Number> right) {
+		
+		if ( isDouble(left, right) ) {
+			return buildDoubleIsNotEqualTo(left, right);
+		}
+		
+		if ( isFloat(left, right) ) {
+			return buildNumberComparative(
+					left, right,
+					(l, r) -> l.floatValue() != r.floatValue());
+		}
+		
+		if ( isLong(left, right) ) {
+			return buildNumberComparative(
+					left, right,
+					(l, r) -> l.longValue() != r.longValue());
+		}
+		
+		if ( isInteger(left, right) ) {
+			return buildNumberComparative(
+					left, right,
+					(l, r) -> l.intValue() != r.intValue());
+		}
+		
+		return buildDoubleIsNotEqualTo(left, right);
+	}
+	
+	private static AbstractBiPredicateCompution<Number, Number> buildDoubleIsNotEqualTo(
+			NumberObservable<? extends Number> left,
+			NumberObservable<? extends Number> right) {
+		
+		return buildNumberComparative(
+				left, right,
+				(l, r) -> l.doubleValue() != r.doubleValue());
+	}
+	
+	public static AbstractBiPredicateCompution<Number, Number> isLessThan(
+			NumberObservable<? extends Number> left,
+			NumberObservable<? extends Number> right) {
+		
+		if ( isDouble(left, right) ) {
+			return buildDoubleIaLessThan(left, right);
+		}
+		
+		if ( isFloat(left, right) ) {
+			return buildNumberComparative(
+					left, right,
+					(l, r) -> l.floatValue() < r.floatValue());
+		}
+		
+		if ( isLong(left, right) ) {
+			return buildNumberComparative(
+					left, right,
+					(l, r) -> l.longValue() < r.longValue());
+		}
+		
+		if ( isInteger(left, right) ) {
+			return buildNumberComparative(
+					left, right,
+					(l, r) -> l.intValue() < r.intValue());
+		}
+		
+		return buildDoubleIaLessThan(left, right);
+	}
+	
+	private static AbstractBiPredicateCompution<Number, Number> buildDoubleIaLessThan(
+			NumberObservable<? extends Number> left,
+			NumberObservable<? extends Number> right) {
+		
+		return buildNumberComparative(
+				left, right,
+				(l, r) -> l.doubleValue() < r.doubleValue());
+	}
+	
+	public static AbstractBiPredicateCompution<Number, Number> isLessThanOrEqualTo(
+			NumberObservable<? extends Number> left,
+			NumberObservable<? extends Number> right) {
+		
+		if ( isDouble(left, right) ) {
+			return buildDoubleIsLessThanOrEqualTo(left, right);
+		}
+		
+		if ( isFloat(left, right) ) {
+			return buildNumberComparative(
+					left, right,
+					(l, r) -> l.floatValue() <= r.floatValue());
+		}
+		
+		if ( isLong(left, right) ) {
+			return buildNumberComparative(
+					left, right,
+					(l, r) -> l.longValue() <= r.longValue());
+		}
+		
+		if ( isInteger(left, right) ) {
+			return buildNumberComparative(
+					left, right,
+					(l, r) -> l.intValue() <= r.intValue());
+		}
+		
+		return buildDoubleIsLessThanOrEqualTo(left, right);
+	}
+	
+	private static AbstractBiPredicateCompution<Number, Number> buildDoubleIsLessThanOrEqualTo(
+			NumberObservable<? extends Number> left,
+			NumberObservable<? extends Number> right) {
+		
+		return buildNumberComparative(
+				left, right,
+				(l, r) -> l.doubleValue() <= r.doubleValue());
+	}
+	
+	public static AbstractBiPredicateCompution<Number, Number> isGreaterThan(
+			NumberObservable<? extends Number> left,
+			NumberObservable<? extends Number> right) {
+		
+		if ( isDouble(left, right) ) {
+			return buildDoubleIsGreaterThan(left, right);
+		}
+		
+		if ( isFloat(left, right) ) {
+			return buildNumberComparative(
+					left, right,
+					(l, r) -> l.floatValue() > r.floatValue());
+		}
+		
+		if ( isLong(left, right) ) {
+			return buildNumberComparative(
+					left, right,
+					(l, r) -> l.longValue() > r.longValue());
+		}
+		
+		if ( isInteger(left, right) ) {
+			return buildNumberComparative(
+					left, right,
+					(l, r) -> l.intValue() > r.intValue());
+		}
+		
+		return buildDoubleIsGreaterThan(left, right);
+	}
+	
+	private static AbstractBiPredicateCompution<Number, Number> buildDoubleIsGreaterThan(
+			NumberObservable<? extends Number> left,
+			NumberObservable<? extends Number> right) {
+		
+		return buildNumberComparative(
+				left, right,
+				(l, r) -> l.doubleValue() > r.doubleValue());
+	}
+	
+	public static AbstractBiPredicateCompution<Number, Number> isGreaterThanOrEqualTo(
+			NumberObservable<? extends Number> left,
+			NumberObservable<? extends Number> right) {
+		
+		if ( isDouble(left, right) ) {
+			return buildDoubleIsGreaterThanOrEqualTo(left, right);
+		}
+		
+		if ( isFloat(left, right) ) {
+			return buildNumberComparative(
+					left, right,
+					(l, r) -> l.floatValue() >= r.floatValue());
+		}
+		
+		if ( isLong(left, right) ) {
+			return buildNumberComparative(
+					left, right,
+					(l, r) -> l.longValue() >= r.longValue());
+		}
+		
+		if ( isInteger(left, right) ) {
+			return buildNumberComparative(
+					left, right,
+					(l, r) -> l.intValue() >= r.intValue());
+		}
+		
+		return buildDoubleIsGreaterThanOrEqualTo(left, right);
+	}
+	
+	private static AbstractBiPredicateCompution<Number, Number> buildDoubleIsGreaterThanOrEqualTo(
+			NumberObservable<? extends Number> left,
+			NumberObservable<? extends Number> right) {
+		
+		return buildNumberComparative(
+				left, right,
+				(l, r) -> l.doubleValue() >= r.doubleValue());
+	}
+	
+	private static final Integer ZERO = Integer.valueOf(0);
+	
+	private static AbstractBiPredicateCompution<Number, Number> buildNumberComparative(
+			NumberObservable<? extends Number> left,
+			NumberObservable<? extends Number> right,
+			BiPredicate<Number, Number> compute) {
+		
+		final AbstractBiPredicateCompution<Number, Number> i = new AbstractBiPredicateCompution<Number, Number>(compute, ZERO, ZERO) {
+			
+			private static final long serialVersionUID = 6840864360085285080L;
+		};
+		
+		i.bindLeft(left);
+		i.bindRight(right);
+		
+		return i;
+	}
+	
+	public static void waitUntil(
+			AbstractBiPredicateCompution<Number, Number> i,
+			NumberObservable<? extends Number> left,
+			NumberObservable<? extends Number> right) throws InterruptedException {
+		
+		try {
+			i.waitUntilTrue();
+		}
+		finally {
+			i.unbindLeft(left);
+			i.unbindRight(right);
+		}
+	}
+	
+	public static void waitUntil(
+			AbstractBiPredicateCompution<Number, Number> i,
+			NumberObservable<? extends Number> left,
+			NumberObservable<? extends Number> right,
+			long timeout,
+			TimeUnit unit) throws InterruptedException, TimeoutException {
+		
+		try {
+			i.waitUntilTrue(timeout, unit);
+		}
+		finally {
+			i.unbindLeft(left);
+			i.unbindRight(right);
+		}
+	}
+	
+	public static void waitUntil(
+			AbstractBiPredicateCompution<Number, Number> i,
+			NumberObservable<? extends Number> left,
+			NumberObservable<? extends Number> right,
+			TimeGettable p) throws InterruptedException, TimeoutException {
+		
+		try {
+			i.waitUntilTrue(p);
+		}
+		finally {
+			i.unbindLeft(left);
+			i.unbindRight(right);
+		}
+	}
+	
 }

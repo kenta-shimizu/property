@@ -264,7 +264,9 @@ public final class MapUtils {
 		}
 		
 		private void changedMap(Map<K, V> newMap) {
-			this._syncSetAndNotifyChanged(newMap.keySet());
+			synchronized ( this._sync ) {
+				this._syncSetAndNotifyChanged(newMap.keySet());
+			}
 		}
 		
 		private final ChangeListener<Map<K, V>> bindLstnr = this::changedMap;
@@ -275,8 +277,35 @@ public final class MapUtils {
 	}
 	
 	
-	public static <K, V> SetCompution<K> computeKeySet(Observable<Map<K, V>> observer) {
+	public static <K, V> AbstractSetCompution<K> computeKeySet(Observable<Map<K, V>> observer) {
 		final InnerKeySet<K, V> i = new InnerKeySet<>();
+		i.bindMap(observer);
+		return i;
+	}
+	
+	private static class InnerSize<K, V> extends AbstractIntegerCompution {
+		
+		private static final long serialVersionUID = -7668752376760047988L;
+		
+		public InnerSize() {
+			super();
+		}
+		
+		private void changedMap(Map<K, V> map) {
+			synchronized ( this._sync ) {
+				this._syncSetAndNotifyChanged(Integer.valueOf(map.size()));
+			}
+		}
+		
+		private final ChangeListener<Map<K, V>> bindLstnr = this::changedMap;
+		
+		public boolean bindMap(Observable<? extends Map<K, V>> observer) {
+			return observer.addChangeListener(this.bindLstnr);
+		}
+	}
+	
+	public static <K, V> AbstractIntegerCompution computeSize(Observable<? extends Map<K, V>> observer) {
+		final InnerSize<K, V> i = new InnerSize<>();
 		i.bindMap(observer);
 		return i;
 	}

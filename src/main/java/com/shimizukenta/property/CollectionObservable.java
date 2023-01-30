@@ -13,54 +13,106 @@ import java.util.concurrent.TimeoutException;
  */
 public interface CollectionObservable<E, T extends Collection<E>> extends Observable<T> {
 	
-	public BooleanCompution computeIsEmpty();
+	default public BooleanCompution computeIsEmpty() {
+		return CollectionUtils.computeIsEmpty(this);
+	}
 	
-	public BooleanCompution computeIsNotEmpty();
+	default public BooleanCompution computeIsNotEmpty() {
+		return CollectionUtils.computeIsNotEmpty(this);
+	}
 	
-	public BooleanCompution computeContains(Object o);
+	default public BooleanCompution computeContains(Object o) {
+		return CollectionUtils.computeContains(this, o);
+	}
 	
-	public BooleanCompution computeNotContains(Object o);
+	default public BooleanCompution computeNotContains(Object o) {
+		return CollectionUtils.computeNotContains(this, o);
+	}
 	
-	public BooleanCompution computeContainsAll(Collection<?> c);
+	default public BooleanCompution computeContainsAll(Collection<?> c) {
+		return CollectionUtils.computeContainsAll(this, c);
+	}
 	
-	public BooleanCompution computeNotContainsAll(Collection<?> c);
+	default public BooleanCompution computeNotContainsAll(Collection<?> c) {
+		return CollectionUtils.computeNotContainsAll(this, c);
+	}
 	
-	public void waitUntilIsEmpty() throws InterruptedException;
+	default public IntegerCompution computeSize() {
+		return CollectionUtils.computeSize(this);
+	}
 	
-	public void waitUntilIsEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException;
+	default public void waitUntilIsEmpty() throws InterruptedException {
+		CollectionUtils.waitUntil(CollectionUtils.computeIsEmpty(this), this);
+	}
 	
-	public void waitUntilIsEmpty(TimeGettable p) throws InterruptedException, TimeoutException;
+	default public void waitUntilIsEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		CollectionUtils.waitUntil(CollectionUtils.computeIsEmpty(this), this, timeout, unit);
+	}
 	
-	public void waitUntilIsNotEmpty() throws InterruptedException;
+	default public void waitUntilIsEmpty(TimeGettable p) throws InterruptedException, TimeoutException {
+		CollectionUtils.waitUntil(CollectionUtils.computeIsEmpty(this), this, p);
+	}
 	
-	public void waitUntilIsNotEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException;
+	default public void waitUntilIsNotEmpty() throws InterruptedException {
+		CollectionUtils.waitUntil(CollectionUtils.computeIsNotEmpty(this), this);
+	}
 	
-	public void waitUntilIsNotEmpty(TimeGettable p) throws InterruptedException, TimeoutException;
+	default public void waitUntilIsNotEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		CollectionUtils.waitUntil(CollectionUtils.computeIsNotEmpty(this), this, timeout, unit);
+	}
 	
-	public void waitUntilContains(Object o) throws InterruptedException;
+	default public void waitUntilIsNotEmpty(TimeGettable p) throws InterruptedException, TimeoutException {
+		CollectionUtils.waitUntil(CollectionUtils.computeIsNotEmpty(this), this, p);
+	}
 	
-	public void waitUntilContains(Object o, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException;
+	default public void waitUntilContains(Object o) throws InterruptedException {
+		CollectionUtils.waitUntil(CollectionUtils.computeContains(this, o), this);
+	}
 	
-	public void waitUntilContains(Object o, TimeGettable p) throws InterruptedException, TimeoutException;
+	default public void waitUntilContains(Object o, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		CollectionUtils.waitUntil(CollectionUtils.computeContains(this, o), this, timeout, unit);
+	}
 	
-	public void waitUntilNotContains(Object o) throws InterruptedException;
+	default public void waitUntilContains(Object o, TimeGettable p) throws InterruptedException, TimeoutException {
+		CollectionUtils.waitUntil(CollectionUtils.computeContains(this, o), this, p);
+	}
 	
-	public void waitUntilNotContains(Object o, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException;
+	default public void waitUntilNotContains(Object o) throws InterruptedException {
+		CollectionUtils.waitUntil(CollectionUtils.computeNotContains(this, o), this);
+	}
 	
-	public void waitUntilNotContains(Object o, TimeGettable p) throws InterruptedException, TimeoutException;
+	default public void waitUntilNotContains(Object o, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		CollectionUtils.waitUntil(CollectionUtils.computeNotContains(this, o), this, timeout, unit);
+	}
 	
-	public void waitUntilContainsAll(Collection<?> c) throws InterruptedException;
+	default public void waitUntilNotContains(Object o, TimeGettable p) throws InterruptedException, TimeoutException {
+		CollectionUtils.waitUntil(CollectionUtils.computeNotContains(this, o), this, p);
+	}
 	
-	public void waitUntilContainsAll(Collection<?> c, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException;
+	default public void waitUntilContainsAll(Collection<?> c) throws InterruptedException {
+		CollectionUtils.waitUntil(CollectionUtils.computeContainsAll(this, c), this);
+	}
 	
-	public void waitUntilContainsAll(Collection<?> c, TimeGettable p) throws InterruptedException, TimeoutException;
+	default public void waitUntilContainsAll(Collection<?> c, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		CollectionUtils.waitUntil(CollectionUtils.computeContainsAll(this, c), this, timeout, unit);
+	}
 	
-	public void waitUntilNotContainsAll(Collection<?> c) throws InterruptedException;
+	default public void waitUntilContainsAll(Collection<?> c, TimeGettable p) throws InterruptedException, TimeoutException {
+		CollectionUtils.waitUntil(CollectionUtils.computeContainsAll(this, c), this, p);
+	}
 	
-	public void waitUntilNotContainsAll(Collection<?> c, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException;
+	default public void waitUntilNotContainsAll(Collection<?> c) throws InterruptedException {
+		CollectionUtils.waitUntil(CollectionUtils.computeNotContainsAll(this, c), this);
+	}
 	
-	public void waitUntilNotContainsAll(Collection<?> c, TimeGettable p) throws InterruptedException, TimeoutException;
+	default public void waitUntilNotContainsAll(Collection<?> c, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		CollectionUtils.waitUntil(CollectionUtils.computeNotContainsAll(this, c), this, timeout, unit);
+	}
 	
+	default public void waitUntilNotContainsAll(Collection<?> c, TimeGettable p) throws InterruptedException, TimeoutException {
+		CollectionUtils.waitUntil(CollectionUtils.computeNotContainsAll(this, c), this, p);
+	}
+
 	
 //	/**
 //	 * Wait until {@link Collection#contains(Object)} is {@code true}.

@@ -15,95 +15,77 @@ public class CollectionUtils {
 		
 		private static final long serialVersionUID = 111127328521430450L;
 		
-		public InnerCollection(Predicate<? super T> compute, T initial) {
-			super(compute, initial);
+		public InnerCollection(Predicate<? super T> compute) {
+			super(compute);
 		}
 		
 		@Override
 		protected void changedValue(T c) {
 			synchronized ( this._sync ) {
-				final T x = this.getLastValue();
-				x.clear();
-				x.addAll(c);
-				this._syncSetAndNotifyChanged(Boolean.valueOf(this._compute.test(x)));
+				this._syncSetAndNotifyChanged(Boolean.valueOf(this._compute.test(c)));
 			}
 		}
 	}
 	
 	private static <E, T extends Collection<E>> InnerCollection<E, T> buildInnerCollection(
 			Observable<T> observer,
-			T initial,
 			Predicate<? super T> compute) {
 		
-		final InnerCollection<E, T> i = new InnerCollection<>(compute, initial);
-		
+		final InnerCollection<E, T> i = new InnerCollection<>(compute);
 		i.bind(observer);
-		
 		return i;
 	}
 	
 	public static <E, T extends Collection<E>> AbstractPredicateCompution<T> computeContains(
 			Observable<T> observer,
-			T initial,
 			Object o) {
 		
 		return buildInnerCollection(
 				observer,
-				initial,
-				c -> c.contains(o));
+				x -> (x == null ? false : x.contains(o)));
 	}
 	
 	public static <E, T extends Collection<E>> AbstractPredicateCompution<T> computeNotContains(
 			Observable<T> observer,
-			T initial,
 			Object o) {
 		
 		return buildInnerCollection(
 				observer,
-				initial,
-				c -> ! c.contains(o));
+				x -> (x == null ? false : (! x.contains(o))));
 	}
 	
 	public static <E, T extends Collection<E>> AbstractPredicateCompution<T> computeContainsAll(
 			Observable<T> observer,
-			T initial,
 			Collection<?> c) {
 		
 		return buildInnerCollection(
 				observer,
-				initial,
-				x -> x.containsAll(c));
+				x -> (x == null ? false : x.containsAll(c)));
 	}
 	
 	public static <E, T extends Collection<E>> AbstractPredicateCompution<T> computeNotContainsAll(
 			Observable<T> observer,
-			T initial,
 			Collection<?> c) {
 		
 		return buildInnerCollection(
 				observer,
-				initial,
-				x -> ! x.containsAll(c));
+				x -> (x == null ? false : (! x.containsAll(c))));
 	}
 	
 	public static <E, T extends Collection<E>> AbstractPredicateCompution<T> computeIsEmpty(
-			Observable<T> observer,
-			T initial) {
+			Observable<T> observer) {
 		
 		return buildInnerCollection(
 				observer,
-				initial,
-				c -> c.isEmpty());
+				x -> (x == null ? false : x.isEmpty()));
 	}
 	
 	public static <E, T extends Collection<E>> AbstractPredicateCompution<T> computeIsNotEmpty(
-			Observable<T> observer,
-			T initial) {
+			Observable<T> observer) {
 		
 		return buildInnerCollection(
 				observer,
-				initial,
-				c -> ! c.isEmpty());
+				x -> (x == null ? false : (! x.isEmpty())));
 	}
 	
 	public static <E, T extends Collection<E>> void waitUntil(
@@ -143,6 +125,33 @@ public class CollectionUtils {
 		finally {
 			i.unbind(observer);
 		}
+	}
+	
+	private static class InnerSize<E, T extends Collection<E>> extends AbstractIntegerCompution {
+		
+		private static final long serialVersionUID = 6647649394326147795L;
+		
+		public InnerSize() {
+			super();
+		}
+		
+		private void changedCollection(T c) {
+			synchronized ( this._sync ) {
+				this._syncSetAndNotifyChanged(Integer.valueOf(c.size()));
+			}
+		}
+		
+		private final ChangeListener<T> bindLstnr = this::changedCollection;
+		
+		public boolean bindCollection(CollectionObservable<E, T> observer) {
+			return observer.addChangeListener(this.bindLstnr);
+		}
+	}
+	
+	public static <E, T extends Collection<E>> AbstractIntegerCompution computeSize(CollectionObservable<E, T> observer) {
+		final InnerSize<E, T> i = new InnerSize<>();
+		i.bindCollection(observer);
+		return i;
 	}
 	
 }

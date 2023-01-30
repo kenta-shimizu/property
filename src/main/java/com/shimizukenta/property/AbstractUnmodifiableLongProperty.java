@@ -28,4 +28,15 @@ public abstract class AbstractUnmodifiableLongProperty extends AbstractLongPrope
 	public boolean removeChangeListener(ChangeListener<? super Long> l) {
 		return true;
 	}
+	
+	@Override
+	public boolean bind(Observable<? extends Long> observer) {
+		throw new UnsupportedOperationException();
+	}
+	
+	@Override
+	public boolean unbind(Observable<? extends Long> observer) {
+		throw new UnsupportedOperationException();
+	}
+	
 }

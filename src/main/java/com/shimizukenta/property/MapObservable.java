@@ -62,6 +62,15 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	}
 	
 	/**
+	 * Returns {@link IntegerCompution} of {@link Map#size()}.
+	 * 
+	 * @return {@link IntegerCompution} of {@link Map#size()}
+	 */
+	default public IntegerCompution computeSize() {
+		return MapUtils.computeSize(this);
+	}
+	
+	/**
 	 * Wait until {@link Map#containsKey(Object)} is {@code true}, and return value.
 	 * 
 	 * <p>

@@ -10,18 +10,11 @@ import java.util.Collection;
  */
 public interface NumberCompution extends Compution<Number>, NumberGettable<Number>, NumberObservable<Number> {
 	
-//	public static NumberCompution add(
-//			NumberObservable<? extends Number> a,
-//			NumberObservable<? extends Number> b) {
-//		
-//		return sum(Arrays.asList(a, b));
-//	}
-	
 	public static NumberCompution sum(
 			NumberObservable<? extends Number> a,
 			NumberObservable<? extends Number> b) {
 		
-		return sum(a, b);
+		return sum(Arrays.asList(a, b));
 	}
 	
 	public static NumberCompution sum(
@@ -29,7 +22,7 @@ public interface NumberCompution extends Compution<Number>, NumberGettable<Numbe
 			NumberObservable<? extends Number> b,
 			NumberObservable<? extends Number> c) {
 		
-		return sum(a, b, c);
+		return sum(Arrays.asList(a, b, c));
 	}
 	
 	public static NumberCompution sum(
@@ -38,7 +31,7 @@ public interface NumberCompution extends Compution<Number>, NumberGettable<Numbe
 			NumberObservable<? extends Number> c,
 			NumberObservable<? extends Number> d) {
 		
-		return sum(a, b, c, d);
+		return sum(Arrays.asList(a, b, c, d));
 	}
 	
 	public static NumberCompution sum(Collection<? extends NumberObservable<? extends Number>> observers) {

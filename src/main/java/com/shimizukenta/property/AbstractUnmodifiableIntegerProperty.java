@@ -29,4 +29,14 @@ public abstract class AbstractUnmodifiableIntegerProperty extends AbstractIntege
 		return true;
 	}
 	
+	@Override
+	public boolean bind(Observable<? extends Integer> observer) {
+		throw new UnsupportedOperationException();
+	}
+	
+	@Override
+	public boolean unbind(Observable<? extends Integer> observer) {
+		throw new UnsupportedOperationException();
+	}
+
 }

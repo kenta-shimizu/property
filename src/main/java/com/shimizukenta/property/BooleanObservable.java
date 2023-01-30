@@ -11,23 +11,23 @@ import java.util.concurrent.TimeoutException;
 public interface BooleanObservable extends Observable<Boolean> {
 	
 	/**
-	 * Returns (this && observable) LogicalCompution instance.
+	 * Returns (this && observer) LogicalCompution instance.
 	 * 
-	 * @param observable
-	 * @return (this && observable) LogicalCompution instance.
+	 * @param observer
+	 * @return (this && observer) LogicalCompution instance.
 	 */
-	default public LogicalCompution and(BooleanObservable observable) {
-		return LogicalCompution.and(this, observable);
+	default public LogicalCompution and(BooleanObservable observer) {
+		return LogicalCompution.and(this, observer);
 	}
 	
 	/**
-	 * Returns (this || observable) LogicalCompution instance.
+	 * Returns (this || observer) LogicalCompution instance.
 	 * 
-	 * @param observable
-	 * @return (this || observable) LogicalCompution instance.
+	 * @param observer
+	 * @return (this || observer) LogicalCompution instance.
 	 */
-	default public LogicalCompution or(BooleanObservable observable) {
-		return LogicalCompution.or(this, observable);
+	default public LogicalCompution or(BooleanObservable observer) {
+		return LogicalCompution.or(this, observer);
 	}
 	
 	/**
@@ -40,33 +40,33 @@ public interface BooleanObservable extends Observable<Boolean> {
 	}
 	
 	/**
-	 * Returns (this ^ observable) LogicalCompution instance.
+	 * Returns (this ^ observer) LogicalCompution instance.
 	 * 
-	 * @param observable
-	 * @return (this ^ observable) LogicalCompution instance.
+	 * @param observer
+	 * @return (this ^ observer) LogicalCompution instance.
 	 */
-	default public LogicalCompution xor(BooleanObservable observable) {
-		return LogicalCompution.xor(this, observable);
+	default public LogicalCompution xor(BooleanObservable observer) {
+		return LogicalCompution.xor(this, observer);
 	}
 	
 	/**
-	 * Returns (! (this && observable)) LogicalCompution instance.
+	 * Returns (! (this && observer)) LogicalCompution instance.
 	 * 
-	 * @param observable
-	 * @return (! (this && observable)) LogicalCompution instance.
+	 * @param observer
+	 * @return (! (this && observer)) LogicalCompution instance.
 	 */
-	default public LogicalCompution nand(BooleanObservable observable) {
-		return LogicalCompution.nand(this, observable);
+	default public LogicalCompution nand(BooleanObservable observer) {
+		return LogicalCompution.nand(this, observer);
 	}
 	
 	/**
-	 * Returns (! (this || observable))aaa LogicalCompution instance.
+	 * Returns (! (this || observer))aaa LogicalCompution instance.
 	 * 
-	 * @param observable
-	 * @return (! (this || observable)) LogicalCompution instance.
+	 * @param observer
+	 * @return (! (this || observer)) LogicalCompution instance.
 	 */
-	default public LogicalCompution nor(BooleanObservable observable) {
-		return LogicalCompution.nor(this, observable);
+	default public LogicalCompution nor(BooleanObservable observer) {
+		return LogicalCompution.nor(this, observer);
 	}
 	
 	/**
@@ -76,7 +76,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * @return (this && f) LogicalCompution instance.
 	 */
 	default public LogicalCompution and(boolean f) {
-		return this.and(UnmodifiablePropertyBuilder.getInstance().getBoolean(f));
+		return this.and(BooleanUtils.getUnmodifiableBoolean(f));
 	}
 	
 	/**
@@ -86,7 +86,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * @return (this || f) LogicalCompution instance.
 	 */
 	default public LogicalCompution or(boolean f) {
-		return this.or(UnmodifiablePropertyBuilder.getInstance().getBoolean(f));
+		return this.or(BooleanUtils.getUnmodifiableBoolean(f));
 	}
 	
 	/**
@@ -96,7 +96,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * @return (this ^ f) LogicalCompution instance.
 	 */
 	default public LogicalCompution xor(boolean f) {
-		return this.xor(UnmodifiablePropertyBuilder.getInstance().getBoolean(f));
+		return this.xor(BooleanUtils.getUnmodifiableBoolean(f));
 	}
 	
 	/**
@@ -106,7 +106,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * @return (! (this && f)) LogicalCompution instance.
 	 */
 	default public LogicalCompution nand(boolean f) {
-		return this.nand(UnmodifiablePropertyBuilder.getInstance().getBoolean(f));
+		return this.nand(BooleanUtils.getUnmodifiableBoolean(f));
 	}
 	
 	/**
@@ -116,7 +116,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * @return (! (this || f)) LogicalCompution instance.
 	 */
 	default public LogicalCompution nor(boolean f) {
-		return this.nor(UnmodifiablePropertyBuilder.getInstance().getBoolean(f));
+		return this.nor(BooleanUtils.getUnmodifiableBoolean(f));
 	}
 	
 	/**

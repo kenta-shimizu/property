@@ -30,4 +30,14 @@ public abstract class AbstractUnmodifiableObjectProperty<T> extends AbstractObje
 		return true;
 	}
 	
+	@Override
+	public boolean bind(Observable<? extends T> observer) {
+		throw new UnsupportedOperationException();
+	}
+	
+	@Override
+	public boolean unbind(Observable<? extends T> observer) {
+		throw new UnsupportedOperationException();
+	}
+	
 }

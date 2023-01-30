@@ -49,6 +49,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 		return false;
 	}
 	
+	
 	/* Casts */
 	
 	/**
@@ -95,8 +96,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param observable
 	 * @return NumberCompution of this.value + observable.value.
 	 */
-	default public NumberCompution add(NumberObservable<? extends Number> observable) {
-		return NumberCompution.sum(this, observable);
+	default public NumberCompution add(NumberObservable<? extends Number> observer) {
+		return NumberCompution.sum(this, observer);
 	}
 	
 	/**
@@ -105,8 +106,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param observable
 	 * @return NumberCompution of this.value * observable.value.
 	 */
-	default public NumberCompution multiply(NumberObservable<? extends Number> observable) {
-		return NumberCompution.multiply(this, observable);
+	default public NumberCompution multiply(NumberObservable<? extends Number> observer) {
+		return NumberCompution.multiply(this, observer);
 	}
 	
 	/**
@@ -115,8 +116,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param observable
 	 * @return NumberCompution of this.value - observable.value.
 	 */
-	default public NumberCompution subtract(NumberObservable<? extends Number> observable) {
-		return NumberCompution.subtract(this, observable);
+	default public NumberCompution subtract(NumberObservable<? extends Number> observer) {
+		return NumberCompution.subtract(this, observer);
 	}
 	
 	/**
@@ -128,6 +129,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 		return NumberCompution.negate(this);
 	}
 	
+	
 	/* Number Compution Premitives */
 	
 	/**
@@ -137,7 +139,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return NumberCompution of this.value + value.
 	 */
 	default public NumberCompution add(int value) {
-		return this.add(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
+		return this.add(NumberUtils.unmodifiableInteger(value));
 	}
 	
 	/**
@@ -147,7 +149,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return NumberCompution of this.value + value.
 	 */
 	default public NumberCompution add(long value) {
-		return this.add(UnmodifiablePropertyBuilder.getInstance().newLong(value));
+		return this.add(NumberUtils.unmodifiableLong(value));
 	}
 	
 	/**
@@ -157,7 +159,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return NumberCompution of this.value + value.
 	 */
 	default public NumberCompution add(float value) {
-		return this.add(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
+		return this.add(NumberUtils.unmodifiableFloat(value));
 	}
 	
 	/**
@@ -167,7 +169,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return NumberCompution of this.value + value.
 	 */
 	default public NumberCompution add(double value) {
-		return this.add(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
+		return this.add(NumberUtils.unmodifiableDouble(value));
 	}
 	
 	/**
@@ -177,7 +179,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return NumberCompution of this.value * value.
 	 */
 	default public NumberCompution multiply(int value) {
-		return this.multiply(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
+		return this.multiply(NumberUtils.unmodifiableInteger(value));
 	}
 
 	/**
@@ -187,7 +189,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return NumberCompution of this.value * value.
 	 */
 	default public NumberCompution multiply(long value) {
-		return this.multiply(UnmodifiablePropertyBuilder.getInstance().newLong(value));
+		return this.multiply(NumberUtils.unmodifiableLong(value));
 	}
 
 	/**
@@ -197,7 +199,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return NumberCompution of this.value * value.
 	 */
 	default public NumberCompution multiply(float value) {
-		return this.multiply(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
+		return this.multiply(NumberUtils.unmodifiableFloat(value));
 	}
 	
 	/**
@@ -207,7 +209,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return NumberCompution of this.value * value.
 	 */
 	default public NumberCompution multiply(double value) {
-		return this.multiply(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
+		return this.multiply(NumberUtils.unmodifiableDouble(value));
 	}
 	
 	/**
@@ -217,7 +219,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return NumberCompution of this.value - value.
 	 */
 	default public NumberCompution subtract(int value) {
-		return this.subtract(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
+		return this.subtract(NumberUtils.unmodifiableInteger(value));
 	}
 	
 	/**
@@ -227,7 +229,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return NumberCompution of this.value - value.
 	 */
 	default public NumberCompution subtract(long value) {
-		return this.subtract(UnmodifiablePropertyBuilder.getInstance().newLong(value));
+		return this.subtract(NumberUtils.unmodifiableLong(value));
 	}
 	
 	/**
@@ -237,7 +239,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return NumberCompution of this.value - value.
 	 */
 	default public NumberCompution subtract(float value) {
-		return this.subtract(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
+		return this.subtract(NumberUtils.unmodifiableFloat(value));
 	}
 	
 	/**
@@ -247,8 +249,9 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return NumberCompution of this.value - value.
 	 */
 	default public NumberCompution subtract(double value) {
-		return this.subtract(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
+		return this.subtract(NumberUtils.unmodifiableDouble(value));
 	}
+	
 	
 	/* Comparative Compution Bases */
 	
@@ -258,8 +261,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param observable
 	 * @return
 	 */
-	default ComparativeCompution isEqualTo(NumberObservable<? extends Number> observable) {
-		return ComparativeCompution.equalTo(this, observable);
+	default ComparativeCompution isEqualTo(NumberObservable<? extends Number> observer) {
+		return ComparativeCompution.isEqualTo(this, observer);
 	}
 	
 	/**
@@ -268,8 +271,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param observable
 	 * @return ComparativeCompution of this.value != observable.value.
 	 */
-	default ComparativeCompution isNotEqualTo(NumberObservable<? extends Number> observable) {
-		return ComparativeCompution.notEqualTo(this, observable);
+	default ComparativeCompution isNotEqualTo(NumberObservable<? extends Number> observer) {
+		return ComparativeCompution.isNotEqualTo(this, observer);
 	}
 	
 	/**
@@ -278,8 +281,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param observable
 	 * @return ComparativeCompution of this.value < observable.value.
 	 */
-	default ComparativeCompution isLessThan(NumberObservable<? extends Number> observable) {
-		return ComparativeCompution.lessThan(this, observable);
+	default ComparativeCompution isLessThan(NumberObservable<? extends Number> observer) {
+		return ComparativeCompution.isLessThan(this, observer);
 	}
 	
 	/**
@@ -287,8 +290,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param observable
 	 * @return ComparativeCompution of this.value <= observable.value.
 	 */
-	default ComparativeCompution isLessThanOrEqualTo(NumberObservable<? extends Number> observable) {
-		return ComparativeCompution.lessThanOrEqualTo(this, observable);
+	default ComparativeCompution isLessThanOrEqualTo(NumberObservable<? extends Number> observer) {
+		return ComparativeCompution.isLessThanOrEqualTo(this, observer);
 	}
 	
 	/**
@@ -297,8 +300,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param observable
 	 * @return ComparativeCompution of this.value > observable.value.
 	 */
-	default ComparativeCompution isGreaterThan(NumberObservable<? extends Number> observable) {
-		return ComparativeCompution.greaterThan(this, observable);
+	default ComparativeCompution isGreaterThan(NumberObservable<? extends Number> observer) {
+		return ComparativeCompution.isGreaterThan(this, observer);
 	}
 	
 	/**
@@ -307,8 +310,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param observable
 	 * @return ComparativeCompution of this.value >= observable.value.
 	 */
-	default ComparativeCompution isGreaterThanOrEqualTo(NumberObservable<? extends Number> observable) {
-		return ComparativeCompution.greaterThanOrEqualTo(this, observable);
+	default ComparativeCompution isGreaterThanOrEqualTo(NumberObservable<? extends Number> observer) {
+		return ComparativeCompution.isGreaterThanOrEqualTo(this, observer);
 	}
 	
 	/* Comparative Compution Primitives */
@@ -320,7 +323,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value == value.
 	 */
 	default ComparativeCompution isEqualTo(int value) {
-		return this.isEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
+		return this.isEqualTo(NumberUtils.unmodifiableInteger(value));
 	}
 	
 	/**
@@ -330,7 +333,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value == value.
 	 */
 	default ComparativeCompution isEqualTo(long value) {
-		return this.isEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value));
+		return this.isEqualTo(NumberUtils.unmodifiableLong(value));
 	}
 	
 	/**
@@ -340,7 +343,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value == value.
 	 */
 	default ComparativeCompution isEqualTo(float value) {
-		return this.isEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
+		return this.isEqualTo(NumberUtils.unmodifiableFloat(value));
 	}
 	
 	/**
@@ -350,7 +353,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value == value.
 	 */
 	default ComparativeCompution isEqualTo(double value) {
-		return this.isEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
+		return this.isEqualTo(NumberUtils.unmodifiableDouble(value));
 	}
 	
 	/**
@@ -360,11 +363,17 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value != value.
 	 */
 	default ComparativeCompution isNotEqualTo(int value) {
-		return this.isNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
+		return this.isNotEqualTo(NumberUtils.unmodifiableInteger(value));
 	}
 	
+	/**
+	 * Returns ComparativeCompution of this.value != value.
+	 * 
+	 * @param value
+	 * @return ComparativeCompution of this.value != value.
+	 */
 	default ComparativeCompution isNotEqualTo(long value) {
-		return this.isNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value));
+		return this.isNotEqualTo(NumberUtils.unmodifiableLong(value));
 	}
 	
 	/**
@@ -374,7 +383,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value != value.
 	 */
 	default ComparativeCompution isNotEqualTo(float value) {
-		return this.isNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
+		return this.isNotEqualTo(NumberUtils.unmodifiableFloat(value));
 	}
 	
 	/**
@@ -384,7 +393,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value != value.
 	 */
 	default ComparativeCompution isNotEqualTo(double value) {
-		return this.isNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
+		return this.isNotEqualTo(NumberUtils.unmodifiableDouble(value));
 	}
 	
 	/**
@@ -394,7 +403,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value != value.
 	 */
 	default ComparativeCompution isLessThan(int value) {
-		return this.isLessThan(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
+		return this.isLessThan(NumberUtils.unmodifiableInteger(value));
 	}
 	
 	/**
@@ -404,7 +413,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value < value.
 	 */
 	default ComparativeCompution isLessThan(long value) {
-		return this.isLessThan(UnmodifiablePropertyBuilder.getInstance().newLong(value));
+		return this.isLessThan(NumberUtils.unmodifiableLong(value));
 	}
 	
 	/**
@@ -414,7 +423,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value < value.
 	 */
 	default ComparativeCompution isLessThan(float value) {
-		return this.isLessThan(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
+		return this.isLessThan(NumberUtils.unmodifiableFloat(value));
 	}
 	
 	/**
@@ -424,7 +433,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value < value.
 	 */
 	default ComparativeCompution isLessThan(double value) {
-		return this.isLessThan(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
+		return this.isLessThan(NumberUtils.unmodifiableDouble(value));
 	}
 	
 	/**
@@ -434,7 +443,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value <= value.
 	 */
 	default ComparativeCompution isLessThanOrEqualTo(int value) {
-		return this.isLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
+		return this.isLessThanOrEqualTo(NumberUtils.unmodifiableInteger(value));
 	}
 	
 	/**
@@ -444,7 +453,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value <= value.
 	 */
 	default ComparativeCompution isLessThanOrEqualTo(long value) {
-		return this.isLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value));
+		return this.isLessThanOrEqualTo(NumberUtils.unmodifiableLong(value));
 	}
 	
 	/**
@@ -454,7 +463,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value <= value.
 	 */
 	default ComparativeCompution isLessThanOrEqualTo(float value) {
-		return this.isLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
+		return this.isLessThanOrEqualTo(NumberUtils.unmodifiableFloat(value));
 	}
 	
 	/**
@@ -464,7 +473,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value <= value.
 	 */
 	default ComparativeCompution isLessThanOrEqualTo(double value) {
-		return this.isLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
+		return this.isLessThanOrEqualTo(NumberUtils.unmodifiableDouble(value));
 	}
 	
 	/**
@@ -474,7 +483,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value > value.
 	 */
 	default ComparativeCompution isGreaterThan(int value) {
-		return this.isGreaterThan(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
+		return this.isGreaterThan(NumberUtils.unmodifiableInteger(value));
 	}
 	
 	/**
@@ -484,7 +493,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value > value.
 	 */
 	default ComparativeCompution isGreaterThan(long value) {
-		return this.isGreaterThan(UnmodifiablePropertyBuilder.getInstance().newLong(value));
+		return this.isGreaterThan(NumberUtils.unmodifiableLong(value));
 	}
 	
 	/**
@@ -494,7 +503,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value > value.
 	 */
 	default ComparativeCompution isGreaterThan(float value) {
-		return this.isGreaterThan(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
+		return this.isGreaterThan(NumberUtils.unmodifiableFloat(value));
 	}
 	
 	/**
@@ -504,7 +513,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value > value.
 	 */
 	default ComparativeCompution isGreaterThan(double value) {
-		return this.isGreaterThan(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
+		return this.isGreaterThan(NumberUtils.unmodifiableDouble(value));
 	}
 	
 	/**
@@ -514,7 +523,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value >= value.
 	 */
 	default ComparativeCompution isGreaterThanOrEqualTo(int value) {
-		return this.isGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
+		return this.isGreaterThanOrEqualTo(NumberUtils.unmodifiableInteger(value));
 	}
 	
 	/**
@@ -524,7 +533,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value >= value.
 	 */
 	default ComparativeCompution isGreaterThanOrEqualTo(long value) {
-		return this.isGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value));
+		return this.isGreaterThanOrEqualTo(NumberUtils.unmodifiableLong(value));
 	}
 	
 	/**
@@ -534,7 +543,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value >= value.
 	 */
 	default ComparativeCompution isGreaterThanOrEqualTo(float value) {
-		return this.isGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
+		return this.isGreaterThanOrEqualTo(NumberUtils.unmodifiableFloat(value));
 	}
 	
 	/**
@@ -544,7 +553,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value >= value.
 	 */
 	default ComparativeCompution isGreaterThanOrEqualTo(double value) {
-		return this.isGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
+		return this.isGreaterThanOrEqualTo(NumberUtils.unmodifiableDouble(value));
 	}
 	
 	/**
@@ -554,7 +563,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value == 0.
 	 */
 	default ComparativeCompution isEqualToZero() {
-		return this.isEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
+		return this.isEqualTo(NumberUtils.getUnmodifiableZero());
 	}
 	
 	/**
@@ -564,7 +573,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value != 0.
 	 */
 	default ComparativeCompution isNotEqualToZero() {
-		return this.isNotEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
+		return this.isNotEqualTo(NumberUtils.getUnmodifiableZero());
 	}
 	
 	/**
@@ -574,7 +583,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value < 0.
 	 */
 	default ComparativeCompution isLessThanZero() {
-		return this.isLessThan(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
+		return this.isLessThan(NumberUtils.getUnmodifiableZero());
 	}
 
 	/**
@@ -584,7 +593,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value <= 0.
 	 */
 	default ComparativeCompution isLessThanOrEqualToZero() {
-		return this.isLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
+		return this.isLessThanOrEqualTo(NumberUtils.getUnmodifiableZero());
 	}
 
 	/**
@@ -594,7 +603,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value > 0.
 	 */
 	default ComparativeCompution isGreaterThanZero() {
-		return this.isGreaterThan(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
+		return this.isGreaterThan(NumberUtils.getUnmodifiableZero());
 	}
 
 	/**
@@ -604,7 +613,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @return ComparativeCompution of this.value >= 0.
 	 */
 	default ComparativeCompution isGreaterThanOrEqualToZero() {
-		return this.isGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
+		return this.isGreaterThanOrEqualTo(NumberUtils.getUnmodifiableZero());
 	}
 	
 	/* Wait Until Bases */
@@ -620,8 +629,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param observable
 	 * @throws InterruptedException
 	 */
-	default public void waitUntilEqualTo(NumberObservable<? extends Number> observable) throws InterruptedException {
-		NumericComparativeWaitUntil.getInstance().isEqualTo(this, observable);
+	default public void waitUntilEqualTo(NumberObservable<? extends Number> observer) throws InterruptedException {
+		NumberUtils.waitUntil(NumberUtils.isEqualTo(this, observer), this, observer);
 	}
 	
 	/**
@@ -638,8 +647,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilEqualTo(NumberObservable<? extends Number> observable, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		NumericComparativeWaitUntil.getInstance().isEqualTo(this, observable, timeout, unit);
+	default public void waitUntilEqualTo(NumberObservable<? extends Number> observer, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		NumberUtils.waitUntil(NumberUtils.isEqualTo(this, observer), this, observer, timeout, unit);
 	}
 	
 	/**
@@ -655,8 +664,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilEqualTo(NumberObservable<? extends Number> observable, TimeGettable p) throws InterruptedException, TimeoutException {
-		NumericComparativeWaitUntil.getInstance().isEqualTo(this, observable, p);
+	default public void waitUntilEqualTo(NumberObservable<? extends Number> observer, TimeGettable p) throws InterruptedException, TimeoutException {
+		NumberUtils.waitUntil(NumberUtils.isEqualTo(this, observer), this, observer, p);
 	}
 	
 	/**
@@ -670,8 +679,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param observable
 	 * @throws InterruptedException
 	 */
-	default public void waitUntilNotEqualTo(NumberObservable<? extends Number> observable) throws InterruptedException {
-		NumericComparativeWaitUntil.getInstance().isNotEqualTo(this, observable);
+	default public void waitUntilNotEqualTo(NumberObservable<? extends Number> observer) throws InterruptedException {
+		NumberUtils.waitUntil(NumberUtils.isNotEqualTo(this, observer), this, observer);
 	}
 	
 	/**
@@ -688,8 +697,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilNotEqualTo(NumberObservable<? extends Number> observable, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		NumericComparativeWaitUntil.getInstance().isNotEqualTo(this, observable, timeout, unit);
+	default public void waitUntilNotEqualTo(NumberObservable<? extends Number> observer, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		NumberUtils.waitUntil(NumberUtils.isNotEqualTo(this, observer), this, observer, timeout, unit);
 	}
 	
 	/**
@@ -705,8 +714,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilNotEqualTo(NumberObservable<? extends Number> observable, TimeGettable p) throws InterruptedException, TimeoutException {
-		NumericComparativeWaitUntil.getInstance().isNotEqualTo(this, observable, p);
+	default public void waitUntilNotEqualTo(NumberObservable<? extends Number> observer, TimeGettable p) throws InterruptedException, TimeoutException {
+		NumberUtils.waitUntil(NumberUtils.isNotEqualTo(this, observer), this, observer, p);
 	}
 	
 	/**
@@ -720,8 +729,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param observable
 	 * @throws InterruptedException
 	 */
-	default public void waitUntilLessThan(NumberObservable<? extends Number> observable) throws InterruptedException {
-		NumericComparativeWaitUntil.getInstance().isLessThan(this, observable);
+	default public void waitUntilLessThan(NumberObservable<? extends Number> observer) throws InterruptedException {
+		NumberUtils.waitUntil(NumberUtils.isLessThan(this, observer), this, observer);
 	}
 	
 	/**
@@ -738,8 +747,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilLessThan(NumberObservable<? extends Number> observable, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		NumericComparativeWaitUntil.getInstance().isLessThan(this, observable, timeout, unit);
+	default public void waitUntilLessThan(NumberObservable<? extends Number> observer, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		NumberUtils.waitUntil(NumberUtils.isLessThan(this, observer), this, observer, timeout, unit);
 	}
 	
 	/**
@@ -755,8 +764,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilLessThan(NumberObservable<? extends Number> observable, TimeGettable p) throws InterruptedException, TimeoutException {
-		NumericComparativeWaitUntil.getInstance().isLessThan(this, observable, p);
+	default public void waitUntilLessThan(NumberObservable<? extends Number> observer, TimeGettable p) throws InterruptedException, TimeoutException {
+		NumberUtils.waitUntil(NumberUtils.isLessThan(this, observer), this, observer, p);
 	}
 	
 	/**
@@ -770,8 +779,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param observable
 	 * @throws InterruptedException
 	 */
-	default public void waitUntilLessThanOrEqualTo(NumberObservable<? extends Number> observable) throws InterruptedException {
-		NumericComparativeWaitUntil.getInstance().isLessThanOrEqualTo(this, observable);
+	default public void waitUntilLessThanOrEqualTo(NumberObservable<? extends Number> observer) throws InterruptedException {
+		NumberUtils.waitUntil(NumberUtils.isLessThanOrEqualTo(this, observer), this, observer);
 	}
 	
 	/**
@@ -788,8 +797,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilLessThanOrEqualTo(NumberObservable<? extends Number> observable, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		NumericComparativeWaitUntil.getInstance().isLessThanOrEqualTo(this, observable, timeout, unit);
+	default public void waitUntilLessThanOrEqualTo(NumberObservable<? extends Number> observer, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		NumberUtils.waitUntil(NumberUtils.isLessThanOrEqualTo(this, observer), this, observer, timeout, unit);
 	}
 	
 	/**
@@ -805,8 +814,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilLessThanOrEqualTo(NumberObservable<? extends Number> observable, TimeGettable p) throws InterruptedException, TimeoutException {
-		NumericComparativeWaitUntil.getInstance().isLessThanOrEqualTo(this, observable, p);
+	default public void waitUntilLessThanOrEqualTo(NumberObservable<? extends Number> observer, TimeGettable p) throws InterruptedException, TimeoutException {
+		NumberUtils.waitUntil(NumberUtils.isLessThanOrEqualTo(this, observer), this, observer, p);
 	}
 	
 	/**
@@ -820,8 +829,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param observable
 	 * @throws InterruptedException
 	 */
-	default public void waitUntilGreaterThan(NumberObservable<? extends Number> observable) throws InterruptedException {
-		NumericComparativeWaitUntil.getInstance().isGreaterThan(this, observable);
+	default public void waitUntilGreaterThan(NumberObservable<? extends Number> observer) throws InterruptedException {
+		NumberUtils.waitUntil(NumberUtils.isGreaterThan(this, observer), this, observer);
 	}
 	
 	/**
@@ -838,8 +847,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilGreaterThan(NumberObservable<? extends Number> observable, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		NumericComparativeWaitUntil.getInstance().isGreaterThan(this, observable, timeout, unit);
+	default public void waitUntilGreaterThan(NumberObservable<? extends Number> observer, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		NumberUtils.waitUntil(NumberUtils.isGreaterThan(this, observer), this, observer, timeout, unit);
 	}
 	
 	/**
@@ -855,8 +864,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilGreaterThan(NumberObservable<? extends Number> observable, TimeGettable p) throws InterruptedException, TimeoutException {
-		NumericComparativeWaitUntil.getInstance().isGreaterThan(this, observable, p);
+	default public void waitUntilGreaterThan(NumberObservable<? extends Number> observer, TimeGettable p) throws InterruptedException, TimeoutException {
+		NumberUtils.waitUntil(NumberUtils.isGreaterThan(this, observer), this, observer, p);
 	}
 	
 	/**
@@ -870,8 +879,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param observable
 	 * @throws InterruptedException
 	 */
-	default public void waitUntilGreaterThanOrEqualTo(NumberObservable<? extends Number> observable) throws InterruptedException {
-		NumericComparativeWaitUntil.getInstance().isGreaterThanOrEqualTo(this, observable);
+	default public void waitUntilGreaterThanOrEqualTo(NumberObservable<? extends Number> observer) throws InterruptedException {
+		NumberUtils.waitUntil(NumberUtils.isGreaterThanOrEqualTo(this, observer), this, observer);
 	}
 	
 	/**
@@ -888,8 +897,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilGreaterThanOrEqualTo(NumberObservable<? extends Number> observable, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		NumericComparativeWaitUntil.getInstance().isGreaterThanOrEqualTo(this, observable, timeout, unit);
+	default public void waitUntilGreaterThanOrEqualTo(NumberObservable<? extends Number> observer, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		NumberUtils.waitUntil(NumberUtils.isGreaterThanOrEqualTo(this, observer), this, observer, timeout, unit);
 	}
 	
 	/**
@@ -905,8 +914,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilGreaterThanOrEqualTo(NumberObservable<? extends Number> observable, TimeGettable p) throws InterruptedException, TimeoutException {
-		NumericComparativeWaitUntil.getInstance().isGreaterThanOrEqualTo(this, observable, p);
+	default public void waitUntilGreaterThanOrEqualTo(NumberObservable<? extends Number> observer, TimeGettable p) throws InterruptedException, TimeoutException {
+		NumberUtils.waitUntil(NumberUtils.isGreaterThanOrEqualTo(this, observer), this, observer, p);
 	}
 	
 	/* Wait until Primitives */
@@ -923,7 +932,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilEqualTo(int value) throws InterruptedException {
-		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
+		this.waitUntilEqualTo(NumberUtils.unmodifiableInteger(value));
 	}
 	
 	/**
@@ -938,7 +947,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilEqualTo(long value) throws InterruptedException {
-		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value));
+		this.waitUntilEqualTo(NumberUtils.unmodifiableLong(value));
 	}
 	
 	/**
@@ -953,7 +962,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilEqualTo(float value) throws InterruptedException {
-		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
+		this.waitUntilEqualTo(NumberUtils.unmodifiableFloat(value));
 	}
 	
 	/**
@@ -968,7 +977,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilEqualTo(double value) throws InterruptedException {
-		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
+		this.waitUntilEqualTo(NumberUtils.unmodifiableDouble(value));
 	}
 	
 	/**
@@ -986,7 +995,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilEqualTo(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value), timeout, unit);
+		this.waitUntilEqualTo(NumberUtils.unmodifiableInteger(value), timeout, unit);
 	}
 	
 	/**
@@ -1004,7 +1013,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilEqualTo(long value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value), timeout, unit);
+		this.waitUntilEqualTo(NumberUtils.unmodifiableLong(value), timeout, unit);
 	}
 	
 	/**
@@ -1022,7 +1031,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilEqualTo(float value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value), timeout, unit);
+		this.waitUntilEqualTo(NumberUtils.unmodifiableFloat(value), timeout, unit);
 	}
 	
 	/**
@@ -1040,7 +1049,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilEqualTo(double value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value), timeout, unit);
+		this.waitUntilEqualTo(NumberUtils.unmodifiableDouble(value), timeout, unit);
 	}
 	
 	/**
@@ -1057,7 +1066,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilEqualTo(int value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value), p);
+		this.waitUntilEqualTo(NumberUtils.unmodifiableInteger(value), p);
 	}
 	
 	/**
@@ -1074,7 +1083,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilEqualTo(long value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value), p);
+		this.waitUntilEqualTo(NumberUtils.unmodifiableLong(value), p);
 	}
 	
 	/**
@@ -1091,7 +1100,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilEqualTo(float value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value), p);
+		this.waitUntilEqualTo(NumberUtils.unmodifiableFloat(value), p);
 	}
 	
 	/**
@@ -1108,7 +1117,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilEqualTo(double value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value), p);
+		this.waitUntilEqualTo(NumberUtils.unmodifiableDouble(value), p);
 	}
 	
 	/**
@@ -1123,7 +1132,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilNotEqualTo(int value) throws InterruptedException {
-		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
+		this.waitUntilNotEqualTo(NumberUtils.unmodifiableInteger(value));
 	}
 	
 	/**
@@ -1138,7 +1147,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilNotEqualTo(long value) throws InterruptedException {
-		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value));
+		this.waitUntilNotEqualTo(NumberUtils.unmodifiableLong(value));
 	}
 	
 	/**
@@ -1153,7 +1162,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilNotEqualTo(float value) throws InterruptedException {
-		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
+		this.waitUntilNotEqualTo(NumberUtils.unmodifiableFloat(value));
 	}
 	
 	/**
@@ -1168,7 +1177,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilNotEqualTo(double value) throws InterruptedException {
-		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
+		this.waitUntilNotEqualTo(NumberUtils.unmodifiableDouble(value));
 	}
 	
 	/**
@@ -1186,7 +1195,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilNotEqualTo(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value), timeout, unit);
+		this.waitUntilNotEqualTo(NumberUtils.unmodifiableInteger(value), timeout, unit);
 	}
 	
 	/**
@@ -1204,7 +1213,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilNotEqualTo(long value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value), timeout, unit);
+		this.waitUntilNotEqualTo(NumberUtils.unmodifiableLong(value), timeout, unit);
 	}
 	
 	/**
@@ -1222,7 +1231,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilNotEqualTo(float value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value), timeout, unit);
+		this.waitUntilNotEqualTo(NumberUtils.unmodifiableFloat(value), timeout, unit);
 	}
 	
 	/**
@@ -1240,7 +1249,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilNotEqualTo(double value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value), timeout, unit);
+		this.waitUntilNotEqualTo(NumberUtils.unmodifiableDouble(value), timeout, unit);
 	}
 	
 	/**
@@ -1257,7 +1266,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilNotEqualTo(int value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value), p);
+		this.waitUntilNotEqualTo(NumberUtils.unmodifiableInteger(value), p);
 	}
 	
 	/**
@@ -1274,7 +1283,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilNotEqualTo(long value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value), p);
+		this.waitUntilNotEqualTo(NumberUtils.unmodifiableLong(value), p);
 	}
 	
 	/**
@@ -1291,7 +1300,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilNotEqualTo(float value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value), p);
+		this.waitUntilNotEqualTo(NumberUtils.unmodifiableFloat(value), p);
 	}
 	
 	/**
@@ -1308,7 +1317,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilNotEqualTo(double value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value), p);
+		this.waitUntilNotEqualTo(NumberUtils.unmodifiableDouble(value), p);
 	}
 	
 	/**
@@ -1323,7 +1332,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilLessThan(int value) throws InterruptedException {
-		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
+		this.waitUntilLessThan(NumberUtils.unmodifiableInteger(value));
 	}
 	
 	/**
@@ -1338,7 +1347,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilLessThan(long value) throws InterruptedException {
-		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newLong(value));
+		this.waitUntilLessThan(NumberUtils.unmodifiableLong(value));
 	}
 	
 	/**
@@ -1353,7 +1362,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilLessThan(float value) throws InterruptedException {
-		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
+		this.waitUntilLessThan(NumberUtils.unmodifiableFloat(value));
 	}
 	
 	/**
@@ -1368,7 +1377,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilLessThan(double value) throws InterruptedException {
-		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
+		this.waitUntilLessThan(NumberUtils.unmodifiableDouble(value));
 	}
 	
 	/**
@@ -1386,7 +1395,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilLessThan(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newInteger(value), timeout, unit);
+		this.waitUntilLessThan(NumberUtils.unmodifiableInteger(value), timeout, unit);
 	}
 	
 	/**
@@ -1404,7 +1413,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilLessThan(long value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newLong(value), timeout, unit);
+		this.waitUntilLessThan(NumberUtils.unmodifiableLong(value), timeout, unit);
 	}
 	
 	/**
@@ -1422,7 +1431,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilLessThan(float value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newFloat(value), timeout, unit);
+		this.waitUntilLessThan(NumberUtils.unmodifiableFloat(value), timeout, unit);
 	}
 	
 	/**
@@ -1440,7 +1449,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilLessThan(double value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newDouble(value), timeout, unit);
+		this.waitUntilLessThan(NumberUtils.unmodifiableDouble(value), timeout, unit);
 	}
 	
 	/**
@@ -1457,7 +1466,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilLessThan(int value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newInteger(value), p);
+		this.waitUntilLessThan(NumberUtils.unmodifiableInteger(value), p);
 	}
 	
 	/**
@@ -1474,7 +1483,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilLessThan(long value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newLong(value), p);
+		this.waitUntilLessThan(NumberUtils.unmodifiableLong(value), p);
 	}
 	
 	/**
@@ -1491,7 +1500,7 @@ v	 * Wait until this.value < value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilLessThan(float value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newFloat(value), p);
+		this.waitUntilLessThan(NumberUtils.unmodifiableFloat(value), p);
 	}
 	
 	/**
@@ -1508,7 +1517,7 @@ v	 * Wait until this.value < value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilLessThan(double value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().newDouble(value), p);
+		this.waitUntilLessThan(NumberUtils.unmodifiableDouble(value), p);
 	}
 	
 	/**
@@ -1523,7 +1532,7 @@ v	 * Wait until this.value < value.
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilLessThanOrEqualTo(int value) throws InterruptedException {
-		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
+		this.waitUntilLessThanOrEqualTo(NumberUtils.unmodifiableInteger(value));
 	}
 	
 	/**
@@ -1538,7 +1547,7 @@ v	 * Wait until this.value < value.
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilLessThanOrEqualTo(long value) throws InterruptedException {
-		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value));
+		this.waitUntilLessThanOrEqualTo(NumberUtils.unmodifiableLong(value));
 	}
 	
 	/**
@@ -1553,7 +1562,7 @@ v	 * Wait until this.value < value.
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilLessThanOrEqualTo(float value) throws InterruptedException {
-		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
+		this.waitUntilLessThanOrEqualTo(NumberUtils.unmodifiableFloat(value));
 	}
 	
 	/**
@@ -1568,7 +1577,7 @@ v	 * Wait until this.value < value.
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilLessThanOrEqualTo(double value) throws InterruptedException {
-		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
+		this.waitUntilLessThanOrEqualTo(NumberUtils.unmodifiableDouble(value));
 	}
 	
 	/**
@@ -1586,7 +1595,7 @@ v	 * Wait until this.value < value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilLessThanOrEqualTo(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value), timeout, unit);
+		this.waitUntilLessThanOrEqualTo(NumberUtils.unmodifiableInteger(value), timeout, unit);
 	}
 	
 	/**
@@ -1604,7 +1613,7 @@ v	 * Wait until this.value < value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilLessThanOrEqualTo(long value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value), timeout, unit);
+		this.waitUntilLessThanOrEqualTo(NumberUtils.unmodifiableLong(value), timeout, unit);
 	}
 	
 	/**
@@ -1622,7 +1631,7 @@ v	 * Wait until this.value < value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilLessThanOrEqualTo(float value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value), timeout, unit);
+		this.waitUntilLessThanOrEqualTo(NumberUtils.unmodifiableFloat(value), timeout, unit);
 	}
 	
 	/**
@@ -1640,7 +1649,7 @@ v	 * Wait until this.value < value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilLessThanOrEqualTo(double value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value), timeout, unit);
+		this.waitUntilLessThanOrEqualTo(NumberUtils.unmodifiableDouble(value), timeout, unit);
 	}
 	
 	/**
@@ -1657,7 +1666,7 @@ v	 * Wait until this.value < value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilLessThanOrEqualTo(int value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value), p);
+		this.waitUntilLessThanOrEqualTo(NumberUtils.unmodifiableInteger(value), p);
 	}
 	
 	/**
@@ -1674,7 +1683,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilLessThanOrEqualTo(long value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value), p);
+		this.waitUntilLessThanOrEqualTo(NumberUtils.unmodifiableLong(value), p);
 	}
 	
 	/**
@@ -1691,7 +1700,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilLessThanOrEqualTo(float value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value), p);
+		this.waitUntilLessThanOrEqualTo(NumberUtils.unmodifiableFloat(value), p);
 	}
 	
 	/**
@@ -1708,7 +1717,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilLessThanOrEqualTo(double value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value), p);
+		this.waitUntilLessThanOrEqualTo(NumberUtils.unmodifiableDouble(value), p);
 	}
 	
 	/**
@@ -1723,7 +1732,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilGreaterThan(int value) throws InterruptedException {
-		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
+		this.waitUntilGreaterThan(NumberUtils.unmodifiableInteger(value));
 	}
 	
 	/**
@@ -1738,7 +1747,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilGreaterThan(long value) throws InterruptedException {
-		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newLong(value));
+		this.waitUntilGreaterThan(NumberUtils.unmodifiableLong(value));
 	}
 	
 	/**
@@ -1753,7 +1762,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilGreaterThan(float value) throws InterruptedException {
-		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
+		this.waitUntilGreaterThan(NumberUtils.unmodifiableFloat(value));
 	}
 	
 	/**
@@ -1768,7 +1777,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilGreaterThan(double value) throws InterruptedException {
-		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
+		this.waitUntilGreaterThan(NumberUtils.unmodifiableDouble(value));
 	}
 	
 	/**
@@ -1786,7 +1795,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilGreaterThan(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newInteger(value), timeout, unit);
+		this.waitUntilGreaterThan(NumberUtils.unmodifiableInteger(value), timeout, unit);
 	}
 	
 	/**
@@ -1804,7 +1813,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilGreaterThan(long value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newLong(value), timeout, unit);
+		this.waitUntilGreaterThan(NumberUtils.unmodifiableLong(value), timeout, unit);
 	}
 	
 	/**
@@ -1822,7 +1831,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilGreaterThan(float value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newFloat(value), timeout, unit);
+		this.waitUntilGreaterThan(NumberUtils.unmodifiableFloat(value), timeout, unit);
 	}
 	
 	/**
@@ -1840,7 +1849,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilGreaterThan(double value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newDouble(value), timeout, unit);
+		this.waitUntilGreaterThan(NumberUtils.unmodifiableDouble(value), timeout, unit);
 	}
 	
 	/**
@@ -1857,7 +1866,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilGreaterThan(int value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newInteger(value), p);
+		this.waitUntilGreaterThan(NumberUtils.unmodifiableInteger(value), p);
 	}
 	
 	/**
@@ -1874,7 +1883,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilGreaterThan(long value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newLong(value), p);
+		this.waitUntilGreaterThan(NumberUtils.unmodifiableLong(value), p);
 	}
 	
 	/**
@@ -1891,7 +1900,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilGreaterThan(float value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newFloat(value), p);
+		this.waitUntilGreaterThan(NumberUtils.unmodifiableFloat(value), p);
 	}
 	
 	/**
@@ -1908,7 +1917,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilGreaterThan(double value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().newDouble(value), p);
+		this.waitUntilGreaterThan(NumberUtils.unmodifiableDouble(value), p);
 	}
 	
 	/**
@@ -1923,7 +1932,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(int value) throws InterruptedException {
-		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value));
+		this.waitUntilGreaterThanOrEqualTo(NumberUtils.unmodifiableInteger(value));
 	}
 	
 	/**
@@ -1938,7 +1947,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(long value) throws InterruptedException {
-		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value));
+		this.waitUntilGreaterThanOrEqualTo(NumberUtils.unmodifiableLong(value));
 	}
 	
 	/**
@@ -1953,7 +1962,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(float value) throws InterruptedException {
-		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value));
+		this.waitUntilGreaterThanOrEqualTo(NumberUtils.unmodifiableFloat(value));
 	}
 	
 	/**
@@ -1968,7 +1977,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(double value) throws InterruptedException {
-		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value));
+		this.waitUntilGreaterThanOrEqualTo(NumberUtils.unmodifiableDouble(value));
 	}
 	
 	/**
@@ -1986,7 +1995,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value), timeout, unit);
+		this.waitUntilGreaterThanOrEqualTo(NumberUtils.unmodifiableInteger(value), timeout, unit);
 	}
 	
 	/**
@@ -2004,8 +2013,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(long value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value), timeout, unit);
-		this.isGreaterThanOrEqualTo(value).waitUntilTrue(timeout, unit);
+		this.waitUntilGreaterThanOrEqualTo(NumberUtils.unmodifiableLong(value), timeout, unit);
 	}
 	
 	/**
@@ -2023,7 +2031,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(float value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value), timeout, unit);
+		this.waitUntilGreaterThanOrEqualTo(NumberUtils.unmodifiableFloat(value), timeout, unit);
 	}
 	
 	/**
@@ -2041,7 +2049,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(double value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value), timeout, unit);
+		this.waitUntilGreaterThanOrEqualTo(NumberUtils.unmodifiableDouble(value), timeout, unit);
 	}
 	
 	/**
@@ -2058,7 +2066,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(int value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newInteger(value), p);
+		this.waitUntilGreaterThanOrEqualTo(NumberUtils.unmodifiableInteger(value), p);
 	}
 	
 	/**
@@ -2075,7 +2083,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(long value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newLong(value), p);
+		this.waitUntilGreaterThanOrEqualTo(NumberUtils.unmodifiableLong(value), p);
 	}
 	
 	/**
@@ -2092,7 +2100,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(float value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newFloat(value), p);
+		this.waitUntilGreaterThanOrEqualTo(NumberUtils.unmodifiableFloat(value), p);
 	}
 	
 	/**
@@ -2109,7 +2117,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(double value, TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().newDouble(value), p);
+		this.waitUntilGreaterThanOrEqualTo(NumberUtils.unmodifiableDouble(value), p);
 	}
 	
 	/* Wait Until ZEROs */
@@ -2125,7 +2133,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilEqualToZero() throws InterruptedException {
-		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
+		this.waitUntilEqualTo(NumberUtils.getUnmodifiableZero());
 	}
 	
 	/**
@@ -2142,7 +2150,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilEqualToZero(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), timeout, unit);
+		this.waitUntilEqualTo(NumberUtils.getUnmodifiableZero(), timeout, unit);
 	}
 	
 	/**
@@ -2158,7 +2166,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilEqualToZero(TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), p);
+		this.waitUntilEqualTo(NumberUtils.getUnmodifiableZero(), p);
 	}
 	
 	/**
@@ -2172,7 +2180,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilNotEqualToZero() throws InterruptedException {
-		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
+		this.waitUntilNotEqualTo(NumberUtils.getUnmodifiableZero());
 	}
 	
 	/**
@@ -2189,7 +2197,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilNotEqualToZero(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), timeout, unit);
+		this.waitUntilNotEqualTo(NumberUtils.getUnmodifiableZero(), timeout, unit);
 	}
 	
 	/**
@@ -2205,7 +2213,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilNotEqualToZero(TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilNotEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), p);
+		this.waitUntilNotEqualTo(NumberUtils.getUnmodifiableZero(), p);
 	}
 	
 	/**
@@ -2219,7 +2227,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilLessThanZero() throws InterruptedException {
-		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
+		this.waitUntilLessThan(NumberUtils.getUnmodifiableZero());
 	}
 	
 	/**
@@ -2236,7 +2244,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilLessThanZero(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), timeout, unit);
+		this.waitUntilLessThan(NumberUtils.getUnmodifiableZero(), timeout, unit);
 	}
 	
 	/**
@@ -2252,7 +2260,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilLessThanZero(TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilLessThan(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), p);
+		this.waitUntilLessThan(NumberUtils.getUnmodifiableZero(), p);
 	}
 	
 	/**
@@ -2266,7 +2274,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilLessThanOrEqualToZero() throws InterruptedException {
-		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
+		this.waitUntilLessThanOrEqualTo(NumberUtils.getUnmodifiableZero());
 	}
 	
 	/**
@@ -2283,7 +2291,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilLessThanOrEqualToZero(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), timeout, unit);
+		this.waitUntilLessThanOrEqualTo(NumberUtils.getUnmodifiableZero(), timeout, unit);
 	}
 	
 	/**
@@ -2299,7 +2307,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilLessThanOrEqualToZero(TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilLessThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), p);
+		this.waitUntilLessThanOrEqualTo(NumberUtils.getUnmodifiableZero(), p);
 	}
 	
 	/**
@@ -2313,7 +2321,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilGreaterThanZero() throws InterruptedException {
-		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
+		this.waitUntilGreaterThan(NumberUtils.getUnmodifiableZero());
 	}
 	
 	/**
@@ -2330,7 +2338,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilGreaterThanZero(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), timeout, unit);
+		this.waitUntilGreaterThan(NumberUtils.getUnmodifiableZero(), timeout, unit);
 	}
 	
 	/**
@@ -2346,7 +2354,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilGreaterThanZero(TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilGreaterThan(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), p);
+		this.waitUntilGreaterThan(NumberUtils.getUnmodifiableZero(), p);
 	}
 	
 	/**
@@ -2360,7 +2368,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilGreaterThanOrEqualToZero() throws InterruptedException {
-		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero());
+		this.waitUntilGreaterThanOrEqualTo(NumberUtils.getUnmodifiableZero());
 	}
 	
 	/**
@@ -2377,7 +2385,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilGreaterThanOrEqualToZero(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), timeout, unit);
+		this.waitUntilGreaterThanOrEqualTo(NumberUtils.getUnmodifiableZero(), timeout, unit);
 	}
 	
 	/**
@@ -2393,7 +2401,7 @@ v	 * Wait until this.value <= value.
 	 * @throws TimeoutException if timeout.
 	 */
 	default public void waitUntilGreaterThanOrEqualToZero(TimeGettable p) throws InterruptedException, TimeoutException {
-		this.waitUntilGreaterThanOrEqualTo(UnmodifiablePropertyBuilder.getInstance().getIntegerZero(), p);
+		this.waitUntilGreaterThanOrEqualTo(NumberUtils.getUnmodifiableZero(), p);
 	}
 	
 }

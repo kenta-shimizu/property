@@ -29,4 +29,14 @@ public abstract class AbstractUnmodifiableFloatProperty extends AbstractFloatPro
 		return true;
 	}
 	
+	@Override
+	public boolean bind(Observable<? extends Float> observer) {
+		throw new UnsupportedOperationException();
+	}
+	
+	@Override
+	public boolean unbind(Observable<? extends Float> observer) {
+		throw new UnsupportedOperationException();
+	}
+
 }

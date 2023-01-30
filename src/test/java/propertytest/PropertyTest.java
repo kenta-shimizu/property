@@ -29,6 +29,10 @@ public class PropertyTest {
 			final MapProperty<String, String> mapProp = MapProperty.newInstance();
 			final ListProperty<String> listProp = ListProperty.newInstance();
 			
+			listProp.computeSize().addChangeListener(v -> {
+				System.out.println("List size: " + v.toString());
+			});
+			
 			new Thread(() -> {
 				try {
 					Thread.sleep(1500L);
@@ -68,7 +72,6 @@ public class PropertyTest {
 			System.out.println();
 			
 			System.out.println("Waiting until objProp is not null.");
-//			objProp.waitUntilNull();
 			String objv = objProp.waitUntilNotNull();
 			System.out.println("objProp is " + objv);
 			System.out.println();
@@ -83,10 +86,9 @@ public class PropertyTest {
 			System.out.println("mapProp get(\"KEY\") is " + mapv);
 			System.out.println();
 			
-			System.out.println("Waiting until listProp size >0.");
-//			listProp.waitUntilSizeIsGreaterThan(0);
+			System.out.println("Waiting until listProp is not empty.");
 			listProp.waitUntilIsNotEmpty();
-			System.out.println("listProp size is >0.");
+			System.out.println("listProp size is not empty.");
 			System.out.println();
 			
 			System.out.println("Waiting until listProp is empty.");

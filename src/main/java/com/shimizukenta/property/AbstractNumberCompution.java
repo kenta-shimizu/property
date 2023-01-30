@@ -58,4 +58,14 @@ public abstract class AbstractNumberCompution extends AbstractCompution<Number> 
 		}
 	}
 	
+	private final ChangeListener<Number> bindLstnr = this::_syncSetAndNotifyChanged;
+	
+	public boolean bind(NumberObservable<? extends Number> observer) {
+		return observer.addChangeListener(this.bindLstnr);
+	}
+	
+	public boolean unbind(NumberObservable<? extends Number> observer) {
+		return observer.removeChangeListener(this.bindLstnr);
+	}
+	
 }

@@ -14,8 +14,8 @@ public interface ComparativeCompution extends BooleanCompution {
 	 * @param right
 	 * @return (left == right) ComparativeCompution instance.
 	 */
-	public static ComparativeCompution equalTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
-		return NumericComparativeComputionBuilder.getInstance().equalTo(left, right);
+	public static ComparativeCompution isEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
+		return NumberUtils.isEqualTo(left, right);
 	}
 	
 	/**
@@ -25,8 +25,8 @@ public interface ComparativeCompution extends BooleanCompution {
 	 * @param right
 	 * @return (left != right) ComparativeCompution instance.
 	 */
-	public static ComparativeCompution notEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
-		return NumericComparativeComputionBuilder.getInstance().notEqualTo(left, right);
+	public static ComparativeCompution isNotEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
+		return NumberUtils.isNotEqualTo(left, right);
 	}
 	
 	/**
@@ -36,8 +36,8 @@ public interface ComparativeCompution extends BooleanCompution {
 	 * @param right
 	 * @return (left < right) ComparativeCompution instance.
 	 */
-	public static ComparativeCompution lessThan(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
-		return NumericComparativeComputionBuilder.getInstance().lessThan(left, right);
+	public static ComparativeCompution isLessThan(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
+		return NumberUtils.isLessThan(left, right);
 	}
 	
 	/**
@@ -47,8 +47,8 @@ public interface ComparativeCompution extends BooleanCompution {
 	 * @param right
 	 * @return (left <= right) ComparativeCompution instance.
 	 */
-	public static ComparativeCompution lessThanOrEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
-		return NumericComparativeComputionBuilder.getInstance().lessThanOrEqualTo(left, right);
+	public static ComparativeCompution isLessThanOrEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
+		return NumberUtils.isLessThanOrEqualTo(left, right);
 	}
 	
 	/**
@@ -58,8 +58,8 @@ public interface ComparativeCompution extends BooleanCompution {
 	 * @param right
 	 * @return (left > right) ComparativeCompution instance.
 	 */
-	public static ComparativeCompution greaterThan(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
-		return NumericComparativeComputionBuilder.getInstance().greaterThan(left, right);
+	public static ComparativeCompution isGreaterThan(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
+		return NumberUtils.isGreaterThan(left, right);
 	}
 	
 	/**
@@ -69,8 +69,8 @@ public interface ComparativeCompution extends BooleanCompution {
 	 * @param right
 	 * @return (left >= right) ComparativeCompution instance.
 	 */
-	public static ComparativeCompution greaterThanOrEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
-		return NumericComparativeComputionBuilder.getInstance().greaterThanOrEqualTo(left, right);
+	public static ComparativeCompution isGreaterThanOrEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
+		return NumberUtils.isGreaterThanOrEqualTo(left, right);
 	}
 	
 	/**
@@ -82,7 +82,7 @@ public interface ComparativeCompution extends BooleanCompution {
 	 * @param b
 	 * @return Object EqualTo ComparativeCompution
 	 */
-	public static <T, U> ComparativeCompution equalTo(ObjectObservable<T> a, ObjectObservable<U> b) {
+	public static <T, U> ComparativeCompution isEqualTo(ObjectObservable<T> a, ObjectObservable<U> b) {
 		return ObjectUtils.computeIsEqualTo(a, b);
 	}
 	
@@ -95,7 +95,7 @@ public interface ComparativeCompution extends BooleanCompution {
 	 * @param b
 	 * @return Object NotEqualTo ComparativeCompution
 	 */
-	public static <T, U> ComparativeCompution notEqualTo(ObjectObservable<T> a, ObjectObservable<U> b) {
+	public static <T, U> ComparativeCompution isNotEqualTo(ObjectObservable<T> a, ObjectObservable<U> b) {
 		return ObjectUtils.computeIsNotEqualTo(a, b);
 	}
 	

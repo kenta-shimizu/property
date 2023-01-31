@@ -4,8 +4,17 @@ import java.util.Arrays;
 import java.util.Collection;
 
 /**
+ * Number value Compution, includes Getter, Observer.
+ * 
+ * <p>
+ * <strong>NOT</strong> includes Setter.<br />
+ * </p>
  * 
  * @author kenta-shimizu
+ * @see Number
+ * @see Compution
+ * @see NumberGettable
+ * @see NumberObservable
  *
  */
 public interface NumberCompution extends Compution<Number>, NumberGettable<Number>, NumberObservable<Number> {

@@ -5,11 +5,15 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
+ * Collection value Observer.
  * 
  * @author kenta-shimizu
  *
  * @param <E> Element
- * @param <T> Type
+ * @param <T> Type of Collection
+ * @see Observable
+ * @see Collection
+ * 
  */
 public interface CollectionObservable<E, T extends Collection<E>> extends Observable<T> {
 	

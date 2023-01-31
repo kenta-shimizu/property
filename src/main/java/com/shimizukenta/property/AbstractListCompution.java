@@ -1,6 +1,7 @@
 package com.shimizukenta.property;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -72,6 +73,11 @@ public abstract class AbstractListCompution<E> extends AbstractCollectionComputi
 		synchronized ( this._sync ) {
 			return this._simpleGet().subList(fromIndex, toIndex);
 		}
+	}
+	
+	@Override
+	protected List<E> _unmodifiableCollection(List<E> c) {
+		return Collections.unmodifiableList(c);
 	}
 	
 }

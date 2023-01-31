@@ -3,28 +3,15 @@ package com.shimizukenta.property;
 import java.util.Collection;
 
 /**
+ * Collection value Setter.
  * 
  * @author kenta-shimizu
  *
  * @param <E> Element
- * @param <T> Type
+ * @param <T> Type of Collection
+ * @see Collection
+ * @see Settable
  */
-public interface CollectionSettable<E, T extends Collection<E>> {
-	
-	/**
-	 * Bind to observer.
-	 * 
-	 * @param observable
-	 * @return {@code true} if bind success, otherwise {@code false}.
-	 */
-	public boolean bind(CollectionObservable<E, T> observer);
-	
-	/**
-	 * Unbind to observer.
-	 * 
-	 * @param observer
-	 * @return {@code true} if unbind success, otherwise {@code false}.
-	 */
-	public boolean unbind(CollectionObservable<E, T> observer);
+public interface CollectionSettable<E, T extends Collection<E>> extends Settable<T> {
 	
 }

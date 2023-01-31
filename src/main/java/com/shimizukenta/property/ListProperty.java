@@ -6,10 +6,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * List value Property, include List-methods, Setter, Observer.
+ * 
+ * <p>
+ * Build instance via {@link #newInstance()}.<br />
+ * </p>
  * 
  * @author kenta-shimizu
  *
  * @param <E> Element
+ * @see List
+ * @see CollectionProperty
+ * @see ListObservable
+ * @see ListSettable
  */
 public interface ListProperty<E> extends List<E>, CollectionProperty<E, List<E>>, ListObservable<E>, ListSettable<E> {
 	

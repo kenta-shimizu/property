@@ -33,6 +33,10 @@ public class PropertyTest {
 				System.out.println("List size: " + v.toString());
 			});
 			
+			mapProp.computeKeySet().addChangeListener(s -> {
+				System.out.println("Map Keys: " + s.toString());
+			});
+			
 			new Thread(() -> {
 				try {
 					Thread.sleep(1500L);
@@ -49,6 +53,7 @@ public class PropertyTest {
 					
 					Thread.sleep(1000L);
 					mapProp.put("KEY", "VALUE");
+					mapProp.put("APPEND", "2nd");
 					
 					Thread.sleep(1000L);
 					listProp.add("AAA");

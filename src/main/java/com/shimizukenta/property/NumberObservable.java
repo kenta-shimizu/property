@@ -7,8 +7,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
+ * Number value Observer.
  * 
  * @author kenta-shimizu
+ * @see Number
+ * @see Observable
  *
  */
 public interface NumberObservable<T extends Number> extends Observable<T> {

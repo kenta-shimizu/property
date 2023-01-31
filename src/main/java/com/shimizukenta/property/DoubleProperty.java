@@ -1,8 +1,16 @@
 package com.shimizukenta.property;
 
 /**
+ * Double value Property, includes Getter, Setter, Observer.
+ * 
+ * <p>
+ * Build instance via {@link #newInstance(double)}.<br />
+ * </p>
  * 
  * @author kenta-shimizu
+ * @see NumberProperty
+ * @see DoubleSettable
+ * @see Double
  *
  */
 public interface DoubleProperty extends NumberProperty<Double>, DoubleSettable {

@@ -1,6 +1,7 @@
 package com.shimizukenta.property;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
@@ -145,7 +146,7 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 		}
 	}
 	
-	protected void _syncSetAndNotifyChanged(Map<K, V> newMap) {
+	protected void _syncSetAndNotifyChanged(Map<? extends K, ? extends V> newMap) {
 		synchronized ( this._sync ) {
 			final Map<K, V> x = this._simpleGet();
 			if ( ! Objects.equals(newMap, x) ) {
@@ -156,21 +157,21 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 		}
 	}
 	
-	private final ChangeListener<Map<K, V>> changeLstnr = this::_syncSetAndNotifyChanged;
+	private final ChangeListener<Map<? extends K, ? extends V>> changeLstnr = this::_syncSetAndNotifyChanged;
 	
 	@Override
-	public boolean bind(MapObservable<K, V> observer) {
+	public boolean bind(Observable<? extends Map<K, V>> observer) {
 		return observer.addChangeListener(this.changeLstnr);
 	}
 	
 	@Override
-	public boolean unbind(MapObservable<K, V> observer) {
+	public boolean unbind(Observable<? extends Map<K, V>> observer) {
 		return observer.removeChangeListener(this.changeLstnr);
 	}
 	
 	protected void _notifyChanged() {
 		synchronized ( this._sync ) {
-			final Map<K, V> m = this._simpleGet();
+			final Map<K, V> m = Collections.unmodifiableMap(this._simpleGet());
 			for (ChangeListener<? super Map<K, V>> l : this.changeLstnrs ) {
 				l.changed(m);
 			}

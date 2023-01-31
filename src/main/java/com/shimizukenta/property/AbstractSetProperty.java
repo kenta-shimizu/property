@@ -1,5 +1,6 @@
 package com.shimizukenta.property;
 
+import java.util.Collections;
 import java.util.Set;
 
 /**
@@ -14,6 +15,11 @@ public abstract class AbstractSetProperty<E> extends AbstractCollectionProperty<
 	
 	public AbstractSetProperty(Set<E> initial) {
 		super(initial);
+	}
+	
+	@Override
+	protected Set<E> _unmodifiableCollection(Set<E> c) {
+		return Collections.unmodifiableSet(c);
 	}
 	
 }

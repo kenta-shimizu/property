@@ -4,8 +4,11 @@
 package com.shimizukenta.property;
 
 /**
+ * Float value Setter.
  * 
  * @author kenta-shimizu
+ * @see NumberSettable
+ * @see Float
  *
  */
 public interface FloatSettable extends NumberSettable<Float> {

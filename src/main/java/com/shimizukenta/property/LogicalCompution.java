@@ -4,8 +4,11 @@ import java.util.Arrays;
 import java.util.Collection;
 
 /**
+ * Logical Boolean compution, includes Getter, Observer.
  * 
  * @author kenta-shimizu
+ * @see BooleanCompution
+ * @see Boolean
  *
  */
 public interface LogicalCompution extends BooleanCompution {

@@ -1,8 +1,11 @@
 package com.shimizukenta.property;
 
 /**
+ * Comparative Boolean Compution, includes Getter, Observer.
  * 
  * @author kenta-shimizu
+ * @see Boolean
+ * @see BooleanCompution
  *
  */
 public interface ComparativeCompution extends BooleanCompution {

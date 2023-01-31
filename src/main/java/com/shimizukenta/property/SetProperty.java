@@ -6,11 +6,20 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Build instance via {@link #newInstance()}.
+ * Set value Property, include Set-methods, Setter, Observer.
+ * 
+ * <p>
+ * Build instance via {@link #newInstance()}.<br />
+ * </p>
  * 
  * @author kenta-shimizu
  *
  * @param <E> Element
+ * @see Set
+ * @see CollectionProperty
+ * @see SetSettable
+ * @see SetObservable
+ * 
  */
 public interface SetProperty<E> extends Set<E>, CollectionProperty<E, Set<E>>, SetObservable<E>, SetSettable<E> {
 	

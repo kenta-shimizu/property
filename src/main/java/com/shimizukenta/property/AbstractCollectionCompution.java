@@ -142,20 +142,22 @@ public abstract class AbstractCollectionCompution<E, T extends Collection<E>> im
 	
 	private final ChangeListener<T> bindLstnr = this::_syncSetAndNotifyChanged;
 	
-	public boolean bind(CollectionObservable<E, T> observer) {
+	public boolean bind(Observable<? extends T> observer) {
 		return observer.addChangeListener(this.bindLstnr);
 	}
 	
-	public boolean unbind(CollectionObservable<E, T> observer) {
+	public boolean unbind(Observable<? extends T> observer) {
 		return observer.removeChangeListener(this.bindLstnr);
 	}
 	
 	protected void _notifyChagned() {
-		final T v = this._simpleGet();
+		final T v = this._unmodifiableCollection(this._simpleGet());
 		for ( ChangeListener<? super T> l : this.changeLstnrs ) {
 			l.changed(v);
 		}
 	}
+	
+	abstract protected T _unmodifiableCollection(T c);
 	
 	@Override
 	public String toString() {

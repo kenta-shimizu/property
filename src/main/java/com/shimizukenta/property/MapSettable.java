@@ -10,23 +10,8 @@ import java.util.Map;
  * @param <K> Key Type
  * @param <V> Value Type
  * @see Map
+ * @see Settable
  */
-public interface MapSettable<K, V> {
-	
-	/**
-	 * Bind to observer.
-	 * 
-	 * @param observer
-	 * @return true if bind success.
-	 */
-	public boolean bind(MapObservable<K, V> observer);
-	
-	/**
-	 * Unbind to observer.
-	 * 
-	 * @param observer
-	 * @return true if unbind success.
-	 */
-	public boolean unbind(MapObservable<K, V> observer);
+public interface MapSettable<K, V> extends Settable<Map<K, V>>{
 	
 }

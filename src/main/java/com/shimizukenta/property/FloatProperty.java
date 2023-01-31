@@ -4,8 +4,16 @@
 package com.shimizukenta.property;
 
 /**
+ * Float value Property, includes Getter, Setter, Observer.
+ * 
+ * <p>
+ * Build instance via {@link #newInstance(float)}.<br />
+ * </p>
  * 
  * @author kenta-shimizu
+ * @see NumberProperty
+ * @see FloatSettable
+ * @see Float
  *
  */
 public interface FloatProperty extends NumberProperty<Float>, FloatSettable {

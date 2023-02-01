@@ -3,9 +3,12 @@ package com.shimizukenta.property;
 /**
  * Integer value Property, includes Getter, Setter, Observer.
  * 
- * <p>
- * Build instance via {@link #newInstance(int)}.<br />
- * </p>
+ * <ul>
+ * <li>To build instance, {@link #newInstance(int)}.</li>
+ * <li>To get value, {@link #byteValue()}, {@link #shortValue()}, {@link #intValue()}, {@link #longValue()}, {@link #floatValue()}, {@link #doubleValue()}.</li>
+ * <li>To set value, {@link #set(int)}.</li>
+ * <li>To detect value changed, {@link #addChangeListener(ChangeListener)}.</li>
+ * </ul>
  * 
  * @author kenta-shimizu
  * @see NumberProperty

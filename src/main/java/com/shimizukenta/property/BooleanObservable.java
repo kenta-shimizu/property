@@ -9,6 +9,7 @@ import java.util.concurrent.TimeoutException;
  * @author kenta-shimizu
  * @see Boolean
  * @see Observable
+ * @see LogicalCompution
  *
  */
 public interface BooleanObservable extends Observable<Boolean> {
@@ -17,7 +18,9 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * Returns (this && observer) LogicalCompution instance.
 	 * 
 	 * @param observer
-	 * @return (this && observer) LogicalCompution instance.
+	 * @return (this && observer) LogicalCompution instance
+	 * @see #and(boolean)
+	 * @see LogicalCompution#and(BooleanObservable...)
 	 */
 	default public LogicalCompution and(BooleanObservable observer) {
 		return LogicalCompution.and(this, observer);
@@ -27,7 +30,8 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * Returns (this || observer) LogicalCompution instance.
 	 * 
 	 * @param observer
-	 * @return (this || observer) LogicalCompution instance.
+	 * @return (this || observer) LogicalCompution instance
+	 * @see LogicalCompution#or(BooleanObservable...)
 	 */
 	default public LogicalCompution or(BooleanObservable observer) {
 		return LogicalCompution.or(this, observer);
@@ -36,7 +40,8 @@ public interface BooleanObservable extends Observable<Boolean> {
 	/**
 	 * Returns (! this) LogicalCompution instance.
 	 * 
-	 * @return (! this) LogicalCompution instance.
+	 * @return (! this) LogicalCompution instance
+	 * @see LogicalCompution#not(BooleanObservable)
 	 */
 	default public LogicalCompution not() {
 		return LogicalCompution.not(this);
@@ -46,7 +51,9 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * Returns (this ^ observer) LogicalCompution instance.
 	 * 
 	 * @param observer
-	 * @return (this ^ observer) LogicalCompution instance.
+	 * @return (this ^ observer) LogicalCompution instance
+	 * @see #xor(boolean)
+	 * @see LogicalCompution#xor(BooleanObservable, BooleanObservable)
 	 */
 	default public LogicalCompution xor(BooleanObservable observer) {
 		return LogicalCompution.xor(this, observer);
@@ -56,7 +63,9 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * Returns (! (this && observer)) LogicalCompution instance.
 	 * 
 	 * @param observer
-	 * @return (! (this && observer)) LogicalCompution instance.
+	 * @return (! (this && observer)) LogicalCompution instance
+	 * @see LogicalCompution#nand(BooleanObservable...)
+	 * 
 	 */
 	default public LogicalCompution nand(BooleanObservable observer) {
 		return LogicalCompution.nand(this, observer);
@@ -67,6 +76,8 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * 
 	 * @param observer
 	 * @return (! (this || observer)) LogicalCompution instance.
+	 * @see #nor(boolean)
+	 * @see LogicalCompution#nor(BooleanObservable...)
 	 */
 	default public LogicalCompution nor(BooleanObservable observer) {
 		return LogicalCompution.nor(this, observer);
@@ -76,7 +87,10 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * Returns (this && f) LogicalCompution instance.
 	 * 
 	 * @param f is boolean
-	 * @return (this && f) LogicalCompution instance.
+	 * @return (this && f) LogicalCompution instance
+	 * @see #and(BooleanObservable)
+	 * @see #and(BooleanObservable)
+	 * @see LogicalCompution#and(BooleanObservable...)
 	 */
 	default public LogicalCompution and(boolean f) {
 		return this.and(BooleanUtils.getUnmodifiableBoolean(f));
@@ -86,7 +100,9 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * Returns (this || f) LogicalCompution instance.
 	 * 
 	 * @param f is boolean
-	 * @return (this || f) LogicalCompution instance.
+	 * @return (this || f) LogicalCompution instance
+	 * @see #or(BooleanObservable)
+	 * @see LogicalCompution#or(BooleanObservable...)
 	 */
 	default public LogicalCompution or(boolean f) {
 		return this.or(BooleanUtils.getUnmodifiableBoolean(f));
@@ -96,7 +112,9 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * Returns (this ^ f) LogicalCompution instance.
 	 * 
 	 * @param f is boolean
-	 * @return (this ^ f) LogicalCompution instance.
+	 * @return (this ^ f) LogicalCompution instance
+	 * @see #xor(BooleanObservable)
+	 * @see LogicalCompution#xor(BooleanObservable...)
 	 */
 	default public LogicalCompution xor(boolean f) {
 		return this.xor(BooleanUtils.getUnmodifiableBoolean(f));
@@ -106,7 +124,9 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * Returns (! (this && f)) LogicalCompution instance.
 	 * 
 	 * @param f is boolean
-	 * @return (! (this && f)) LogicalCompution instance.
+	 * @return (! (this && f)) LogicalCompution instance
+	 * @see #nand(BooleanObservable)
+	 * @see LogicalCompution#nand(BooleanObservable...)
 	 */
 	default public LogicalCompution nand(boolean f) {
 		return this.nand(BooleanUtils.getUnmodifiableBoolean(f));
@@ -117,6 +137,8 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * 
 	 * @param f is boolean
 	 * @return (! (this || f)) LogicalCompution instance.
+	 * @see #nor(BooleanObservable)
+	 * @see LogicalCompution#nor(BooleanObservable...)
 	 */
 	default public LogicalCompution nor(boolean f) {
 		return this.nor(BooleanUtils.getUnmodifiableBoolean(f));

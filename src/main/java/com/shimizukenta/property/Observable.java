@@ -14,6 +14,7 @@ public interface Observable<T> {
 	 * 
 	 * @param l
 	 * @return true if add success.
+	 * @see #removeChangeListener(ChangeListener)
 	 */
 	public boolean addChangeListener(ChangeListener<? super T> l);
 	
@@ -22,6 +23,7 @@ public interface Observable<T> {
 	 * 
 	 * @param l
 	 * @return true if remove success.
+	 * @see #addChangeListener(ChangeListener)
 	 */
 	public boolean removeChangeListener(ChangeListener<? super T> l);
 	

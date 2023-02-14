@@ -53,7 +53,7 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 		CollectionUtils.waitUntil(CollectionUtils.computeIsEmpty(this), this, timeout, unit);
 	}
 	
-	default public void waitUntilIsEmpty(TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilIsEmpty(TimeoutGettable p) throws InterruptedException, TimeoutException {
 		CollectionUtils.waitUntil(CollectionUtils.computeIsEmpty(this), this, p);
 	}
 	
@@ -65,7 +65,7 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 		CollectionUtils.waitUntil(CollectionUtils.computeIsNotEmpty(this), this, timeout, unit);
 	}
 	
-	default public void waitUntilIsNotEmpty(TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilIsNotEmpty(TimeoutGettable p) throws InterruptedException, TimeoutException {
 		CollectionUtils.waitUntil(CollectionUtils.computeIsNotEmpty(this), this, p);
 	}
 	
@@ -77,7 +77,7 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 		CollectionUtils.waitUntil(CollectionUtils.computeContains(this, o), this, timeout, unit);
 	}
 	
-	default public void waitUntilContains(Object o, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilContains(Object o, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		CollectionUtils.waitUntil(CollectionUtils.computeContains(this, o), this, p);
 	}
 	
@@ -89,7 +89,7 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 		CollectionUtils.waitUntil(CollectionUtils.computeNotContains(this, o), this, timeout, unit);
 	}
 	
-	default public void waitUntilNotContains(Object o, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilNotContains(Object o, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		CollectionUtils.waitUntil(CollectionUtils.computeNotContains(this, o), this, p);
 	}
 	
@@ -101,7 +101,7 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 		CollectionUtils.waitUntil(CollectionUtils.computeContainsAll(this, c), this, timeout, unit);
 	}
 	
-	default public void waitUntilContainsAll(Collection<?> c, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilContainsAll(Collection<?> c, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		CollectionUtils.waitUntil(CollectionUtils.computeContainsAll(this, c), this, p);
 	}
 	
@@ -113,7 +113,7 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 		CollectionUtils.waitUntil(CollectionUtils.computeNotContainsAll(this, c), this, timeout, unit);
 	}
 	
-	default public void waitUntilNotContainsAll(Collection<?> c, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilNotContainsAll(Collection<?> c, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		CollectionUtils.waitUntil(CollectionUtils.computeNotContainsAll(this, c), this, p);
 	}
 

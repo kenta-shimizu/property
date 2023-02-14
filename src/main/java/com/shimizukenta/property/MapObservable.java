@@ -123,7 +123,7 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public V waitUntilContainsKeyAndGet(Object key, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public V waitUntilContainsKeyAndGet(Object key, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		return MapUtils.waitUntilContainsKey(this, key, p);
 	}
 	
@@ -173,7 +173,7 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilNotContainsKey(Object key, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilNotContainsKey(Object key, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		MapUtils.waitUntilNotContainsKey(this, key, p);
 	}
 	
@@ -220,7 +220,7 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilIsEmpty(TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilIsEmpty(TimeoutGettable p) throws InterruptedException, TimeoutException {
 		MapUtils.waitUntilIsEmpty(this, p);
 	}
 	
@@ -267,7 +267,7 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilIsNotEmpty(TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilIsNotEmpty(TimeoutGettable p) throws InterruptedException, TimeoutException {
 		MapUtils.waitUntilIsNotEmpty(this, p);
 	}
 	

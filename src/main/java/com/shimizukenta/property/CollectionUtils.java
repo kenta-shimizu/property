@@ -122,7 +122,7 @@ public class CollectionUtils {
 	public static <E, T extends Collection<E>> void waitUntil(
 			AbstractPredicateCompution<T> i,
 			Observable<T> observer,
-			TimeGettable p) throws InterruptedException, TimeoutException {
+			TimeoutGettable p) throws InterruptedException, TimeoutException {
 		
 		try {
 			i.waitUntilTrue(p);

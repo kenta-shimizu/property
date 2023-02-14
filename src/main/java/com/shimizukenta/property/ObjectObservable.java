@@ -90,7 +90,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	//comment
 	default public <U> void waitUntilEqualTo(
 			ObjectObservable<U> observer,
-			TimeGettable p) throws InterruptedException, TimeoutException {
+			TimeoutGettable p) throws InterruptedException, TimeoutException {
 		
 		ObjectUtils.waitUntilEqualTo(this, observer, p);
 	}
@@ -119,7 +119,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	default public <U> void waitUntilEqualTo(
 			
 			U ref,
-			TimeGettable p) throws InterruptedException, TimeoutException {
+			TimeoutGettable p) throws InterruptedException, TimeoutException {
 		
 		this.waitUntilEqualTo(ObjectUtils.newUnmodifiable(ref), p);
 	}
@@ -146,7 +146,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	//comment
 	default public <U> void waitUntilNotEqualTo(
 			ObjectObservable<U> observer,
-			TimeGettable p) throws InterruptedException, TimeoutException {
+			TimeoutGettable p) throws InterruptedException, TimeoutException {
 		
 		ObjectUtils.waitUntilNotEqualTo(this, observer, p);
 	}
@@ -173,7 +173,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	//comment
 	default public <U> void waitUntilNotEqualTo(
 			U ref,
-			TimeGettable p) throws InterruptedException, TimeoutException {
+			TimeoutGettable p) throws InterruptedException, TimeoutException {
 		
 		this.waitUntilNotEqualTo(ObjectUtils.newUnmodifiable(ref), p);
 	}
@@ -239,7 +239,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public T waitUntilNotNull(TimeGettable p) throws InterruptedException, TimeoutException {
+	default public T waitUntilNotNull(TimeoutGettable p) throws InterruptedException, TimeoutException {
 		return ObjectUtils.waitUntilNotNull(this, p);
 	}
 	
@@ -286,7 +286,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilNull(TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilNull(TimeoutGettable p) throws InterruptedException, TimeoutException {
 		ObjectUtils.waitUntilNull(this, p);
 	}
 	

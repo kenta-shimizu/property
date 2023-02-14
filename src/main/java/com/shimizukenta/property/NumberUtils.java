@@ -1077,7 +1077,7 @@ public class NumberUtils {
 			AbstractBiPredicateCompution<Number, Number> i,
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right,
-			TimeGettable p) throws InterruptedException, TimeoutException {
+			TimeoutGettable p) throws InterruptedException, TimeoutException {
 		
 		try {
 			i.waitUntilTrue(p);

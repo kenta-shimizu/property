@@ -19,7 +19,7 @@ import java.util.concurrent.TimeoutException;
  * @see Gettable
  * 
  */
-public interface TimeGettable extends Gettable<TimeoutAndUnit> {
+public interface TimeoutGettable extends Gettable<TimeoutAndUnit> {
 	
 	/**
 	 * Value Getter.

@@ -8,11 +8,11 @@ import java.util.concurrent.TimeUnit;
  * @author kenta-shimizu
  *
  */
-public abstract class AbstractTimeProperty extends AbstractProperty<TimeoutAndUnit> implements TimeProperty {
+public abstract class AbstractTimeoutProperty extends AbstractProperty<TimeoutAndUnit> implements TimeoutProperty {
 	
 	private static final long serialVersionUID = -8510457745679120175L;
 	
-	public AbstractTimeProperty(TimeoutAndUnit initial) {
+	public AbstractTimeoutProperty(TimeoutAndUnit initial) {
 		super(initial);
 	}
 	

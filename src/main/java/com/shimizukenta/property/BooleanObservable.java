@@ -145,7 +145,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	}
 	
 	/**
-	 * Waiting until {@code (condtion == this.get().booleanValue())}.
+	 * Waiting until {@code (condtion == this.booleanValue())}.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
@@ -154,11 +154,12 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * 
 	 * @param condition is {@code boolean}.
 	 * @throws InterruptedException
+	 * @see {@link #waitUntil(boolean, long, TimeUnit)}
 	 */
 	public void waitUntil(boolean condition) throws InterruptedException;
 	
 	/**
-	 * Waiting until {@code (condition == this.get().booleanValue())}.
+	 * Waiting until {@code (condition == this.booleanValue())}.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
@@ -171,11 +172,12 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * @param unit
 	 * @throws InterruptedException
 	 * @throws TimeoutException throw if timeout.
+	 * @see #waitUntil(boolean)
 	 */
 	public void waitUntil(boolean condition, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException;
 	
 	/**
-	 * Waiting until {@code (condition == this.get().booleanValue())}.
+	 * Waiting until {@code (condition == this.booleanValue())}.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
@@ -186,14 +188,15 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * @param p is TimeProperty
 	 * @throws InterruptedException
 	 * @throws TimeoutException throw if timeout.
+	 * @see #waitUntil(boolean, long, TimeUnit)
 	 */
-	default public void waitUntil(boolean condition, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntil(boolean condition, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		final TimeoutAndUnit a = p.get();
 		this.waitUntil(condition, a.timeout(), a.unit());
 	}
 	
 	/**
-	 * Waiting until {@code (this.get().booleanValue() == true)}.
+	 * Waiting until {@code (this.booleanValue() == true)}.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
@@ -201,13 +204,15 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * </p>
 	 * 
 	 * @throws InterruptedException
+	 * @see {@link #waitUntil(boolean)}
+	 * #see {@link #waitUntilFalse()}
 	 */
 	default public void waitUntilTrue() throws InterruptedException {
 		this.waitUntil(true);
 	}
 	
 	/**
-	 * Waiting until {@code (this.get().booleanValue() == true)}.
+	 * Waiting until {@code (this.booleanValue() == true)}.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
@@ -218,13 +223,15 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * @param unit
 	 * @throws InterruptedException
 	 * @throws TimeoutException throw if timeout.
+	 * @see #waitUntil(boolean, long, TimeUnit)
+	 * @see #waitUntilFalse(long, TimeUnit)
 	 */
 	default public void waitUntilTrue(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntil(true, timeout, unit);
 	}
 	
 	/**
-	 * Waiting until {@code (this.get().booleanValue() == true)}.
+	 * Waiting until {@code (this.booleanValue() == true)}.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
@@ -234,13 +241,15 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * @param p is TimeProperty
 	 * @throws InterruptedException
 	 * @throws TimeoutException throw if timeout.
+	 * @see #waitUntil(boolean, TimeoutGettable)
+	 * @see #waitUntilFalse(TimeoutGettable)
 	 */
-	default public void waitUntilTrue(TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilTrue(TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntil(true, p);
 	}
 	
 	/**
-	 * Waiting until {@code (this.get().booleanValue() == false)}.
+	 * Waiting until {@code (this.booleanValue() == false)}.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
@@ -248,13 +257,15 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * </p>
 	 * 
 	 * @throws InterruptedException
+	 * @see {@link #waitUntil(boolean)}
+	 * @see #waitUntilTrue()
 	 */
 	default public void waitUntilFalse() throws InterruptedException {
 		this.waitUntil(false);
 	}
 	
 	/**
-	 * Waiting until {@code (this.get().booleanValue() == false)}.
+	 * Waiting until {@code (this.booleanValue() == false)}.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
@@ -265,13 +276,15 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * @param unit
 	 * @throws InterruptedException
 	 * @throws TimeoutException throw if timeout.
+	 * @see #waitUntil(boolean, long, TimeUnit)
+	 * @see #waitUntilTrue(long, TimeUnit)
 	 */
 	default public void waitUntilFalse(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		this.waitUntil(false, timeout, unit);
 	}
 	
 	/**
-	 * Waiting until {@code (this.get().booleanValue() == false)}.
+	 * Waiting until {@code (this.booleanValue() == false)}.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
@@ -281,8 +294,10 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * @param p is TimeProperty
 	 * @throws InterruptedException
 	 * @throws TimeoutException throw if timeout.
+	 * @see #waitUntil(boolean, TimeoutGettable)
+	 * @see #waitUntilTrue(TimeoutGettable)
 	 */
-	default public void waitUntilFalse(TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilFalse(TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntil(false, p);
 	}
 	

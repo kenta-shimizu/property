@@ -667,7 +667,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilEqualTo(NumberObservable<? extends Number> observer, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilEqualTo(NumberObservable<? extends Number> observer, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		NumberUtils.waitUntil(NumberUtils.isEqualTo(this, observer), this, observer, p);
 	}
 	
@@ -717,7 +717,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilNotEqualTo(NumberObservable<? extends Number> observer, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilNotEqualTo(NumberObservable<? extends Number> observer, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		NumberUtils.waitUntil(NumberUtils.isNotEqualTo(this, observer), this, observer, p);
 	}
 	
@@ -767,7 +767,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilLessThan(NumberObservable<? extends Number> observer, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilLessThan(NumberObservable<? extends Number> observer, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		NumberUtils.waitUntil(NumberUtils.isLessThan(this, observer), this, observer, p);
 	}
 	
@@ -817,7 +817,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilLessThanOrEqualTo(NumberObservable<? extends Number> observer, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilLessThanOrEqualTo(NumberObservable<? extends Number> observer, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		NumberUtils.waitUntil(NumberUtils.isLessThanOrEqualTo(this, observer), this, observer, p);
 	}
 	
@@ -867,7 +867,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilGreaterThan(NumberObservable<? extends Number> observer, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilGreaterThan(NumberObservable<? extends Number> observer, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		NumberUtils.waitUntil(NumberUtils.isGreaterThan(this, observer), this, observer, p);
 	}
 	
@@ -917,7 +917,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilGreaterThanOrEqualTo(NumberObservable<? extends Number> observer, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilGreaterThanOrEqualTo(NumberObservable<? extends Number> observer, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		NumberUtils.waitUntil(NumberUtils.isGreaterThanOrEqualTo(this, observer), this, observer, p);
 	}
 	
@@ -1068,7 +1068,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilEqualTo(int value, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilEqualTo(int value, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilEqualTo(NumberUtils.unmodifiableInteger(value), p);
 	}
 	
@@ -1085,7 +1085,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilEqualTo(long value, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilEqualTo(long value, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilEqualTo(NumberUtils.unmodifiableLong(value), p);
 	}
 	
@@ -1102,7 +1102,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilEqualTo(float value, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilEqualTo(float value, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilEqualTo(NumberUtils.unmodifiableFloat(value), p);
 	}
 	
@@ -1119,7 +1119,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilEqualTo(double value, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilEqualTo(double value, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilEqualTo(NumberUtils.unmodifiableDouble(value), p);
 	}
 	
@@ -1268,7 +1268,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilNotEqualTo(int value, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilNotEqualTo(int value, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilNotEqualTo(NumberUtils.unmodifiableInteger(value), p);
 	}
 	
@@ -1285,7 +1285,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilNotEqualTo(long value, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilNotEqualTo(long value, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilNotEqualTo(NumberUtils.unmodifiableLong(value), p);
 	}
 	
@@ -1302,7 +1302,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilNotEqualTo(float value, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilNotEqualTo(float value, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilNotEqualTo(NumberUtils.unmodifiableFloat(value), p);
 	}
 	
@@ -1319,7 +1319,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilNotEqualTo(double value, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilNotEqualTo(double value, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilNotEqualTo(NumberUtils.unmodifiableDouble(value), p);
 	}
 	
@@ -1468,7 +1468,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilLessThan(int value, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilLessThan(int value, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThan(NumberUtils.unmodifiableInteger(value), p);
 	}
 	
@@ -1485,7 +1485,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilLessThan(long value, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilLessThan(long value, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThan(NumberUtils.unmodifiableLong(value), p);
 	}
 	
@@ -1502,7 +1502,7 @@ v	 * Wait until this.value < value.
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilLessThan(float value, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilLessThan(float value, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThan(NumberUtils.unmodifiableFloat(value), p);
 	}
 	
@@ -1519,7 +1519,7 @@ v	 * Wait until this.value < value.
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilLessThan(double value, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilLessThan(double value, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThan(NumberUtils.unmodifiableDouble(value), p);
 	}
 	
@@ -1668,7 +1668,7 @@ v	 * Wait until this.value < value.
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilLessThanOrEqualTo(int value, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilLessThanOrEqualTo(int value, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThanOrEqualTo(NumberUtils.unmodifiableInteger(value), p);
 	}
 	
@@ -1685,7 +1685,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilLessThanOrEqualTo(long value, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilLessThanOrEqualTo(long value, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThanOrEqualTo(NumberUtils.unmodifiableLong(value), p);
 	}
 	
@@ -1702,7 +1702,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilLessThanOrEqualTo(float value, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilLessThanOrEqualTo(float value, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThanOrEqualTo(NumberUtils.unmodifiableFloat(value), p);
 	}
 	
@@ -1719,7 +1719,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilLessThanOrEqualTo(double value, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilLessThanOrEqualTo(double value, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThanOrEqualTo(NumberUtils.unmodifiableDouble(value), p);
 	}
 	
@@ -1868,7 +1868,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilGreaterThan(int value, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilGreaterThan(int value, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThan(NumberUtils.unmodifiableInteger(value), p);
 	}
 	
@@ -1885,7 +1885,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilGreaterThan(long value, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilGreaterThan(long value, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThan(NumberUtils.unmodifiableLong(value), p);
 	}
 	
@@ -1902,7 +1902,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilGreaterThan(float value, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilGreaterThan(float value, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThan(NumberUtils.unmodifiableFloat(value), p);
 	}
 	
@@ -1919,7 +1919,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilGreaterThan(double value, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilGreaterThan(double value, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThan(NumberUtils.unmodifiableDouble(value), p);
 	}
 	
@@ -2068,7 +2068,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilGreaterThanOrEqualTo(int value, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilGreaterThanOrEqualTo(int value, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThanOrEqualTo(NumberUtils.unmodifiableInteger(value), p);
 	}
 	
@@ -2085,7 +2085,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilGreaterThanOrEqualTo(long value, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilGreaterThanOrEqualTo(long value, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThanOrEqualTo(NumberUtils.unmodifiableLong(value), p);
 	}
 	
@@ -2102,7 +2102,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilGreaterThanOrEqualTo(float value, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilGreaterThanOrEqualTo(float value, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThanOrEqualTo(NumberUtils.unmodifiableFloat(value), p);
 	}
 	
@@ -2119,7 +2119,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilGreaterThanOrEqualTo(double value, TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilGreaterThanOrEqualTo(double value, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThanOrEqualTo(NumberUtils.unmodifiableDouble(value), p);
 	}
 	
@@ -2168,7 +2168,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilEqualToZero(TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilEqualToZero(TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilEqualTo(NumberUtils.getUnmodifiableZero(), p);
 	}
 	
@@ -2215,7 +2215,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilNotEqualToZero(TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilNotEqualToZero(TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilNotEqualTo(NumberUtils.getUnmodifiableZero(), p);
 	}
 	
@@ -2262,7 +2262,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilLessThanZero(TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilLessThanZero(TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThan(NumberUtils.getUnmodifiableZero(), p);
 	}
 	
@@ -2309,7 +2309,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilLessThanOrEqualToZero(TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilLessThanOrEqualToZero(TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilLessThanOrEqualTo(NumberUtils.getUnmodifiableZero(), p);
 	}
 	
@@ -2356,7 +2356,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilGreaterThanZero(TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilGreaterThanZero(TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThan(NumberUtils.getUnmodifiableZero(), p);
 	}
 	
@@ -2403,7 +2403,7 @@ v	 * Wait until this.value <= value.
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public void waitUntilGreaterThanOrEqualToZero(TimeGettable p) throws InterruptedException, TimeoutException {
+	default public void waitUntilGreaterThanOrEqualToZero(TimeoutGettable p) throws InterruptedException, TimeoutException {
 		this.waitUntilGreaterThanOrEqualTo(NumberUtils.getUnmodifiableZero(), p);
 	}
 	

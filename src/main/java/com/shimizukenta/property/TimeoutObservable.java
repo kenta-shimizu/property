@@ -9,6 +9,6 @@ package com.shimizukenta.property;
  * @see Observable
  *
  */
-public interface TimeObservable extends Observable<TimeoutAndUnit> {
+public interface TimeoutObservable extends Observable<TimeoutAndUnit> {
 	
 }

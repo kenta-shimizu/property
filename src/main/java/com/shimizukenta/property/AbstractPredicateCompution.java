@@ -71,7 +71,7 @@ public abstract class AbstractPredicateCompution<T> extends AbstractBooleanCompu
 		}
 	}
 	
-	public T waitUntilAndGet(boolean condition, TimeGettable p) throws InterruptedException, TimeoutException {
+	public T waitUntilAndGet(boolean condition, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		synchronized ( this._sync ) {
 			this.waitUntil(condition, p);
 			return this.getLastValue();
@@ -86,7 +86,7 @@ public abstract class AbstractPredicateCompution<T> extends AbstractBooleanCompu
 		return this.waitUntilAndGet(true, timeout, unit);
 	}
 	
-	public T waitUntilTrueAndGet(TimeGettable p) throws InterruptedException, TimeoutException {
+	public T waitUntilTrueAndGet(TimeoutGettable p) throws InterruptedException, TimeoutException {
 		return this.waitUntilAndGet(true, p);
 	}
 	
@@ -98,7 +98,7 @@ public abstract class AbstractPredicateCompution<T> extends AbstractBooleanCompu
 		return this.waitUntilAndGet(false, timeout, unit);
 	}
 	
-	public T waitUntilFalseAndGet(TimeGettable p) throws InterruptedException, TimeoutException {
+	public T waitUntilFalseAndGet(TimeoutGettable p) throws InterruptedException, TimeoutException {
 		return this.waitUntilAndGet(false, p);
 	}
 

@@ -11,7 +11,7 @@
  * <li>Build {@link ListProperty} via {@link ListProperty#newInstance()}.</li>
  * <li>Build {@link SetProperty} via {@link SetProperty#newInstance()}.</li>
  * <li>Build {@link MapProperty} via {@link MapProperty#newInstance()}.</li>
- * <li>Build {@link TimeProperty} via {@link TimeProperty#newInstance(long, java.util.concurrent.TimeUnit)}.</li>
+ * <li>Build {@link TimeoutProperty} via {@link TimeoutProperty#newInstance(long, java.util.concurrent.TimeUnit)}.</li>
  * </ul>
  * 
  * @author kenta-shimizu

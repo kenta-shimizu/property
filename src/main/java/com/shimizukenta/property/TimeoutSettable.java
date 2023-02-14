@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  * @see Settable
  *
  */
-public interface TimeSettable extends Settable<TimeoutAndUnit> {
+public interface TimeoutSettable extends Settable<TimeoutAndUnit> {
 	
 	/**
 	 * Value setter.

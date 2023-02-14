@@ -80,7 +80,7 @@ public final class ObjectUtils {
 	private static <T> T waitUntilPredicate(
 			AbstractPredicateCompution<T> i,
 			Observable<T> observer,
-			TimeGettable p) throws InterruptedException, TimeoutException {
+			TimeoutGettable p) throws InterruptedException, TimeoutException {
 		
 		try {
 			return i.waitUntilTrueAndGet(p);
@@ -106,7 +106,7 @@ public final class ObjectUtils {
 	
 	public static <T> T waitUntilNotNull(
 			Observable<T> observer,
-			TimeGettable p) throws InterruptedException, TimeoutException {
+			TimeoutGettable p) throws InterruptedException, TimeoutException {
 		
 		return waitUntilPredicate(computeIsNotNull(observer), observer, p);
 	}
@@ -127,7 +127,7 @@ public final class ObjectUtils {
 
 	public static <T> void waitUntilNull(
 			Observable<T> observer,
-			TimeGettable p) throws InterruptedException, TimeoutException {
+			TimeoutGettable p) throws InterruptedException, TimeoutException {
 		
 		waitUntilPredicate(computeIsNull(observer), observer, p);
 	}
@@ -209,7 +209,7 @@ public final class ObjectUtils {
 			AbstractBiPredicateCompution<T, U> i,
 			Observable<T> left,
 			Observable<U> right,
-			TimeGettable p) throws InterruptedException, TimeoutException {
+			TimeoutGettable p) throws InterruptedException, TimeoutException {
 		
 		try {
 			i.waitUntilTrue(p);
@@ -243,7 +243,7 @@ public final class ObjectUtils {
 	public static <T, U> void waitUntilEqualTo(
 			Observable<T> a,
 			Observable<U> b,
-			TimeGettable p) throws InterruptedException, TimeoutException {
+			TimeoutGettable p) throws InterruptedException, TimeoutException {
 		
 		waitUntilBiPredicate(computeIsEqualTo(a, b), a, b, p);
 	}
@@ -267,7 +267,7 @@ public final class ObjectUtils {
 	public static <T, U> void waitUntilNotEqualTo(
 			Observable<T> a,
 			Observable<U> b,
-			TimeGettable p) throws InterruptedException, TimeoutException {
+			TimeoutGettable p) throws InterruptedException, TimeoutException {
 		
 		waitUntilBiPredicate(computeIsNotEqualTo(a, b), a, b, p);
 	}

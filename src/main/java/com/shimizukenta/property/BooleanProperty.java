@@ -3,9 +3,28 @@ package com.shimizukenta.property;
 /**
  * Boolean value Property, includes Getter, Setter, Observer.
  * 
- * <p>
- * Build instance via {@link #newInstance(boolean)}.<br />
- * </p>
+ * <ul>
+ * <li>To build instance, {@link #newInstance(boolean)}.</li>
+ * <li>To get value, {@link #booleanValue()}.</li>
+ * <li>To set value, {@link #set(boolean)}.</li>
+ * <li>To detect value changed, {@link #addChangeListener(ChangeListener)}.</li>
+ * <li>To wait until condition,
+ * <ul>
+ * <li>{@link #waitUntil(boolean)}</li>
+ * <li>{@link #waitUntil(boolean, long, java.util.concurrent.TimeUnit)}</li>
+ * </ul>
+ * </lI>
+ * <li>To logical-compute,
+ * <ul>
+ * <li>{@link #and(BooleanObservable)}</li>
+ * <li>{@link #or(BooleanObservable)}</li>
+ * <li>{@link #not()}</li>
+ * <li>{@link #xor(BooleanObservable)}</li>
+ * <li>{@link #nand(BooleanObservable)}</li>
+ * <li>{@link #nor(BooleanObservable)}</li>
+ * </ul>
+ * </li>
+ * </ul>
  * 
  * @author kenta-shimizu
  * @see Boolean
@@ -13,6 +32,7 @@ package com.shimizukenta.property;
  * @see BooleanSettable
  * @see BooleanObservable
  * @see Property
+ * @see BooleanCompution
  *
  */
 public interface BooleanProperty extends Property<Boolean>, BooleanGettable, BooleanSettable, BooleanObservable {

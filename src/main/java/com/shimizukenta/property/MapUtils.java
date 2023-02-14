@@ -56,7 +56,7 @@ public final class MapUtils {
 		
 		public V waitUntilContainsKeyAndGet(
 				Object key,
-				TimeGettable p) throws InterruptedException, TimeoutException {
+				TimeoutGettable p) throws InterruptedException, TimeoutException {
 			
 			synchronized ( this._sync ) {
 				return this.waitUntilTrueAndGet(p).get(key);
@@ -137,7 +137,7 @@ public final class MapUtils {
 	private static <K, V> Map<K, V> waitUntilPredicate(
 			AbstractPredicateCompution<Map<K, V>> i,
 			Observable<Map<K, V>> observer,
-			TimeGettable p) throws InterruptedException, TimeoutException {
+			TimeoutGettable p) throws InterruptedException, TimeoutException {
 		
 		try {
 			return i.waitUntilTrueAndGet(p);
@@ -178,7 +178,7 @@ public final class MapUtils {
 	public static <K, V> V waitUntilContainsKey(
 			Observable<Map<K, V>> observer,
 			Object key,
-			TimeGettable p) throws InterruptedException, TimeoutException {
+			TimeoutGettable p) throws InterruptedException, TimeoutException {
 		
 		final InnerMap<K, V> i = buildIsContainsKey(observer, key);
 		try {
@@ -208,7 +208,7 @@ public final class MapUtils {
 	public static <K, V> void waitUntilNotContainsKey(
 			Observable<Map<K, V>> observer,
 			Object key,
-			TimeGettable p) throws InterruptedException, TimeoutException {
+			TimeoutGettable p) throws InterruptedException, TimeoutException {
 		
 		waitUntilPredicate(computeNotContainsKey(observer, key), observer, p);
 	}
@@ -229,7 +229,7 @@ public final class MapUtils {
 	
 	public static <K, V> void waitUntilIsEmpty(
 			Observable<Map<K, V>> observer,
-			TimeGettable p) throws InterruptedException, TimeoutException {
+			TimeoutGettable p) throws InterruptedException, TimeoutException {
 		
 		waitUntilPredicate(computeIsEmpty(observer), observer, p);
 	}
@@ -250,7 +250,7 @@ public final class MapUtils {
 	
 	public static <K, V> void waitUntilIsNotEmpty(
 			Observable<Map<K, V>> observer,
-			TimeGettable p) throws InterruptedException, TimeoutException {
+			TimeoutGettable p) throws InterruptedException, TimeoutException {
 		
 		waitUntilPredicate(computeIsNotEmpty(observer), observer, p);
 	}

@@ -242,16 +242,16 @@ String mapv = mapProp.waitUntilContainsKey("KEY");
 System.out.println("mapProp get(\"KEY\") is " + mapv);
 ```
 
-## TimeProperty
+## TimeoutProperty
 
-`TimeProperty` is utility class instance.  
+`TimeoutProperty` is utility class instance.  
 Includes `timeout(long)` and `java.util.concurrent.TimeUnit`.  
 Can set to `waitUntil` methods as timeout.
 
 ```java
 /* build instance */
-TimeProperty timeProp = TimeProperty.newInstance(10L, TimeUnit.SECONDS);  /* set 10 seconds */
-TimeProperty timeProp = TimeProperty.newInstance(10.0F);  /* set 10.0 seconds */
+TimeoutProperty timeProp = TimeoutProperty.newInstance(10L, TimeUnit.SECONDS);  /* set 10 seconds */
+TimeoutProperty timeProp = TimeoutProperty.newInstance(10.0F);  /* set 10.0 seconds */
 
 /* Setter */
 timeProp.set(5.0F);  /* set 5.0 seconds */

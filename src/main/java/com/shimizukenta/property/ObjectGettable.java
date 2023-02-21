@@ -1,5 +1,7 @@
 package com.shimizukenta.property;
 
+import java.util.Optional;
+
 /**
  * Object value Getter.
  * 
@@ -19,11 +21,29 @@ public interface ObjectGettable<T> extends Gettable<T> {
 	public T get();
 	
 	/**
-	 * Returns {@code true} if value is {@code null}, otherwise {@code false}.
+	 * Returns true if value is null, otherwise false.
 	 * 
-	 * @return {@code true} if value is {@code null}, otherwise {@code false}.
+	 * @return true if value is null, otherwise false.
 	 */
 	default boolean isNull() {
 		return this.get() == null;
 	}
+	
+	/**
+	 * Returns Optional value.
+	 * 
+	 * <p>
+	 * Returns Optional#empty(), if value is null.
+	 * </p>
+	 * 
+	 * @return Optional value.
+	 * @see Optional
+	 * @see Optional#of(Object)
+	 * @see Optional#empty()
+	 */
+	default public Optional<T> optional() {
+		T v = this.get();
+		return v == null ? Optional.empty() : Optional.of(v);
+	}
+	
 }

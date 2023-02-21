@@ -116,7 +116,7 @@ System.out.println(minABC.intValue());  /* "2" */
 
 ### Comparative Compution
 
-`NumberProperty` can compute `#isEqualTo(==)`, `#isNotEqualTo(!=)`, `#isLessThan(<)`, `#isLessThanOrEqualTo(<=)`, `#isGreaterThan(>)`, `#isGreaterThanOrEqualTo(>=)`.  
+`NumberProperty` can compute `#computeIsEqualTo(==)`, `#computeIsNotEqualTo(!=)`, `#computeIsLessThan(<)`, `#computeIsLessThanOrEqualTo(<=)`, `#computeIsGreaterThan(>)`, `#computeIsGreaterThanOrEqualTo(>=)`.  
 `NumberCompution` can also compute.
 
 ```java
@@ -124,13 +124,13 @@ System.out.println(minABC.intValue());  /* "2" */
 IntegerProperty a = IntegerProperty.newInstance(3);
 IntegerProperty b = IntegerProperty.newInstance(4);
 
-BooleanCompution aGT3 = a.isGreaterThan(3);
+BooleanCompution aGT3 = a.computeIsGreaterThan(3);
 System.out.println(aGT3.booleanValue());  /* a >  3, "false" */
 
-BooleanCompution aEQ5 = a.isEqualTo(5);
+BooleanCompution aEQ5 = a.computeIsEqualTo(5);
 System.out.println(aEQ5.booleanValue());  /* a == 5, "false" */
 
-BooleanCompution aLTb = a.isLessThan(b);
+BooleanCompution aLTb = a.computeIsLessThan(b);
 System.out.println(aLTb.booleanValue());  /* a <  b, "true"  */
 
 a.set(5);  /* a change to 5 */

@@ -6,15 +6,39 @@ import java.util.Collection;
 /**
  * Logical Boolean compution, includes Getter, Observer.
  * 
+ * <p>
+ * <strong>NOT</strong> includes Setter.<br />
+ * </p>
  * <ul>
- * <li>To get AND(&&) Compution, {@link #and(BooleanObservable...)}.</li>
- * <li>To get OR(||) Compution, {@link #or(BooleanObservable...)}.</li>
- * <li>To get NOT(!) Compution, {@link #not()}.</li>
- * <li>To get XOR(^) Compution, {@link #xor(BooleanObservable, BooleanObservable)}.</li>
- * <li>To get NAND Compution, {@link #nand(BooleanObservable...)}.</li>
- * <li>To get NOR Compution, {@link #nor(BooleanObservable...)}.</li>
+ * <li>To build LogicalCompution instance,
+ * <ul>
+ * <li>AND(&&) Compution, {@link #and(BooleanObservable...)}.</li>
+ * <li>OR(||) Compution, {@link #or(BooleanObservable...)}.</li>
+ * <li>NOT(!) Compution, {@link #not(BooleanObservable)}.</li>
+ * <li>XOR(^) Compution, {@link #xor(BooleanObservable, BooleanObservable)}.</li>
+ * <li>NAND Compution, {@link #nand(BooleanObservable...)}.</li>
+ * <li>NOR Compution, {@link #nor(BooleanObservable...)}.</li>
  * </ul>
- * 
+ * </li>
+ * <li>To get value, {@link #booleanValue()}.</li>
+ * <li>To detect value changed, {@link #addChangeListener(ChangeListener)}.</li>
+ * <li>To wait until condition is true,
+ * <ul>
+ * <li>{@link #waitUntil(boolean)}</li>
+ * <li>{@link #waitUntil(boolean, long, java.util.concurrent.TimeUnit)}</li>
+ * </ul>
+ * </lI>
+ * <li>To logical-compute,
+ * <ul>
+ * <li>{@link #and(BooleanObservable)}</li>
+ * <li>{@link #or(BooleanObservable)}</li>
+ * <li>{@link #not()}</li>
+ * <li>{@link #xor(BooleanObservable)}</li>
+ * <li>{@link #nand(BooleanObservable)}</li>
+ * <li>{@link #nor(BooleanObservable)}</li>
+ * </ul>
+ * </li>
+ * </ul>
  * 
  * @author kenta-shimizu
  * @see BooleanCompution

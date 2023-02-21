@@ -17,993 +17,397 @@ import java.util.concurrent.TimeoutException;
  */
 public interface CollectionObservable<E, T extends Collection<E>> extends Observable<T> {
 	
+	/**
+	 * Returns BooleanCompution instance of Collection#isEmpty.
+	 * 
+	 * @return BooleanCompution instance of Collection#isEmpty
+	 * @see Collection#isEmpty()
+	 * @see BooleanCompution
+	 */
 	default public BooleanCompution computeIsEmpty() {
 		return CollectionUtils.computeIsEmpty(this);
 	}
 	
+	/**
+	 * Returns BooleanCompution instance of NOT Collection#isEmpty.
+	 * 
+	 * @return BooleanCompution instance of NOT Collection#isEmpty
+	 * @see Collection#isEmpty()
+	 * @see BooleanCompution
+	 */
 	default public BooleanCompution computeIsNotEmpty() {
 		return CollectionUtils.computeIsNotEmpty(this);
 	}
 	
+	/**
+	 * Returns BooleanCompution of Collection#contains(Object).
+	 * 
+	 * @param o
+	 * @return BooleanCompution of Collection#contains(Object)
+	 * @see Collection#contains(Object)
+	 * @see BooleanCompution
+	 */
 	default public BooleanCompution computeContains(Object o) {
 		return CollectionUtils.computeContains(this, o);
 	}
 	
+	/**
+	 * Returns BooleanCompution of NOT Collection#contains(Object).
+	 * 
+	 * @param o
+	 * @return BooleanCompution of NOT Collection#contains(Object)
+	 * @see Collection#contains(Object)
+	 * @see BooleanCompution
+	 */
 	default public BooleanCompution computeNotContains(Object o) {
 		return CollectionUtils.computeNotContains(this, o);
 	}
 	
+	/**
+	 * Returns BooleanCompution of Collection#containsAll(Collection).
+	 * 
+	 * @param o
+	 * @return BooleanCompution of Collection#containsAll(Collection)
+	 * @see Collection#containsAll(Collection)
+	 * @see BooleanCompution
+	 */
 	default public BooleanCompution computeContainsAll(Collection<?> c) {
 		return CollectionUtils.computeContainsAll(this, c);
 	}
 	
+	/**
+	 * Returns BooleanCompution of NOT Collection#containsAll(Collection).
+	 * 
+	 * @param o
+	 * @return BooleanCompution of NOT Collection#containsAll(Collection)
+	 * @see Collection#containsAll(Collection)
+	 * @see BooleanCompution
+	 */
 	default public BooleanCompution computeNotContainsAll(Collection<?> c) {
 		return CollectionUtils.computeNotContainsAll(this, c);
 	}
 	
+	/**
+	 * Returns IntegerCompution of Collection#size().
+	 * 
+	 * @return IntegerCompution of Collection#size()
+	 * @see Collection#size()
+	 * @see IntegerCompution
+	 */
 	default public IntegerCompution computeSize() {
 		return CollectionUtils.computeSize(this);
 	}
 	
+	/**
+	 * Waiting until Collection#isEmpty is true.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already Collection#isEmpty is true, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @throws InterruptedException
+	 * @see Collection#isEmpty()
+	 */
 	default public void waitUntilIsEmpty() throws InterruptedException {
 		CollectionUtils.waitUntil(CollectionUtils.computeIsEmpty(this), this);
 	}
 	
+	/**
+	 * Waiting until Collection#isEmpty is true.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already Collection#isEmpty is true, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout
+	 * @see Collection#isEmpty()
+	 */
 	default public void waitUntilIsEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		CollectionUtils.waitUntil(CollectionUtils.computeIsEmpty(this), this, timeout, unit);
 	}
 	
+	/**
+	 * Waiting until Collection#isEmpty is true.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already Collection#isEmpty is true, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param p
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout
+	 * @see Collection#isEmpty()
+	 */
 	default public void waitUntilIsEmpty(TimeoutGettable p) throws InterruptedException, TimeoutException {
 		CollectionUtils.waitUntil(CollectionUtils.computeIsEmpty(this), this, p);
 	}
 	
+	/**
+	 * Waiting until Collection#isEmpty is false.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already Collection#isEmpty is false, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @throws InterruptedException
+	 * @see Collection#isEmpty()
+	 */
 	default public void waitUntilIsNotEmpty() throws InterruptedException {
 		CollectionUtils.waitUntil(CollectionUtils.computeIsNotEmpty(this), this);
 	}
 	
+	/**
+	 * Waiting until Collection#isEmpty is false.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already Collection#isEmpty is false, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout
+	 * @see Collection#isEmpty()
+	 */
 	default public void waitUntilIsNotEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		CollectionUtils.waitUntil(CollectionUtils.computeIsNotEmpty(this), this, timeout, unit);
 	}
 	
+	/**
+	 * Waiting until Collection#isEmpty is false.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already Collection#isEmpty is false, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param p
+	 * @throws InterruptedException
+	 * @throws TimeoutException
+	 * @see Collection#isEmpty()
+	 */
 	default public void waitUntilIsNotEmpty(TimeoutGettable p) throws InterruptedException, TimeoutException {
 		CollectionUtils.waitUntil(CollectionUtils.computeIsNotEmpty(this), this, p);
 	}
 	
+	/**
+	 * Waiting until Collection#contains(Object) is true.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already Collection#contains(Object) is true, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param o
+	 * @throws InterruptedException
+	 * @see Collection#contains(Object)
+	 */
 	default public void waitUntilContains(Object o) throws InterruptedException {
 		CollectionUtils.waitUntil(CollectionUtils.computeContains(this, o), this);
 	}
 	
+	/**
+	 * Waiting until Collection#contains(Object) is true.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already Collection#contains(Object) is true, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param o
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout
+	 * @see Collection#contains(Object)
+	 */
 	default public void waitUntilContains(Object o, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		CollectionUtils.waitUntil(CollectionUtils.computeContains(this, o), this, timeout, unit);
 	}
 	
+	/**
+	 * Waiting until Collection#contains(Object) is true.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already Collection#contains(Object) is true, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param o
+	 * @param p
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout
+	 * @see Collection#contains(Object)
+	 */
 	default public void waitUntilContains(Object o, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		CollectionUtils.waitUntil(CollectionUtils.computeContains(this, o), this, p);
 	}
 	
+	/**
+	 * Waiting until Collection#contains(Object) is false.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already Collection#contains(Object) is false, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param o
+	 * @throws InterruptedException
+	 * @see Collection#contains(Object)
+	 */
 	default public void waitUntilNotContains(Object o) throws InterruptedException {
 		CollectionUtils.waitUntil(CollectionUtils.computeNotContains(this, o), this);
 	}
 	
+	/**
+	 * Waiting until Collection#contains(Object) is false.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already Collection#contains(Object) is false, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param o
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout
+	 * @see Collection#contains(Object)
+	 */
 	default public void waitUntilNotContains(Object o, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		CollectionUtils.waitUntil(CollectionUtils.computeNotContains(this, o), this, timeout, unit);
 	}
 	
+	/**
+	 * Waiting until Collection#contains(Object) is false.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already Collection#contains(Object) is false, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param o
+	 * @param p
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout
+	 * @see Collection#contains(Object)
+	 */
 	default public void waitUntilNotContains(Object o, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		CollectionUtils.waitUntil(CollectionUtils.computeNotContains(this, o), this, p);
 	}
 	
+	/**
+	 * Waiting until Collection#containsAll(Collection) is true.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already Collection#containsAll(Collection) is true, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param c
+	 * @throws InterruptedException
+	 * @see Collection#containsAll(Collection)
+	 */
 	default public void waitUntilContainsAll(Collection<?> c) throws InterruptedException {
 		CollectionUtils.waitUntil(CollectionUtils.computeContainsAll(this, c), this);
 	}
 	
+	/**
+	 * Waiting until Collection#containsAll(Collection) is true.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already Collection#containsAll(Collection) is true, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param c
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout
+	 * @see Collection#containsAll(Collection)
+	 */
 	default public void waitUntilContainsAll(Collection<?> c, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		CollectionUtils.waitUntil(CollectionUtils.computeContainsAll(this, c), this, timeout, unit);
 	}
 	
+	/**
+	 * Waiting until Collection#containsAll(Collection) is true.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already Collection#containsAll(Collection) is true, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param c
+	 * @param p
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout
+	 * @see Collection#containsAll(Collection)
+	 */
 	default public void waitUntilContainsAll(Collection<?> c, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		CollectionUtils.waitUntil(CollectionUtils.computeContainsAll(this, c), this, p);
 	}
 	
+	/**
+	 * Waiting until Collection#containsAll(Collection) is false.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already Collection#containsAll(Collection) is false, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param c
+	 * @throws InterruptedException
+	 * @see Collection#containsAll(Collection)
+	 */
 	default public void waitUntilNotContainsAll(Collection<?> c) throws InterruptedException {
 		CollectionUtils.waitUntil(CollectionUtils.computeNotContainsAll(this, c), this);
 	}
 	
+	/**
+	 * Waiting until Collection#containsAll(Collection) is false.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already Collection#containsAll(Collection) is false, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param c
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout
+	 * @see Collection#containsAll(Collection)
+	 */
 	default public void waitUntilNotContainsAll(Collection<?> c, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		CollectionUtils.waitUntil(CollectionUtils.computeNotContainsAll(this, c), this, timeout, unit);
 	}
 	
+	/**
+	 * Waiting until Collection#containsAll(Collection) is false.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already Collection#containsAll(Collection) is false, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param c
+	 * @param p
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout
+	 * @see Collection#containsAll(Collection)
+	 */
 	default public void waitUntilNotContainsAll(Collection<?> c, TimeoutGettable p) throws InterruptedException, TimeoutException {
 		CollectionUtils.waitUntil(CollectionUtils.computeNotContainsAll(this, c), this, p);
 	}
-
-	
-//	/**
-//	 * Wait until {@link Collection#contains(Object)} is {@code true}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#contains(Object)} is {@code true}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param o
-//	 * @throws InterruptedException
-//	 */
-//	default public void waitUntilContains(Object o) throws InterruptedException {
-//		CollectionWaitUntil.getInstance().contains(this, true, o);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#contains(Object)} is {@code true}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#contains(Object)} is {@code true}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param o
-//	 * @param timeout
-//	 * @param unit
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilContains(Object o, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().contains(this, true, o, timeout, unit);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#contains(Object)} is {@code true}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#contains(Object)} is {@code true}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param o
-//	 * @param p
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilContains(Object o, TimeGettable p) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().contains(this, true, o, p);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#contains(Object)} is {@code false}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#contains(Object)} is {@code false}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param o
-//	 * @throws InterruptedException
-//	 */
-//	default public void waitUntilNotContains(Object o) throws InterruptedException {
-//		CollectionWaitUntil.getInstance().contains(this, false, o);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#contains(Object)} is {@code false}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#contains(Object)} is {@code false}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param o
-//	 * @param timeout
-//	 * @param unit
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilNotContains(Object o, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().contains(this, false, o, timeout, unit);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#contains(Object)} is {@code false}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#contains(Object)} is {@code false}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param o
-//	 * @param p
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilNotContains(Object o, TimeGettable p) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().contains(this, false, o, p);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#containsAll(Collection)} is {@code true}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#containsAll(Collection)} is {@code true}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param c
-//	 * @throws InterruptedException
-//	 */
-//	default public void waitUntilContainsAll(Collection<?> c) throws InterruptedException {
-//		CollectionWaitUntil.getInstance().containsAll(this, true, c);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#containsAll(Collection)} is {@code true}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#containsAll(Collection)} is {@code true}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param c
-//	 * @param timeout
-//	 * @param unit
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilContainsAll(Collection<?> c, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().containsAll(this, true, c, timeout, unit);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#containsAll(Collection)} is {@code true}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#containsAll(Collection)} is {@code true}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param c
-//	 * @param p
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilContainsAll(Collection<?> c, TimeGettable p) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().containsAll(this, true, c, p);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#containsAll(Collection)} is {@code false}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#containsAll(Collection)} is {@code false}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param c
-//	 * @throws InterruptedException
-//	 */
-//	default public void waitUntilNotContainsAll(Collection<?> c) throws InterruptedException {
-//		CollectionWaitUntil.getInstance().containsAll(this, false, c);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#containsAll(Collection)} is {@code false}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#containsAll(Collection)} is {@code false}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param c
-//	 * @param timeout
-//	 * @param unit
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilNotContainsAll(Collection<?> c, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().containsAll(this, false, c, timeout, unit);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#containsAll(Collection)} is {@code false}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#containsAll(Collection)} is {@code false}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param c
-//	 * @param p
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilNotContainsAll(Collection<?> c, TimeGettable p) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().containsAll(this, true, c, p);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#isEmpty()} is {@code true}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#isEmpty()} is {@code true}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @throws InterruptedException
-//	 */
-//	default public void waitUntilIsEmpty() throws InterruptedException {
-//		CollectionWaitUntil.getInstance().isEmpty(this, true);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#isEmpty()} is {@code true}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#isEmpty()} is {@code true}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param timeout
-//	 * @param unit
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilIsEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().isEmpty(this, true, timeout, unit);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#isEmpty()} is {@code true}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#isEmpty()} is {@code true}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param p
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilIsEmpty(TimeGettable p) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().isEmpty(this, true, p);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#isEmpty()} is {@code false}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#isEmpty()} is {@code false}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @throws InterruptedException
-//	 */
-//	default public void waitUntilIsNotEmpty() throws InterruptedException {
-//		CollectionWaitUntil.getInstance().isEmpty(this, false);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#isEmpty()} is {@code false}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#isEmpty()} is {@code false}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param timeout
-//	 * @param unit
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilIsNotEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().isEmpty(this, false, timeout, unit);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#isEmpty()} is {@code false}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#isEmpty()} is {@code false}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param p
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilIsNotEmpty(TimeGettable p) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().isEmpty(this, false, p);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} == {@code value}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} == {@code value}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param value
-//	 * @throws InterruptedException
-//	 */
-//	default public void waitUntilSizeIsEqualTo(int value) throws InterruptedException {
-//		CollectionWaitUntil.getInstance().sizeIsEqualTo(this, value);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} == {@code value}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} == {@code value}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param value
-//	 * @param timeout
-//	 * @param unit
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilSizeIsEqualTo(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().sizeIsEqualTo(this, value, timeout, unit);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} == {@code value}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} == {@code value}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param value
-//	 * @param p
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilSizeIsEqualTo(int value, TimeGettable p) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().sizeIsEqualTo(this, value, p);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} != {@code value}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} != {@code value}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param value
-//	 * @throws InterruptedException
-//	 */
-//	default public void waitUntilSizeIsNotEqualTo(int value) throws InterruptedException {
-//		CollectionWaitUntil.getInstance().sizeIsNotEqualTo(this, value);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} != {@code value}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} != {@code value}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param value
-//	 * @param timeout
-//	 * @param unit
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException
-//	 */
-//	default public void waitUntilSizeIsNotEqualTo(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().sizeIsNotEqualTo(this, value, timeout, unit);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} != {@code value}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} != {@code value}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param value
-//	 * @param p
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException
-//	 */
-//	default public void waitUntilSizeIsNotEqualTo(int value, TimeGettable p) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().sizeIsNotEqualTo(this, value, p);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} < {@code value}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} < {@code value}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param value
-//	 * @throws InterruptedException
-//	 */
-//	default public void waitUntilSizeIsLessThan(int value) throws InterruptedException {
-//		CollectionWaitUntil.getInstance().sizeIsLessThan(this, value);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} < {@code value}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} < {@code value}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param value
-//	 * @param timeout
-//	 * @param unit
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilSizeIsLessThan(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().sizeIsLessThan(this, value, timeout, unit);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} < {@code value}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} < {@code value}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param value
-//	 * @param p
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilSizeIsLessThan(int value, TimeGettable p) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().sizeIsLessThan(this, value, p);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} <= {@code value}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} <= {@code value}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param value
-//	 * @throws InterruptedException
-//	 */
-//	default public void waitUntilSizeIsLessThanOrEqualTo(int value) throws InterruptedException {
-//		CollectionWaitUntil.getInstance().sizeIsLessThanOrEqualTo(this, value);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} <= {@code value}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} <= {@code value}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param value
-//	 * @param timeout
-//	 * @param unit
-//	 * @throws InterruptedException
-//	 * @throws TimeoutExceptionj if timeout.
-//	 */
-//	default public void  waitUntilSizeIsLessThanOrEqualTo(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().sizeIsLessThanOrEqualTo(this, value, timeout, unit);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} <= {@code value}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} <= {@code value}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param value
-//	 * @param p
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilSizeIsLessThanOrEqualTo(int value, TimeGettable p) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().sizeIsLessThanOrEqualTo(this, value, p);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} > {@code value}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} > {@code value}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param value
-//	 * @throws InterruptedException
-//	 */
-//	default public void waitUntilSizeIsGreaterThan(int value) throws InterruptedException {
-//		CollectionWaitUntil.getInstance().sizeIsGreaterThan(this, value);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} > {@code value}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} > {@code value}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param value
-//	 * @param timeout
-//	 * @param unit
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilSizeIsGreaterThan(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().sizeIsGreaterThan(this, value, timeout, unit);
-//	}
-//	
-//	/**
-//	 * 
-//	 * @param value
-//	 * @param p
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilSizeIsGreaterThan(int value, TimeGettable p) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().sizeIsGreaterThan(this, value, p);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} >= {@code value}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} >= {@code value}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param value
-//	 * @throws InterruptedException
-//	 */
-//	default public void waitUntilSizeIsGreaterThanOrEqualTo(int value) throws InterruptedException {
-//		CollectionWaitUntil.getInstance().sizeIsGreaterThanOrEqualTo(this, value);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} >= {@code value}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} >= {@code value}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param value
-//	 * @param timeout
-//	 * @param unit
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilSizeIsGreaterThanOrEqualTo(int value, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().sizeIsGreaterThanOrEqualTo(this, value, timeout, unit);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} >= {@code value}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} >= {@code value}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param value
-//	 * @param p
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilSizeIsGreaterThanOrEqualTo(int value, TimeGettable p) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().sizeIsGreaterThanOrEqualTo(this, value, p);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} == {@code o}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} == {@code o}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param o
-//	 * @throws InterruptedException
-//	 */
-//	default public void waitUntilSizeIsEqualTo(IntegerObservable o) throws InterruptedException {
-//		CollectionWaitUntil.getInstance().sizeIsEqualTo(this, o);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} == {@code o}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} == {@code o}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param o
-//	 * @param timeout
-//	 * @param unit
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilSizeIsEqualTo(IntegerObservable o, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().sizeIsEqualTo(this, o, timeout, unit);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} == {@code o}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} == {@code o}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param o
-//	 * @param p
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilSizeIsEqualTo(IntegerObservable o, TimeGettable p) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().sizeIsEqualTo(this, o, p);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} != {@code o}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} != {@code o}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param o
-//	 * @throws InterruptedException
-//	 */
-//	default public void waitUntilSizeIsNotEqualTo(IntegerObservable o) throws InterruptedException {
-//		CollectionWaitUntil.getInstance().sizeIsNotEqualTo(this, o);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} != {@code o}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} != {@code o}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param o
-//	 * @param timeout
-//	 * @param unit
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilSizeIsNotEqualTo(IntegerObservable o, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().sizeIsNotEqualTo(this, o, timeout, unit);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} != {@code o}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} != {@code o}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param o
-//	 * @param p
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilSizeIsNotEqualTo(IntegerObservable o, TimeGettable p) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().sizeIsNotEqualTo(this, o, p);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} < {@code o}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} < {@code o}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param o
-//	 * @throws InterruptedException
-//	 */
-//	default public void waitUntilSizeIsLessThan(IntegerObservable o) throws InterruptedException {
-//		CollectionWaitUntil.getInstance().sizeIsLessThan(this, o);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} < {@code o}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} < {@code o}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param o
-//	 * @param timeout
-//	 * @param unit
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilSizeIsLessThan(IntegerObservable o, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().sizeIsLessThan(this, o, timeout, unit);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} < {@code o}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} < {@code o}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param o
-//	 * @param p
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilSizeIsLessThan(IntegerObservable o, TimeGettable p) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().sizeIsLessThan(this, o, p);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} <= {@code o}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} <= {@code o}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param o
-//	 * @throws InterruptedException
-//	 */
-//	default public void waitUntilSizeIsLessThanOrEqualTo(IntegerObservable o) throws InterruptedException {
-//		CollectionWaitUntil.getInstance().sizeIsLessThanOrEqualTo(this, o);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} <= {@code o}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} <= {@code o}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param o
-//	 * @param timeout
-//	 * @param unit
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilSizeIsLessThanOrEqualTo(IntegerObservable o, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().sizeIsLessThanOrEqualTo(this, o, timeout, unit);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} <= {@code o}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} <= {@code o}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param o
-//	 * @param p
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilSizeIsLessThanOrEqualTo(IntegerObservable o, TimeGettable p) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().sizeIsLessThanOrEqualTo(this, o, p);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} > {@code o}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} > {@code o}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param o
-//	 * @throws InterruptedException
-//	 */
-//	default public void waitUntilSizeIsGreaterThan(IntegerObservable o) throws InterruptedException {
-//		CollectionWaitUntil.getInstance().sizeIsGreaterThan(this, o);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} > {@code o}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} > {@code o}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param o
-//	 * @param timeout
-//	 * @param unit
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilSizeIsGreaterThan(IntegerObservable o, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().sizeIsGreaterThan(this, o, timeout, unit);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} > {@code o}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} > {@code o}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param o
-//	 * @param p
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilSizeIsGreaterThan(IntegerObservable o, TimeGettable p) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().sizeIsGreaterThan(this, o, p);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} >= {@code o}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} >= {@code o}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param o
-//	 * @throws InterruptedException
-//	 */
-//	default public void waitUntilSizeIsGreaterThanOrEqualTo(IntegerObservable o) throws InterruptedException {
-//		CollectionWaitUntil.getInstance().sizeIsGreaterThanOrEqualTo(this, o);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} >= {@code o}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} >= {@code o}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param o
-//	 * @param timeout
-//	 * @param unit
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilSizeIsGreaterThanOrEqualTo(IntegerObservable o, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().sizeIsGreaterThanOrEqualTo(this, o, timeout, unit);
-//	}
-//	
-//	/**
-//	 * Wait until {@link Collection#size()} >= {@code o}.
-//	 * 
-//	 * <p>
-//	 * This is blocking method.<br />
-//	 * If already {@link Collection#size()} >= {@code o}, pass through immediately.<br />
-//	 * </p>
-//	 * 
-//	 * @param o
-//	 * @param p
-//	 * @throws InterruptedException
-//	 * @throws TimeoutException if timeout.
-//	 */
-//	default public void waitUntilSizeIsGreaterThanOrEqualTo(IntegerObservable o, TimeGettable p) throws InterruptedException, TimeoutException {
-//		CollectionWaitUntil.getInstance().sizeIsGreaterThanOrEqualTo(this, o, p);
-//	}
 	
 }

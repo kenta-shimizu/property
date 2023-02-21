@@ -77,7 +77,7 @@ public class PropertyTest {
 			System.out.println();
 			
 			System.out.println("Waiting until objProp is not null.");
-			String objv = objProp.waitUntilNotNull();
+			String objv = objProp.waitUntilNotNullAndGet();
 			System.out.println("objProp is " + objv);
 			System.out.println();
 			
@@ -149,13 +149,13 @@ public class PropertyTest {
 		IntegerProperty a = IntegerProperty.newInstance(3);
 		IntegerProperty b = IntegerProperty.newInstance(5);
 		
-		BooleanCompution aGT3 = a.isGreaterThan(3);
+		BooleanCompution aGT3 = a.computeIsGreaterThan(3);
 		System.out.println(aGT3.booleanValue());
 		
-		BooleanCompution aEQ5 = a.isEqualTo(5);
+		BooleanCompution aEQ5 = a.computeIsEqualTo(5);
 		System.out.println(aEQ5.booleanValue());
 		
-		BooleanCompution aLTb = a.isLessThan(b);
+		BooleanCompution aLTb = a.computeIsLessThan(b);
 		System.out.println(aLTb.booleanValue());
 		
 		a.set(5);

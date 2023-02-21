@@ -90,13 +90,13 @@ public final class ObjectUtils {
 		}
 	}
 	
-	public static <T> T waitUntilNotNull(
+	public static <T> T waitUntilNotNullAndGet(
 			Observable<T> observer) throws InterruptedException {
 		
 		return waitUntilPredicate(computeIsNotNull(observer), observer);
 	}
 	
-	public static <T> T waitUntilNotNull(
+	public static <T> T waitUntilNotNullAndGet(
 			Observable<T> observer,
 			long timeout,
 			TimeUnit unit) throws InterruptedException, TimeoutException {
@@ -104,7 +104,7 @@ public final class ObjectUtils {
 		return waitUntilPredicate(computeIsNotNull(observer), observer, timeout, unit);
 	}
 	
-	public static <T> T waitUntilNotNull(
+	public static <T> T waitUntilNotNullAndGet(
 			Observable<T> observer,
 			TimeoutGettable p) throws InterruptedException, TimeoutException {
 		

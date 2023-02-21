@@ -6,11 +6,30 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Map value Property, includes Getter, Setter, Observer.d
+ * Map value Property, includes Getter, Setter, Observer.
  * 
- * <p>
- * Build instance via {@link #newInstance()}.<br />
- * </p>
+ * <ul>
+ * <li>To build instance, {@link #newInstance()}.</li>
+ * <li>To detect value changed, {@link #addChangeListener(ChangeListener)}.</li>
+ * <li>To compute,
+ * <ul>
+ * <li>{@link #computeIsEmpty()}.</li>
+ * <li>{@link #computeIsNotEmpty()}.</li>
+ * <li>{@link #computeContainsKey(Object)}.</li>
+ * <li>{@link #computeNotContainsKey(Object)}.</li>
+ * <li>{@link #computeKeySet()}.</li>
+ * <li>{@link #computeSize()}.</li>
+ * </ul>
+ * </li>
+ * <li>To wait until condition is true,
+ * <ul>
+ * <li>{@link #waitUntilIsEmpty()}.</li>
+ * <li>{@link #waitUntilIsNotEmpty()}.</li>
+ * <li>{@link #waitUntilContainsKeyAndGet(Object)}.</li>
+ * <li>{@link #waitUntilNotContainsKey(Object)}.</li>
+ * </ul>
+ * </li>
+ * </ul>
  * 
  * @author kenta-shimizu
  *

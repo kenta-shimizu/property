@@ -15,51 +15,55 @@ import java.util.concurrent.TimeoutException;
 public interface ObjectObservable<T> extends Observable<T> {
 	
 	/**
-	 * Returns isEqualTo ComparativeCompution instance.
+	 * Returns ComparativeCompution instance of isEqualTo.
 	 * 
 	 * @param <U> Type
 	 * @param observable
-	 * @return isEqualTo ComparativeCompution instance
+	 * @return ComparativeCompution instance of isEqualTo
+	 * @see ComparativeCompution
 	 */
 	default public <U> ComparativeCompution computeIsEqualTo(ObjectObservable<U> observer) {
 		return ObjectUtils.computeIsEqualTo(this, observer);
 	}
 	
 	/**
-	 * Returns isEqualTo ComparativeCompution instance.
+	 * Returns ComparativeCompution instance of isEqualTo.
 	 * 
 	 * @param <U> Type
 	 * @param ref
-	 * @return isEqualTo ComparativeCompution instance
+	 * @return ComparativeCompution instance of isEqualTo
+	 * @see ComparativeCompution
 	 */
 	default public <U> ComparativeCompution computeIsEqualTo(U ref) {
 		return this.computeIsEqualTo(ObjectUtils.newUnmodifiable(ref));
 	}
 	
 	/**
-	 * Returns isNotEqualTo ComparativeCompution instance.
+	 * Returns ComparativeCompution instance of isNotEqualTo.
 	 * 
 	 * @param <U> Type
 	 * @param observable
-	 * @return isNotEqualTo ComparativeCompution instance
+	 * @return ComparativeCompution instance of isNotEqualTo
+	 * @see ComparativeCompution
 	 */
 	default public <U> ComparativeCompution computeIsNotEqualTo(ObjectObservable<U> observer) {
 		return ObjectUtils.computeIsNotEqualTo(this, observer);
 	}
 	
 	/**
-	 * Returns isNotEqualTo ComparativeCompution instance.
+	 * Returns ComparativeCompution instance of isNotEqualTo.
 	 * 
 	 * @param <U> Type
 	 * @param ref
-	 * @return isNotEqualTo ComparativeCompution instance
+	 * @return ComparativeCompution instance of isNotEqualTo
+	 * @see ComparativeCompution
 	 */
 	default public <U> ComparativeCompution computeIsNotEqualTo(U ref) {
 		return this.computeIsNotEqualTo(ObjectUtils.newUnmodifiable(ref));
 	}
 	
 	/**
-	 * Wait until value is equal.
+	 * Waiting until value is equal.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
@@ -76,8 +80,21 @@ public interface ObjectObservable<T> extends Observable<T> {
 		ObjectUtils.waitUntilEqualTo(this, observer);
 	}
 	
-	//TODO
-	//comment
+	/**
+	 * Waiting until value is equal.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already value is equal, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <U> Type
+	 * @param observer
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout
+	 */
 	default public <U> void waitUntilEqualTo(
 			ObjectObservable<U> observer,
 			long timeout,
@@ -85,9 +102,21 @@ public interface ObjectObservable<T> extends Observable<T> {
 		
 		ObjectUtils.waitUntilEqualTo(this, observer, timeout, unit);
 	}
-
-	//TODO
-	//comment
+	
+	/**
+	 * Waiting until value is equal.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already value is equal, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <U> Type
+	 * @param observer
+	 * @param p
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public <U> void waitUntilEqualTo(
 			ObjectObservable<U> observer,
 			TimeoutGettable p) throws InterruptedException, TimeoutException {
@@ -95,17 +124,39 @@ public interface ObjectObservable<T> extends Observable<T> {
 		ObjectUtils.waitUntilEqualTo(this, observer, p);
 	}
 	
-	
-	//TODO
-	//comment
+	/**
+	 * Waiting until value is equal.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already value is equal, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <U> Type
+	 * @param ref
+	 * @throws InterruptedException
+	 */
 	default public <U> void waitUntilEqualTo(
 			U ref) throws InterruptedException {
 		
 		this.waitUntilEqualTo(ObjectUtils.newUnmodifiable(ref));
 	}
 	
-	//TODO
-	//comment
+	/**
+	 * Waiting until value is equal.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already value is equal, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <U> Type
+	 * @param ref
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout
+	 */
 	default public <U> void waitUntilEqualTo(
 			U ref,
 			long timeout,
@@ -114,8 +165,20 @@ public interface ObjectObservable<T> extends Observable<T> {
 		this.waitUntilEqualTo(ObjectUtils.newUnmodifiable(ref), timeout, unit);
 	}
 
-	//TODO
-	//comment
+	/**
+	 * Waiting until value is equal.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already value is equal, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <U> Type
+	 * @param ref
+	 * @param p
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout.
+	 */
 	default public <U> void waitUntilEqualTo(
 			
 			U ref,
@@ -124,16 +187,39 @@ public interface ObjectObservable<T> extends Observable<T> {
 		this.waitUntilEqualTo(ObjectUtils.newUnmodifiable(ref), p);
 	}
 	
-	//TODO
-	//comment
+	/**
+	 * Waiting until value is NOT equal.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already value is <strong>NOT</strong> equal, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <U> Type
+	 * @param observer
+	 * @throws InterruptedException
+	 */
 	default public <U> void waitUntilNotEqualTo(
 			ObjectObservable<U> observer) throws InterruptedException {
 		
 		ObjectUtils.waitUntilNotEqualTo(this, observer);
 	}
 	
-	//TODO
-	//comment
+	/**
+	 * Waiting until value is NOT equal.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already value is <strong>NOT</strong> equal, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <U> Type
+	 * @param observer
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout
+	 */
 	default public <U> void waitUntilNotEqualTo(
 			ObjectObservable<U> observer,
 			long timeout,
@@ -142,8 +228,20 @@ public interface ObjectObservable<T> extends Observable<T> {
 		ObjectUtils.waitUntilNotEqualTo(this, observer, timeout, unit);
 	}
 	
-	//TODO
-	//comment
+	/**
+	 * Waiting until value is NOT equal.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already value is <strong>NOT</strong> equal, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <U> Type
+	 * @param observer
+	 * @param p
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout
+	 */
 	default public <U> void waitUntilNotEqualTo(
 			ObjectObservable<U> observer,
 			TimeoutGettable p) throws InterruptedException, TimeoutException {
@@ -151,16 +249,39 @@ public interface ObjectObservable<T> extends Observable<T> {
 		ObjectUtils.waitUntilNotEqualTo(this, observer, p);
 	}
 	
-	//TODO
-	//comment
+	/**
+	 * Waiting until value is NOT equal.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already value is <strong>NOT</strong> equal, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <U> Type
+	 * @param ref
+	 * @throws InterruptedException
+	 */
 	default public <U> void waitUntilNotEqualTo(
 			U ref) throws InterruptedException {
 		
 		this.waitUntilNotEqualTo(ObjectUtils.newUnmodifiable(ref));
 	}
 	
-	//TODO
-	//comment
+	/**
+	 * Waiting until value is NOT equal.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already value is <strong>NOT</strong> equal, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <U> Type
+	 * @param ref
+	 * @param timeout
+	 * @param unit
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout
+	 */
 	default public <U> void waitUntilNotEqualTo(
 			U ref,
 			long timeout,
@@ -169,8 +290,20 @@ public interface ObjectObservable<T> extends Observable<T> {
 		this.waitUntilNotEqualTo(ObjectUtils.newUnmodifiable(ref), timeout, unit);
 	}
 	
-	//TODO
-	//comment
+	/**
+	 * Waiting until value is NOT equal.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already value is <strong>NOT</strong> equal, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <U> Type
+	 * @param ref
+	 * @param p
+	 * @throws InterruptedException
+	 * @throws TimeoutException if timeout
+	 */
 	default public <U> void waitUntilNotEqualTo(
 			U ref,
 			TimeoutGettable p) throws InterruptedException, TimeoutException {
@@ -178,42 +311,47 @@ public interface ObjectObservable<T> extends Observable<T> {
 		this.waitUntilNotEqualTo(ObjectUtils.newUnmodifiable(ref), p);
 	}
 	
-	
-	//TODO
-	//comment
+	/**
+	 * Returns BooleanCompution instance of isEqualTo null.
+	 * 
+	 * @return BooleanCompution instance of isEqualTo null
+	 * @see BooleanCompution
+	 */
 	default public BooleanCompution computeIsEqualToNull() {
 		return ObjectUtils.computeIsNull(this);
 	}
 	
-	//TODO
-	//comment
-	
+	/**
+	 * Returns BooleanCompution instance of isNotEqualTo null.
+	 * 
+	 * @return BooleanCompution instance of isNotEqualTo null
+	 * @see BooleanCompution
+	 */
 	default public BooleanCompution computeIsNotEqualToNull() {
 		return ObjectUtils.computeIsNotNull(this);
 	}
 	
-	
 	/**
-	 * Wait until value is <b>NOT</b> {@code null}, and return value.
+	 * Waiting until value is NOT null, and return value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already value is <b>NOT</b> {@code null}, return value immediately.<br />
+	 * If already value is <strong>NOT</strong> null, return value immediately.<br />
 	 * </p>
 	 * 
 	 * @return value
 	 * @throws InterruptedException
 	 */
-	default public T waitUntilNotNull() throws InterruptedException {
-		return ObjectUtils.waitUntilNotNull(this);
+	default public T waitUntilNotNullAndGet() throws InterruptedException {
+		return ObjectUtils.waitUntilNotNullAndGet(this);
 	}
 	
 	/**
-	 * Wait until value is <b>NOT</b> {@code null}, and return value.
+	 * Waiting until value is NOT null, and return value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already value is <b>NOT</b> {@code null}, return value immediately.<br />
+	 * If already value is <strong>NOT</strong> null, return value immediately.<br />
 	 * </p>
 	 * 
 	 * @param timeout
@@ -222,16 +360,16 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public T waitUntilNotNull(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		return ObjectUtils.waitUntilNotNull(this, timeout, unit);
+	default public T waitUntilNotNullAndGet(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		return ObjectUtils.waitUntilNotNullAndGet(this, timeout, unit);
 	}
 	
 	/**
-	 * Wait until value is <b>NOT</b> {@code null}, and return value.
+	 * Waiting until value is NOT null, and return value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already value is <b>NOT</b> {@code null}, return value immediately.<br />
+	 * If already value is <strong>NOT</strong> null, return value immediately.<br />
 	 * </p>
 	 * 
 	 * @param p
@@ -239,16 +377,16 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
 	 */
-	default public T waitUntilNotNull(TimeoutGettable p) throws InterruptedException, TimeoutException {
-		return ObjectUtils.waitUntilNotNull(this, p);
+	default public T waitUntilNotNullAndGet(TimeoutGettable p) throws InterruptedException, TimeoutException {
+		return ObjectUtils.waitUntilNotNullAndGet(this, p);
 	}
 	
 	/**
-	 * Wait until value is {@code null}.
+	 * Waiting until value is null.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already value is {@code null}, return value immediately.<br />
+	 * If already value is null, return value immediately.<br />
 	 * </p>
 	 * 
 	 * @throws InterruptedException
@@ -258,11 +396,11 @@ public interface ObjectObservable<T> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until value is {@code null}.
+	 * Waiting until value is null.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already value is {@code null}, return value immediately.<br />
+	 * If already value is null, return value immediately.<br />
 	 * </p>
 	 * 
 	 * @param timeout
@@ -275,11 +413,11 @@ public interface ObjectObservable<T> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until value is {@code null}.
+	 * Waiting until value is null.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already value is {@code null}, return value immediately.<br />
+	 * If already value is null, return value immediately.<br />
 	 * </p>
 	 * 
 	 * @param p

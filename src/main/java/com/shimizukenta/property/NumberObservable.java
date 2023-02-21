@@ -17,36 +17,36 @@ import java.util.concurrent.TimeoutException;
 public interface NumberObservable<T extends Number> extends Observable<T> {
 	
 	/**
-	 * Returns {@code true} if Number is instance of Integer, otherwise {@code false}.
+	 * Returns true if Number is instance of Integer, otherwise false.
 	 * 
-	 * @return {@code true} if Number is instance of Integer, otherwise {@code false}.
+	 * @return true if Number is instance of Integer, otherwise false.
 	 */
 	default public boolean isInteger() {
 		return false;
 	}
 	
 	/**
-	 * Returns {@code true} if Number is instance of Long, otherwise {@code false}.
+	 * Returns true if Number is instance of Long, otherwise false.
 	 * 
-	 * @return {@code true} if Number is instance of Long, otherwise {@code false}.
+	 * @return true if Number is instance of Long, otherwise false.
 	 */
 	default public boolean isLong() {
 		return false;
 	}
 	
 	/**
-	 * Returns {@code true} if Number is instance of Float, otherwise {@code false}.
+	 * Returns true if Number is instance of Float, otherwise false.
 	 * 
-	 * @return {@code true} if Number is instance of Float, otherwise {@code false}.
+	 * @return true if Number is instance of Float, otherwise false.
 	 */
 	default public boolean isFloat() {
 		return false;
 	}
 	
 	/**
-	 * Returns {@code true} if Number is instance of Double, otherwise {@code false}.
+	 * Returns true if Number is instance of Double, otherwise false.
 	 * 
-	 * @return {@code true} if Number is instance of Double, otherwise {@code false}.
+	 * @return true if Number is instance of Double, otherwise false.
 	 */
 	default public boolean isDouble() {
 		return false;
@@ -59,6 +59,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * Returns IntegerCompution coverted instance.
 	 * 
 	 * @return IntegerComution converted instance.
+	 * @see IntegerCompution
 	 */
 	default public IntegerCompution toInteger() {
 		return NumberUtils.toInteger(this);
@@ -68,6 +69,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * Returns LongComputionn converted instance.
 	 * 
 	 * @return LongCompution converted instance.
+	 * @see LongCompution
 	 */
 	default public LongCompution toLong() {
 		return NumberUtils.toLong(this);
@@ -77,6 +79,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * Returns FloatCompution converted instance.
 	 * 
 	 * @return FloatCompution converted instance.
+	 * @see FloatCompution
 	 */
 	default public FloatCompution toFloat() {
 		return NumberUtils.toFloat(this);
@@ -86,6 +89,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * Returns DoubleCompution converted instance.
 	 * 
 	 * @return DoubleCompution comerted instance.
+	 * @see DoubleCompution
 	 */
 	default public DoubleCompution toDouble() {
 		return NumberUtils.toDouble(this);
@@ -96,8 +100,9 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns NumberCompution of this.value + observable.value.
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @return NumberCompution of this.value + observable.value.
+	 * @see NumberCompution#sum(NumberObservable, NumberObservable)
 	 */
 	default public NumberCompution add(NumberObservable<? extends Number> observer) {
 		return NumberCompution.sum(this, observer);
@@ -106,8 +111,9 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * NumberCompution of this.value * observable.value.
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @return NumberCompution of this.value * observable.value.
+	 * @see NumberCompution#multiply(NumberObservable, NumberObservable)
 	 */
 	default public NumberCompution multiply(NumberObservable<? extends Number> observer) {
 		return NumberCompution.multiply(this, observer);
@@ -116,8 +122,9 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns NumberCompution of this.value - observable.value.
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @return NumberCompution of this.value - observable.value.
+	 * @see NumberCompution#subtract(NumberObservable, NumberObservable)
 	 */
 	default public NumberCompution subtract(NumberObservable<? extends Number> observer) {
 		return NumberCompution.subtract(this, observer);
@@ -127,6 +134,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * Returns NumberCompution of -(this.value).
 	 * 
 	 * @return NumberCompution of -(this.value).
+	 * @see NumberCompution#negate()
 	 */
 	default public NumberCompution negate() {
 		return NumberCompution.negate(this);
@@ -261,59 +269,59 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of this.value == observable.value.
 	 * 
-	 * @param observable
-	 * @return
+	 * @param observer
+	 * @return ComparativeCompution of this.value == observable.value.
 	 */
-	default ComparativeCompution isEqualTo(NumberObservable<? extends Number> observer) {
+	default ComparativeCompution computeIsEqualTo(NumberObservable<? extends Number> observer) {
 		return ComparativeCompution.isEqualTo(this, observer);
 	}
 	
 	/**
 	 * Returns ComparativeCompution of this.value != observable.value.
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @return ComparativeCompution of this.value != observable.value.
 	 */
-	default ComparativeCompution isNotEqualTo(NumberObservable<? extends Number> observer) {
+	default ComparativeCompution computeIsNotEqualTo(NumberObservable<? extends Number> observer) {
 		return ComparativeCompution.isNotEqualTo(this, observer);
 	}
 	
 	/**
 	 * Returns ComparativeCompution of this.value < observable.value.
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @return ComparativeCompution of this.value < observable.value.
 	 */
-	default ComparativeCompution isLessThan(NumberObservable<? extends Number> observer) {
+	default ComparativeCompution computeIsLessThan(NumberObservable<? extends Number> observer) {
 		return ComparativeCompution.isLessThan(this, observer);
 	}
 	
 	/**
 	 * Returns ComparativeCompution of this.value <= observable.value.
-	 * @param observable
+	 * @param observer
 	 * @return ComparativeCompution of this.value <= observable.value.
 	 */
-	default ComparativeCompution isLessThanOrEqualTo(NumberObservable<? extends Number> observer) {
+	default ComparativeCompution computeIsLessThanOrEqualTo(NumberObservable<? extends Number> observer) {
 		return ComparativeCompution.isLessThanOrEqualTo(this, observer);
 	}
 	
 	/**
 	 * Returns ComparativeCompution of this.value > observable.value.
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @return ComparativeCompution of this.value > observable.value.
 	 */
-	default ComparativeCompution isGreaterThan(NumberObservable<? extends Number> observer) {
+	default ComparativeCompution computeIsGreaterThan(NumberObservable<? extends Number> observer) {
 		return ComparativeCompution.isGreaterThan(this, observer);
 	}
 	
 	/**
 	 * Returns ComparativeCompution of this.value >= observable.value.
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @return ComparativeCompution of this.value >= observable.value.
 	 */
-	default ComparativeCompution isGreaterThanOrEqualTo(NumberObservable<? extends Number> observer) {
+	default ComparativeCompution computeIsGreaterThanOrEqualTo(NumberObservable<? extends Number> observer) {
 		return ComparativeCompution.isGreaterThanOrEqualTo(this, observer);
 	}
 	
@@ -325,8 +333,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value == value.
 	 */
-	default ComparativeCompution isEqualTo(int value) {
-		return this.isEqualTo(NumberUtils.unmodifiableInteger(value));
+	default ComparativeCompution computeIsEqualTo(int value) {
+		return this.computeIsEqualTo(NumberUtils.unmodifiableInteger(value));
 	}
 	
 	/**
@@ -335,8 +343,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value == value.
 	 */
-	default ComparativeCompution isEqualTo(long value) {
-		return this.isEqualTo(NumberUtils.unmodifiableLong(value));
+	default ComparativeCompution computeIsEqualTo(long value) {
+		return this.computeIsEqualTo(NumberUtils.unmodifiableLong(value));
 	}
 	
 	/**
@@ -345,8 +353,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value == value.
 	 */
-	default ComparativeCompution isEqualTo(float value) {
-		return this.isEqualTo(NumberUtils.unmodifiableFloat(value));
+	default ComparativeCompution computeIsEqualTo(float value) {
+		return this.computeIsEqualTo(NumberUtils.unmodifiableFloat(value));
 	}
 	
 	/**
@@ -355,8 +363,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value == value.
 	 */
-	default ComparativeCompution isEqualTo(double value) {
-		return this.isEqualTo(NumberUtils.unmodifiableDouble(value));
+	default ComparativeCompution computeIsEqualTo(double value) {
+		return this.computeIsEqualTo(NumberUtils.unmodifiableDouble(value));
 	}
 	
 	/**
@@ -365,8 +373,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value != value.
 	 */
-	default ComparativeCompution isNotEqualTo(int value) {
-		return this.isNotEqualTo(NumberUtils.unmodifiableInteger(value));
+	default ComparativeCompution computeIsNotEqualTo(int value) {
+		return this.computeIsNotEqualTo(NumberUtils.unmodifiableInteger(value));
 	}
 	
 	/**
@@ -375,8 +383,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value != value.
 	 */
-	default ComparativeCompution isNotEqualTo(long value) {
-		return this.isNotEqualTo(NumberUtils.unmodifiableLong(value));
+	default ComparativeCompution computeIsNotEqualTo(long value) {
+		return this.computeIsNotEqualTo(NumberUtils.unmodifiableLong(value));
 	}
 	
 	/**
@@ -385,8 +393,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value != value.
 	 */
-	default ComparativeCompution isNotEqualTo(float value) {
-		return this.isNotEqualTo(NumberUtils.unmodifiableFloat(value));
+	default ComparativeCompution computeIsNotEqualTo(float value) {
+		return this.computeIsNotEqualTo(NumberUtils.unmodifiableFloat(value));
 	}
 	
 	/**
@@ -395,8 +403,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value != value.
 	 */
-	default ComparativeCompution isNotEqualTo(double value) {
-		return this.isNotEqualTo(NumberUtils.unmodifiableDouble(value));
+	default ComparativeCompution computeIsNotEqualTo(double value) {
+		return this.computeIsNotEqualTo(NumberUtils.unmodifiableDouble(value));
 	}
 	
 	/**
@@ -405,8 +413,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value != value.
 	 */
-	default ComparativeCompution isLessThan(int value) {
-		return this.isLessThan(NumberUtils.unmodifiableInteger(value));
+	default ComparativeCompution computeIsLessThan(int value) {
+		return this.computeIsLessThan(NumberUtils.unmodifiableInteger(value));
 	}
 	
 	/**
@@ -415,8 +423,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value < value.
 	 */
-	default ComparativeCompution isLessThan(long value) {
-		return this.isLessThan(NumberUtils.unmodifiableLong(value));
+	default ComparativeCompution computeIsLessThan(long value) {
+		return this.computeIsLessThan(NumberUtils.unmodifiableLong(value));
 	}
 	
 	/**
@@ -425,8 +433,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value < value.
 	 */
-	default ComparativeCompution isLessThan(float value) {
-		return this.isLessThan(NumberUtils.unmodifiableFloat(value));
+	default ComparativeCompution computeIsLessThan(float value) {
+		return this.computeIsLessThan(NumberUtils.unmodifiableFloat(value));
 	}
 	
 	/**
@@ -435,8 +443,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value < value.
 	 */
-	default ComparativeCompution isLessThan(double value) {
-		return this.isLessThan(NumberUtils.unmodifiableDouble(value));
+	default ComparativeCompution computeIsLessThan(double value) {
+		return this.computeIsLessThan(NumberUtils.unmodifiableDouble(value));
 	}
 	
 	/**
@@ -445,8 +453,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value <= value.
 	 */
-	default ComparativeCompution isLessThanOrEqualTo(int value) {
-		return this.isLessThanOrEqualTo(NumberUtils.unmodifiableInteger(value));
+	default ComparativeCompution computeIsLessThanOrEqualTo(int value) {
+		return this.computeIsLessThanOrEqualTo(NumberUtils.unmodifiableInteger(value));
 	}
 	
 	/**
@@ -455,8 +463,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value <= value.
 	 */
-	default ComparativeCompution isLessThanOrEqualTo(long value) {
-		return this.isLessThanOrEqualTo(NumberUtils.unmodifiableLong(value));
+	default ComparativeCompution computeIsLessThanOrEqualTo(long value) {
+		return this.computeIsLessThanOrEqualTo(NumberUtils.unmodifiableLong(value));
 	}
 	
 	/**
@@ -465,8 +473,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value <= value.
 	 */
-	default ComparativeCompution isLessThanOrEqualTo(float value) {
-		return this.isLessThanOrEqualTo(NumberUtils.unmodifiableFloat(value));
+	default ComparativeCompution computeIsLessThanOrEqualTo(float value) {
+		return this.computeIsLessThanOrEqualTo(NumberUtils.unmodifiableFloat(value));
 	}
 	
 	/**
@@ -475,8 +483,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value <= value.
 	 */
-	default ComparativeCompution isLessThanOrEqualTo(double value) {
-		return this.isLessThanOrEqualTo(NumberUtils.unmodifiableDouble(value));
+	default ComparativeCompution computeIsLessThanOrEqualTo(double value) {
+		return this.computeIsLessThanOrEqualTo(NumberUtils.unmodifiableDouble(value));
 	}
 	
 	/**
@@ -485,8 +493,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value > value.
 	 */
-	default ComparativeCompution isGreaterThan(int value) {
-		return this.isGreaterThan(NumberUtils.unmodifiableInteger(value));
+	default ComparativeCompution computeIsGreaterThan(int value) {
+		return this.computeIsGreaterThan(NumberUtils.unmodifiableInteger(value));
 	}
 	
 	/**
@@ -495,8 +503,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value > value.
 	 */
-	default ComparativeCompution isGreaterThan(long value) {
-		return this.isGreaterThan(NumberUtils.unmodifiableLong(value));
+	default ComparativeCompution computeIsGreaterThan(long value) {
+		return this.computeIsGreaterThan(NumberUtils.unmodifiableLong(value));
 	}
 	
 	/**
@@ -505,8 +513,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value > value.
 	 */
-	default ComparativeCompution isGreaterThan(float value) {
-		return this.isGreaterThan(NumberUtils.unmodifiableFloat(value));
+	default ComparativeCompution computeIsGreaterThan(float value) {
+		return this.computeIsGreaterThan(NumberUtils.unmodifiableFloat(value));
 	}
 	
 	/**
@@ -515,8 +523,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value > value.
 	 */
-	default ComparativeCompution isGreaterThan(double value) {
-		return this.isGreaterThan(NumberUtils.unmodifiableDouble(value));
+	default ComparativeCompution computeIsGreaterThan(double value) {
+		return this.computeIsGreaterThan(NumberUtils.unmodifiableDouble(value));
 	}
 	
 	/**
@@ -525,8 +533,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value >= value.
 	 */
-	default ComparativeCompution isGreaterThanOrEqualTo(int value) {
-		return this.isGreaterThanOrEqualTo(NumberUtils.unmodifiableInteger(value));
+	default ComparativeCompution computeIsGreaterThanOrEqualTo(int value) {
+		return this.computeIsGreaterThanOrEqualTo(NumberUtils.unmodifiableInteger(value));
 	}
 	
 	/**
@@ -535,8 +543,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value >= value.
 	 */
-	default ComparativeCompution isGreaterThanOrEqualTo(long value) {
-		return this.isGreaterThanOrEqualTo(NumberUtils.unmodifiableLong(value));
+	default ComparativeCompution computeIsGreaterThanOrEqualTo(long value) {
+		return this.computeIsGreaterThanOrEqualTo(NumberUtils.unmodifiableLong(value));
 	}
 	
 	/**
@@ -545,8 +553,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value >= value.
 	 */
-	default ComparativeCompution isGreaterThanOrEqualTo(float value) {
-		return this.isGreaterThanOrEqualTo(NumberUtils.unmodifiableFloat(value));
+	default ComparativeCompution computeIsGreaterThanOrEqualTo(float value) {
+		return this.computeIsGreaterThanOrEqualTo(NumberUtils.unmodifiableFloat(value));
 	}
 	
 	/**
@@ -555,8 +563,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value >= value.
 	 */
-	default ComparativeCompution isGreaterThanOrEqualTo(double value) {
-		return this.isGreaterThanOrEqualTo(NumberUtils.unmodifiableDouble(value));
+	default ComparativeCompution computeIsGreaterThanOrEqualTo(double value) {
+		return this.computeIsGreaterThanOrEqualTo(NumberUtils.unmodifiableDouble(value));
 	}
 	
 	/**
@@ -565,8 +573,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value == 0.
 	 */
-	default ComparativeCompution isEqualToZero() {
-		return this.isEqualTo(NumberUtils.getUnmodifiableZero());
+	default ComparativeCompution computeIsEqualToZero() {
+		return this.computeIsEqualTo(NumberUtils.getUnmodifiableZero());
 	}
 	
 	/**
@@ -575,8 +583,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value != 0.
 	 */
-	default ComparativeCompution isNotEqualToZero() {
-		return this.isNotEqualTo(NumberUtils.getUnmodifiableZero());
+	default ComparativeCompution computeIsNotEqualToZero() {
+		return this.computeIsNotEqualTo(NumberUtils.getUnmodifiableZero());
 	}
 	
 	/**
@@ -585,8 +593,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value < 0.
 	 */
-	default ComparativeCompution isLessThanZero() {
-		return this.isLessThan(NumberUtils.getUnmodifiableZero());
+	default ComparativeCompution computeIsLessThanZero() {
+		return this.computeIsLessThan(NumberUtils.getUnmodifiableZero());
 	}
 
 	/**
@@ -595,8 +603,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value <= 0.
 	 */
-	default ComparativeCompution isLessThanOrEqualToZero() {
-		return this.isLessThanOrEqualTo(NumberUtils.getUnmodifiableZero());
+	default ComparativeCompution computeIsLessThanOrEqualToZero() {
+		return this.computeIsLessThanOrEqualTo(NumberUtils.getUnmodifiableZero());
 	}
 
 	/**
@@ -605,8 +613,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value > 0.
 	 */
-	default ComparativeCompution isGreaterThanZero() {
-		return this.isGreaterThan(NumberUtils.getUnmodifiableZero());
+	default ComparativeCompution computeIsGreaterThanZero() {
+		return this.computeIsGreaterThan(NumberUtils.getUnmodifiableZero());
 	}
 
 	/**
@@ -615,21 +623,21 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * @param value
 	 * @return ComparativeCompution of this.value >= 0.
 	 */
-	default ComparativeCompution isGreaterThanOrEqualToZero() {
-		return this.isGreaterThanOrEqualTo(NumberUtils.getUnmodifiableZero());
+	default ComparativeCompution computeIsGreaterThanOrEqualToZero() {
+		return this.computeIsGreaterThanOrEqualTo(NumberUtils.getUnmodifiableZero());
 	}
 	
 	/* Wait Until Bases */
 	
 	/**
-	 * Wait until this value == observable value.
+	 * Waiting until this value == observable value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilEqualTo(NumberObservable<? extends Number> observer) throws InterruptedException {
@@ -637,14 +645,14 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value == observable.value.
+	 * Waiting until this.value == observable.value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @param timeout
 	 * @param unit
 	 * @throws InterruptedException
@@ -655,14 +663,14 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value == observable.value.
+	 * Waiting until this.value == observable.value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @param p is TimeProperty
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
@@ -672,14 +680,14 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value != observable.value.
+	 * Waiting until this.value != observable.value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilNotEqualTo(NumberObservable<? extends Number> observer) throws InterruptedException {
@@ -687,14 +695,14 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value != observable.value.
+	 * Waiting until this.value != observable.value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @param timeout
 	 * @param unit
 	 * @throws InterruptedException
@@ -705,14 +713,14 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value != observable.value.
+	 * Waiting until this.value != observable.value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @param p is TimeProperty
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
@@ -722,14 +730,14 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value < observable.value.
+	 * Waiting until this.value < observable.value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilLessThan(NumberObservable<? extends Number> observer) throws InterruptedException {
@@ -737,14 +745,14 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value < observable.value.
+	 * Waiting until this.value < observable.value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @param timeout
 	 * @param unit
 	 * @throws InterruptedException
@@ -755,14 +763,14 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value < observable.value.
+	 * Waiting until this.value < observable.value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @param p is TimeProperty
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
@@ -772,14 +780,14 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value <= observable.value.
+	 * Waiting until this.value <= observable.value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilLessThanOrEqualTo(NumberObservable<? extends Number> observer) throws InterruptedException {
@@ -787,14 +795,14 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value <= observable.value.
+	 * Waiting until this.value <= observable.value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @param timeout
 	 * @param unit
 	 * @throws InterruptedException
@@ -805,14 +813,14 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value <= observable.value.
+	 * Waiting until this.value <= observable.value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @param p is TimeProperty
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
@@ -822,14 +830,14 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value > observable.value.
+	 * Waiting until this.value > observable.value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilGreaterThan(NumberObservable<? extends Number> observer) throws InterruptedException {
@@ -837,14 +845,14 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value > observable.value.
+	 * Waiting until this.value > observable.value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @param timeout
 	 * @param unit
 	 * @throws InterruptedException
@@ -855,14 +863,14 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value > observable.value.
+	 * Waiting until this.value > observable.value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @param p is TimeProperty
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
@@ -872,14 +880,14 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value >= observable.value.
+	 * Waiting until this.value >= observable.value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @throws InterruptedException
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(NumberObservable<? extends Number> observer) throws InterruptedException {
@@ -887,14 +895,14 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value >= observable.value.
+	 * Waiting until this.value >= observable.value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @param timeout
 	 * @param unit
 	 * @throws InterruptedException
@@ -905,14 +913,14 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value >= observable.value.
+	 * Waiting until this.value >= observable.value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observable
+	 * @param observer
 	 * @param p
 	 * @throws InterruptedException
 	 * @throws TimeoutException if timeout.
@@ -924,11 +932,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/* Wait until Primitives */
 	
 	/**
-	 * Wait until this.value == value.
+	 * Waiting until this.value == value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -939,11 +947,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value == value.
+	 * Waiting until this.value == value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -954,11 +962,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value == value.
+	 * Waiting until this.value == value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -969,11 +977,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value == value.
+	 * Waiting until this.value == value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -984,11 +992,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value == value.
+	 * Waiting until this.value == value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1002,11 +1010,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value == value.
+	 * Waiting until this.value == value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1020,11 +1028,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value == value.
+	 * Waiting until this.value == value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1038,11 +1046,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value == value.
+	 * Waiting until this.value == value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1056,11 +1064,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value == value.
+	 * Waiting until this.value == value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1073,11 +1081,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value == value.
+	 * Waiting until this.value == value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1090,11 +1098,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value == value.
+	 * Waiting until this.value == value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1107,11 +1115,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value == value.
+	 * Waiting until this.value == value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1124,11 +1132,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value != value.
+	 * Waiting until this.value != value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1139,11 +1147,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value != value.
+	 * Waiting until this.value != value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1154,11 +1162,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value != value.
+	 * Waiting until this.value != value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1169,11 +1177,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value != value.
+	 * Waiting until this.value != value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1184,11 +1192,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value != value.
+	 * Waiting until this.value != value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1202,11 +1210,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value != value.
+	 * Waiting until this.value != value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1220,11 +1228,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value != value.
+	 * Waiting until this.value != value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1238,11 +1246,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value != value.
+	 * Waiting until this.value != value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1256,11 +1264,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value != value.
+	 * Waiting until this.value != value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1273,11 +1281,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value != value.
+	 * Waiting until this.value != value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1290,11 +1298,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value != value.
+	 * Waiting until this.value != value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1307,11 +1315,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value != value.
+	 * Waiting until this.value != value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1324,11 +1332,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value < value.
+	 * Waiting until this.value < value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1339,11 +1347,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value < value.
+	 * Waiting until this.value < value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1354,11 +1362,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value < value.
+	 * Waiting until this.value < value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1369,11 +1377,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value < value.
+	 * Waiting until this.value < value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1384,11 +1392,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value < value.
+	 * Waiting until this.value < value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1402,11 +1410,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value < value.
+	 * Waiting until this.value < value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1420,11 +1428,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value < value.
+	 * Waiting until this.value < value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1438,11 +1446,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value < value.
+	 * Waiting until this.value < value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1456,11 +1464,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value < value.
+	 * Waiting until this.value < value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1473,11 +1481,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-	 * Wait until this.value < value.
+	 * Waiting until this.value < value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1490,11 +1498,11 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	}
 	
 	/**
-v	 * Wait until this.value < value.
+v	 * Waiting until this.value < value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1507,11 +1515,11 @@ v	 * Wait until this.value < value.
 	}
 	
 	/**
-	 * Wait until this.value < value.
+	 * Waiting until this.value < value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1524,11 +1532,11 @@ v	 * Wait until this.value < value.
 	}
 	
 	/**
-	 * Wait until this.value <= value.
+	 * Waiting until this.value <= value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1539,11 +1547,11 @@ v	 * Wait until this.value < value.
 	}
 	
 	/**
-	 * Wait until this.value <= value.
+	 * Waiting until this.value <= value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1554,11 +1562,11 @@ v	 * Wait until this.value < value.
 	}
 	
 	/**
-	 * Wait until this.value <= value.
+	 * Waiting until this.value <= value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1569,11 +1577,11 @@ v	 * Wait until this.value < value.
 	}
 	
 	/**
-	 * Wait until this.value <= value.
+	 * Waiting until this.value <= value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1584,11 +1592,11 @@ v	 * Wait until this.value < value.
 	}
 	
 	/**
-	 * Wait until this.value <= value.
+	 * Waiting until this.value <= value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1602,11 +1610,11 @@ v	 * Wait until this.value < value.
 	}
 	
 	/**
-	 * Wait until this.value <= value.
+	 * Waiting until this.value <= value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1620,11 +1628,11 @@ v	 * Wait until this.value < value.
 	}
 	
 	/**
-	 * Wait until this.value <= value.
+	 * Waiting until this.value <= value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1638,11 +1646,11 @@ v	 * Wait until this.value < value.
 	}
 	
 	/**
-	 * Wait until this.value <= value.
+	 * Waiting until this.value <= value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1656,11 +1664,11 @@ v	 * Wait until this.value < value.
 	}
 	
 	/**
-	 * Wait until this.value <= value.
+	 * Waiting until this.value <= value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1673,11 +1681,11 @@ v	 * Wait until this.value < value.
 	}
 	
 	/**
-v	 * Wait until this.value <= value.
+v	 * Waiting until this.value <= value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1690,11 +1698,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value <= value.
+	 * Waiting until this.value <= value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1707,11 +1715,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value <= value.
+	 * Waiting until this.value <= value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1724,11 +1732,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value > value.
+	 * Waiting until this.value > value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1739,11 +1747,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value > value.
+	 * Waiting until this.value > value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1754,11 +1762,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value > value.
+	 * Waiting until this.value > value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1769,11 +1777,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value > value.
+	 * Waiting until this.value > value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1784,11 +1792,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value > value.
+	 * Waiting until this.value > value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1802,11 +1810,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value > value.
+	 * Waiting until this.value > value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1820,11 +1828,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value > value.
+	 * Waiting until this.value > value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1838,11 +1846,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value > value.
+	 * Waiting until this.value > value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1856,11 +1864,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value > value.
+	 * Waiting until this.value > value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1873,11 +1881,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value > value.
+	 * Waiting until this.value > value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1890,11 +1898,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value > value.
+	 * Waiting until this.value > value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1907,11 +1915,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value > value.
+	 * Waiting until this.value > value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1924,11 +1932,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value >= value.
+	 * Waiting until this.value >= value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1939,11 +1947,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value >= value.
+	 * Waiting until this.value >= value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1954,11 +1962,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value >= value.
+	 * Waiting until this.value >= value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1969,11 +1977,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value >= value.
+	 * Waiting until this.value >= value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -1984,11 +1992,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value >= value.
+	 * Waiting until this.value >= value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -2002,11 +2010,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value >= value.
+	 * Waiting until this.value >= value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -2020,11 +2028,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value >= value.
+	 * Waiting until this.value >= value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -2038,11 +2046,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value >= value.
+	 * Waiting until this.value >= value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -2056,11 +2064,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value >= value.
+	 * Waiting until this.value >= value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -2073,11 +2081,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value >= value.
+	 * Waiting until this.value >= value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -2090,11 +2098,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value >= value.
+	 * Waiting until this.value >= value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -2107,11 +2115,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value >= value.
+	 * Waiting until this.value >= value.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param value
@@ -2126,11 +2134,11 @@ v	 * Wait until this.value <= value.
 	/* Wait Until ZEROs */
 	
 	/**
-	 * Wait until this.value == 0.
+	 * Waiting until this.value == 0.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @throws InterruptedException
@@ -2140,11 +2148,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value == 0.
+	 * Waiting until this.value == 0.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param timeout
@@ -2157,11 +2165,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value == 0.
+	 * Waiting until this.value == 0.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param p is TimeProperty
@@ -2173,11 +2181,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value != 0.
+	 * Waiting until this.value != 0.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @throws InterruptedException
@@ -2187,11 +2195,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value != 0.
+	 * Waiting until this.value != 0.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param timeout
@@ -2204,11 +2212,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value != 0.
+	 * Waiting until this.value != 0.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param p is TimeProperty
@@ -2220,11 +2228,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value < 0.
+	 * Waiting until this.value < 0.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @throws InterruptedException
@@ -2234,11 +2242,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value < 0.
+	 * Waiting until this.value < 0.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param timeout
@@ -2251,11 +2259,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value < 0.
+	 * Waiting until this.value < 0.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param p is TimeProperty
@@ -2267,11 +2275,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value <= 0.
+	 * Waiting until this.value <= 0.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @throws InterruptedException
@@ -2281,11 +2289,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value <= 0.
+	 * Waiting until this.value <= 0.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param timeout
@@ -2298,11 +2306,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value <= 0.
+	 * Waiting until this.value <= 0.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param p is TimeProperty
@@ -2314,11 +2322,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value > 0.
+	 * Waiting until this.value > 0.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @throws InterruptedException
@@ -2328,11 +2336,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value > 0.
+	 * Waiting until this.value > 0.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param timeout
@@ -2345,11 +2353,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value > 0.
+	 * Waiting until this.value > 0.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param p is TimeProperty
@@ -2361,11 +2369,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value >= 0.
+	 * Waiting until this.value >= 0.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @throws InterruptedException
@@ -2375,11 +2383,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value >= 0.
+	 * Waiting until this.value >= 0.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param timeout
@@ -2392,11 +2400,11 @@ v	 * Wait until this.value <= value.
 	}
 	
 	/**
-	 * Wait until this.value >= 0.
+	 * Waiting until this.value >= 0.
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already condition is {@code true}, pass through immediately.<br />
+	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param p

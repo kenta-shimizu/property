@@ -3,6 +3,40 @@ package com.shimizukenta.property;
 /**
  * Comparative Boolean Compution, includes Getter, Observer.
  * 
+ * <p>
+ * <strong>NOT</strong> includes Setter.<br />
+ * </p>
+ * <ul>
+ * <li>To build ComparativeCompution instance,
+ * <ul>
+ * <li>{@link #isEqualTo(NumberObservable, NumberObservable)}.</li>
+ * <li>{@link #isNotEqualTo(NumberObservable, NumberObservable)}.</li>
+ * <li>{@link #isLessThan(NumberObservable, NumberObservable)}.</li>
+ * <li>{@link #isGreaterThan(NumberObservable, NumberObservable)}.</li>
+ * <li>{@link #isLessThanOrEqualTo(NumberObservable, NumberObservable)}.</li>
+ * <li>{@link #isGreaterThanOrEqualTo(NumberObservable, NumberObservable)}.</li>
+ * </ul>
+ * </li>
+ * <li>To get value, {@link #booleanValue()}.</li>
+ * <li>To detect value changed, {@link #addChangeListener(ChangeListener)}.</li>
+ * <li>To wait until condition is true,
+ * <ul>
+ * <li>{@link #waitUntil(boolean)}</li>
+ * <li>{@link #waitUntil(boolean, long, java.util.concurrent.TimeUnit)}</li>
+ * </ul>
+ * </lI>
+ * <li>To logical-compute,
+ * <ul>
+ * <li>{@link #and(BooleanObservable)}</li>
+ * <li>{@link #or(BooleanObservable)}</li>
+ * <li>{@link #not()}</li>
+ * <li>{@link #xor(BooleanObservable)}</li>
+ * <li>{@link #nand(BooleanObservable)}</li>
+ * <li>{@link #nor(BooleanObservable)}</li>
+ * </ul>
+ * </li>
+ * </ul>
+ * 
  * @author kenta-shimizu
  * @see Boolean
  * @see BooleanCompution

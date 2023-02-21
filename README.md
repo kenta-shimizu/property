@@ -288,11 +288,11 @@ System.out.println("mapProp get(\"KEY\") is " + mapv);
   + `#waitUntilLessThanOrEqualToZero` (<=0)
   + `#waitUntilGreaterThanZero` (>0)
   + `#waitUntilGreaterThanOrEqualToZero` (>=0)
-- BooleanProperty/BooleanCompution
+- Boolean Property/Compution
   + `#waitUntil`
   + `#waitUntilTrue`
   + `#waitUntilFalse`
-- ObjectProperty/ObjectCompution
+- Object Property/Compution
   + `#waitUntilEqualTo`
   + `#waitUntilNotEqualTo`
   + `#waitUntilNull`
@@ -304,7 +304,7 @@ System.out.println("mapProp get(\"KEY\") is " + mapv);
   + `#waitUntilNotContains`
   + `#waitUntilContainsAll`
   + `#waitUntilNotContainsAll`
-- MapProperty
+- Map Property/Compution
   + `#waitUntilIsEmpty`
   + `#waitUntilIsNotEmpty`
   + `#waitUntilContainsKeyAndGet`

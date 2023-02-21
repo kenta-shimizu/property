@@ -317,7 +317,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * @return BooleanCompution instance of isEqualTo null
 	 * @see BooleanCompution
 	 */
-	default public BooleanCompution computeIsEqualToNull() {
+	default public BooleanCompution computeIsNull() {
 		return ObjectUtils.computeIsNull(this);
 	}
 	
@@ -327,7 +327,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * @return BooleanCompution instance of isNotEqualTo null
 	 * @see BooleanCompution
 	 */
-	default public BooleanCompution computeIsNotEqualToNull() {
+	default public BooleanCompution computeIsNotNull() {
 		return ObjectUtils.computeIsNotNull(this);
 	}
 	

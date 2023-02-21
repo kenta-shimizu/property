@@ -172,6 +172,39 @@ System.out.println(not.booleanValue());  /* "false" */
 System.out.println(xor.booleanValue());  /* "false" */
 ```
 
+### Others
+
+```java
+/* Object */
+ObjectProperty<String> objProp = ObjectProperty.newInstance("STRING");
+
+BooleanCompution isNullCompution  = objProp.computeIsNull();
+BooleanCompution notNullCompution = objProp.computeIsNotNull();
+BooleanCompution equalCompution   = objProp.computeIsEqualTo("STRING");
+
+/* List */
+ListProperty<String> listProp = ListProperty.newInstance();
+
+BooleanCompution isEmptyCompution  = listProp.computeIsEmpty();
+BooleanCompution containsCompution = listProp.computeContains("CONTAINS");
+IntegerCompution sizeCompution     = listProp.computeSize();
+
+/* Set */
+SetProperty<String> setProp = SetProperty.newInstance();
+
+BooleanCompution isEmptyCompution  = setProp.computeIsEmpty();
+BooleanCompution containsCompution = setProp.computeContains("CONTAINS");
+IntegerCompution sizeCompution     = setProp.computeSize();
+
+/* Map */
+MapProperty<String, Integer> mapProp = MapProperty.newInstance();
+
+BooleanCompution isEmptyCompution     = mapProp.computeIsEmpty();
+BooleanCompution containsKeyCompution = mapProp.computeContainsKey("KEY");
+IntegerCompution sizeCompution        = mapProp.computeSize();
+SetCompution<String> keySetCompution  = mapProp.computeKeySet();
+```
+
 ## Observer
 
 All `Property` and `Compution` can observe changed value by `#addChangeListener`.
@@ -229,18 +262,53 @@ System.out.println("Waiting until boolProp is true.");
 boolProp.waitUntilTrue();
 System.out.println("boolProp is true.");
 
-System.out.println("Waiting until intProp is noy empty.");
-intProp.waitUntilIsNotEmpty();
-System.out.println("inrProp is not empty.");
+System.out.println("Waiting until intProp is >0.");
+intProp.waitUntilGreaterThan(0);
+System.out.println("inrProp is >0.");
 
 System.out.println("Waiting until objProp is not null.");
-String objv = objProp.waitUntilNotNull();
+String objv = objProp.waitUntilNotNullAndGet();
 System.out.println("objProp is " + objv);
 
 System.out.println("Waiting until mapProp containsKey(\"KEY\").");
-String mapv = mapProp.waitUntilContainsKey("KEY");
+String mapv = mapProp.waitUntilContainsKeyAndGet("KEY");
 System.out.println("mapProp get(\"KEY\") is " + mapv);
 ```
+
+- Integer/Long/Float/Double/Number Property/Compution
+  + `#waitUntilEqualTo` (==)
+  + `#waitUntilNotEqualTo` (!=)
+  + `#waitUntilLessThan` (<)
+  + `#waitUntilLessThanOrEqualTo` (<=)
+  + `#waitUntilGreaterThan` (>)
+  + `#waitUntilGreaterThanOrEqualTo` (>=)
+  + `#waitUntilEqualToZero` (==0)
+  + `#waitUntilNotEqualToZero` (!=0)
+  + `#waitUntilLessThanZero` (<0)
+  + `#waitUntilLessThanOrEqualToZero` (<=0)
+  + `#waitUntilGreaterThanZero` (>0)
+  + `#waitUntilGreaterThanOrEqualToZero` (>=0)
+- BooleanProperty/BooleanCompution
+  + `#waitUntil`
+  + `#waitUntilTrue`
+  + `#waitUntilFalse`
+- ObjectProperty/ObjectCompution
+  + `#waitUntilEqualTo`
+  + `#waitUntilNotEqualTo`
+  + `#waitUntilNull`
+  + `#waitUntilNotNullAndGet`
+- List/Set Property/Compution
+  + `#waitUntilIsEmpty`
+  + `#waitUntilIsNotEmpty`
+  + `#waitUntilContains`
+  + `#waitUntilNotContains`
+  + `#waitUntilContainsAll`
+  + `#waitUntilNotContainsAll`
+- MapProperty
+  + `#waitUntilIsEmpty`
+  + `#waitUntilIsNotEmpty`
+  + `#waitUntilContainsKeyAndGet`
+  + `#waitUntilNotContainsKey`
 
 ## TimeoutProperty
 
@@ -260,7 +328,7 @@ timeProp.set(5.0F);  /* set 5.0 seconds */
 timeProp.sleep();  /* TimeUnit#sleep(timeout); */
 timeProp.wait(syncObj);  /* TimeUnit#timedWait(syncObj, timeout); */
 T v = timeProp.futureGet(future);  /* Future<T>#get(timeout, TimeUnit); */
-T v = timeProp.poll(blockingQueue);  /* BlokingQueue<T>#poll(timeout, TimeUnit); */
+T v = timeProp.blockingQueuePoll(blockingQueue);  /* BlokingQueue<T>#poll(timeout, TimeUnit); */
 
 /* set to #waitUntil methods as timeout */
 boolProp.waitUntilTrue(timeProp);

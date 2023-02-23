@@ -13,7 +13,7 @@ public interface IntegerSettable extends NumberSettable<Integer> {
 	/**
 	 * Value setter.
 	 * 
-	 * @param value
+	 * @param value is int
 	 */
 	public void set(int value);
 	

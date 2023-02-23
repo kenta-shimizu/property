@@ -15,15 +15,31 @@ import java.util.Objects;
 public abstract class AbstractCollectionCompution<E, T extends Collection<E>> implements CollectionCompution<E, T> {
 	
 	private static final long serialVersionUID = -6611104182991862616L;
-
+	
+	/**
+	 * Protected synchronized object.
+	 */
 	protected final Object _sync = new Object();
 	
+	/**
+	 * Mutable value.
+	 */
 	private T v;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param initial is extends {@code Collection<E>}
+	 */
 	public AbstractCollectionCompution(T initial) {
 		this.v = initial;
 	}
 	
+	/**
+	 * Value simple geter.
+	 * 
+	 * @return value
+	 */
 	protected T _simpleGet() {
 		return this.v;
 	}
@@ -109,6 +125,9 @@ public abstract class AbstractCollectionCompution<E, T extends Collection<E>> im
 		}
 	}
 	
+	/**
+	 * Change listeners.
+	 */
 	private final Collection<ChangeListener<? super T>> changeLstnrs = new HashSet<>();
 	
 	@Override
@@ -129,6 +148,11 @@ public abstract class AbstractCollectionCompution<E, T extends Collection<E>> im
 		}
 	}
 	
+	/**
+	 * synchronized set and notify if value changed.
+	 * 
+	 * @param c is new Collection
+	 */
 	protected void _syncSetAndNotifyChanged(T c) {
 		synchronized ( this._sync ) {
 			final T x = this._simpleGet();
@@ -140,16 +164,35 @@ public abstract class AbstractCollectionCompution<E, T extends Collection<E>> im
 		}
 	}
 	
+	/**
+	 * Bind listener.
+	 */
 	private final ChangeListener<T> bindLstnr = this::_syncSetAndNotifyChanged;
 	
+	/**
+	 * Add listener to observer.
+	 * 
+	 * @param observer to add listener
+	 * @return true if bind success
+	 */
 	public boolean bind(Observable<? extends T> observer) {
 		return observer.addChangeListener(this.bindLstnr);
 	}
 	
+	/**
+	 * To remove listener to observer.
+	 * 
+	 * @param observer to remove listener
+	 * @return true if unbind success
+	 */
 	public boolean unbind(Observable<? extends T> observer) {
 		return observer.removeChangeListener(this.bindLstnr);
 	}
 	
+	/**
+	 * Notify to listeners.
+	 * 
+	 */
 	protected void _notifyChagned() {
 		final T v = this._unmodifiableCollection(this._simpleGet());
 		for ( ChangeListener<? super T> l : this.changeLstnrs ) {
@@ -157,6 +200,12 @@ public abstract class AbstractCollectionCompution<E, T extends Collection<E>> im
 		}
 	}
 	
+	/**
+	 * Prototype Collection getter.
+	 * 
+	 * @param c is extends Collection
+	 * @return Extends Collection
+	 */
 	abstract protected T _unmodifiableCollection(T c);
 	
 	@Override

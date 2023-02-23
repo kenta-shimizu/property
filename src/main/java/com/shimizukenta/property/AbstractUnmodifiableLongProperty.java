@@ -9,6 +9,11 @@ public abstract class AbstractUnmodifiableLongProperty extends AbstractLongPrope
 	
 	private static final long serialVersionUID = -683392877916524097L;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param initial is long
+	 */
 	public AbstractUnmodifiableLongProperty(long initial) {
 		super(initial);
 	}

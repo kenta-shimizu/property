@@ -8,7 +8,12 @@ package com.shimizukenta.property;
 public abstract class AbstractFloatProperty extends AbstractNumberProperty<Float> implements FloatProperty {
 
 	private static final long serialVersionUID = 7439939403442859342L;
-
+	
+	/**
+	 * Constructor.
+	 * 
+	 * @param initial is float
+	 */
 	public AbstractFloatProperty(float initial) {
 		super(Float.valueOf(initial));
 	}

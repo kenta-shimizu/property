@@ -18,7 +18,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * Returns ComparativeCompution instance of isEqualTo.
 	 * 
 	 * @param <U> Type
-	 * @param observable
+	 * @param observer is ObjectObserver
 	 * @return ComparativeCompution instance of isEqualTo
 	 * @see ComparativeCompution
 	 */
@@ -30,7 +30,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * Returns ComparativeCompution instance of isEqualTo.
 	 * 
 	 * @param <U> Type
-	 * @param ref
+	 * @param ref is Object
 	 * @return ComparativeCompution instance of isEqualTo
 	 * @see ComparativeCompution
 	 */
@@ -42,7 +42,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * Returns ComparativeCompution instance of isNotEqualTo.
 	 * 
 	 * @param <U> Type
-	 * @param observable
+	 * @param observer is ObjectObserver
 	 * @return ComparativeCompution instance of isNotEqualTo
 	 * @see ComparativeCompution
 	 */
@@ -54,7 +54,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * Returns ComparativeCompution instance of isNotEqualTo.
 	 * 
 	 * @param <U> Type
-	 * @param ref
+	 * @param ref is Object
 	 * @return ComparativeCompution instance of isNotEqualTo
 	 * @see ComparativeCompution
 	 */
@@ -71,8 +71,8 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * </p>
 	 * 
 	 * @param <U> Type
-	 * @param observer
-	 * @throws InterruptedException
+	 * @param observer is ObjectObserver
+	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public <U> void waitUntilEqualTo(
 			ObjectObservable<U> observer) throws InterruptedException {
@@ -89,11 +89,11 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * </p>
 	 * 
 	 * @param <U> Type
-	 * @param observer
-	 * @param timeout
-	 * @param unit
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout
+	 * @param observer is ObjectObserver
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 */
 	default public <U> void waitUntilEqualTo(
 			ObjectObservable<U> observer,
@@ -112,10 +112,10 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * </p>
 	 * 
 	 * @param <U> Type
-	 * @param observer
-	 * @param p
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout.
+	 * @param observer is ObjectObserver
+	 * @param p is TimeoutProperty
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 */
 	default public <U> void waitUntilEqualTo(
 			ObjectObservable<U> observer,
@@ -133,8 +133,8 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * </p>
 	 * 
 	 * @param <U> Type
-	 * @param ref
-	 * @throws InterruptedException
+	 * @param ref is Object
+	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public <U> void waitUntilEqualTo(
 			U ref) throws InterruptedException {
@@ -151,11 +151,11 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * </p>
 	 * 
 	 * @param <U> Type
-	 * @param ref
-	 * @param timeout
-	 * @param unit
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout
+	 * @param ref is Object
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 */
 	default public <U> void waitUntilEqualTo(
 			U ref,
@@ -174,10 +174,10 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * </p>
 	 * 
 	 * @param <U> Type
-	 * @param ref
-	 * @param p
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout.
+	 * @param ref is Object
+	 * @param p is TimeoutProperty
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 */
 	default public <U> void waitUntilEqualTo(
 			
@@ -196,8 +196,8 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * </p>
 	 * 
 	 * @param <U> Type
-	 * @param observer
-	 * @throws InterruptedException
+	 * @param observer is ObjectObserver
+	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public <U> void waitUntilNotEqualTo(
 			ObjectObservable<U> observer) throws InterruptedException {
@@ -214,11 +214,11 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * </p>
 	 * 
 	 * @param <U> Type
-	 * @param observer
-	 * @param timeout
-	 * @param unit
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout
+	 * @param observer is Object
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 */
 	default public <U> void waitUntilNotEqualTo(
 			ObjectObservable<U> observer,
@@ -237,10 +237,10 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * </p>
 	 * 
 	 * @param <U> Type
-	 * @param observer
-	 * @param p
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout
+	 * @param observer is ObjectObserver
+	 * @param p is TimeoutProperty
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 */
 	default public <U> void waitUntilNotEqualTo(
 			ObjectObservable<U> observer,
@@ -258,8 +258,8 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * </p>
 	 * 
 	 * @param <U> Type
-	 * @param ref
-	 * @throws InterruptedException
+	 * @param ref is Object
+	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public <U> void waitUntilNotEqualTo(
 			U ref) throws InterruptedException {
@@ -276,11 +276,11 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * </p>
 	 * 
 	 * @param <U> Type
-	 * @param ref
-	 * @param timeout
-	 * @param unit
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout
+	 * @param ref is Object
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 */
 	default public <U> void waitUntilNotEqualTo(
 			U ref,
@@ -299,10 +299,10 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * </p>
 	 * 
 	 * @param <U> Type
-	 * @param ref
-	 * @param p
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout
+	 * @param ref is Object
+	 * @param p is TimeoutProperty
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 */
 	default public <U> void waitUntilNotEqualTo(
 			U ref,
@@ -340,7 +340,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * </p>
 	 * 
 	 * @return value
-	 * @throws InterruptedException
+	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public T waitUntilNotNullAndGet() throws InterruptedException {
 		return ObjectUtils.waitUntilNotNullAndGet(this);
@@ -354,11 +354,11 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * If already value is <strong>NOT</strong> null, return value immediately.<br />
 	 * </p>
 	 * 
-	 * @param timeout
-	 * @param unit
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
 	 * @return value
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout.
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 */
 	default public T waitUntilNotNullAndGet(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		return ObjectUtils.waitUntilNotNullAndGet(this, timeout, unit);
@@ -372,10 +372,10 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * If already value is <strong>NOT</strong> null, return value immediately.<br />
 	 * </p>
 	 * 
-	 * @param p
+	 * @param p is TimeoutProperty
 	 * @return value
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout.
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 */
 	default public T waitUntilNotNullAndGet(TimeoutGettable p) throws InterruptedException, TimeoutException {
 		return ObjectUtils.waitUntilNotNullAndGet(this, p);
@@ -389,7 +389,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * If already value is null, return value immediately.<br />
 	 * </p>
 	 * 
-	 * @throws InterruptedException
+	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilNull() throws InterruptedException {
 		ObjectUtils.waitUntilNull(this);
@@ -403,10 +403,10 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * If already value is null, return value immediately.<br />
 	 * </p>
 	 * 
-	 * @param timeout
-	 * @param unit
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout.
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 */
 	default public void waitUntilNull(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		ObjectUtils.waitUntilNull(this, timeout, unit);
@@ -420,9 +420,9 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * If already value is null, return value immediately.<br />
 	 * </p>
 	 * 
-	 * @param p
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout.
+	 * @param p is TimeoutProperty
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 */
 	default public void waitUntilNull(TimeoutGettable p) throws InterruptedException, TimeoutException {
 		ObjectUtils.waitUntilNull(this, p);

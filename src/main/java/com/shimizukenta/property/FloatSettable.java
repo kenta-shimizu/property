@@ -16,7 +16,7 @@ public interface FloatSettable extends NumberSettable<Float> {
 	/**
 	 * Value setter.
 	 * 
-	 * @param value
+	 * @param value is float
 	 */
 	public void set(float value);
 	

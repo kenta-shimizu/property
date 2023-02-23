@@ -20,7 +20,7 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	/**
 	 * Returns BooleanCompution of Map#containsKey(Object) is true.
 	 * 
-	 * @param key
+	 * @param key key whose presence in this map is to be tested
 	 * @return BooleanCompution of Map#containsKey(Object) is true
 	 * @see Map#containsKey(Object)
 	 * @see BooleanCompution
@@ -32,7 +32,7 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	/**
 	 * Returns BooleanCompution of Map#containsKey(Object) is false
 	 * 
-	 * @param key
+	 * @param key key whose presence in this map is to be tested
 	 * @return BooleanCompution of Map#containsKey(Object) is false
 	 * @see Map#containsKey(Object)
 	 * @see BooleanCompution
@@ -93,13 +93,13 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * If already Map#containsKey(Object) is true, return value immediately.<br />
 	 * </p>
 	 * 
-	 * @param key
+	 * @param key key whose presence in this map is to be tested
 	 * @return Map#get(Object)
-	 * @throws InterruptedException
-	 * @see {@link Map#containsKey(Object)}
+	 * @throws InterruptedException if interrupted while waiting
+	 * @see Map#containsKey(Object)
 	 */
 	default public V waitUntilContainsKeyAndGet(Object key) throws InterruptedException {
-		return MapUtils.waitUntilContainsKey(this, key);
+		return MapUtils.waitUntilContainsKeyAndGet(this, key);
 	}
 	
 	/**
@@ -110,16 +110,16 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * If already Map#containsKey(Object) is true, return value immediately.<br />
 	 * </p>
 	 * 
-	 * @param key
-	 * @param timeout
-	 * @param unit
+	 * @param key key whose presence in this map is to be tested
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
 	 * @return Map#get(Object)
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 * @see Map#containsKey(Object)
 	 */
 	default public V waitUntilContainsKeyAndGet(Object key, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		return MapUtils.waitUntilContainsKey(this, key, timeout, unit);
+		return MapUtils.waitUntilContainsKeyAndGet(this, key, timeout, unit);
 	}
 	
 	/**
@@ -130,15 +130,15 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * If already Map#containsKey(Object) is true, return value immediately.<br />
 	 * </p>
 	 * 
-	 * @param key
+	 * @param key key whose presence in this map is to be tested
 	 * @param p is TimeoutProperty
 	 * @return Map#get(Object)
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 * @see Map#containsKey(Object)
 	 */
 	default public V waitUntilContainsKeyAndGet(Object key, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		return MapUtils.waitUntilContainsKey(this, key, p);
+		return MapUtils.waitUntilContainsKeyAndGet(this, key, p);
 	}
 	
 	/**
@@ -149,8 +149,8 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * If already Map#containsKey(Object) is false, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param key
-	 * @throws InterruptedException
+	 * @param key key whose presence in this map is to be tested
+	 * @throws InterruptedException if interrupted while waiting
 	 * @see Map#containsKey(Object)
 	 */
 	default public void waitUntilNotContainsKey(Object key) throws InterruptedException {
@@ -165,11 +165,11 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * If already Map#containsKey(Object) is false, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param key
-	 * @param timeout
-	 * @param unit
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout.
+	 * @param key key whose presence in this map is to be tested
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 * @see Map#containsKey(Object)
 	 */
 	default public void waitUntilNotContainsKey(Object key, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
@@ -184,10 +184,10 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * If already Map#containsKey(Object) is false, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param key
+	 * @param key key whose presence in this map is to be tested
 	 * @param p is TimeoutProperty
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout.
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 * @see Map#containsKey(Object)
 	 */
 	default public void waitUntilNotContainsKey(Object key, TimeoutGettable p) throws InterruptedException, TimeoutException {
@@ -202,7 +202,7 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * If already empty, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @throws InterruptedException
+	 * @throws InterruptedException if interrupted while waiting
 	 * @see Map#isEmpty()
 	 */
 	default public void waitUntilIsEmpty() throws InterruptedException {
@@ -217,10 +217,10 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * If already empty, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param timeout
-	 * @param unit
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 * @see Map#isEmpty()
 	 */
 	default public void waitUntilIsEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
@@ -236,8 +236,8 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * </p>
 	 * 
 	 * @param p is TimeoutProperty
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 * @see Map#isEmpty()
 	 */
 	default public void waitUntilIsEmpty(TimeoutGettable p) throws InterruptedException, TimeoutException {
@@ -252,7 +252,7 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * If already <strong>NOT</strong> empty, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @throws InterruptedException
+	 * @throws InterruptedException if interrupted while waiting
 	 * @see Map#isEmpty()
 	 */
 	default public void waitUntilIsNotEmpty() throws InterruptedException {
@@ -267,10 +267,10 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * If already <strong>NOT</strong> empty, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param timeout
-	 * @param unit
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 * @see Map#isEmpty()
 	 */
 	default public void waitUntilIsNotEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
@@ -286,8 +286,8 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * </p>
 	 * 
 	 * @param p is TimeoutProperty
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 * @see Map#isEmpty()
 	 */
 	default public void waitUntilIsNotEmpty(TimeoutGettable p) throws InterruptedException, TimeoutException {

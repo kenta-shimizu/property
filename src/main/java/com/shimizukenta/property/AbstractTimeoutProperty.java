@@ -12,6 +12,11 @@ public abstract class AbstractTimeoutProperty extends AbstractProperty<TimeoutAn
 	
 	private static final long serialVersionUID = -8510457745679120175L;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param initial is TimeoutAndUnit
+	 */
 	public AbstractTimeoutProperty(TimeoutAndUnit initial) {
 		super(initial);
 	}
@@ -21,22 +26,27 @@ public abstract class AbstractTimeoutProperty extends AbstractProperty<TimeoutAn
 		this._syncSetAndNotifyChanged(Objects.requireNonNull(value));
 	}
 	
+	@Override
 	public void set(int seconds) {
 		this._syncSetAndNotifyChanged(TimeoutAndUnit.of(seconds));
 	}
 	
+	@Override
 	public void set(long seconds) {
 		this._syncSetAndNotifyChanged(TimeoutAndUnit.of(seconds));
 	}
 	
+	@Override
 	public void set(float seconds) {
 		this._syncSetAndNotifyChanged(TimeoutAndUnit.of(seconds));
 	}
 	
+	@Override
 	public void set(double seconds) {
 		this._syncSetAndNotifyChanged(TimeoutAndUnit.of(seconds));
 	}
 	
+	@Override
 	public void set(long timeout, TimeUnit unit) {
 		this._syncSetAndNotifyChanged(TimeoutAndUnit.of(timeout, unit));
 	}

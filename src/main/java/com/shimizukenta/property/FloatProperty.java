@@ -60,7 +60,7 @@ public interface FloatProperty extends NumberProperty<Float>, FloatSettable {
 	/**
 	 * FloatProperty builder.
 	 * 
-	 * @param initial
+	 * @param initial is float
 	 * @return new-instance
 	 */
 	public static FloatProperty newInstance(float initial) {

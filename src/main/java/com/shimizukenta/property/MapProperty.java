@@ -58,7 +58,7 @@ public interface MapProperty<K, V> extends Map<K, V>, MapSettable<K, V>, MapObse
 	 * 
 	 * @param <K> Key Type
 	 * @param <V> Value Type
-	 * @param map
+	 * @param initial is {@code Map<K, V>}
 	 * @return new-instance.
 	 */
 	public static <K, V> MapProperty<K, V> newInstance(Map<? extends K, ? extends V> initial) {

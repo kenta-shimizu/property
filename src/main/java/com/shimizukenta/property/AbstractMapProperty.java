@@ -18,14 +18,30 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	
 	private static final long serialVersionUID = -5051422061789589475L;
 	
+	/**
+	 * Synbhronized Object.
+	 */
 	private final Object _sync = new Object();
 	
+	/**
+	 * Immutable Map.
+	 */
 	private final Map<K, V> map;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param initial is extends {@code Map<K, V>}
+	 */
 	public AbstractMapProperty(Map<K, V> initial) {
 		this.map = initial;
 	}
 	
+	/**
+	 * Value simple getter.
+	 * 
+	 * @return value
+	 */
 	protected Map<K, V> _simpleGet() {
 		synchronized ( this._sync ) {
 			return this.map;
@@ -126,6 +142,9 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 		}
 	}
 	
+	/**
+	 * Change listeners.
+	 */
 	private final Collection<ChangeListener<? super Map<K, V>>> changeLstnrs = new HashSet<>();
 	
 	@Override
@@ -146,6 +165,11 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 		}
 	}
 	
+	/**
+	 * synchronized set and notify if map changed.
+	 * 
+	 * @param newMap is {@code Map<K, V>}
+	 */
 	protected void _syncSetAndNotifyChanged(Map<? extends K, ? extends V> newMap) {
 		synchronized ( this._sync ) {
 			final Map<K, V> x = this._simpleGet();
@@ -157,6 +181,9 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 		}
 	}
 	
+	/**
+	 * Bind listener.
+	 */
 	private final ChangeListener<Map<? extends K, ? extends V>> changeLstnr = this::_syncSetAndNotifyChanged;
 	
 	@Override
@@ -169,6 +196,10 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 		return observer.removeChangeListener(this.changeLstnr);
 	}
 	
+	/**
+	 * Notify value to listeners.
+	 * 
+	 */
 	protected void _notifyChanged() {
 		synchronized ( this._sync ) {
 			final Map<K, V> m = Collections.unmodifiableMap(this._simpleGet());

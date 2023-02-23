@@ -16,6 +16,14 @@ public class CollectionUtils {
 		/* Nothing */
 	}
 	
+	/**
+	 * Inner Collection.
+	 * 
+	 * @author kenta-shimizu
+	 *
+	 * @param <E> Element
+	 * @param <T> Type
+	 */
 	private static class InnerCollection<E, T extends Collection<E>> extends AbstractPredicateCompution<T> {
 		
 		private static final long serialVersionUID = 111127328521430450L;
@@ -41,6 +49,16 @@ public class CollectionUtils {
 		return i;
 	}
 	
+	/**
+	 * Returns Contains PredicateCompution.
+	 * 
+	 * @param <E> Element
+	 * @param <T> Type
+	 * @param observer is extends {@code Collection<E>}
+	 * @param o element whose presence in this collection is to be tested
+	 * @return Contains PredicateCompution
+	 * @see Collection#contains(Object)
+	 */
 	public static <E, T extends Collection<E>> AbstractPredicateCompution<T> computeContains(
 			Observable<T> observer,
 			Object o) {
@@ -50,6 +68,16 @@ public class CollectionUtils {
 				x -> (x == null ? false : x.contains(o)));
 	}
 	
+	/**
+	 * Returns NOT Contains PredicateCompution.
+	 * 
+	 * @param <E> Element
+	 * @param <T> Type
+	 * @param observer Collection observer
+	 * @param o element whose presence in this collection is to be tested
+	 * @return NOT Contains PredicateCompution
+	 * @see Collection#contains(Object)
+	 */
 	public static <E, T extends Collection<E>> AbstractPredicateCompution<T> computeNotContains(
 			Observable<T> observer,
 			Object o) {
@@ -59,6 +87,16 @@ public class CollectionUtils {
 				x -> (x == null ? false : (! x.contains(o))));
 	}
 	
+	/**
+	 * Returns ContainsAll Compution.
+	 * 
+	 * @param <E> Key
+	 * @param <T> Type
+	 * @param observer is Collection observer
+	 * @param c collection to be checked for containment in this collection
+	 * @return ContainsAll Compution
+	 * @see Collection#containsAll(Collection)
+	 */
 	public static <E, T extends Collection<E>> AbstractPredicateCompution<T> computeContainsAll(
 			Observable<T> observer,
 			Collection<?> c) {
@@ -68,6 +106,16 @@ public class CollectionUtils {
 				x -> (x == null ? false : x.containsAll(c)));
 	}
 	
+	/**
+	 * Returns NOT ContainsAll Compution.
+	 * 
+	 * @param <E> Key
+	 * @param <T> Type
+	 * @param observer Collection observer
+	 * @param c collection to be checked for containment in this collection
+	 * @return NOT ContainsAll Compution
+	 * @see Collection#containsAll(Collection)
+	 */
 	public static <E, T extends Collection<E>> AbstractPredicateCompution<T> computeNotContainsAll(
 			Observable<T> observer,
 			Collection<?> c) {
@@ -77,6 +125,15 @@ public class CollectionUtils {
 				x -> (x == null ? false : (! x.containsAll(c))));
 	}
 	
+	/**
+	 * Returns IsEmpty PredicateCompution.
+	 * 
+	 * @param <E> Element
+	 * @param <T> Type
+	 * @param observer Collection observer
+	 * @return IsEmpty PredicateCompution
+	 * @see Collection#isEmpty()
+	 */
 	public static <E, T extends Collection<E>> AbstractPredicateCompution<T> computeIsEmpty(
 			Observable<T> observer) {
 		
@@ -85,6 +142,15 @@ public class CollectionUtils {
 				x -> (x == null ? false : x.isEmpty()));
 	}
 	
+	/**
+	 * Returns NOT IsEmpty PredicateCompution.
+	 * 
+	 * @param <E> Element
+	 * @param <T> Type
+	 * @param observer Collection observer
+	 * @return NOT IsEmpty PredicateCompution
+	 * @see Collection#isEmpty()
+	 */
 	public static <E, T extends Collection<E>> AbstractPredicateCompution<T> computeIsNotEmpty(
 			Observable<T> observer) {
 		
@@ -93,6 +159,20 @@ public class CollectionUtils {
 				x -> (x == null ? false : (! x.isEmpty())));
 	}
 	
+	/**
+	 * Waiting until condition is true.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is true, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <E> Key
+	 * @param <T> Value
+	 * @param i Compution
+	 * @param observer Observer
+	 * @throws InterruptedException if interrupted while waiting
+	 */
 	public static <E, T extends Collection<E>> void waitUntil(
 			AbstractPredicateCompution<T> i,
 			Observable<T> observer) throws InterruptedException {
@@ -105,6 +185,23 @@ public class CollectionUtils {
 		}
 	}
 	
+	/**
+	 * Waiting until condition is true.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is true, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <E> Key
+	 * @param <T> Value
+	 * @param i Compution
+	 * @param observer Observer
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 */
 	public static <E, T extends Collection<E>> void waitUntil(
 			AbstractPredicateCompution<T> i,
 			Observable<T> observer,
@@ -119,6 +216,22 @@ public class CollectionUtils {
 		}
 	}
 	
+	/**
+	 * Waiting until condition is true.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is true, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <E> Key
+	 * @param <T> Value
+	 * @param i Compution
+	 * @param observer Observer
+	 * @param p is TimeoutProperty
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 */
 	public static <E, T extends Collection<E>> void waitUntil(
 			AbstractPredicateCompution<T> i,
 			Observable<T> observer,
@@ -132,6 +245,14 @@ public class CollectionUtils {
 		}
 	}
 	
+	/**
+	 * Inner Size.
+	 * 
+	 * @author kenta-shimizu
+	 *
+	 * @param <E> Element
+	 * @param <T> Type
+	 */
 	private static class InnerSize<E, T extends Collection<E>> extends AbstractIntegerCompution {
 		
 		private static final long serialVersionUID = 6647649394326147795L;
@@ -153,6 +274,14 @@ public class CollectionUtils {
 		}
 	}
 	
+	/**
+	 * Returns Size Integer Compution.
+	 * 
+	 * @param <E> Element
+	 * @param <T> Type
+	 * @param observer Collection observer
+	 * @return Size Integer Compution
+	 */
 	public static <E, T extends Collection<E>> AbstractIntegerCompution computeSize(CollectionObservable<E, T> observer) {
 		final InnerSize<E, T> i = new InnerSize<>();
 		i.bindCollection(observer);

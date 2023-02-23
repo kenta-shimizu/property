@@ -40,7 +40,7 @@ public interface ObjectProperty<T> extends Property<T>, ObjectGettable<T>, Objec
 	 * Instance builder.
 	 * 
 	 * @param <T> Type
-	 * @param initial
+	 * @param initial is {@code <T>}
 	 * @return new-instance.
 	 */
 	public static <T> ObjectProperty<T> newInstance(T initial) {

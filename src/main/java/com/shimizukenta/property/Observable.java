@@ -12,7 +12,7 @@ public interface Observable<T> {
 	/**
 	 * Add change-listener.
 	 * 
-	 * @param l
+	 * @param l listener
 	 * @return true if add success.
 	 * @see #removeChangeListener(ChangeListener)
 	 */
@@ -21,7 +21,7 @@ public interface Observable<T> {
 	/**
 	 * Remove change-listener.
 	 * 
-	 * @param l
+	 * @param l listener
 	 * @return true if remove success.
 	 * @see #addChangeListener(ChangeListener)
 	 */

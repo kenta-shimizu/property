@@ -8,7 +8,12 @@ package com.shimizukenta.property;
 public abstract class AbstractLongProperty extends AbstractNumberProperty<Long> implements LongProperty {
 	
 	private static final long serialVersionUID = 9186020409952044558L;
-
+	
+	/**
+	 * Constructor.
+	 * 
+	 * @param initial is long
+	 */
 	public AbstractLongProperty(long initial) {
 		super(Long.valueOf(initial));
 	}

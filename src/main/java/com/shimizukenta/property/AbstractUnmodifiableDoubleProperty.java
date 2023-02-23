@@ -9,6 +9,11 @@ public abstract class AbstractUnmodifiableDoubleProperty extends AbstractDoubleP
 	
 	private static final long serialVersionUID = -5135301534592947617L;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param initial is double
+	 */
 	public AbstractUnmodifiableDoubleProperty(double initial) {
 		super(initial);
 	}

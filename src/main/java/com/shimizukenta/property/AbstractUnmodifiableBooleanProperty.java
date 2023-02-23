@@ -9,6 +9,11 @@ public abstract class AbstractUnmodifiableBooleanProperty extends AbstractBoolea
 	
 	private static final long serialVersionUID = 8195499034621846647L;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param initial is boolean
+	 */
 	public AbstractUnmodifiableBooleanProperty(boolean initial) {
 		super(initial);
 	}

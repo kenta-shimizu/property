@@ -57,7 +57,7 @@ public interface DoubleProperty extends NumberProperty<Double>, DoubleSettable {
 	/**
 	 * DoubleProperty builder.
 	 * 
-	 * @param initial
+	 * @param initial is double
 	 * @return new-instance
 	 */
 	public static DoubleProperty newInstance(double initial) {

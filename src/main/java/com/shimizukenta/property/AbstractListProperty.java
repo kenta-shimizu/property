@@ -15,6 +15,11 @@ public abstract class AbstractListProperty<E> extends AbstractCollectionProperty
 	
 	private static final long serialVersionUID = -1599017743017445594L;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param initial is extends {@code List<E>}
+	 */
 	public AbstractListProperty(List<E> initial) {
 		super(initial);
 	}

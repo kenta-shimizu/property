@@ -18,6 +18,14 @@ public final class MapUtils {
 		/* Nothing */
 	}
 	
+	/**
+	 * Inner Map.
+	 * 
+	 * @author kenta-shimizu
+	 *
+	 * @param <K> Key
+	 * @param <V> Value
+	 */
 	private static class InnerMap<K, V> extends AbstractPredicateCompution<Map<K, V>> {
 		
 		private static final long serialVersionUID = 8252544696751954294L;
@@ -82,6 +90,16 @@ public final class MapUtils {
 		return buildInnerMap(observer, m -> m.containsKey(key));
 	}
 	
+	/**
+	 * Returns ContainsKey Compution.
+	 * 
+	 * @param <K> Key
+	 * @param <V> Value
+	 * @param observer MapObserver
+	 * @param key key whose presence in this map is to be tested
+	 * @return ContainsKey Compution
+	 * @see Map#containsKey(Object)
+	 */
 	public static <K, V> AbstractPredicateCompution<Map<K, V>> computeContainsKey(
 			Observable<Map<K, V>> observer,
 			Object key) {
@@ -89,6 +107,16 @@ public final class MapUtils {
 		return buildIsContainsKey(observer, key);
 	}
 	
+	/**
+	 * Returns NOT ContainsKey Compution.
+	 * 
+	 * @param <K> Key
+	 * @param <V> Value
+	 * @param observer MapObserver
+	 * @param key key whose presence in this map is to be tested
+	 * @return NOT ContainsKey Compution
+	 * @see Map#containsKey(Object)
+	 */
 	public static <K, V> AbstractPredicateCompution<Map<K, V>> computeNotContainsKey(
 			Observable<Map<K, V>> observer,
 			Object key) {
@@ -96,12 +124,30 @@ public final class MapUtils {
 		return buildInnerMap(observer, m -> ! m.containsKey(key));
 	}
 	
+	/**
+	 * IsEmpty Compution.
+	 * 
+	 * @param <K> Key
+	 * @param <V> Value
+	 * @param observer MapObserver
+	 * @return IsEmpty Compution
+	 * @see Map#isEmpty()
+	 */
 	public static <K, V> AbstractPredicateCompution<Map<K, V>> computeIsEmpty(
 			Observable<Map<K, V>> observer) {
 		
 		return buildInnerMap(observer, Map::isEmpty);
 	}
 	
+	/**
+	 * NOT IsEmpty Compution.
+	 * 
+	 * @param <K> Key
+	 * @param <V> Value
+	 * @param observer MapObserver
+	 * @return NOT IsEmpty Compution
+	 * @see Map#isEmpty()
+	 */
 	public static <K, V> AbstractPredicateCompution<Map<K, V>> computeIsNotEmpty(
 			Observable<Map<K, V>> observer) {
 		
@@ -147,7 +193,23 @@ public final class MapUtils {
 		}
 	}
 	
-	public static <K, V> V waitUntilContainsKey(
+	/**
+	 * Waiting until containsKey, and return value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already containsKey, return value immediately.<br />
+	 * </p>
+	 * 
+	 * @param <K> Key
+	 * @param <V> Value
+	 * @param observer MapObserver
+	 * @param key  key whose presence in this map is to be tested
+	 * @return value
+	 * @throws InterruptedException if interrupted while waiting
+	 * @see Map#containsKey(Object)
+	 */
+	public static <K, V> V waitUntilContainsKeyAndGet(
 			Observable<Map<K, V>> observer,
 			Object key) throws InterruptedException {
 		
@@ -160,7 +222,26 @@ public final class MapUtils {
 		}
 	}
 	
-	public static <K, V> V waitUntilContainsKey(
+	/**
+	 * Waiting until containsKey, and return value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already containsKey, return value immediately.<br />
+	 * </p>
+	 * 
+	 * @param <K> Key
+	 * @param <V> Value
+	 * @param observer MapObserver
+	 * @param key  key whose presence in this map is to be tested
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @return value
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 * @see Map#containsKey(Object)
+	 */
+	public static <K, V> V waitUntilContainsKeyAndGet(
 			Observable<Map<K, V>> observer,
 			Object key,
 			long timeout,
@@ -175,7 +256,25 @@ public final class MapUtils {
 		}
 	}
 	
-	public static <K, V> V waitUntilContainsKey(
+	/**
+	 * Waiting until containsKey, and return value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already containsKey, return value immediately.<br />
+	 * </p>
+	 * 
+	 * @param <K> Key
+	 * @param <V> Value
+	 * @param observer MapObserver
+	 * @param key  key whose presence in this map is to be tested
+	 * @param p is TimeoutProperty
+	 * @return value
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 * @see Map#containsKey(Object)
+	 */
+	public static <K, V> V waitUntilContainsKeyAndGet(
 			Observable<Map<K, V>> observer,
 			Object key,
 			TimeoutGettable p) throws InterruptedException, TimeoutException {
@@ -189,6 +288,20 @@ public final class MapUtils {
 		}
 	}
 	
+	/**
+	 * Waiting until NOT containsKey.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already <strong>NOT</strong> containsKey, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <K> Key
+	 * @param <V> Value
+	 * @param observer MapObserver
+	 * @param key key whose presence in this map is to be tested
+	 * @throws InterruptedException if interrupted while waiting
+	 */
 	public static <K, V> void waitUntilNotContainsKey(
 			Observable<Map<K, V>> observer,
 			Object key) throws InterruptedException {
@@ -196,6 +309,24 @@ public final class MapUtils {
 		waitUntilPredicate(computeNotContainsKey(observer, key), observer);
 	}
 	
+	/**
+	 * Waiting until NOT containsKey.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already <strong>NOT</strong> containsKey, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <K> Key
+	 * @param <V> Value
+	 * @param observer MapObserver
+	 * @param key  key whose presence in this map is to be tested
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 * @see Map#containsKey(Object)
+	 */
 	public static <K, V> void waitUntilNotContainsKey(
 			Observable<Map<K, V>> observer,
 			Object key,
@@ -205,6 +336,23 @@ public final class MapUtils {
 		waitUntilPredicate(computeNotContainsKey(observer, key), observer, timeout, unit);
 	}
 	
+	/**
+	 * Waiting until NOT containsKey.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already <strong>NOT</strong> containsKey, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <K> Key
+	 * @param <V> Value
+	 * @param observer MapObserver
+	 * @param key  key whose presence in this map is to be tested
+	 * @param p is TimeoutProperty
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 * @see Map#containsKey(Object)
+	 */
 	public static <K, V> void waitUntilNotContainsKey(
 			Observable<Map<K, V>> observer,
 			Object key,
@@ -213,12 +361,43 @@ public final class MapUtils {
 		waitUntilPredicate(computeNotContainsKey(observer, key), observer, p);
 	}
 	
+	/**
+	 * Waiting until isEmpty.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already isEmpty, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <K> Key
+	 * @param <V> Value
+	 * @param observer MapObserver
+	 * @throws InterruptedException if interrupted while waiting
+	 * @see Map#isEmpty()
+	 */
 	public static <K, V> void waitUntilIsEmpty(
 			Observable<Map<K, V>> observer) throws InterruptedException {
 		
 		waitUntilPredicate(computeIsEmpty(observer), observer);
 	}
 	
+	/**
+	 * Waiting until isEmpty.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already isEmpty, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <K> Key
+	 * @param <V> Value
+	 * @param observer MapObserver
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 * @see Map#isEmpty()
+	 */
 	public static <K, V> void waitUntilIsEmpty(
 			Observable<Map<K, V>> observer,
 			long timeout,
@@ -227,6 +406,22 @@ public final class MapUtils {
 		waitUntilPredicate(computeIsEmpty(observer), observer, timeout, unit);
 	}
 	
+	/**
+	 * Waiting until isEmpty.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already isEmpty, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <K> Key
+	 * @param <V> Value
+	 * @param observer MapObserver
+	 * @param p is TimeoutProperty
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 * @see Map#isEmpty()
+	 */
 	public static <K, V> void waitUntilIsEmpty(
 			Observable<Map<K, V>> observer,
 			TimeoutGettable p) throws InterruptedException, TimeoutException {
@@ -234,12 +429,43 @@ public final class MapUtils {
 		waitUntilPredicate(computeIsEmpty(observer), observer, p);
 	}
 	
+	/**
+	 * Waiting until NOT isEmpty.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already <strong>NOT</strong> isEmpty, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <K> Key
+	 * @param <V> Value
+	 * @param observer MapObserver
+	 * @throws InterruptedException if interrupted while waiting
+	 * @see Map#isEmpty()
+	 */
 	public static <K, V> void waitUntilIsNotEmpty(
 			Observable<Map<K, V>> observer) throws InterruptedException {
 		
 		waitUntilPredicate(computeIsNotEmpty(observer), observer);
 	}
 	
+	/**
+	 * Waiting until NOT isEmpty.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already <strong>NOT</strong> isEmpty, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <K> Key
+	 * @param <V> Value
+	 * @param observer MapObserver
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 * @see Map#isEmpty()
+	 */
 	public static <K, V> void waitUntilIsNotEmpty(
 			Observable<Map<K, V>> observer,
 			long timeout,
@@ -248,6 +474,22 @@ public final class MapUtils {
 		waitUntilPredicate(computeIsNotEmpty(observer), observer, timeout, unit);
 	}
 	
+	/**
+	 * Waiting until NOT isEmpty.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already <strong>NOT</strong> isEmpty, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <K> Key
+	 * @param <V> Value
+	 * @param observer MapObserver
+	 * @param p is TimeoutProperty
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 * @see Map#isEmpty()
+	 */
 	public static <K, V> void waitUntilIsNotEmpty(
 			Observable<Map<K, V>> observer,
 			TimeoutGettable p) throws InterruptedException, TimeoutException {
@@ -255,6 +497,14 @@ public final class MapUtils {
 		waitUntilPredicate(computeIsNotEmpty(observer), observer, p);
 	}
 	
+	/**
+	 * Inner KeySet.
+	 * 
+	 * @author kenta-shimizu
+	 *
+	 * @param <K> Key
+	 * @param <V> Value
+	 */
 	private static class InnerKeySet<K, V> extends AbstractSetCompution<K> {
 		
 		private static final long serialVersionUID = -1028393058729307902L;
@@ -276,13 +526,29 @@ public final class MapUtils {
 		}
 	}
 	
-	
+	/**
+	 * KeySet Compution.
+	 * 
+	 * @param <K> Key
+	 * @param <V> Value
+	 * @param observer MapCompution
+	 * @return KeySet Compution
+	 * @see Map#keySet()
+	 */
 	public static <K, V> AbstractSetCompution<K> computeKeySet(Observable<Map<K, V>> observer) {
 		final InnerKeySet<K, V> i = new InnerKeySet<>();
 		i.bindMap(observer);
 		return i;
 	}
 	
+	/**
+	 * Inner Size.
+	 * 
+	 * @author kenta-shimizu
+	 *
+	 * @param <K> Key
+	 * @param <V> Value
+	 */
 	private static class InnerSize<K, V> extends AbstractIntegerCompution {
 		
 		private static final long serialVersionUID = -7668752376760047988L;
@@ -304,6 +570,15 @@ public final class MapUtils {
 		}
 	}
 	
+	/**
+	 * Size Integer Compution.
+	 * 
+	 * @param <K> Key
+	 * @param <V> Value
+	 * @param observer MapObserver
+	 * @return Size Integer Compution
+	 * @see Map#size()
+	 */
 	public static <K, V> AbstractIntegerCompution computeSize(Observable<? extends Map<K, V>> observer) {
 		final InnerSize<K, V> i = new InnerSize<>();
 		i.bindMap(observer);

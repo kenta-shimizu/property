@@ -13,9 +13,22 @@ public abstract class AbstractTimeoutAndUnit implements TimeoutAndUnit, Serializ
 	
 	private static final long serialVersionUID = -8263697919297198015L;
 	
+	/**
+	 * Immutable timeout long.
+	 */
 	private final long timeout;
+	
+	/**
+	 * Immutable unit.
+	 */
 	private final TimeUnit unit;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param timeout is long
+	 * @param unit is TimeUnit
+	 */
 	public AbstractTimeoutAndUnit(long timeout, TimeUnit unit) {
 		if ( timeout < 0L ) {
 			throw new IllegalArgumentException("timeout must >=0L");

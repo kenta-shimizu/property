@@ -13,6 +13,11 @@ public abstract class AbstractSetCompution<E> extends AbstractCollectionComputio
 	
 	private static final long serialVersionUID = -1315255332960926810L;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param initial is {@code Set<E>}
+	 */
 	public AbstractSetCompution(Set<E> initial) {
 		super(initial);
 	}

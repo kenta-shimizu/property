@@ -12,6 +12,11 @@ public abstract class AbstractBooleanCompution extends AbstractCompution<Boolean
 	
 	private static final long serialVersionUID = 628986372297013412L;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param initial is Boolean
+	 */
 	public AbstractBooleanCompution(Boolean initial) {
 		super(initial);
 	}

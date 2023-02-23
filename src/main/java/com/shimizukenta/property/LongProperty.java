@@ -57,7 +57,7 @@ public interface LongProperty extends NumberProperty<Long>, LongSettable {
 	/**
 	 * LongProperty builder.
 	 * 
-	 * @param initial
+	 * @param initial is long
 	 * @return new-instance
 	 */
 	public static LongProperty newInstance(long initial) {

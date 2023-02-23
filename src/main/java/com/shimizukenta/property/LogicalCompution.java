@@ -12,10 +12,10 @@ import java.util.Collection;
  * <ul>
  * <li>To build LogicalCompution instance,
  * <ul>
- * <li>AND(&&) Compution, {@link #and(BooleanObservable...)}.</li>
- * <li>OR(||) Compution, {@link #or(BooleanObservable...)}.</li>
- * <li>NOT(!) Compution, {@link #not(BooleanObservable)}.</li>
- * <li>XOR(^) Compution, {@link #xor(BooleanObservable, BooleanObservable)}.</li>
+ * <li>AND{@code (&&)} Compution, {@link #and(BooleanObservable...)}.</li>
+ * <li>OR{@code (||)} Compution, {@link #or(BooleanObservable...)}.</li>
+ * <li>NOT{@code (!)} Compution, {@link #not(BooleanObservable)}.</li>
+ * <li>XOR{@code (^)} Compution, {@link #xor(BooleanObservable, BooleanObservable)}.</li>
  * <li>NAND Compution, {@link #nand(BooleanObservable...)}.</li>
  * <li>NOR Compution, {@link #nor(BooleanObservable...)}.</li>
  * </ul>
@@ -48,10 +48,10 @@ import java.util.Collection;
 public interface LogicalCompution extends BooleanCompution {
 	
 	/**
-	 * Returns AND(&&) Logical Compution instance.
+	 * Returns AND{@code (&&)} Logical Compution instance.
 	 * 
-	 * @param observers
-	 * @return AND(&&) Logical Compution instance
+	 * @param observers is BooleanObserver
+	 * @return AND{@code (&&}) Logical Compution instance
 	 * @see #and(Collection)
 	 */
 	public static LogicalCompution and(BooleanObservable... observers) {
@@ -59,10 +59,10 @@ public interface LogicalCompution extends BooleanCompution {
 	}
 	
 	/**
-	 * Returns AND(&&) Logical Compution instance.
+	 * Returns AND{@code (&&)} Logical Compution instance.
 	 * 
-	 * @param observers
-	 * @return AND(&&) Logical Compution instance
+	 * @param observers is BooleanObservers
+	 * @return AND{@code (&&)} Logical Compution instance
 	 * @see #and(BooleanObservable...)
 	 */
 	public static LogicalCompution and(Collection<? extends BooleanObservable> observers) {
@@ -70,10 +70,10 @@ public interface LogicalCompution extends BooleanCompution {
 	}
 	
 	/**
-	 * Returns OR(||) Logical Compution instance.
+	 * Returns OR{@code (||)} Logical Compution instance.
 	 * 
-	 * @param observers
-	 * @return OR(||) Logical Compution instance
+	 * @param observers is BooleanObservers
+	 * @return OR{@code (||)} Logical Compution instance
 	 * @see #or(Collection)
 	 */
 	public static LogicalCompution or(BooleanObservable... observers) {
@@ -81,10 +81,10 @@ public interface LogicalCompution extends BooleanCompution {
 	}
 	
 	/**
-	 * Returns OR(||) Logical Compution instance.
+	 * Returns OR{@code (||)} Logical Compution instance.
 	 * 
-	 * @param observers
-	 * @return OR(||) Logical Compution instance
+	 * @param observers is BooleanObservers
+	 * @return OR{@code (||)} Logical Compution instance
 	 * @see #or(BooleanObservable...)
 	 */
 	public static LogicalCompution or(Collection<? extends BooleanObservable> observers) {
@@ -92,21 +92,21 @@ public interface LogicalCompution extends BooleanCompution {
 	}
 	
 	/**
-	 * Returns NOT(!) Logical Compution instance.
+	 * Returns NOT{@code (!)} Logical Compution instance.
 	 * 
-	 * @param observer
-	 * @return NOT(!) Logical Compution instance
+	 * @param observer is BooleanObserver
+	 * @return NOT{@code (!)} Logical Compution instance
 	 */
 	public static LogicalCompution not(BooleanObservable observer) {
 		return BooleanUtils.not(observer);
 	}
 	
 	/**
-	 * Returns XOR(^) Logical Compution instance.
+	 * Returns XOR{@code (^)} Logical Compution instance.
 	 * 
-	 * @param a
-	 * @param b
-	 * @return XOR(^) Logical Compution instance
+	 * @param a is BooleanObserver
+	 * @param b is BooleanObserver
+	 * @return XOR{@code (^)} Logical Compution instance
 	 */
 	public static LogicalCompution xor(BooleanObservable a, BooleanObservable b) {
 		return BooleanUtils.xor(a, b);
@@ -119,7 +119,7 @@ public interface LogicalCompution extends BooleanCompution {
 	 * Returns NOT(AND) compution.<br />
 	 * </p>
 	 * 
-	 * @param observers
+	 * @param observers is BooleanObservers
 	 * @return NAND Logical Compution instance
 	 * @see #nand(Collection)
 	 */
@@ -134,7 +134,7 @@ public interface LogicalCompution extends BooleanCompution {
 	 * Returns NOT(AND) compution.<br />
 	 * </p>
 	 * 
-	 * @param observers
+	 * @param observers is BooleanObservers
 	 * @return NAND Logical Compution instance
 	 * @see #nand(BooleanObservable...)
 	 */
@@ -149,7 +149,7 @@ public interface LogicalCompution extends BooleanCompution {
 	 * Returns NOT(OR) compution.<br />
 	 * </p>
 	 * 
-	 * @param observers
+	 * @param observers is BooleanObservers
 	 * @return NOR Logical Compution instance
 	 * @see #nor(Collection)
 	 */
@@ -164,7 +164,7 @@ public interface LogicalCompution extends BooleanCompution {
 	 * Returns NOT(OR) compution.<br />
 	 * </p>
 	 * 
-	 * @param observers
+	 * @param observers is BooleanObservers
 	 * @return NOR Logical Compution instance.
 	 * @see #nor(BooleanObservable...)
 	 */

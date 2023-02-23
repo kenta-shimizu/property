@@ -16,14 +16,31 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 	
 	private static final long serialVersionUID = 3399378304619203215L;
 	
+	/**
+	 * Protected synchronized object.
+	 * 
+	 */
 	protected final Object _sync = new Object();
 	
+	/**
+	 * Mutable value.
+	 */
 	private T v;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param initial is extends {@code Collection<E>}
+	 */
 	public AbstractCollectionProperty(T initial) {
 		this.v = initial;
 	}
 	
+	/**
+	 * Value simple getter.
+	 * 
+	 * @return value
+	 */
 	protected T _simpleGet() {
 		return this.v;
 	}
@@ -142,6 +159,9 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 		}
 	}
 	
+	/**
+	 * Change listeners.
+	 */
 	private final Collection<ChangeListener<? super T>> changeLstnrs = new HashSet<>();
 	
 	@Override
@@ -162,6 +182,11 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 		}
 	}
 	
+	/**
+	 * synchronized set and notify if value changed.
+	 * 
+	 * @param c is new Collection
+	 */
 	protected void _syncSetAndNotifyChanged(T c) {
 		synchronized ( this._sync ) {
 			final T x = this._simpleGet();
@@ -173,6 +198,9 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 		}
 	}
 	
+	/**
+	 * Bind listener.
+	 */
 	private final ChangeListener<T> bindLstnr = this::_syncSetAndNotifyChanged;
 	
 	@Override
@@ -185,6 +213,10 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 		return observer.removeChangeListener(this.bindLstnr);
 	}
 	
+	/**
+	 * Notify to listeners.
+	 * 
+	 */
 	protected void _notifyChagned() {
 		final T v = this._unmodifiableCollection(this._simpleGet());
 		for ( ChangeListener<? super T> l : this.changeLstnrs ) {
@@ -192,6 +224,12 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 		}
 	}
 	
+	/**
+	 * Prototype Collection getter.
+	 * 
+	 * @param c is extends Collection
+	 * @return Extends Collection
+	 */
 	abstract protected T _unmodifiableCollection(T c);
 	
 	@Override

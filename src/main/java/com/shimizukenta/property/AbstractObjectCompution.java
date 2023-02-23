@@ -10,6 +10,11 @@ public abstract class AbstractObjectCompution<T> extends AbstractCompution<T> im
 	
 	private static final long serialVersionUID = -6430868710751824657L;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param initial is extends Object
+	 */
 	public AbstractObjectCompution(T initial) {
 		super(initial);
 	}

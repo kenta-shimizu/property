@@ -72,8 +72,8 @@ public interface NumberCompution extends Compution<Number>, NumberGettable<Numbe
 	/**
 	 * Returns NumberCompution instance of sum operation.
 	 * 
-	 * @param a
-	 * @param b
+	 * @param a is NumberObserver
+	 * @param b is NumberObserver
 	 * @return NumberCompution instance of sum operation.
 	 */
 	public static NumberCompution sum(
@@ -86,9 +86,9 @@ public interface NumberCompution extends Compution<Number>, NumberGettable<Numbe
 	/**
 	 * Returns NumberCompution instance of sum operation.
 	 * 
-	 * @param a
-	 * @param b
-	 * @param c
+	 * @param a is NumberObserver
+	 * @param b is NumberObserver
+	 * @param c is NumberObserver
 	 * @return NumberCompution instance of sum operation.
 	 */
 	public static NumberCompution sum(
@@ -102,10 +102,10 @@ public interface NumberCompution extends Compution<Number>, NumberGettable<Numbe
 	/**
 	 * Returns NumberCompution instance of sum operation.
 	 * 
-	 * @param a
-	 * @param b
-	 * @param c
-	 * @param d
+	 * @param a is NumberObserver
+	 * @param b is NumberObserver
+	 * @param c is NumberObserver
+	 * @param d is NumberObserver
 	 * @return NumberCompution instance of sum operation.
 	 */
 	public static NumberCompution sum(
@@ -120,7 +120,7 @@ public interface NumberCompution extends Compution<Number>, NumberGettable<Numbe
 	/**
 	 * Returns NumberCompution instance of sum operation.
 	 * 
-	 * @param observers
+	 * @param observers is NumberObservers
 	 * @return NumberCompution instance of sum operation.
 	 */
 	public static NumberCompution sum(Collection<? extends NumberObservable<? extends Number>> observers) {
@@ -130,8 +130,8 @@ public interface NumberCompution extends Compution<Number>, NumberGettable<Numbe
 	/**
 	 * Returns NumberCompution instance of multiply operation.
 	 * 
-	 * @param a
-	 * @param b
+	 * @param a is NumberObserver
+	 * @param b is NumberObserver
 	 * @return NumberCompution instance of multiply operation.
 	 */
 	public static NumberCompution multiply(
@@ -144,9 +144,9 @@ public interface NumberCompution extends Compution<Number>, NumberGettable<Numbe
 	/**
 	 * Returns NumberCompution instance of multiply operation.
 	 * 
-	 * @param a
-	 * @param b
-	 * @param c
+	 * @param a is NumberObserver
+	 * @param b is NumberObserver
+	 * @param c is NumberObserver
 	 * @return NumberCompution instance of multiply operation.
 	 */
 	public static NumberCompution multiply(
@@ -160,10 +160,10 @@ public interface NumberCompution extends Compution<Number>, NumberGettable<Numbe
 	/**
 	 * Returns NumberCompution instance of multiply operation.
 	 * 
-	 * @param a
-	 * @param b
-	 * @param c
-	 * @param d
+	 * @param a is NumberObserver
+	 * @param b is NumberObserver
+	 * @param c is NumberObserver
+	 * @param d is NumberObserver
 	 * @return NumberCompution instance of multiply operation.
 	 */
 	public static NumberCompution multiply(
@@ -178,7 +178,7 @@ public interface NumberCompution extends Compution<Number>, NumberGettable<Numbe
 	/**
 	 * Returns NumberCompution instance of multiply operation.
 	 * 
-	 * @param observers
+	 * @param observers is NumberObservers
 	 * @return NumberCompution instance of multiply operation.
 	 */
 	public static NumberCompution multiply(Collection<? extends NumberObservable<? extends Number>> observers) {
@@ -188,7 +188,7 @@ public interface NumberCompution extends Compution<Number>, NumberGettable<Numbe
 	/**
 	 * Returns NumberCompution instance of negate operation.
 	 * 
-	 * @param observer
+	 * @param observer is NumberObserver
 	 * @return NumberCompution instance of negate operation.
 	 */
 	public static NumberCompution negate(NumberObservable<? extends Number> observer) {
@@ -198,19 +198,19 @@ public interface NumberCompution extends Compution<Number>, NumberGettable<Numbe
 	/**
 	 * Returns NumberCompution instance of subtract operation.
 	 * 
-	 * @param left
-	 * @param right
+	 * @param left is NumberObserver
+	 * @param right is NumberObserver
 	 * @return NumberCompution instance of subtract operation.
 	 */
 	public static NumberCompution subtract(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
-		return NumberUtils.subtrate(left, right);
+		return NumberUtils.subtract(left, right);
 	}
 	
 	/**
 	 * Returns NumberCompution instance of max operation.
 	 * 
-	 * @param a
-	 * @param b
+	 * @param a is NumberObserver
+	 * @param b is NumberObserver
 	 * @return NumberCompution instance of max operation.
 	 */
 	public static NumberCompution max(
@@ -223,9 +223,9 @@ public interface NumberCompution extends Compution<Number>, NumberGettable<Numbe
 	/**
 	 * Returns NumberCompution instance of max operation.
 	 * 
-	 * @param a
-	 * @param b
-	 * @param c
+	 * @param a is NumberObserver
+	 * @param b is NumberObserver
+	 * @param c is NumberObserver
 	 * @return NumberCompution instance of max operation.
 	 */
 	public static NumberCompution max(
@@ -239,10 +239,10 @@ public interface NumberCompution extends Compution<Number>, NumberGettable<Numbe
 	/**
 	 * Returns NumberCompution instance of max operation.
 	 * 
-	 * @param a
-	 * @param b
-	 * @param c
-	 * @param d
+	 * @param a is NumberObserver
+	 * @param b is NumberObserver
+	 * @param c is NumberObserver
+	 * @param d is NumberObserver
 	 * @return NumberCompution instance of max operation.
 	 */
 	public static NumberCompution max(
@@ -257,7 +257,7 @@ public interface NumberCompution extends Compution<Number>, NumberGettable<Numbe
 	/**
 	 * Returns NumberCompution instance of max operation.
 	 * 
-	 * @param observers
+	 * @param observers is NumberObservers
 	 * @return NumberCompution instance of max operation.
 	 */
 	public static NumberCompution max(Collection<? extends NumberObservable<? extends Number>> observers) {
@@ -267,8 +267,8 @@ public interface NumberCompution extends Compution<Number>, NumberGettable<Numbe
 	/**
 	 * Returns NumberCompution instance of min operation.
 	 * 
-	 * @param a
-	 * @param b
+	 * @param a is NumberObserver
+	 * @param b is NumberObserver
 	 * @return NumberCompution instance of min operation.
 	 */
 	public static NumberCompution min(
@@ -281,9 +281,9 @@ public interface NumberCompution extends Compution<Number>, NumberGettable<Numbe
 	/**
 	 * Returns NumberCompution instance of min operation.
 	 * 
-	 * @param a
-	 * @param b
-	 * @param c
+	 * @param a is NumberObserver
+	 * @param b is NumberObserver
+	 * @param c is NumberObserver
 	 * @return NumberCompution instance of min operation.
 	 */
 	public static NumberCompution min(
@@ -297,10 +297,10 @@ public interface NumberCompution extends Compution<Number>, NumberGettable<Numbe
 	/**
 	 * Returns NumberCompution instance of min operation.
 	 * 
-	 * @param a
-	 * @param b
-	 * @param c
-	 * @param d
+	 * @param a is NumberObserver
+	 * @param b is NumberObserver
+	 * @param c is NumberObserver
+	 * @param d is NumberObserver
 	 * @return NumberCompution instance of min operation.
 	 */
 	public static NumberCompution min(
@@ -315,7 +315,7 @@ public interface NumberCompution extends Compution<Number>, NumberGettable<Numbe
 	/**
 	 * Returns NumberCompution instance of min operation.
 	 * 
-	 * @param observers
+	 * @param observers is NumberObservers
 	 * @return NumberCompution instance of min operation.
 	 */
 	public static NumberCompution min(Collection<? extends NumberObservable<? extends Number>> observers) {

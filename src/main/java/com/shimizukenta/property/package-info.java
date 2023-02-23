@@ -1,17 +1,31 @@
 /**
  * Provides 'Property' intarfaces. this is similar to JavaFX 'javafx.beans.property'.
  * 
+ * <p>
+ * Includes Setter/Getter/Observer, Number/Comparative/Logical compution and blocking methods to wait until condition is true.<br />
+ * </p>
  * <ul>
- * <li>Build {@link ObjectProperty} via {@link ObjectProperty#newInstance(Object)}.</li>
- * <li>Build {@link IntegerProperty} via {@link IntegerProperty#newInstance(int)}.</li>
- * <li>Build {@link LongProperty} via {@link LongProperty#newInstance(long)}.</li>
- * <li>Build {@link FloatProperty} via {@link FloatProperty#newInstance(float)}.</li>
- * <li>Build {@link DoubleProperty} via {@link DoubleProperty#newInstance(double)}.</li>
- * <li>Build {@link BooleanProperty} via {@link BooleanProperty#newInstance(boolean)}.</li>
- * <li>Build {@link ListProperty} via {@link ListProperty#newInstance()}.</li>
- * <li>Build {@link SetProperty} via {@link SetProperty#newInstance()}.</li>
- * <li>Build {@link MapProperty} via {@link MapProperty#newInstance()}.</li>
- * <li>Build {@link TimeoutProperty} via {@link TimeoutProperty#newInstance(long, java.util.concurrent.TimeUnit)}.</li>
+ * <li>Property
+ * <ul>
+ * <li>{@link BooleanProperty}</li>
+ * <li>{@link IntegerProperty}</li>
+ * <li>{@link LongProperty}</li>
+ * <li>{@link FloatProperty}</li>
+ * <li>{@link DoubleProperty}</li>
+ * <li>{@link ObjectProperty}</li>
+ * <li>{@link ListProperty}</li>
+ * <li>{@link SetProperty}</li>
+ * <li>{@link MapProperty}</li>
+ * <li>{@link TimeoutProperty}</li>
+ * </ul>
+ * </li>
+ * <li>Compution
+ * <ul>
+ * <li>{@link NumberCompution}</li>
+ * <li>{@link ComparativeCompution}</li>
+ * <li>{@link LogicalCompution}</li>
+ * </ul>
+ * </li>
  * </ul>
  * 
  * @author kenta-shimizu

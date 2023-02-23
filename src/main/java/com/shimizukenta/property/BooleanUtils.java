@@ -27,14 +27,30 @@ public class BooleanUtils {
 	private static final AbstractUnmodifiableBooleanProperty UNMOD_FALSE = buildUnmodifiableBoolean(false);
 	private static final AbstractUnmodifiableBooleanProperty UNMOD_TRUE = buildUnmodifiableBoolean(true);
 	
+	/**
+	 * Returns Unmodifiable False Property instance.
+	 * 
+	 * @return Unmodifiable False Property instance
+	 */
 	public static AbstractUnmodifiableBooleanProperty getUnmodifiableFalse() {
 		return UNMOD_FALSE;
 	}
 	
+	/**
+	 * Returns Unmodifiable True Property instance.
+	 * 
+	 * @return Unmodifiable True Property instance
+	 */
 	public static AbstractUnmodifiableBooleanProperty getUnmodifiableTrue() {
 		return UNMOD_TRUE;
 	}
 	
+	/**
+	 * Returns Unmodifiable Boolean Property instance.
+	 * 
+	 * @param f is boolean
+	 * @return Unmodifiable Boolean Property instance
+	 */
 	public static AbstractUnmodifiableBooleanProperty getUnmodifiableBoolean(boolean f) {
 		if ( f ) {
 			return getUnmodifiableTrue();
@@ -43,30 +59,72 @@ public class BooleanUtils {
 		}
 	}
 	
+	/**
+	 * Returns LogicalCompution of AND({@code &&}) operation.
+	 * 
+	 * @param observers is collection of BooleanObservers
+	 * @return LogicalCompution of AND({@code &&}) operation
+	 */
 	public static AbstractLogicalCompution and(Collection<? extends BooleanObservable> observers) {
 		return new InnerCollection(observers, c -> c.stream().allMatch(Boolean::booleanValue));
 	}
 	
+	/**
+	 * Returns LogicalCompution of OR({@code ||}) operation.
+	 * 
+	 * @param observers is collection of BooleanObservers
+	 * @return LogicalCompution of OR({@code ||}) operation
+	 */
 	public static AbstractLogicalCompution or(Collection<? extends BooleanObservable> observers) {
 		return new InnerCollection(observers, c -> c.stream().anyMatch(Boolean::booleanValue));
 	}
 	
+	/**
+	 * Returns LogicalCompution of NOT({@code !}) operation.
+	 * 
+	 * @param observer BooleanObserver
+	 * @return LogicalCompution of NOT({@code !}) operation
+	 */
 	public static AbstractLogicalCompution not(BooleanObservable observer) {
 		return new InnerMono(observer, f -> ! f.booleanValue());
 	}
 	
+	/**
+	 * Returns LogicalCompution of XOR({@code ^}) operation.
+	 * @param a is BooleanObserver
+	 * @param b is BooleanObserver
+	 * @return LogicalCompution of XOR({@code ^}) operation
+	 */
 	public static AbstractLogicalCompution xor(BooleanObservable a, BooleanObservable b) {
 		return new InnerBi(a, b, (l, r) -> l.booleanValue() ^ r.booleanValue());
 	}
 	
+	/**
+	 * Returns LogicalCompution of NAND(NOT AND) operation.
+	 * 
+	 * @param observers is collection of BooleanObservers
+	 * @return LogicalCompution of NAMD({NOT AND) operation
+	 */
 	public static AbstractLogicalCompution nand(Collection<? extends BooleanObservable> observers) {
 		return not(and(observers));
 	}
 	
+	/**
+	 * Returns LogicalCompution of NOR(NOT OR) operation.
+	 * 
+	 * @param observers is collection of BooleanObservers
+	 * @return LogicalCompution of NOR({NOT OR) operation
+	 */
 	public static AbstractLogicalCompution nor(Collection<? extends BooleanObservable> observers) {
 		return not(or(observers));
 	}
 	
+	/**
+	 * Inner Mono
+	 * 
+	 * @author kenta-shimizu
+	 *
+	 */
 	private static class InnerMono extends AbstractLogicalCompution {
 		
 		private static final long serialVersionUID = 4222943579843798685L;
@@ -82,6 +140,12 @@ public class BooleanUtils {
 		}
 	}
 	
+	/**
+	 * Inner Bi
+	 * 
+	 * @author kenta-shimizu
+	 *
+	 */
 	private static class InnerBi extends AbstractLogicalCompution {
 		
 		private static final long serialVersionUID = -2708885090031897205L;
@@ -89,7 +153,7 @@ public class BooleanUtils {
 		private Boolean ll;
 		private Boolean rr;
 		
-		public InnerBi(
+		private InnerBi(
 				BooleanObservable left,
 				BooleanObservable right,
 				BiPredicate<Boolean, Boolean> compute) {
@@ -112,6 +176,12 @@ public class BooleanUtils {
 		}
 	}
 	
+	/**
+	 * Inner Collection
+	 * 
+	 * @author kenta-shimizu
+	 *
+	 */
 	private static class InnerCollection extends AbstractLogicalCompution {
 		
 		private static final long serialVersionUID = -1549973920268106365L;
@@ -134,6 +204,12 @@ public class BooleanUtils {
 			});
 		}
 		
+		/**
+		 * Inner
+		 * 
+		 * @author kenta-shimizu
+		 *
+		 */
 		private class Inner implements ChangeListener<Boolean> {
 			
 			boolean last;

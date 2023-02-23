@@ -1,5 +1,7 @@
 package com.shimizukenta.property;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * TimeoutAndUnit value Observer.
  * 

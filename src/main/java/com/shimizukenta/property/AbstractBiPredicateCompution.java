@@ -14,11 +14,28 @@ public abstract class AbstractBiPredicateCompution<T, U> extends AbstractBoolean
 	
 	private static final long serialVersionUID = -8029429736383936055L;
 	
+	/**
+	 * Immutable BiPredicate.
+	 */
 	private final BiPredicate<? super T, ? super U> compute;
 	
+	/**
+	 * Mutable left value.
+	 */
 	private T left;
+	
+	/**
+	 * Mutable right value.
+	 */
 	private U right;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param compute is BiPredicate
+	 * @param leftInitial is {@code <T>}
+	 * @param rightInitial is {@code <U>}
+	 */
 	public AbstractBiPredicateCompution(
 			BiPredicate<? super T, ? super U> compute,
 			T leftInitial,
@@ -31,11 +48,21 @@ public abstract class AbstractBiPredicateCompution<T, U> extends AbstractBoolean
 		this.right = rightInitial;
 	}
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param compute is BiPredicate
+	 */
 	public AbstractBiPredicateCompution(
 			BiPredicate<? super T, ? super U> compute) {
 		this(compute, null, null);
 	}
 	
+	/**
+	 * Left value set and notify if value changed.
+	 * 
+	 * @param v to Left
+	 */
 	protected void _leftChanged(T v) {
 		synchronized ( this._sync ) {
 			if (! Objects.equals(v, this.left)) {
@@ -45,6 +72,11 @@ public abstract class AbstractBiPredicateCompution<T, U> extends AbstractBoolean
 		}
 	}
 	
+	/**
+	 * Right value set and notify if value changed.
+	 * 
+	 * @param v to right
+	 */
 	protected void _rightChanged(U v) {
 		synchronized ( this._sync ) {
 			if (! Objects.equals(v, this.right)) {
@@ -54,21 +86,52 @@ public abstract class AbstractBiPredicateCompution<T, U> extends AbstractBoolean
 		}
 	}
 	
+	/**
+	 * Bind left listener.
+	 */
 	private final ChangeListener<T> leftLstnr = this::_leftChanged;
+	
+	/**
+	 * Bind right listener.
+	 */
 	private final ChangeListener<U> rightLstnr = this::_rightChanged;
 	
+	/**
+	 * To add listener to left observer.
+	 * 
+	 * @param observer to add listener to left
+	 * @return true if bind success
+	 */
 	public boolean bindLeft(Observable<? extends T> observer) {
 		return observer.addChangeListener(this.leftLstnr);
 	}
 	
+	/**
+	 * To remove listener to left observer.
+	 * 
+	 * @param observer to remove listener to left
+	 * @return true if unbind success
+	 */
 	public boolean unbindLeft(Observable<? extends T> observer) {
 		return observer.removeChangeListener(this.leftLstnr);
 	}
 	
+	/**
+	 * To add listener to right observer.
+	 * 
+	 * @param observer to add listener to right
+	 * @return true if bind success
+	 */
 	public boolean bindRight(Observable<? extends U> observer) {
 		return observer.addChangeListener(this.rightLstnr);
 	}
 	
+	/**
+	 * To remove listener to right observer.
+	 * 
+	 * @param observer to remove listener to right
+	 * @return true if unbind success
+	 */
 	public boolean unbindRight(Observable<? extends U> observer) {
 		return observer.removeChangeListener(this.rightLstnr);
 	}

@@ -57,7 +57,7 @@ public interface IntegerProperty extends NumberProperty<Integer>, IntegerSettabl
 	/**
 	 * IntegerProperty builder.
 	 * 
-	 * @param initial
+	 * @param initial is int
 	 * @return new-instance
 	 */
 	public static IntegerProperty newInstance(int initial) {

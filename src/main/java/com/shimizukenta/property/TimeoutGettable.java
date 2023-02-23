@@ -26,14 +26,14 @@ public interface TimeoutGettable extends Gettable<TimeoutAndUnit> {
 	/**
 	 * Value Getter.
 	 * 
-	 * @return value.
+	 * @return value
 	 */
 	public TimeoutAndUnit get();
 	
 	/**
 	 * Returns timeout(long) value.
 	 * 
-	 * @return timeout(long) value.
+	 * @return timeout(long) value
 	 * @see TimeoutAndUnit#timeout()
 	 */
 	default public long getTimeout() {
@@ -43,7 +43,7 @@ public interface TimeoutGettable extends Gettable<TimeoutAndUnit> {
 	/**
 	 * Returns TimeUnit.
 	 * 
-	 * @return TImeUnit.
+	 * @return TImeUnit
 	 * @see TimeoutAndUnit#unit()
 	 */
 	default public TimeUnit getTimeUnit() {
@@ -53,8 +53,8 @@ public interface TimeoutGettable extends Gettable<TimeoutAndUnit> {
 	/**
 	 * This calls TimeUnit#sleep(long).
 	 * 
-	 * @throws InterruptedException
-	 * @see {@link TimeUnit#sleep(long)}
+	 * @throws InterruptedException if interrupted while sleeping
+	 * @see TimeUnit#sleep(long)
 	 */
 	default public void sleep() throws InterruptedException {
 		TimeoutAndUnit a = this.get();
@@ -64,9 +64,9 @@ public interface TimeoutGettable extends Gettable<TimeoutAndUnit> {
 	/**
 	 * This calls TimeUnit#timedJoin(Thread, long).
 	 * 
-	 * @param thread
-	 * @throws InterruptedException
-	 * @see {@link TimeUnit#timedJoin(Thread, long)}
+	 * @param thread is Thread
+	 * @throws InterruptedException if interrupted while waiting
+	 * @see TimeUnit#timedJoin(Thread, long)
 	 */
 	default public void join(Thread thread) throws InterruptedException {
 		TimeoutAndUnit a = this.get();
@@ -76,9 +76,9 @@ public interface TimeoutGettable extends Gettable<TimeoutAndUnit> {
 	/**
 	 * This calls TimeUnit#timedWait(Object, long).
 	 * 
-	 * @param sync
-	 * @throws InterruptedException
-	 * @see {@link TimeUnit#timedWait(Object, long)}
+	 * @param sync the object to wait on
+	 * @throws InterruptedException if interrupted while waiting
+	 * @see TimeUnit#timedWait(Object, long)
 	 */
 	default public void wait(Object sync) throws InterruptedException {
 		TimeoutAndUnit a = this.get();
@@ -89,10 +89,10 @@ public interface TimeoutGettable extends Gettable<TimeoutAndUnit> {
 	 * This calls BlockingQueue#poll(long, TimeUnit).
 	 * 
 	 * @param <T> Type
-	 * @param queue
+	 * @param queue is BlockingQueue
 	 * @return poll-value
-	 * @throws InterruptedException
-	 * @see {@link BlockingQueue#poll(long, TimeUnit)}
+	 * @throws InterruptedException if interrupted while waiting
+	 * @see BlockingQueue#poll(long, TimeUnit)
 	 */
 	default public <T> T blockingQueuePoll(BlockingQueue<T> queue) throws InterruptedException {
 		TimeoutAndUnit a = this.get();
@@ -102,10 +102,10 @@ public interface TimeoutGettable extends Gettable<TimeoutAndUnit> {
 	/**
 	 * This calls Lock#tryLock(long, TimeUnit).
 	 * 
-	 * @param lock
+	 * @param lock is Lock
 	 * @return true if the lock was acquired and false if the waiting time elapsed before the lock was acquired
-	 * @throws InterruptedException
-	 * @see {@link Lock#tryLock(long, TimeUnit)}
+	 * @throws InterruptedException  if the current thread is interrupted while acquiring the lock (and interruption of lock acquisition is supported)
+	 * @see Lock#tryLock(long, TimeUnit)
 	 */
 	default public boolean lockTryLock(Lock lock) throws InterruptedException {
 		TimeoutAndUnit a = this.get();
@@ -115,10 +115,10 @@ public interface TimeoutGettable extends Gettable<TimeoutAndUnit> {
 	/**
 	 * This calls Condition#await(long, TimeUnit).
 	 * 
-	 * @param condition
+	 * @param condition is Condition
 	 * @return false if the waiting time detectably elapsed before return from the method, else true
-	 * @throws InterruptedException
-	 * @see {@link Condition#await(long, TimeUnit)}
+	 * @throws InterruptedException if the current thread is interrupted (and interruption of thread suspension is supported)
+	 * @see Condition#await(long, TimeUnit)
 	 */
 	default public boolean conditionAwait(Condition condition) throws InterruptedException {
 		TimeoutAndUnit a = this.get();
@@ -129,12 +129,12 @@ public interface TimeoutGettable extends Gettable<TimeoutAndUnit> {
 	 * This calls Future#get(long, TimeUnit).
 	 * 
 	 * @param <T> Type
-	 * @param future
+	 * @param future is Future
 	 * @return future-result
-	 * @throws InterruptedException
-	 * @throws TimeoutException
-	 * @throws ExecutionException
-	 * @see {@link Future#get(long, TimeUnit)}
+	 * @throws InterruptedException if the current thread was interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 * @throws ExecutionException if the computation threw an exception
+	 * @see Future#get(long, TimeUnit)
 	 */
 	default public <T> T futureGet(Future<T> future) throws InterruptedException, TimeoutException, ExecutionException {
 		TimeoutAndUnit a = this.get();
@@ -145,11 +145,11 @@ public interface TimeoutGettable extends Gettable<TimeoutAndUnit> {
 	 * This calls ExecutorService#invokeAll(Collection, long, TimeUnit).
 	 * 
 	 * @param <T> Type
-	 * @param executorService
-	 * @param tasks
+	 * @param executorService is ExecutorService
+	 * @param tasks collection of tasks
 	 * @return Future result list
-	 * @throws InterruptedException
-	 * @see {@link ExecutorService#invokeAll(Collection, long, TimeUnit)}
+	 * @throws InterruptedException if the current thread was interrupted while waiting
+	 * @see ExecutorService#invokeAll(Collection, long, TimeUnit)
 	 */
 	default public <T> List<Future<T>> invokeAll(
 			ExecutorService executorService,
@@ -163,13 +163,13 @@ public interface TimeoutGettable extends Gettable<TimeoutAndUnit> {
 	 * This calls ExecutorService#invokeAny(Collection, long, TimeUnit).
 	 * 
 	 * @param <T> Type
-	 * @param executorService
-	 * @param tasks
+	 * @param executorService is ExecutorService
+	 * @param tasks  the collection of tasks
 	 * @return Callable result
-	 * @throws InterruptedException
-	 * @throws TimeoutException
-	 * @throws ExecutionException
-	 * @see {@link ExecutorService#invokeAny(Collection, long, TimeUnit)}
+	 * @throws InterruptedException if the current thread was interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 * @throws ExecutionException if the computation threw an exception
+	 * @see ExecutorService#invokeAny(Collection, long, TimeUnit)
 	 */
 	default public <T> T invokeAny(
 			ExecutorService executorService,
@@ -182,7 +182,7 @@ public interface TimeoutGettable extends Gettable<TimeoutAndUnit> {
 	/**
 	 * This calls ExecutorService#awaitTermination(long, TimeUnit).
 	 * 
-	 * @param executorService
+	 * @param executorService is ExecutorService
 	 * @return true if this executor terminated and false if the timeout elapsed before termination
 	 * @throws InterruptedException if interrupted while waiting
 	 * @see ExecutorService#awaitTermination(long, TimeUnit)

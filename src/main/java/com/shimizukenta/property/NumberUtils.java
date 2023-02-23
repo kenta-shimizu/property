@@ -9,6 +9,11 @@ import java.util.function.BiPredicate;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+/**
+ * 
+ * @author kenta-shimizu
+ *
+ */
 public class NumberUtils {
 
 	private NumberUtils() {
@@ -64,6 +69,12 @@ public class NumberUtils {
 		return observers.stream().anyMatch(o -> o.isInteger());
 	}
 	
+	/**
+	 * Returns Unmodifiable Integer Property instance.
+	 * 
+	 * @param v is int
+	 * @return Unmodifiable Integer Property instance
+	 */
 	public static AbstractUnmodifiableIntegerProperty unmodifiableInteger(int v) {
 		return new AbstractUnmodifiableIntegerProperty(v) {
 			
@@ -71,6 +82,12 @@ public class NumberUtils {
 		};
 	}
 	
+	/**
+	 * Returns Unmodifiable Long Property instance.
+	 * 
+	 * @param v is long
+	 * @return Unmodifiable Long Property instance
+	 */
 	public static AbstractUnmodifiableLongProperty unmodifiableLong(long v) {
 		return new AbstractUnmodifiableLongProperty(v) {
 			
@@ -79,6 +96,12 @@ public class NumberUtils {
 		};
 	}
 	
+	/**
+	 * Returns Unmodifiable Float Property instance.
+	 * 
+	 * @param v is float
+	 * @return Unmodifiable Float Property instance
+	 */
 	public static AbstractUnmodifiableFloatProperty unmodifiableFloat(float v) {
 		return new AbstractUnmodifiableFloatProperty(v) {
 			
@@ -86,6 +109,12 @@ public class NumberUtils {
 		};
 	}
 	
+	/**
+	 * Returns Unmodifiable Double Property instance.
+	 * 
+	 * @param v is double
+	 * @return Unmodifiable Double Property instance
+	 */
 	public static AbstractUnmodifiableDoubleProperty unmodifiableDouble(double v) {
 		return new AbstractUnmodifiableDoubleProperty(v) {
 			
@@ -95,27 +124,61 @@ public class NumberUtils {
 	
 	private static AbstractUnmodifiableIntegerProperty UNMOD_ZERO = unmodifiableInteger(0);
 	
+	/**
+	 * Returns Unmodifiable Integer ZERO Property instance.
+	 * 
+	 * @return Unmodifiable Integer ZERO Property instance
+	 */
 	public static AbstractUnmodifiableIntegerProperty getUnmodifiableZero() {
 		return UNMOD_ZERO;
 	}
 	
+	/**
+	 * Returns converted Integer Compution.
+	 * 
+	 * @param o is NumberObserver
+	 * @return converted Integer Compution
+	 */
 	public static AbstractIntegerCompution toInteger(NumberObservable<? extends Number> o) {
 		return new InnerMonoInteger(n -> Integer.valueOf(n.intValue()), o);
 	}
 	
+	/**
+	 * Returns converted Long Compution.
+	 * 
+	 * @param o is NumberObserver
+	 * @return converted Long Compution
+	 */
 	public static AbstractLongCompution toLong(NumberObservable<? extends Number> o) {
 		return new InnerMonoLong(n -> Long.valueOf(n.longValue()), o);
 	}
 	
+	/**
+	 * Returns converted Float Compution.
+	 * 
+	 * @param o is NumberObserver
+	 * @return converted Float Compution
+	 */
 	public static AbstractFloatCompution toFloat(NumberObservable<? extends Number> o) {
 		return new InnerMonoFloat(n -> Float.valueOf(n.floatValue()), o);
 	}
 	
+	/**
+	 * Returns converted Double Compution.
+	 * 
+	 * @param o is NumberObserver
+	 * @return converted Double Compution
+	 */
 	public static AbstractDoubleCompution toDouble(NumberObservable<? extends Number> o) {
 		return new InnerMonoDouble(n -> Double.valueOf(n.doubleValue()), o);
 	}
 	
-	
+	/**
+	 * Returns NumberCompution of sum operation.
+	 * 
+	 * @param c Collectionof Number observer
+	 * @return NumberCompution of sum operation
+	 */
 	public static AbstractNumberCompution sum(Collection<? extends NumberObservable<? extends Number>> c) {
 		
 		if ( isDouble(c) ) {
@@ -169,6 +232,12 @@ public class NumberUtils {
 				}, c);
 	}
 	
+	/**
+	 * Returns NumberCompution of multiply operation.
+	 * 
+	 * @param c Collection of Number observer
+	 * @return NumberCompution of multiply operation
+	 */
 	public static AbstractNumberCompution multiply(Collection<? extends NumberObservable<? extends Number>> c) {
 		
 		if ( isDouble(c) ) {
@@ -222,7 +291,12 @@ public class NumberUtils {
 				}, c);
 	}
 	
-	
+	/**
+	 * Returns NumberCompution of max operation.
+	 * 
+	 * @param c Collection of Number observer
+	 * @return NumberCompution of max operation
+	 */
 	public static AbstractNumberCompution max(Collection<? extends NumberObservable<? extends Number>> c) {
 		
 		if ( isDouble(c) ) {
@@ -289,6 +363,12 @@ public class NumberUtils {
 	}
 	
 	
+	/**
+	 * Returns NumberCompution of min operation.
+	 * 
+	 * @param c Collection of Number observer
+	 * @return NumberCompution of min operation
+	 */
 	public static AbstractNumberCompution min(Collection<? extends NumberObservable<? extends Number>> c) {
 		
 		if ( isDouble(c) ) {
@@ -355,7 +435,12 @@ public class NumberUtils {
 				}, c);
 	}
 	
-	
+	/**
+	 * Returns NumberCompution of negate operation.
+	 * 
+	 * @param o Number observer
+	 * @return NumberCompution of negate operation
+	 */
 	public static AbstractNumberCompution negate(NumberObservable<? extends Number> o) {
 		
 		if ( isDouble(o) ) {
@@ -381,12 +466,19 @@ public class NumberUtils {
 		return new InnerMonoDouble(n -> Double.valueOf(- n.doubleValue()), o);
 	}
 	
-	public static NumberCompution subtrate(
+	/**
+	 * Returns NumberCompution of subtract operation.
+	 * 
+	 * @param left observer
+	 * @param right observer
+	 * @return NumberCompution of subtract operation
+	 */
+	public static NumberCompution subtract(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
 		if ( isDouble(left, right) ) {
-			return subtrateDouble(left, right);
+			return subtractDouble(left, right);
 		}
 		
 		if ( isFloat(left, right) ) {
@@ -401,17 +493,22 @@ public class NumberUtils {
 			return new InnerBiInteger((l, r) -> Integer.valueOf(l.intValue() - r.intValue()), left, right);
 		}
 		
-		return subtrateDouble(left, right);
+		return subtractDouble(left, right);
 	}
 	
-	private static AbstractDoubleCompution subtrateDouble(
+	private static AbstractDoubleCompution subtractDouble(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
 		
 		return new InnerBiDouble((l, r) -> Double.valueOf(l.doubleValue() - r.doubleValue()), left, right);
 	}
 	
-	
+	/**
+	 * Inner MonoDouble.
+	 * 
+	 * @author kenta-shimizu
+	 *
+	 */
 	private static class InnerMonoDouble extends AbstractDoubleCompution {
 		
 		private static final long serialVersionUID = 618814770456239140L;
@@ -430,6 +527,12 @@ public class NumberUtils {
 		}
 	}
 	
+	/**
+	 * Inner BiDouble.
+	 * 
+	 * @author kenta-shimizu
+	 *
+	 */
 	private static class InnerBiDouble extends AbstractDoubleCompution {
 		
 		private static final long serialVersionUID = 5910278463014712219L;
@@ -464,6 +567,12 @@ public class NumberUtils {
 		}
 	}
 	
+	/**
+	 * Inner CollectionDouble.
+	 * 
+	 * @author kenta-shimizu
+	 *
+	 */
 	private static class InnerCollectionDouble extends AbstractDoubleCompution {
 		
 		private static final long serialVersionUID = -7357880935855506552L;
@@ -486,6 +595,12 @@ public class NumberUtils {
 			});
 		}
 		
+		/**
+		 * Inner.
+		 * 
+		 * @author kenta-shimizu
+		 *
+		 */
 		private class Inner implements ChangeListener<Number> {
 			
 			private Number last;
@@ -508,6 +623,12 @@ public class NumberUtils {
 		}
 	}
 	
+	/**
+	 * Inner MonoFloat.
+	 * 
+	 * @author kenta-shimizu
+	 *
+	 */
 	private static class InnerMonoFloat extends AbstractFloatCompution {
 		
 		private static final long serialVersionUID = 5644463084688658066L;
@@ -526,6 +647,12 @@ public class NumberUtils {
 		}
 	}
 	
+	/**
+	 * Inner BiFloat.
+	 * 
+	 * @author shimizukenta
+	 *
+	 */
 	private static class InnerBiFloat extends AbstractFloatCompution {
 		
 		private static final long serialVersionUID = -7588697025601206572L;
@@ -560,6 +687,12 @@ public class NumberUtils {
 		}
 	}
 	
+	/**
+	 * Inner CollectionFloat.
+	 * 
+	 * @author kenta-shimizu
+	 *
+	 */
 	private static class InnerCollectionFloat extends AbstractFloatCompution {
 		
 		private static final long serialVersionUID = 1501050646643232885L;
@@ -582,6 +715,12 @@ public class NumberUtils {
 			});
 		}
 		
+		/**
+		 * Inner.
+		 * 
+		 * @author kenta-shimizu
+		 *
+		 */
 		private class Inner implements ChangeListener<Number> {
 			
 			private Number last;
@@ -604,6 +743,12 @@ public class NumberUtils {
 		}
 	}
 	
+	/**
+	 * Inner MonoLong.
+	 * 
+	 * @author kenta-shimizu
+	 *
+	 */
 	private static class InnerMonoLong extends AbstractLongCompution {
 		
 		private static final long serialVersionUID = -4415969225922324642L;
@@ -622,6 +767,12 @@ public class NumberUtils {
 		}
 	}
 	
+	/**
+	 * Inner BiLong.
+	 * 
+	 * @author kenta-shimizu
+	 *
+	 */
 	private static class InnerBiLong extends AbstractLongCompution {
 		
 		private static final long serialVersionUID = -6906142855226203986L;
@@ -656,6 +807,12 @@ public class NumberUtils {
 		}
 	}
 	
+	/**
+	 * Inner CollectionLong.
+	 * 
+	 * @author kenta-shimizu
+	 *
+	 */
 	private static class InnerCollectionLong extends AbstractLongCompution {
 		
 		private static final long serialVersionUID = -8190167768164461682L;
@@ -678,6 +835,12 @@ public class NumberUtils {
 			});
 		}
 		
+		/**
+		 * Inner.
+		 * 
+		 * @author kenta-shimizu
+		 *
+		 */
 		private class Inner implements ChangeListener<Number> {
 			
 			private Number last;
@@ -700,6 +863,12 @@ public class NumberUtils {
 		}
 	}
 	
+	/**
+	 * Inner MonoInteger.
+	 * 
+	 * @author kenta-shimizu
+	 *
+	 */
 	private static class InnerMonoInteger extends AbstractIntegerCompution {
 		
 		private static final long serialVersionUID = 6378002639155298062L;
@@ -718,6 +887,12 @@ public class NumberUtils {
 		}
 	}
 	
+	/**
+	 * Inner BiInteger.
+	 * 
+	 * @author kenta-shimizu
+	 *
+	 */
 	private static class InnerBiInteger extends AbstractIntegerCompution {
 		
 		private static final long serialVersionUID = 4682522814212682485L;
@@ -752,6 +927,12 @@ public class NumberUtils {
 		}
 	}
 	
+	/**
+	 * Inner CollectionInteger.
+	 * 
+	 * @author kenta-shimizu
+	 *
+	 */
 	private static class InnerCollectionInteger extends AbstractIntegerCompution {
 		
 		private static final long serialVersionUID = 668196625823765702L;
@@ -774,6 +955,12 @@ public class NumberUtils {
 			});
 		}
 		
+		/**
+		 * Inner.
+		 * 
+		 * @author kenta-shimizu
+		 *
+		 */
 		private class Inner implements ChangeListener<Number> {
 			
 			private Number last;
@@ -796,7 +983,13 @@ public class NumberUtils {
 		}
 	}
 	
-	
+	/**
+	 * Returns IsEqualTo PredicateCompution.
+	 * 
+	 * @param left NumberObserver
+	 * @param right NumberObserver
+	 * @return IsEqualTo PredicateCompution
+	 */
 	public static AbstractBiPredicateCompution<Number, Number> isEqualTo(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
@@ -835,6 +1028,13 @@ public class NumberUtils {
 				(l, r) -> l.doubleValue() == r.doubleValue());
 	}
 	
+	/**
+	 * Returns IsNotEqualTo PredicateCompution.
+	 * 
+	 * @param left NumberObserver
+	 * @param right NumberObserver
+	 * @return IsNotEqualTo PredicateCompution
+	 */
 	public static AbstractBiPredicateCompution<Number, Number> isNotEqualTo(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
@@ -873,6 +1073,13 @@ public class NumberUtils {
 				(l, r) -> l.doubleValue() != r.doubleValue());
 	}
 	
+	/**
+	 * Returns IsLessThan PredicateCompution.
+	 * 
+	 * @param left NumberObserver
+	 * @param right NumberObserver
+	 * @return IsLessThan PredicateCompution
+	 */
 	public static AbstractBiPredicateCompution<Number, Number> isLessThan(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
@@ -911,6 +1118,13 @@ public class NumberUtils {
 				(l, r) -> l.doubleValue() < r.doubleValue());
 	}
 	
+	/**
+	 * Returns IsLessThanOrEqualTo PredicateCompution.
+	 * 
+	 * @param left NumberObserver
+	 * @param right NumberObserver
+	 * @return IsLessThanOrEqualTo PredicateCompution
+	 */
 	public static AbstractBiPredicateCompution<Number, Number> isLessThanOrEqualTo(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
@@ -949,6 +1163,13 @@ public class NumberUtils {
 				(l, r) -> l.doubleValue() <= r.doubleValue());
 	}
 	
+	/**
+	 * Returns IsGreaterThan PredicateCompution.
+	 * 
+	 * @param left NumberObserver
+	 * @param right NumberObserver
+	 * @return IsGreaterThan PredicateCompution
+	 */
 	public static AbstractBiPredicateCompution<Number, Number> isGreaterThan(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
@@ -987,6 +1208,13 @@ public class NumberUtils {
 				(l, r) -> l.doubleValue() > r.doubleValue());
 	}
 	
+	/**
+	 * Returns IsGreaterThanOrEqualTo PredicateCompution.
+	 * 
+	 * @param left NumberObserver
+	 * @param right NumberObserver
+	 * @return IsGreaterThanOrEqualTo PredicateCompution
+	 */
 	public static AbstractBiPredicateCompution<Number, Number> isGreaterThanOrEqualTo(
 			NumberObservable<? extends Number> left,
 			NumberObservable<? extends Number> right) {
@@ -1043,6 +1271,19 @@ public class NumberUtils {
 		return i;
 	}
 	
+	/**
+	 * Waiting until condition is true.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is true, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param i PredicateCompution
+	 * @param left left NumberObserver
+	 * @param right right NumberObserver
+	 * @throws InterruptedException if interrupted while waiting
+	 */
 	public static void waitUntil(
 			AbstractBiPredicateCompution<Number, Number> i,
 			NumberObservable<? extends Number> left,
@@ -1057,6 +1298,22 @@ public class NumberUtils {
 		}
 	}
 	
+	/**
+	 * Waiting until condition is true.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is true, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param i PredicateCompution
+	 * @param left left NumberObserver
+	 * @param right right NumberObserver
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 */
 	public static void waitUntil(
 			AbstractBiPredicateCompution<Number, Number> i,
 			NumberObservable<? extends Number> left,
@@ -1073,6 +1330,21 @@ public class NumberUtils {
 		}
 	}
 	
+	/**
+	 * Waiting until condition is true.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already condition is true, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param i PredicateCompution
+	 * @param left left NumberObserver
+	 * @param right right NumberObserver
+	 * @param p is TimeoutProperty
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 */
 	public static void waitUntil(
 			AbstractBiPredicateCompution<Number, Number> i,
 			NumberObservable<? extends Number> left,

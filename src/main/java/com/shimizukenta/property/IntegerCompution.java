@@ -30,6 +30,7 @@ package com.shimizukenta.property;
  * <li>{@link #negate()}.</li>
  * </ul>
  * </li>
+ * <li>To comparative-compute,
  * <ul>
  * <li>{@link #computeIsEqualTo(NumberObservable)}.</li>
  * <li>{@link #computeIsNotEqualTo(NumberObservable)}.</li>

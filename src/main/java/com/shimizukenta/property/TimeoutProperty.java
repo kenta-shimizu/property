@@ -49,7 +49,7 @@ public interface TimeoutProperty extends Property<TimeoutAndUnit>, TimeoutGettab
 	/**
 	 * TimeouyProperty builder.
 	 * 
-	 * @param seconds
+	 * @param seconds is int
 	 * @return new-instance
 	 */
 	public static TimeoutProperty newInstance(int seconds) {
@@ -59,7 +59,7 @@ public interface TimeoutProperty extends Property<TimeoutAndUnit>, TimeoutGettab
 	/**
 	 * TimeoutProperty builder.
 	 * 
-	 * @param seconds
+	 * @param seconds is long
 	 * @return new-instance
 	 */
 	public static TimeoutProperty newInstance(long seconds) {
@@ -69,7 +69,7 @@ public interface TimeoutProperty extends Property<TimeoutAndUnit>, TimeoutGettab
 	/**
 	 * TimeoutProperty builder.
 	 * 
-	 * @param seconds
+	 * @param seconds is float
 	 * @return new-instance
 	 */
 	public static TimeoutProperty newInstance(float seconds) {
@@ -79,7 +79,7 @@ public interface TimeoutProperty extends Property<TimeoutAndUnit>, TimeoutGettab
 	/**
 	 * TimeoutProperty builder.
 	 * 
-	 * @param seconds
+	 * @param seconds is double
 	 * @return new-instance
 	 */
 	public static TimeoutProperty newInstance(double seconds) {
@@ -89,8 +89,8 @@ public interface TimeoutProperty extends Property<TimeoutAndUnit>, TimeoutGettab
 	/**
 	 * TimeoutProperty builder.
 	 * 
-	 * @param timeout
-	 * @param unit
+	 * @param timeout is long
+	 * @param unit is TimeUnit
 	 * @return new-instance
 	 */
 	public static TimeoutProperty newInstance(long timeout, TimeUnit unit) {
@@ -100,7 +100,7 @@ public interface TimeoutProperty extends Property<TimeoutAndUnit>, TimeoutGettab
 	/**
 	 * TimeoutProperty builder.
 	 * 
-	 * @param value
+	 * @param value is TimeoutAndUnit
 	 * @return new-instance
 	 */
 	public static TimeoutProperty newInstance(TimeoutAndUnit value) {

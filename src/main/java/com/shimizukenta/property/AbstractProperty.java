@@ -14,14 +14,31 @@ public abstract class AbstractProperty<T> implements Property<T> {
 	
 	private static final long serialVersionUID = 673883739488369977L;
 	
+	/**
+	 * Mutable value.
+	 */
 	private T v;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param initial is {@code <T>}
+	 */
 	public AbstractProperty(T initial) {
 		this.v = initial;
 	}
 	
+	/**
+	 * Protected synchronized object.
+	 * 
+	 */
 	protected final Object _sync = new Object();
 	
+	/**
+	 * synchronized set and notify if value changed.
+	 * 
+	 * @param value is {@code <T>}
+	 */
 	protected void _syncSetAndNotifyChanged(T value) {
 		synchronized ( this._sync ) {
 			if ( ! Objects.equals(value, this._simpleGet()) ) {
@@ -31,14 +48,27 @@ public abstract class AbstractProperty<T> implements Property<T> {
 		}
 	}
 	
+	/**
+	 * Value simple setter.
+	 * 
+	 * @param value is {@code <T>}
+	 */
 	protected final void _simpleSet(T value) {
 		this.v = value;
 	}
 	
+	/**
+	 * Value simple getter.
+	 * 
+	 * @return value
+	 */
 	protected final T _simpleGet() {
 		return v;
 	}
 	
+	/**
+	 * Change listeners.
+	 */
 	private final Collection<ChangeListener<? super T>> changeLstnrs = new HashSet<>();
 	
 	@Override
@@ -59,6 +89,9 @@ public abstract class AbstractProperty<T> implements Property<T> {
 		}
 	}
 	
+	/**
+	 * Bind listener.
+	 */
 	private final ChangeListener<T> bindLstnr = this::_syncSetAndNotifyChanged;
 	
 	@Override
@@ -71,6 +104,11 @@ public abstract class AbstractProperty<T> implements Property<T> {
 		return observer.removeChangeListener(bindLstnr);
 	}
 	
+	/**
+	 * Notify to listeners.
+	 * 
+	 * @param v is {@code <T>}
+	 */
 	protected void _notifyChanged(T v) {
 		synchronized ( this._sync ) {
 			for ( ChangeListener<? super T> l : this.changeLstnrs ) {

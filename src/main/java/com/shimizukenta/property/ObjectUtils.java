@@ -6,12 +6,24 @@ import java.util.concurrent.TimeoutException;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
+/**
+ * 
+ * @author kenta-shimizu
+ *
+ */
 public final class ObjectUtils {
 	
 	private ObjectUtils() {
 		/* Nothing */
 	}
 	
+	/**
+	 * Returns Unmodifiable Object Property.
+	 * 
+	 * @param <T> Type
+	 * @param v value
+	 * @return Unmodifiable Object Property
+	 */
 	public static <T> ObjectProperty<T> newUnmodifiable(T v) {
 		return new AbstractUnmodifiableObjectProperty<T>(v) {
 			
@@ -35,16 +47,35 @@ public final class ObjectUtils {
 		return i;
 	}
 	
+	/**
+	 * Returns Unmodifiable Null Object Property.
+	 * 
+	 * @return Unmodifiable Null Object Property
+	 */
 	public static ObjectProperty<Object> getUnmodifiableNull() {
 		return singleNullObj;
 	}
 	
+	/**
+	 * Returns IsNull PredicateCompution.
+	 * 
+	 * @param <T> Type
+	 * @param observer Observer
+	 * @return IsNull Predicate Compution
+	 */
 	public static <T> AbstractPredicateCompution<T> computeIsNull(
 			Observable<T> observer) {
 		
 		return buildPredicateCompution(observer, v -> v == null);
 	}
 	
+	/**
+	 * Returns IsNotNull PredicateCompution.
+	 * 
+	 * @param <T> Type
+	 * @param observer Observer
+	 * @return IsNotNull PredicateCompution
+	 */
 	public static <T> AbstractPredicateCompution<T> computeIsNotNull(
 			Observable<T> observer) {
 		
@@ -90,12 +121,41 @@ public final class ObjectUtils {
 		}
 	}
 	
+	/**
+	 * Waiting until value is not null, and return value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already value is not null, return value immediately.<br />
+	 * </p>
+	 * 
+	 * @param <T> Type
+	 * @param observer ObjectObserver
+	 * @return value
+	 * @throws InterruptedException if interrupted while waiting
+	 */
 	public static <T> T waitUntilNotNullAndGet(
 			Observable<T> observer) throws InterruptedException {
 		
 		return waitUntilPredicate(computeIsNotNull(observer), observer);
 	}
 	
+	/**
+	 * Waiting until value is not null, and return value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already value is not null, return value immediately.<br />
+	 * </p>
+	 * 
+	 * @param <T> Type
+	 * @param observer ObjectObserver
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @return value
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 */
 	public static <T> T waitUntilNotNullAndGet(
 			Observable<T> observer,
 			long timeout,
@@ -104,6 +164,21 @@ public final class ObjectUtils {
 		return waitUntilPredicate(computeIsNotNull(observer), observer, timeout, unit);
 	}
 	
+	/**
+	 * Waiting until value is not null, and return value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already value is not null, return value immediately.<br />
+	 * </p>
+	 * 
+	 * @param <T> Type
+	 * @param observer ObjectObserver
+	 * @param p is TimeoutProperty
+	 * @return value
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 */
 	public static <T> T waitUntilNotNullAndGet(
 			Observable<T> observer,
 			TimeoutGettable p) throws InterruptedException, TimeoutException {
@@ -111,12 +186,39 @@ public final class ObjectUtils {
 		return waitUntilPredicate(computeIsNotNull(observer), observer, p);
 	}
 	
+	/**
+	 * Waiting until value is null.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already value is null, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <T> Type
+	 * @param observer ObjectObserver
+	 * @throws InterruptedException if interrupted while waiting
+	 */
 	public static <T> void waitUntilNull(
 			Observable<T> observer) throws InterruptedException {
 		
 		waitUntilPredicate(computeIsNull(observer), observer);
 	}
 	
+	/**
+	 * Waiting until value is null.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already value is null, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <T> Type
+	 * @param observer ObjectObserver
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 */
 	public static <T> void waitUntilNull(
 			Observable<T> observer,
 			long timeout,
@@ -124,7 +226,21 @@ public final class ObjectUtils {
 		
 		waitUntilPredicate(computeIsNull(observer), observer, timeout, unit);
 	}
-
+	
+	/**
+	 * Waiting until value is null.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already value is null, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <T> Type
+	 * @param observer ObjectObserver
+	 * @param p is TimeoutProperty
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 */
 	public static <T> void waitUntilNull(
 			Observable<T> observer,
 			TimeoutGettable p) throws InterruptedException, TimeoutException {
@@ -153,6 +269,15 @@ public final class ObjectUtils {
 		return i;
 	}
 	
+	/**
+	 * Returns IsEqualTo PredicateCompution.
+	 * 
+	 * @param <T> Type
+	 * @param <U> TYpe
+	 * @param left left observer
+	 * @param right right observer
+	 * @return IsEqualTo Predicate Compution
+	 */
 	public static <T, U> AbstractBiPredicateCompution<T, U> computeIsEqualTo(
 			Observable<T> left,
 			Observable<U> right) {
@@ -160,6 +285,15 @@ public final class ObjectUtils {
 		return buildBiPredicateCompution(left, right, (Object a, Object b) -> Objects.equals(a, b));
 	}
 	
+	/**
+	 * Returns IsNotEqualTo PredicateCompution.
+	 * 
+	 * @param <T> Type
+	 * @param <U> TYpe
+	 * @param left left observer
+	 * @param right right observer
+	 * @return IsNotEqualTo Predicate Compution
+	 */
 	public static <T, U> AbstractBiPredicateCompution<T, U> computeIsNotEqualTo(
 			Observable<T> left,
 			Observable<U> right) {
@@ -224,6 +358,20 @@ public final class ObjectUtils {
 		}
 	}
 	
+	/**
+	 * Waiting until {@code (a.value == b.value)}.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already {@code (a.value == b.value)}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <T> Type
+	 * @param <U> Type
+	 * @param a observer
+	 * @param b observer
+	 * @throws InterruptedException if interrupted while waiting
+	 */
 	public static <T, U> void waitUntilEqualTo(
 			Observable<T> a,
 			Observable<U> b) throws InterruptedException {
@@ -231,6 +379,23 @@ public final class ObjectUtils {
 		waitUntilBiPredicate(computeIsEqualTo(a, b), a, b);
 	}
 	
+	/**
+	 * Waiting until {@code (a.value == b.value)}.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already {@code (a.value == b.value)}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <T> Type
+	 * @param <U> Type
+	 * @param a observer
+	 * @param b observer
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 */
 	public static <T, U> void waitUntilEqualTo(
 			Observable<T> a,
 			Observable<U> b,
@@ -240,6 +405,22 @@ public final class ObjectUtils {
 		waitUntilBiPredicate(computeIsEqualTo(a, b), a, b, timeout, unit);
 	}
 	
+	/**
+	 * Waiting until {@code (a.value == b.value)}.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already {@code (a.value == b.value)}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <T> Type
+	 * @param <U> Type
+	 * @param a observer
+	 * @param b observer
+	 * @param p is TimeoutProperty
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 */
 	public static <T, U> void waitUntilEqualTo(
 			Observable<T> a,
 			Observable<U> b,
@@ -248,6 +429,20 @@ public final class ObjectUtils {
 		waitUntilBiPredicate(computeIsEqualTo(a, b), a, b, p);
 	}
 	
+	/**
+	 * Waiting until {@code (a.value != b.value)}.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already {@code (a.value != b.value)}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <T> Type
+	 * @param <U> Type
+	 * @param a observer
+	 * @param b observer
+	 * @throws InterruptedException if interrupted while waiting
+	 */
 	public static <T, U> void waitUntilNotEqualTo(
 			Observable<T> a,
 			Observable<U> b) throws InterruptedException {
@@ -255,6 +450,23 @@ public final class ObjectUtils {
 		waitUntilBiPredicate(computeIsNotEqualTo(a, b), a, b);
 	}
 	
+	/**
+	 * Waiting until {@code (a.value != b.value)}.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already {@code (a.value != b.value)}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <T> Type
+	 * @param <U> Type
+	 * @param a observer
+	 * @param b observer
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 */
 	public static <T, U> void waitUntilNotEqualTo(
 			Observable<T> a,
 			Observable<U> b,
@@ -264,6 +476,22 @@ public final class ObjectUtils {
 		waitUntilBiPredicate(computeIsNotEqualTo(a, b), a, b, timeout, unit);
 	}
 	
+	/**
+	 * Waiting until {@code (a.value != b.value)}.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already {@code (a.value != b.value)}, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param <T> Type
+	 * @param <U> Type
+	 * @param a observer
+	 * @param b observer
+	 * @param p is TimeoutProperty
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 */
 	public static <T, U> void waitUntilNotEqualTo(
 			Observable<T> a,
 			Observable<U> b,

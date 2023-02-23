@@ -10,6 +10,11 @@ public abstract class AbstractObjectProperty<T> extends AbstractProperty<T> impl
 	
 	private static final long serialVersionUID = -8210275327751090005L;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param initial is extends Object
+	 */
 	public AbstractObjectProperty(T initial) {
 		super(initial);
 	}

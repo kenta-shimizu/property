@@ -11,6 +11,11 @@ public abstract class AbstractBooleanProperty extends AbstractProperty<Boolean> 
 	
 	private static final long serialVersionUID = 3470538189679094943L;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param initial is boolean
+	 */
 	public AbstractBooleanProperty(boolean initial) {
 		super(Boolean.valueOf(initial));
 	}

@@ -13,7 +13,7 @@ public interface DoubleSettable extends NumberSettable<Double> {
 	/**
 	 * Value setter.
 	 * 
-	 * @param value
+	 * @param value is double
 	 */
 	public void set(double value);
 	

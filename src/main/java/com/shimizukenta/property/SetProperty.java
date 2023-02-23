@@ -13,7 +13,7 @@ import java.util.Set;
  * <li>To detect value changed, {@link #addChangeListener(ChangeListener)}.</li>
  * <li>To compute,
  * <ul>
- * <li>{@link #computeIsEmpty()}.<?li>
+ * <li>{@link #computeIsEmpty()}.</li>
  * <li>{@link #computeIsNotEmpty()}.</li>
  * <li>{@link #computeContains(Object)}.</li>
  * <li>{@link #computeNotContains(Object)}.</li>
@@ -59,7 +59,7 @@ public interface SetProperty<E> extends Set<E>, CollectionProperty<E, Set<E>>, S
 	 * Instance builder.
 	 * 
 	 * @param <E> Element
-	 * @param initial
+	 * @param initial is {@code Collection<? extends E>}
 	 * @return new-instance.
 	 */
 	public static <E> SetProperty<E> newInstance(Collection<? extends E> initial) {

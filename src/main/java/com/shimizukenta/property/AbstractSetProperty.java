@@ -13,6 +13,11 @@ public abstract class AbstractSetProperty<E> extends AbstractCollectionProperty<
 	
 	private static final long serialVersionUID = -8048912193160707625L;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param initial is {@code Set<E>}
+	 */
 	public AbstractSetProperty(Set<E> initial) {
 		super(initial);
 	}

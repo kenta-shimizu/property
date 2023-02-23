@@ -9,6 +9,11 @@ public abstract class AbstractUnmodifiableFloatProperty extends AbstractFloatPro
 	
 	private static final long serialVersionUID = -3898415749998088493L;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param initial is float
+	 */
 	public AbstractUnmodifiableFloatProperty(float initial) {
 		super(initial);
 	}

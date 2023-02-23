@@ -10,6 +10,11 @@ public abstract class AbstractUnmodifiableObjectProperty<T> extends AbstractObje
 	
 	private static final long serialVersionUID = 1122655569059560817L;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param initial is {@code <T>}
+	 */
 	public AbstractUnmodifiableObjectProperty(T initial) {
 		super(initial);
 	}

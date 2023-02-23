@@ -9,6 +9,11 @@ public abstract class AbstractUnmodifiableIntegerProperty extends AbstractIntege
 	
 	private static final long serialVersionUID = -5048333628118693243L;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param initial is int
+	 */
 	public AbstractUnmodifiableIntegerProperty(int initial) {
 		super(initial);
 	}

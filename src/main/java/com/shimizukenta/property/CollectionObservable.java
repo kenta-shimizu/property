@@ -42,7 +42,7 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	/**
 	 * Returns BooleanCompution of Collection#contains(Object).
 	 * 
-	 * @param o
+	 * @param o element whose presence in this collection is to be tested
 	 * @return BooleanCompution of Collection#contains(Object)
 	 * @see Collection#contains(Object)
 	 * @see BooleanCompution
@@ -54,7 +54,7 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	/**
 	 * Returns BooleanCompution of NOT Collection#contains(Object).
 	 * 
-	 * @param o
+	 * @param o element whose presence in this collection is to be tested
 	 * @return BooleanCompution of NOT Collection#contains(Object)
 	 * @see Collection#contains(Object)
 	 * @see BooleanCompution
@@ -66,7 +66,7 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	/**
 	 * Returns BooleanCompution of Collection#containsAll(Collection).
 	 * 
-	 * @param o
+	 * @param c collection to be checked for containment in this collection
 	 * @return BooleanCompution of Collection#containsAll(Collection)
 	 * @see Collection#containsAll(Collection)
 	 * @see BooleanCompution
@@ -78,7 +78,7 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	/**
 	 * Returns BooleanCompution of NOT Collection#containsAll(Collection).
 	 * 
-	 * @param o
+	 * @param c collection to be checked for containment in this collection
 	 * @return BooleanCompution of NOT Collection#containsAll(Collection)
 	 * @see Collection#containsAll(Collection)
 	 * @see BooleanCompution
@@ -106,7 +106,7 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	 * If already Collection#isEmpty is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @throws InterruptedException
+	 * @throws InterruptedException if interrupted while waiting
 	 * @see Collection#isEmpty()
 	 */
 	default public void waitUntilIsEmpty() throws InterruptedException {
@@ -121,10 +121,10 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	 * If already Collection#isEmpty is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param timeout
-	 * @param unit
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 * @see Collection#isEmpty()
 	 */
 	default public void waitUntilIsEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
@@ -139,9 +139,9 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	 * If already Collection#isEmpty is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param p
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout
+	 * @param p is TimeoutProperty
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 * @see Collection#isEmpty()
 	 */
 	default public void waitUntilIsEmpty(TimeoutGettable p) throws InterruptedException, TimeoutException {
@@ -156,7 +156,7 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	 * If already Collection#isEmpty is false, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @throws InterruptedException
+	 * @throws InterruptedException if interrupted while waiting
 	 * @see Collection#isEmpty()
 	 */
 	default public void waitUntilIsNotEmpty() throws InterruptedException {
@@ -171,10 +171,10 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	 * If already Collection#isEmpty is false, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param timeout
-	 * @param unit
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 * @see Collection#isEmpty()
 	 */
 	default public void waitUntilIsNotEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
@@ -189,9 +189,9 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	 * If already Collection#isEmpty is false, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param p
-	 * @throws InterruptedException
-	 * @throws TimeoutException
+	 * @param p is TimeoutProperty
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 * @see Collection#isEmpty()
 	 */
 	default public void waitUntilIsNotEmpty(TimeoutGettable p) throws InterruptedException, TimeoutException {
@@ -206,8 +206,8 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	 * If already Collection#contains(Object) is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param o
-	 * @throws InterruptedException
+	 * @param o element whose presence in this collection is to be tested
+	 * @throws InterruptedException if interrupted while waiting
 	 * @see Collection#contains(Object)
 	 */
 	default public void waitUntilContains(Object o) throws InterruptedException {
@@ -222,11 +222,11 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	 * If already Collection#contains(Object) is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param o
-	 * @param timeout
-	 * @param unit
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout
+	 * @param o element whose presence in this collection is to be tested
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 * @see Collection#contains(Object)
 	 */
 	default public void waitUntilContains(Object o, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
@@ -241,10 +241,10 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	 * If already Collection#contains(Object) is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param o
-	 * @param p
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout
+	 * @param o element whose presence in this collection is to be tested
+	 * @param p is TimeoutProperty
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 * @see Collection#contains(Object)
 	 */
 	default public void waitUntilContains(Object o, TimeoutGettable p) throws InterruptedException, TimeoutException {
@@ -259,8 +259,8 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	 * If already Collection#contains(Object) is false, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param o
-	 * @throws InterruptedException
+	 * @param o element whose presence in this collection is to be tested
+	 * @throws InterruptedException if interrupted while waiting
 	 * @see Collection#contains(Object)
 	 */
 	default public void waitUntilNotContains(Object o) throws InterruptedException {
@@ -275,11 +275,11 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	 * If already Collection#contains(Object) is false, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param o
-	 * @param timeout
-	 * @param unit
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout
+	 * @param o element whose presence in this collection is to be tested
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 * @see Collection#contains(Object)
 	 */
 	default public void waitUntilNotContains(Object o, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
@@ -294,10 +294,10 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	 * If already Collection#contains(Object) is false, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param o
-	 * @param p
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout
+	 * @param o element whose presence in this collection is to be tested
+	 * @param p is TimeoutProperty
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 * @see Collection#contains(Object)
 	 */
 	default public void waitUntilNotContains(Object o, TimeoutGettable p) throws InterruptedException, TimeoutException {
@@ -312,8 +312,8 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	 * If already Collection#containsAll(Collection) is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param c
-	 * @throws InterruptedException
+	 * @param c collection to be checked for containment in this collection
+	 * @throws InterruptedException if interrupted while waiting
 	 * @see Collection#containsAll(Collection)
 	 */
 	default public void waitUntilContainsAll(Collection<?> c) throws InterruptedException {
@@ -328,11 +328,11 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	 * If already Collection#containsAll(Collection) is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param c
-	 * @param timeout
-	 * @param unit
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout
+	 * @param c collection to be checked for containment in this collection
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 * @see Collection#containsAll(Collection)
 	 */
 	default public void waitUntilContainsAll(Collection<?> c, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
@@ -347,10 +347,10 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	 * If already Collection#containsAll(Collection) is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param c
-	 * @param p
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout
+	 * @param c collection to be checked for containment in this collection
+	 * @param p is TimeoutProperty
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 * @see Collection#containsAll(Collection)
 	 */
 	default public void waitUntilContainsAll(Collection<?> c, TimeoutGettable p) throws InterruptedException, TimeoutException {
@@ -365,8 +365,8 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	 * If already Collection#containsAll(Collection) is false, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param c
-	 * @throws InterruptedException
+	 * @param c collection to be checked for containment in this collection
+	 * @throws InterruptedException if interrupted while waiting
 	 * @see Collection#containsAll(Collection)
 	 */
 	default public void waitUntilNotContainsAll(Collection<?> c) throws InterruptedException {
@@ -381,11 +381,11 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	 * If already Collection#containsAll(Collection) is false, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param c
-	 * @param timeout
-	 * @param unit
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout
+	 * @param c collection to be checked for containment in this collection
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 * @see Collection#containsAll(Collection)
 	 */
 	default public void waitUntilNotContainsAll(Collection<?> c, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
@@ -400,10 +400,10 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	 * If already Collection#containsAll(Collection) is false, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param c
-	 * @param p
-	 * @throws InterruptedException
-	 * @throws TimeoutException if timeout
+	 * @param c collection to be checked for containment in this collection
+	 * @param p is TimeoutProperty
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
 	 * @see Collection#containsAll(Collection)
 	 */
 	default public void waitUntilNotContainsAll(Collection<?> c, TimeoutGettable p) throws InterruptedException, TimeoutException {

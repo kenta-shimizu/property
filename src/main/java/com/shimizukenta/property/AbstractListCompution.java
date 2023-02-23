@@ -5,10 +5,21 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 
+/**
+ * 
+ * @author kenta-shimizu
+ *
+ * @param <E> Element
+ */
 public abstract class AbstractListCompution<E> extends AbstractCollectionCompution<E, List<E>> implements ListCompution<E> {
 	
 	private static final long serialVersionUID = -7273441815983971442L;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param initial is extends {@code List<E>}
+	 */
 	public AbstractListCompution(List<E> initial) {
 		super(initial);
 	}

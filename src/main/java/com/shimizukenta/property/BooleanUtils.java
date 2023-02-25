@@ -160,6 +160,9 @@ public class BooleanUtils {
 			
 			super();
 			
+			this.ll = Boolean.FALSE;
+			this.rr = Boolean.FALSE;
+			
 			left.addChangeListener(f -> {
 				synchronized ( this._sync ) {
 					this.ll = f;

@@ -180,6 +180,8 @@ System.out.println(not.booleanValue());  /* "false" */
 System.out.println(xor.booleanValue());  /* "false" */
 ```
 
+See also ["/examples/example/LogicalComputionExample.java"](/examples/example/LogicalComputionExample.java)
+
 ### Others
 
 ```java

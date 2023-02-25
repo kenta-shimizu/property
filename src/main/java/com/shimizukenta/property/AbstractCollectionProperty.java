@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 /**
  * 
@@ -148,7 +149,18 @@ public abstract class AbstractCollectionProperty<E, T extends Collection<E>> imp
 			return f;
 		}
 	}
-
+	
+	@Override
+	public boolean removeIf(Predicate<? super E> filter) {
+		synchronized ( this._sync ) {
+			boolean f = this._simpleGet().removeIf(filter);
+			if ( f ) {
+				this._notifyChagned();
+			}
+			return f;
+		}
+	}
+	
 	@Override
 	public void clear() {
 		synchronized ( this._sync ) {

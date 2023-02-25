@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 /**
  * 
@@ -112,7 +113,12 @@ public abstract class AbstractCollectionCompution<E, T extends Collection<E>> im
 	public boolean removeAll(Collection<?> c) {
 		throw new UnsupportedOperationException();
 	}
-
+	
+	@Override
+	public boolean removeIf(Predicate<? super E> filter) {
+		throw new UnsupportedOperationException();
+	}
+	
 	@Override
 	public boolean retainAll(Collection<?> c) {
 		throw new UnsupportedOperationException();

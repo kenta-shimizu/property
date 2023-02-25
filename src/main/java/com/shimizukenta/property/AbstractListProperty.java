@@ -2,8 +2,10 @@ package com.shimizukenta.property;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.function.UnaryOperator;
 
 /**
  * 
@@ -100,6 +102,22 @@ public abstract class AbstractListProperty<E> extends AbstractCollectionProperty
 	public List<E> subList(int fromIndex, int toIndex) {
 		synchronized ( this._sync ) {
 			return this._simpleGet().subList(fromIndex, toIndex);
+		}
+	}
+	
+	@Override
+	public void replaceAll(UnaryOperator<E> operator) {
+		synchronized ( this._sync ) {
+			this._simpleGet().replaceAll(operator);
+			this._notifyChagned();
+		}
+	}
+	
+	@Override
+	public void sort(Comparator<? super E> c) {
+		synchronized ( this._sync ) {
+			this._simpleGet().sort(c);
+			this._notifyChagned();
 		}
 	}
 	

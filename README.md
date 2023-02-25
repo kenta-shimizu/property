@@ -23,6 +23,14 @@ SetProperty<Integer> setProp  = SetProperty.newInstance();
 MapProperty<String, Integer> mapProp = MapProperty.newInstance();
 ```
 
+See also  
+["/examples/example/ObjectPropertyExample.java"](/examples/example/ObjectPropertyExample.java)  
+["/examples/example/IntegerPropertyExample.java"](/examples/example/IntegerPropertyExample.java)  
+["/examples/example/BooleanPropertyExample.java"](/examples/example/BooleanPropertyExample.java)  
+["/examples/example/ListPropertyExample.java"](/examples/example/ListPropertyExample.java)  
+["/examples/example/SetPropertyExample.java"](/examples/example/SetPropertyExample.java)  
+["/examples/example/MapPropertyExample.java"](/examples/example/MapPropertyExample.java)  
+
 ## Set value
 
 ```java

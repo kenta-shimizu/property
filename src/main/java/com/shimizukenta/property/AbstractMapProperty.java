@@ -86,41 +86,97 @@ public abstract class AbstractMapProperty<K, V> implements MapProperty<K, V> {
 	@Override
 	public V put(K key, V value) {
 		synchronized ( this._sync ) {
-			V v = this._simpleGet().put(key, value);
-			this._notifyChanged();
-			return v;
+			PutResult r = this.__putCheck(key, value);
+			if ( r.changed ) {
+				this._notifyChanged();
+			}
+			return r.value;
 		}
+	}
+	
+	@Override
+	public void putAll(Map<? extends K, ? extends V> m) {
+		synchronized ( this._sync ) {
+			boolean changed = false;
+			
+			for ( K key : m.keySet() ) {
+				PutResult r = this.__putCheck(key, m.get(key));
+				if ( r.changed ) {
+					changed = true;
+				}
+			}
+			
+			if ( changed ) {
+				this._notifyChanged();
+			}
+		}
+	}
+	
+	/**
+	 * Inner PutResult.
+	 * 
+	 * @author kenta-shimizu
+	 *
+	 */
+	private class PutResult {
+		
+		private final boolean changed;
+		private final V value;
+		
+		private PutResult(boolean changed, V value) {
+			this.changed = changed;
+			this.value = value;
+		}
+	}
+	
+	/**
+	 * Returns true if value changed.
+	 * 
+	 * @param key key
+	 * @param value value
+	 * @return true if value changed
+	 */
+	private PutResult __putCheck(K key, V value) {
+		
+		Map<K, V> m = this._simpleGet();
+		
+		if ( m.containsKey(key) ) {
+			if ( Objects.equals(m.get(key), value) ) {
+				return new PutResult(false, value);
+			}
+		}
+		
+		V v = m.put(key, value);
+		return new PutResult(true, v);
 	}
 	
 	@Override
 	public V remove(Object key) {
 		synchronized ( this._sync ) {
-			V v = this._simpleGet().remove(key);
-			if ( v != null ) {
+			
+			Map<K, V> m = this._simpleGet();
+			
+			if ( m.containsKey(key) ) {
+				V v = m.remove(key);
 				this._notifyChanged();
+				return v;
+			} else {
+				return m.remove(key);
 			}
-			return v;
-		}
-	}
-
-	@Override
-	public void putAll(Map<? extends K, ? extends V> m) {
-		synchronized ( this._sync ) {
-			this._simpleGet().putAll(m);
-			this._notifyChanged();
 		}
 	}
 
 	@Override
 	public void clear() {
 		synchronized ( this._sync ) {
-			if ( ! this._simpleGet().isEmpty() ) {
-				this._simpleGet().clear();
+			Map<K, V> m = this._simpleGet();
+			if ( ! m.isEmpty() ) {
+				m.clear();
 				this._notifyChanged();
 			}
 		}
 	}
-
+	
 	@Override
 	public Set<K> keySet() {
 		synchronized ( this._sync ) {

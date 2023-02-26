@@ -349,3 +349,5 @@ T v = timeProp.blockingQueuePoll(blockingQueue);  /* BlokingQueue<T>#poll(timeou
 /* set to #waitUntil methods as timeout */
 boolProp.waitUntilTrue(timeProp);
 ```
+
+See also ["/examples/example/TimeoutPropertyExample.java"](/examples/example/TimeoutPropertyExample.java)

@@ -13,6 +13,10 @@ public class LogicalComputionExample implements Runnable {
 	public void run() {
 		
 		try {
+			System.out.println("run: " + this.getClass());
+			System.out.println();
+			
+			/* build instance */
 			final BooleanProperty a = BooleanProperty.newInstance(false);
 			final BooleanProperty b = BooleanProperty.newInstance(false);
 			
@@ -21,6 +25,7 @@ public class LogicalComputionExample implements Runnable {
 			System.out.println("get b: " + b.booleanValue());
 			System.out.println();
 			
+			/* build LogicalCompution */
 			BooleanCompution and = a.and(b);
 			BooleanCompution or = a.or(b);
 			BooleanCompution not = a.not();

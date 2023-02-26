@@ -122,6 +122,8 @@ System.out.println(maxABC.intValue());  /* "4" */
 System.out.println(minABC.intValue());  /* "2" */
 ```
 
+See also ["/examples/example/NumberComputionExample.java"](/examples/example/NumberComputionExample.java)
+
 ### Comparative Compution
 
 `NumberProperty` can compute `#computeIsEqualTo(==)`, `#computeIsNotEqualTo(!=)`, `#computeIsLessThan(<)`, `#computeIsLessThanOrEqualTo(<=)`, `#computeIsGreaterThan(>)`, `#computeIsGreaterThanOrEqualTo(>=)`.  
@@ -148,6 +150,8 @@ System.out.println(aGT3.booleanValue());  /* a >  3, "true"  */
 System.out.println(aEQ5.booleanValue());  /* a == 5, "true"  */
 System.out.println(aLTb.booleanValue());  /* a <  b, "false" */
 ```
+
+See also ["/examples/example/ComparativeComputionExample.java"](/examples/example/ComparativeComputionExample.java)
 
 ### Logical Compution
 
@@ -237,6 +241,8 @@ a.set(4);  /*  "9", (4+2+3), a changed */
 b.set(5);  /* "12", (4+5+3), b changed */
 c.set(6);  /* "15", (4+5+6), c changed */
 ```
+
+See also ["/examples/example/NumberComputionExample.java"](/examples/example/NumberComputionExample.java)
 
 ## Wait Until Methods
 

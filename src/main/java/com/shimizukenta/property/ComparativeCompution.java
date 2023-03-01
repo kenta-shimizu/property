@@ -12,9 +12,17 @@ package com.shimizukenta.property;
  * <li>{@link #isEqualTo(NumberObservable, NumberObservable)}.</li>
  * <li>{@link #isNotEqualTo(NumberObservable, NumberObservable)}.</li>
  * <li>{@link #isLessThan(NumberObservable, NumberObservable)}.</li>
- * <li>{@link #isGreaterThan(NumberObservable, NumberObservable)}.</li>
  * <li>{@link #isLessThanOrEqualTo(NumberObservable, NumberObservable)}.</li>
+ * <li>{@link #isGreaterThan(NumberObservable, NumberObservable)}.</li>
  * <li>{@link #isGreaterThanOrEqualTo(NumberObservable, NumberObservable)}.</li>
+ * <li>{@link #isEqualTo(ObjectObservable, ObjectObservable)}.</li>
+ * <li>{@link #isNotEqualTo(ObjectObservable, ObjectObservable)}.</li>
+ * <li>{@link #isEqualTo(StringObservable, StringObservable)}.</li>
+ * <li>{@link #isNotEqualTo(StringObservable, StringObservable)}.</li>
+ * <li>{@link #isLessThan(StringObservable, StringObservable)}.</li>
+ * <li>{@link #isLessThanOrEqualTo(StringObservable, StringObservable)}.</li>
+ * <li>{@link #isGreaterThan(StringObservable, StringObservable)}.</li>
+ * <li>{@link #isGreaterThanOrEqualTo(StringObservable, StringObservable)}.</li>
  * </ul>
  * </li>
  * <li>To get value, {@link #booleanValue()}.</li>
@@ -134,6 +142,90 @@ public interface ComparativeCompution extends BooleanCompution {
 	 */
 	public static <T, U> ComparativeCompution isNotEqualTo(ObjectObservable<T> a, ObjectObservable<U> b) {
 		return ObjectUtils.computeIsNotEqualTo(a, b);
+	}
+	
+	/**
+	 * Returns equal String ComparativeCompution instance.
+	 * 
+	 * @param a observer
+	 * @param b observer
+	 * @return equal String ComparativeCompution instance
+	 */
+	public static ComparativeCompution isEqualTo(StringObservable a, StringObservable b) {
+		return StringUtils.computeIsEqualTo(a, b);
+	}
+	
+	/**
+	 * Returns NOT equal String ComparativeCompution instance.
+	 * 
+	 * @param a observer
+	 * @param b observer
+	 * @return NOT equal String ComparativeCompution instance
+	 */
+	public static ComparativeCompution isNotEqualTo(StringObservable a, StringObservable b) {
+		return StringUtils.computeIsNotEqualTo(a, b);
+	}
+	
+	/**
+	 * Returns {@code (left < right)} ComparativeCompution instance.
+	 * 
+	 * @param left observer
+	 * @param right observer
+	 * @return {@code (left < right)} ComparativeCompution instance
+	 */
+	public static ComparativeCompution isLessThan(StringObservable left, StringObservable right) {
+		return StringUtils.computeIsLessThan(left, right);
+	}
+	
+	/**
+	 * Returns {@code (left <= right)} ComparativeCompution instance.
+	 * 
+	 * @param left observer
+	 * @param right observer
+	 * @return {@code (left <= right)} ComparativeCompution instance
+	 */
+	public static ComparativeCompution isLessThanOrEqualTo(StringObservable left, StringObservable right) {
+		return StringUtils.computeIsLessThanOrEqualTo(left, right);
+	}
+	
+	/**
+	 * Returns {@code (left > right)} ComparativeCompution instance.
+	 * @param left observer
+	 * @param right observer
+	 * @return {@code (left > right)} ComparativeCompution instance
+	 */
+	public static ComparativeCompution isGreaterThan(StringObservable left, StringObservable right) {
+		return StringUtils.computeIsGreaterThan(left, right);
+	}
+	
+	/**
+	 * Returns {@code (left >= right)} ComparativeCompution instance.
+	 * @param left observer
+	 * @param right observer
+	 * @return {@code (left >= right)} ComparativeCompution instance
+	 */
+	public static ComparativeCompution isGreaterThanOrEqualTo(StringObservable left, StringObservable right) {
+		return StringUtils.computeIsGreaterThanOrEqualTo(left, right);
+	}
+	
+	/**
+	 * Returns {@code a.equalsIgnoreCase(b)} Comparative Compution instance.
+	 * @param a observer
+	 * @param b observer
+	 * @return {@code a.equalsIgnoreCase(b)} Comparative Compution instance
+	 */
+	public static ComparativeCompution isEqualToIgnoreCase(StringObservable a, StringObservable b) {
+		return StringUtils.computeIsEqualToIgnoreCase(a, b);
+	}
+	
+	/**
+	 * Returns {@code (! a.equalsIgnoreCase(b))} Comparative Compution instance.
+	 * @param a observer
+	 * @param b observer
+	 * @return {@code (! a.equalsIgnoreCase(b))} Comparative Compution instance
+	 */
+	public static ComparativeCompution isNotEqualToIgnoreCase(StringObservable a, StringObservable b) {
+		return StringUtils.computeIsNotEqualToIgnoreCase(a, b);
 	}
 	
 }

@@ -63,29 +63,4 @@ public abstract class AbstractNumberCompution extends AbstractCompution<Number> 
 		}
 	}
 	
-	/**
-	 * Bind listener.
-	 */
-	private final ChangeListener<Number> bindLstnr = this::_syncSetAndNotifyChanged;
-	
-	/**
-	 * Add listener to observer.
-	 * 
-	 * @param observer to addListener
-	 * @return true if bind success
-	 */
-	public boolean bind(NumberObservable<? extends Number> observer) {
-		return observer.addChangeListener(this.bindLstnr);
-	}
-	
-	/**
-	 * Remove Listener to observer.
-	 * 
-	 * @param observer to removeListener
-	 * @return true if unbind success
-	 */
-	public boolean unbind(NumberObservable<? extends Number> observer) {
-		return observer.removeChangeListener(this.bindLstnr);
-	}
-	
 }

@@ -12,6 +12,9 @@ public class ComparativeComputionExample implements Runnable {
 	@Override
 	public void run() {
 		
+		System.out.println("run: " + this.getClass());
+		System.out.println();
+		
 		/* build instance */
 		IntegerProperty a = IntegerProperty.newInstance(3);
 		IntegerProperty b = IntegerProperty.newInstance(4);

@@ -26,7 +26,9 @@ public abstract class AbstractObjectProperty<T> extends AbstractProperty<T> impl
 	
 	@Override
 	public T get() {
-		return this._simpleGet();
+		synchronized ( this._sync ) {
+			return this._simpleGet();
+		}
 	}
 	
 }

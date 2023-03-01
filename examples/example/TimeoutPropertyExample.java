@@ -18,6 +18,9 @@ public class TimeoutPropertyExample implements Runnable {
 	public void run() {
 		
 		try {
+			System.out.println("run: " + this.getClass());
+			System.out.println();
+			
 			/* build instance */
 			System.out.println("build instance: 1L, TimeUnit.MINUTES");
 			TimeoutProperty p = TimeoutProperty.newInstance(1L, TimeUnit.MINUTES);

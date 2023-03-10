@@ -26,7 +26,7 @@ public class StringPropertyExample implements Runnable {
 			System.out.println();
 			
 			/* setter */
-			System.out.println("set: \"string\"");
+			System.out.println("set: \"1st\"");
 			p.set("1st");;
 			System.out.println("toString: \"" + p.toString() + "\"");
 			System.out.println();
@@ -42,25 +42,35 @@ public class StringPropertyExample implements Runnable {
 			System.out.println("set: \"2nd\"");
 			p.set("2nd");
 			
+			new Thread(() -> {
+				
+				try {
+					System.out.println("sleep 2000 msec...");
+					Thread.sleep(2000L);
+					
+					p.set("3rd");
+				}
+				catch ( InterruptedException ignore ) {
+				}
+			}).start();
+			
+			System.out.println("Waiting until value is \"3rd\"");
+			p.waitUntilEqualTo("3rd");
+			System.out.println();
+			
+			
 			IntegerCompution length = p.computeLength();
 			length.addChangeListener(v -> {
 				System.out.println("length: " + v);
+				System.out.println();
 			});
 			
-			StringCompution toUpperCase = p.computeToUpperCase().computeTrim();
+			StringCompution toUpperCase = p.computeToUpperCase();
 			toUpperCase.addChangeListener(v -> {
 				System.out.println("toUpperCase: \"" + v + "\"");
 			});
 			
-			StringCompution toLowerCase = p.computeToLowerCase().computeTrim();
-			toLowerCase.addChangeListener(v -> {
-				System.out.println("toLowerCase: \"" + v + "\"");
-			});
-			
-			System.out.println();
-			p.set("4tH ");
-			
-			Thread.sleep(1L);
+			p.set("4th");
 			
 			System.out.println();
 			System.out.println("reach end");

@@ -4,10 +4,10 @@ package com.shimizukenta.property;
  * String value Property, includes Getter, Setter, Observer.
  * 
  * <ul>
- * <li>To build instance, {@link #newInstance()}.</br>
- * <li>To set value, {@link #set(CharSequence)}.<br />
- * <li>To toString(), {@link #toString()}.<br />
- * <li>To detect value changed, {@link #addChangeListener(ChangeListener)}<br />
+ * <li>To build instance, {@link #newInstance()}.</li>
+ * <li>To set value, {@link #set(CharSequence)}.</li>
+ * <li>To toString(), {@link #toString()}.</li>
+ * <li>To detect value changed, {@link #addChangeListener(ChangeListener)}</li>
  * 
  * </ul>
  * 

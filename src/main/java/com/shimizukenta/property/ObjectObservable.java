@@ -386,7 +386,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already value is null, return value immediately.<br />
+	 * If already value is null, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @throws InterruptedException if interrupted while waiting
@@ -400,7 +400,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already value is null, return value immediately.<br />
+	 * If already value is null, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param timeout the maximum time to wait
@@ -417,7 +417,7 @@ public interface ObjectObservable<T> extends Observable<T> {
 	 * 
 	 * <p>
 	 * This is blocking method.<br />
-	 * If already value is null, return value immediately.<br />
+	 * If already value is null, pass through immediately.<br />
 	 * </p>
 	 * 
 	 * @param p is TimeoutProperty

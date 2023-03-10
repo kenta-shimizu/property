@@ -13,4 +13,3 @@ javadoc -locale en_US \
 -d ${path_docs} \
 --source-path ${path_src} \
 ${package}
-

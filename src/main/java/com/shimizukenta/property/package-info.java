@@ -13,6 +13,7 @@
  * <li>{@link FloatProperty}</li>
  * <li>{@link DoubleProperty}</li>
  * <li>{@link ObjectProperty}</li>
+ * <li>{@link StringProperty}</li>
  * <li>{@link ListProperty}</li>
  * <li>{@link SetProperty}</li>
  * <li>{@link MapProperty}</li>

@@ -7,15 +7,18 @@ Requires Java8 or later.
 ## Build new instance.
 
 ```java
-/* Object */
-ObjectProperty<String> objProp = ObjectProperty.newInstance(null);
-
 /* Primitive */
 IntegerProperty intProp    = IntegerProperty.newInstsance(0);
 LongProperty    longProp   = LongProperty.newInstance(0L);
 FloatProperty   floatProp  = FloatProperty.newInstance(0.0F);
 DoubleProperty  doubleProp = DoubleProperty.newInstance(0.0D);
 BooleanProperty boolProp   = BooleanProperty.newInstance(false);
+
+/* Object */
+ObjectProperty<String> objProp = ObjectProperty.newInstance(null);
+
+/* String */
+StringProperty strProp = StringProperty.newInstance("string");
 
 /* Collection */
 ListProperty<String> listProp = ListProperty.newInstance();
@@ -24,9 +27,10 @@ MapProperty<String, Integer> mapProp = MapProperty.newInstance();
 ```
 
 See also  
-["/examples/example/ObjectPropertyExample.java"](/examples/example/ObjectPropertyExample.java)  
 ["/examples/example/IntegerPropertyExample.java"](/examples/example/IntegerPropertyExample.java)  
 ["/examples/example/BooleanPropertyExample.java"](/examples/example/BooleanPropertyExample.java)  
+["/examples/example/ObjectPropertyExample.java"](/examples/example/ObjectPropertyExample.java)  
+["/examples/example/StringPropertyExample.java"](/examples/example/StringPropertyExample.java)  
 ["/examples/example/ListPropertyExample.java"](/examples/example/ListPropertyExample.java)  
 ["/examples/example/SetPropertyExample.java"](/examples/example/SetPropertyExample.java)  
 ["/examples/example/MapPropertyExample.java"](/examples/example/MapPropertyExample.java)  
@@ -34,16 +38,19 @@ See also
 ## Set value
 
 ```java
-/* Object */
-objProp.set("STRING");
-objProp.set(null);
-
 /* Primitive */
 intProp.set(10);
 longProp.set(20L);
 floatProp.set(30.0F);
 doubleProp.set(40.0D);
 boolProp.set(true);
+
+/* Object */
+objProp.set("STRING");
+objProp.set(null);
+
+/* String */
+strProp.set("STRING");
 
 /* Collection */
 /* ListProperty<E> implements 'java.util.List<E>' */
@@ -59,9 +66,6 @@ mapProp.put("KEY", Integer.valurOf(1));
 ## Get value
 
 ```java
-/* Object */
-String v = objProp.get();
-
 /* Primitive */
 int i     = intProp.intValue();
 long l    = longProp.longValue();
@@ -69,15 +73,21 @@ float f   = floatProp.floatValue();
 double d  = doubleProp.doubleValue();
 boolean b = boolProp.booleanValue();
 
+/* Object */
+String o = objProp.get();
+
+/* String */
+String s = strProp.toString();
+
 /* Collection */
 /* ListProperty<E> implements 'java.util.List<E>' */
-String v = listProp.get(0);
+String e = listProp.get(0);
 
 /* SetProperty<E> implements 'java.util.Set<E>' */
 int size = setProp.size();
 
 /* MapProperty<K, V> implements 'java.util.Map<K, V>' */
-Integer i = mapProp.get("STRING");
+Integer v = mapProp.get("STRING");
 ```
 
 ## Compution
@@ -196,6 +206,20 @@ BooleanCompution isNullCompution  = objProp.computeIsNull();
 BooleanCompution notNullCompution = objProp.computeIsNotNull();
 BooleanCompution equalCompution   = objProp.computeIsEqualTo("STRING");
 
+/* String */
+StringProperty a = StringProperty.newInstance("A");
+StringProperty b = StringProperty.newInstance("B");
+StringProperty c = StringProperty.newInstance("C");
+
+StringCompution joinCompution = StringCompution.join(",", a, b, c);
+
+StringCompution trimCompution        = a.computeTrim();
+StringCompution toLowerCaseCompution = a.computeToLowerCase();
+StringCompution toUpperCaseCompution = a.computeToUpperCase();
+BooleanCompution isEmptyCompution    = a.computeIsEmpty();
+BooleanCompution containsCompution   = a.computeContains("A");
+IntegerCompution lengthCompution     = a.computeLength();
+
 /* List */
 ListProperty<String> listProp = ListProperty.newInstance();
 
@@ -313,6 +337,24 @@ System.out.println("mapProp get(\"KEY\") is " + mapv);
   + `#waitUntilNotEqualTo`
   + `#waitUntilNull`
   + `#waitUntilNotNullAndGet`
+- String Property/Compution
+  + `#waitUntilIsEmpty`
+  + `#waitUntilIsNotEmptyAndGet`
+  + `#waitUntilContainsAndGet`
+  + `#waitUntilNotContainsAndGet`
+  + `#waitUntilStartsWithAndGet`
+  + `#waitUntilEndsWithAndGet`
+  + `#waitUntilMatchesAndGet`
+  + `#waitUntilContentEqualToAndGet`
+  + `#waitUntilNotContentEqualToAndGet`
+  + `#waitUntilEqualTo`
+  + `#waitUntilNotEqualTo`
+  + `#waitUntilLessThan` (compareTo <0)
+  + `#waitUntilLessThanOrEqualTo` (compareTo <=0)
+  + `#waitUntilGreaterThan` (compareTo >0)
+  + `#waitUntilGreaterThanOrEqualTo` (compareTo >=0)
+  + `#waitUntilEqualToIgnoreCase`
+  + `#waitUntilNotEqualToIgnoreCase`
 - List/Set Property/Compution
   + `#waitUntilIsEmpty`
   + `#waitUntilIsNotEmpty`

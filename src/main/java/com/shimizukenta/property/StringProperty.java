@@ -8,7 +8,17 @@ package com.shimizukenta.property;
  * <li>To set value, {@link #set(CharSequence)}.</li>
  * <li>To toString(), {@link #toString()}.</li>
  * <li>To detect value changed, {@link #addChangeListener(ChangeListener)}</li>
- * 
+ * <li>To compute,
+ * <ul>
+ * <li>{@link #computeIsEmpty()}.</li>
+ * </ul>
+ * </li>
+ * <li>To wait until condition is true,
+ * <ul>
+ * <li>{@link #waitUntilIsEmpty()}.</li>
+ * <li>{@link #waitUntilIsNotEmptyAndGet()}.</li>
+ * </ul>
+ * </li>
  * </ul>
  * 
  * @author kenta-shimizu

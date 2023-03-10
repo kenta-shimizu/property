@@ -48,6 +48,7 @@ public class StringPropertyExample implements Runnable {
 					System.out.println("sleep 2000 msec...");
 					Thread.sleep(2000L);
 					
+					System.out.println("set: \"3rd\"");
 					p.set("3rd");
 				}
 				catch ( InterruptedException ignore ) {
@@ -70,10 +71,9 @@ public class StringPropertyExample implements Runnable {
 				System.out.println("toUpperCase: \"" + v + "\"");
 			});
 			
+			System.out.println("set: \"4th\"");
 			p.set("4th");
-			
 			System.out.println();
-			System.out.println("reach end");
 			
 			StringProperty x = StringProperty.newInstance("AAA");
 			StringProperty y = StringProperty.newInstance("BBB");
@@ -81,13 +81,19 @@ public class StringPropertyExample implements Runnable {
 			
 			StringCompution join = StringCompution.join(",", x, y, z);
 			join.addChangeListener(v -> {
-				System.out.println("join: " + v);
+				System.out.println("join: \"" + v + "\"");
+				System.out.println();
 			});
 			
+			System.out.println("set: \"111\" to \"AAA\"");
 			x.set("111");
+			System.out.println("set: \"222\" to \"BBB\"");
 			y.set("222");
+			System.out.println("set: \"333\" to \"CCC\"");
 			z.set("333");
 			
+			System.out.println();
+			System.out.println("reach end");
 		}
 		catch ( InterruptedException ignore ) {
 		}

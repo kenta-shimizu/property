@@ -16,43 +16,43 @@ public interface TimeoutSettable extends Settable<TimeoutAndUnit> {
 	/**
 	 * Value setter.
 	 * 
-	 * @param value is TimeoutAndUnit
+	 * @param value the TimeoutAndUnit
 	 */
 	public void set(TimeoutAndUnit value);
 	
 	/**
 	 * Value setter.
 	 * 
-	 * @param seconds is int
+	 * @param seconds the int value
 	 */
 	public void set(int seconds);
 	
 	/**
 	 * Value setter.
 	 * 
-	 * @param seconds is long
+	 * @param seconds the long value
 	 */
 	public void set(long seconds);
 	
 	/**
 	 * Value setter.
 	 * 
-	 * @param seconds is float
+	 * @param seconds the float value
 	 */
 	public void set(float seconds);
 	
 	/**
 	 * Value setter.
 	 * 
-	 * @param seconds is double
+	 * @param seconds the double value
 	 */
 	public void set(double seconds);
 	
 	/**
 	 * Value setter.
 	 * 
-	 * @param timeout is long
-	 * @param unit is TimeUnit
+	 * @param timeout the long value
+	 * @param unit the TimeUnit
 	 */
 	public void set(long timeout, TimeUnit unit);
 	

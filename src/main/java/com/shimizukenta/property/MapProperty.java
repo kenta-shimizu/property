@@ -9,24 +9,24 @@ import java.util.Map;
  * Map value Property, includes Getter, Setter, Observer.
  * 
  * <ul>
- * <li>To build instance, {@link #newInstance()}.</li>
- * <li>To detect value changed, {@link #addChangeListener(ChangeListener)}.</li>
+ * <li>To build instance, {@link #newInstance()}</li>
+ * <li>To detect value changed, {@link #addChangeListener(ChangeListener)}</li>
  * <li>To compute,
  * <ul>
- * <li>{@link #computeIsEmpty()}.</li>
- * <li>{@link #computeIsNotEmpty()}.</li>
- * <li>{@link #computeContainsKey(Object)}.</li>
- * <li>{@link #computeNotContainsKey(Object)}.</li>
- * <li>{@link #computeKeySet()}.</li>
- * <li>{@link #computeSize()}.</li>
+ * <li>{@link #computeIsEmpty()}</li>
+ * <li>{@link #computeIsNotEmpty()}</li>
+ * <li>{@link #computeContainsKey(Object)}</li>
+ * <li>{@link #computeNotContainsKey(Object)}</li>
+ * <li>{@link #computeKeySet()}</li>
+ * <li>{@link #computeSize()}</li>
  * </ul>
  * </li>
  * <li>To wait until condition is true,
  * <ul>
- * <li>{@link #waitUntilIsEmpty()}.</li>
- * <li>{@link #waitUntilIsNotEmpty()}.</li>
- * <li>{@link #waitUntilContainsKeyAndGet(Object)}.</li>
- * <li>{@link #waitUntilNotContainsKey(Object)}.</li>
+ * <li>{@link #waitUntilIsEmpty()}</li>
+ * <li>{@link #waitUntilIsNotEmpty()}</li>
+ * <li>{@link #waitUntilContainsKeyAndGet(Object)}</li>
+ * <li>{@link #waitUntilNotContainsKey(Object)}</li>
  * </ul>
  * </li>
  * </ul>
@@ -58,7 +58,7 @@ public interface MapProperty<K, V> extends Map<K, V>, MapSettable<K, V>, MapObse
 	 * 
 	 * @param <K> Key Type
 	 * @param <V> Value Type
-	 * @param initial is {@code Map<K, V>}
+	 * @param initial the initial {@code Map<K, V>}
 	 * @return new-instance.
 	 */
 	public static <K, V> MapProperty<K, V> newInstance(Map<? extends K, ? extends V> initial) {

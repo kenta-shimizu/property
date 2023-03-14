@@ -4,10 +4,10 @@ package com.shimizukenta.property;
  * Boolean value Property, includes Getter, Setter, Observer.
  * 
  * <ul>
- * <li>To build instance, {@link #newInstance(boolean)}.</li>
- * <li>To get value, {@link #booleanValue()}.</li>
- * <li>To set value, {@link #set(boolean)}.</li>
- * <li>To detect value changed, {@link #addChangeListener(ChangeListener)}.</li>
+ * <li>To build instance, {@link #newInstance(boolean)}</li>
+ * <li>To get value, {@link #booleanValue()}</li>
+ * <li>To set value, {@link #set(boolean)}</li>
+ * <li>To detect value changed, {@link #addChangeListener(ChangeListener)}</li>
  * <li>To wait until condition is true,
  * <ul>
  * <li>{@link #waitUntil(boolean)}</li>
@@ -40,7 +40,7 @@ public interface BooleanProperty extends Property<Boolean>, BooleanGettable, Boo
 	/**
 	 * BooleanProperty builder.
 	 * 
-	 * @param initial is boolean
+	 * @param initial the boolean value
 	 * @return new-instance.
 	 */
 	public static BooleanProperty newInstance(boolean initial) {

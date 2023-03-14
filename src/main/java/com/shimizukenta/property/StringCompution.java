@@ -14,6 +14,28 @@ import java.util.StringJoiner;
  * </p>
  * <ul>
  * <li>To build joined StringCompution, {@link #join(CharSequence, StringObservable...)}.</li>
+ * <li>To toString(), {@link #toString()}</li>
+ * <li>To detect value changed, {@link #addChangeListener(ChangeListener)}</li>
+ * <li>To compute,
+ * <ul>
+ * <li>{@link #computeIsEmpty()}.</li>
+ * <li>{@link #computeIsNotEmpty()}</li>
+ * <li>{@link #computeContains(CharSequence)}</li>
+ * <li>{@link #computeTrim()}</li>
+ * <li>{@link #computeToUpperCase()}</li>
+ * <li>{@link #computeToLowerCase()}</li>
+ * <li>{@link #computeMatches(String)}</li>
+ * <li>{@link #computeLength()}</li>
+ * </ul>
+ * </li>
+ * <li>To wait until condition is true,
+ * <ul>
+ * <li>{@link #waitUntilIsEmpty()}</li>
+ * <li>{@link #waitUntilIsNotEmptyAndGet()}</li>
+ * <li>{@link #waitUntilEqualTo(StringObservable)}</li>
+ * <li>{@link #waitUntilEqualToIgnoreCase(StringObservable)}</li>
+ * </ul>
+ * </li>
  * </ul>
  * 
  * @author kenta-shimizu

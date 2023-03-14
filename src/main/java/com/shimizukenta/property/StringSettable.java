@@ -16,7 +16,7 @@ public interface StringSettable extends Settable<String> {
 	 * if set value is null, set empty string("").<br />
 	 * </p>
 	 * 
-	 * @param value CharSequence
+	 * @param value the CharSequence
 	 */
 	public void set(CharSequence value);
 }

@@ -14,7 +14,7 @@ public interface ObjectSettable<T> extends Settable<T> {
 	/**
 	 * Value setter.
 	 * 
-	 * @param value is {@code <T>}
+	 * @param value the {@code <T>} Object
 	 */
 	public void set(T value);
 	

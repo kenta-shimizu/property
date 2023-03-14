@@ -139,7 +139,7 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	 * If already Collection#isEmpty is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param p is TimeoutProperty
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 * @see Collection#isEmpty()
@@ -189,7 +189,7 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	 * If already Collection#isEmpty is false, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param p is TimeoutProperty
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 * @see Collection#isEmpty()
@@ -242,7 +242,7 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	 * </p>
 	 * 
 	 * @param o element whose presence in this collection is to be tested
-	 * @param p is TimeoutProperty
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 * @see Collection#contains(Object)
@@ -295,7 +295,7 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	 * </p>
 	 * 
 	 * @param o element whose presence in this collection is to be tested
-	 * @param p is TimeoutProperty
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 * @see Collection#contains(Object)
@@ -348,7 +348,7 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	 * </p>
 	 * 
 	 * @param c collection to be checked for containment in this collection
-	 * @param p is TimeoutProperty
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 * @see Collection#containsAll(Collection)
@@ -401,7 +401,7 @@ public interface CollectionObservable<E, T extends Collection<E>> extends Observ
 	 * </p>
 	 * 
 	 * @param c collection to be checked for containment in this collection
-	 * @param p is TimeoutProperty
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 * @see Collection#containsAll(Collection)

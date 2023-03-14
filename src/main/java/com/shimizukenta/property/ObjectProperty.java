@@ -4,23 +4,23 @@ package com.shimizukenta.property;
  * Object value Property, includes Getter, Setter, Observer.
  * 
  * <ul>
- * <li>To build instance, {@link #newInstance(Object)}.</li>
- * <li>To get value, {@link #get()}.</li>
- * <li>To get Optional, {@link #optional()}.</li>
- * <li>To set value, {@link #set(Object)}.</li>
- * <li>To detect value changed, {@link #addChangeListener(ChangeListener)}.</li>
+ * <li>To build instance, {@link #newInstance(Object)}</li>
+ * <li>To get value, {@link #get()}</li>
+ * <li>To get Optional, {@link #optional()}</li>
+ * <li>To set value, {@link #set(Object)}</li>
+ * <li>To detect value changed, {@link #addChangeListener(ChangeListener)}</li>
  * <li>To compute,
  * <ul>
- * <li>{@link #computeIsEqualTo(ObjectObservable)}.</li>
- * <li>{@link #computeIsNotEqualTo(ObjectObservable)}.</li>
+ * <li>{@link #computeIsEqualTo(ObjectObservable)}</li>
+ * <li>{@link #computeIsNotEqualTo(ObjectObservable)}</li>
  * </ul>
  * </li>
  * <li>To wait until condition is true,
  * <ul>
- * <li>{@link #waitUntilEqualTo(ObjectObservable)}.</li>
- * <li>{@link #waitUntilNotEqualTo(ObjectObservable)}.</li>
- * <li>{@link #waitUntilNotNullAndGet()}.</li>
- * <li>{@link #waitUntilNull()}.</li>
+ * <li>{@link #waitUntilEqualTo(ObjectObservable)}</li>
+ * <li>{@link #waitUntilNotEqualTo(ObjectObservable)}</li>
+ * <li>{@link #waitUntilNotNullAndGet()}</li>
+ * <li>{@link #waitUntilNull()}</li>
  * </ul>
  * </li>
  * </ul>
@@ -40,8 +40,8 @@ public interface ObjectProperty<T> extends Property<T>, ObjectGettable<T>, Objec
 	 * Instance builder.
 	 * 
 	 * @param <T> Type
-	 * @param initial is {@code <T>}
-	 * @return new-instance.
+	 * @param initial the {@code <T>} value
+	 * @return new-instance
 	 */
 	public static <T> ObjectProperty<T> newInstance(T initial) {
 		return new AbstractObjectProperty<T>(initial) {

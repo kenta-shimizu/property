@@ -131,7 +131,7 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * </p>
 	 * 
 	 * @param key key whose presence in this map is to be tested
-	 * @param p is TimeoutProperty
+	 * @param p the TimeoutProperty
 	 * @return Map#get(Object)
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
@@ -185,7 +185,7 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * </p>
 	 * 
 	 * @param key key whose presence in this map is to be tested
-	 * @param p is TimeoutProperty
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 * @see Map#containsKey(Object)
@@ -235,7 +235,7 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * If already empty, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param p is TimeoutProperty
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 * @see Map#isEmpty()
@@ -285,7 +285,7 @@ public interface MapObservable<K, V> extends Observable<Map<K, V>> {
 	 * If already <strong>NOT</strong> empty, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param p is TimeoutProperty
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 * @see Map#isEmpty()

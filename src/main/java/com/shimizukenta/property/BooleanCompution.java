@@ -10,8 +10,8 @@ package com.shimizukenta.property;
  * This instance is built from other Property or Compution.<br />
  * </p>
  * <ul>
- * <li>To get value, {@link #booleanValue()}.</li>
- * <li>To detect value changed, {@link #addChangeListener(ChangeListener)}.</li>
+ * <li>To get value, {@link #booleanValue()}</li>
+ * <li>To detect value changed, {@link #addChangeListener(ChangeListener)}</li>
  * <li>To wait until condition is true,
  * <ul>
  * <li>{@link #waitUntil(boolean)}</li>

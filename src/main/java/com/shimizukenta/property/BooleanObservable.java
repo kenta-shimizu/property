@@ -17,7 +17,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	/**
 	 * Returns {@code (this && observer)} LogicalCompution instance.
 	 * 
-	 * @param observer is BooleanObserver
+	 * @param observer the BooleanObserver
 	 * @return {@code (this && observer)} LogicalCompution instance
 	 * @see #and(boolean)
 	 * @see LogicalCompution#and(BooleanObservable...)
@@ -29,7 +29,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	/**
 	 * Returns {@code (this || observer)} LogicalCompution instance.
 	 * 
-	 * @param observer is BooleanObserver
+	 * @param observer the BooleanObserver
 	 * @return {@code (this || observer)} LogicalCompution instance
 	 * @see LogicalCompution#or(BooleanObservable...)
 	 */
@@ -50,7 +50,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	/**
 	 * Returns {@code (this ^ observer)} LogicalCompution instance.
 	 * 
-	 * @param observer is BooleanObserver
+	 * @param observer the BooleanObserver
 	 * @return {@code (this ^ observer)} LogicalCompution instance
 	 * @see #xor(boolean)
 	 * @see LogicalCompution#xor(BooleanObservable, BooleanObservable)
@@ -62,7 +62,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	/**
 	 * Returns {@code (! (this && observer))} LogicalCompution instance.
 	 * 
-	 * @param observer is BooleanObserver
+	 * @param observer the BooleanObserver
 	 * @return (! {@code (this && observer))} LogicalCompution instance
 	 * @see LogicalCompution#nand(BooleanObservable...)
 	 * 
@@ -74,7 +74,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	/**
 	 * Returns {@code (! (this || observer))}aaa LogicalCompution instance.
 	 * 
-	 * @param observer is BooleanObserver
+	 * @param observer the BooleanObserver
 	 * @return (! {@code (this || observer))} LogicalCompution instance.
 	 * @see #nor(boolean)
 	 * @see LogicalCompution#nor(BooleanObservable...)
@@ -86,7 +86,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	/**
 	 * Returns {@code (this && f)} LogicalCompution instance.
 	 * 
-	 * @param f is boolean
+	 * @param f the boolean
 	 * @return {@code (this && f)} LogicalCompution instance
 	 * @see #and(BooleanObservable)
 	 * @see #and(BooleanObservable)
@@ -99,7 +99,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	/**
 	 * Returns {@code (this || f)} LogicalCompution instance.
 	 * 
-	 * @param f is boolean
+	 * @param f the boolean
 	 * @return {@code (this || f)} LogicalCompution instance
 	 * @see #or(BooleanObservable)
 	 * @see LogicalCompution#or(BooleanObservable...)
@@ -111,7 +111,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	/**
 	 * Returns {@code (this ^ f)} LogicalCompution instance.
 	 * 
-	 * @param f is boolean
+	 * @param f the boolean value
 	 * @return {@code (this ^ f)} LogicalCompution instance
 	 * @see #xor(BooleanObservable)
 	 * @see LogicalCompution#xor(BooleanObservable, BooleanObservable)
@@ -123,7 +123,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	/**
 	 * Returns {@code (! (this && f))} LogicalCompution instance.
 	 * 
-	 * @param f is boolean
+	 * @param f the boolean value
 	 * @return {@code (! (this && f))} LogicalCompution instance
 	 * @see #nand(BooleanObservable)
 	 * @see LogicalCompution#nand(BooleanObservable...)
@@ -135,7 +135,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	/**
 	 * Returns {@code (! (this || f))} LogicalCompution instance.
 	 * 
-	 * @param f is boolean
+	 * @param f the boolean value
 	 * @return {@code (! (this || f))} LogicalCompution instance.
 	 * @see #nor(BooleanObservable)
 	 * @see LogicalCompution#nor(BooleanObservable...)
@@ -152,7 +152,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param condition is boolean.
+	 * @param condition the boolean value
 	 * @throws InterruptedException if interrupted while waiting
 	 * @see #waitUntil(boolean, long, TimeUnit)
 	 */
@@ -167,7 +167,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * </p>
 	 * 
 	 * 
-	 * @param condition is boolean.
+	 * @param condition the boolean value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -184,8 +184,8 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param condition is boolean.
-	 * @param p is TimeoutProperty
+	 * @param condition the boolean value
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 * @see #waitUntil(boolean, long, TimeUnit)
@@ -238,7 +238,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * If already this.value is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param p is TimeoutProperty
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 * @see #waitUntil(boolean, TimeoutGettable)
@@ -291,7 +291,7 @@ public interface BooleanObservable extends Observable<Boolean> {
 	 * If already this.value is false, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param p is TimeoutProperty
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 * @see #waitUntil(boolean, TimeoutGettable)

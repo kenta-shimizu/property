@@ -12,25 +12,25 @@ import java.util.concurrent.TimeUnit;
  * <ul>
  * <li>To build instance,
  * <ul>
- * <li>{@link #newInstance(long, TimeUnit)}.</li>
- * <li>{@link #newInstance(float)}.</li>
+ * <li>{@link #newInstance(long, TimeUnit)}</li>
+ * <li>{@link #newInstance(float)}</li>
  * </ul>
  * </li>
  * <li>To set value,
  * <ul>
- * <li>{@link #set(long, TimeUnit)}.</li>
- * <li>{@link #set(float)}.</li>
+ * <li>{@link #set(long, TimeUnit)}</li>
+ * <li>{@link #set(float)}</li>
  * </ul>
  * </li>
- * <li>To detect value changed, {@link #addChangeListener(ChangeListener)}.</li>
+ * <li>To detect value changed, {@link #addChangeListener(ChangeListener)}</li>
  * <li>Utility methods,
  * <ul>
- * <li>{@link #sleep()}.</li>
- * <li>{@link #wait(Object)}.</li>
- * <li>{@link #blockingQueuePoll(java.util.concurrent.BlockingQueue)}.</li>
- * <li>{@link #futureGet(java.util.concurrent.Future)}.</li>
- * <li>{@link #invokeAll(java.util.concurrent.ExecutorService, java.util.Collection)}.</li>
- * <li>{@link #invokeAny(java.util.concurrent.ExecutorService, java.util.Collection)}.</li>
+ * <li>{@link #sleep()}</li>
+ * <li>{@link #wait(Object)}</li>
+ * <li>{@link #blockingQueuePoll(java.util.concurrent.BlockingQueue)}</li>
+ * <li>{@link #futureGet(java.util.concurrent.Future)}</li>
+ * <li>{@link #invokeAll(java.util.concurrent.ExecutorService, java.util.Collection)}</li>
+ * <li>{@link #invokeAny(java.util.concurrent.ExecutorService, java.util.Collection)}</li>
  * </ul>
  * </li>
  * </ul>
@@ -49,7 +49,7 @@ public interface TimeoutProperty extends Property<TimeoutAndUnit>, TimeoutGettab
 	/**
 	 * TimeouyProperty builder.
 	 * 
-	 * @param seconds is int
+	 * @param seconds the int value
 	 * @return new-instance
 	 */
 	public static TimeoutProperty newInstance(int seconds) {
@@ -59,7 +59,7 @@ public interface TimeoutProperty extends Property<TimeoutAndUnit>, TimeoutGettab
 	/**
 	 * TimeoutProperty builder.
 	 * 
-	 * @param seconds is long
+	 * @param seconds the long value
 	 * @return new-instance
 	 */
 	public static TimeoutProperty newInstance(long seconds) {
@@ -69,7 +69,7 @@ public interface TimeoutProperty extends Property<TimeoutAndUnit>, TimeoutGettab
 	/**
 	 * TimeoutProperty builder.
 	 * 
-	 * @param seconds is float
+	 * @param seconds the float value
 	 * @return new-instance
 	 */
 	public static TimeoutProperty newInstance(float seconds) {
@@ -79,7 +79,7 @@ public interface TimeoutProperty extends Property<TimeoutAndUnit>, TimeoutGettab
 	/**
 	 * TimeoutProperty builder.
 	 * 
-	 * @param seconds is double
+	 * @param seconds the double value
 	 * @return new-instance
 	 */
 	public static TimeoutProperty newInstance(double seconds) {
@@ -89,8 +89,8 @@ public interface TimeoutProperty extends Property<TimeoutAndUnit>, TimeoutGettab
 	/**
 	 * TimeoutProperty builder.
 	 * 
-	 * @param timeout is long
-	 * @param unit is TimeUnit
+	 * @param timeout the long value
+	 * @param unit the TimeUnit
 	 * @return new-instance
 	 */
 	public static TimeoutProperty newInstance(long timeout, TimeUnit unit) {
@@ -100,7 +100,7 @@ public interface TimeoutProperty extends Property<TimeoutAndUnit>, TimeoutGettab
 	/**
 	 * TimeoutProperty builder.
 	 * 
-	 * @param value is TimeoutAndUnit
+	 * @param value the TimeoutAndUnit
 	 * @return new-instance
 	 */
 	public static TimeoutProperty newInstance(TimeoutAndUnit value) {

@@ -37,9 +37,9 @@ public interface TimeoutAndUnit {
 	/**
 	 * Instance builder.
 	 * 
-	 * @param timeout is long
-	 * @param unit is TimeUnit
-	 * @return new-instance.
+	 * @param timeout the long value
+	 * @param unit the TimeUnit
+	 * @return new-instance
 	 */
 	public static TimeoutAndUnit of(long timeout, TimeUnit unit) {
 		return new AbstractTimeoutAndUnit(timeout, unit) {
@@ -51,8 +51,8 @@ public interface TimeoutAndUnit {
 	/**
 	 * Instance builder.
 	 * 
-	 * @param seconds is int
-	 * @return new-instance.
+	 * @param seconds the int value
+	 * @return new-instance
 	 */
 	public static TimeoutAndUnit of(int seconds) {
 		return of((long)seconds, TimeUnit.SECONDS);
@@ -61,8 +61,8 @@ public interface TimeoutAndUnit {
 	/**
 	 * Instance builder.
 	 * 
-	 * @param seconds is long
-	 * @return new-instance.
+	 * @param seconds the long value
+	 * @return new-instance
 	 */
 	public static TimeoutAndUnit of(long seconds) {
 		return of(seconds, TimeUnit.SECONDS);
@@ -71,8 +71,8 @@ public interface TimeoutAndUnit {
 	/**
 	 * Instance builder.
 	 * 
-	 * @param seconds is float
-	 * @return new-instance.
+	 * @param seconds the float value
+	 * @return new-instance
 	 */
 	public static TimeoutAndUnit of(float seconds) {
 		return of((long)(seconds * 1000.0F), TimeUnit.MILLISECONDS);
@@ -81,8 +81,8 @@ public interface TimeoutAndUnit {
 	/**
 	 * Instance builder.
 	 * 
-	 * @param seconds is double
-	 * @return new-instance.
+	 * @param seconds the double value
+	 * @return new-instance
 	 */
 	public static TimeoutAndUnit of(double seconds) {
 		return of((long)(seconds * 1000000.0D), TimeUnit.MICROSECONDS);

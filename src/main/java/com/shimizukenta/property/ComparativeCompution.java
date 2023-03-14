@@ -9,24 +9,24 @@ package com.shimizukenta.property;
  * <ul>
  * <li>To build ComparativeCompution instance,
  * <ul>
- * <li>{@link #isEqualTo(NumberObservable, NumberObservable)}.</li>
- * <li>{@link #isNotEqualTo(NumberObservable, NumberObservable)}.</li>
- * <li>{@link #isLessThan(NumberObservable, NumberObservable)}.</li>
- * <li>{@link #isLessThanOrEqualTo(NumberObservable, NumberObservable)}.</li>
- * <li>{@link #isGreaterThan(NumberObservable, NumberObservable)}.</li>
- * <li>{@link #isGreaterThanOrEqualTo(NumberObservable, NumberObservable)}.</li>
- * <li>{@link #isEqualTo(ObjectObservable, ObjectObservable)}.</li>
- * <li>{@link #isNotEqualTo(ObjectObservable, ObjectObservable)}.</li>
- * <li>{@link #isEqualTo(StringObservable, StringObservable)}.</li>
- * <li>{@link #isNotEqualTo(StringObservable, StringObservable)}.</li>
- * <li>{@link #isLessThan(StringObservable, StringObservable)}.</li>
- * <li>{@link #isLessThanOrEqualTo(StringObservable, StringObservable)}.</li>
- * <li>{@link #isGreaterThan(StringObservable, StringObservable)}.</li>
- * <li>{@link #isGreaterThanOrEqualTo(StringObservable, StringObservable)}.</li>
+ * <li>{@link #isEqualTo(NumberObservable, NumberObservable)}</li>
+ * <li>{@link #isNotEqualTo(NumberObservable, NumberObservable)}</li>
+ * <li>{@link #isLessThan(NumberObservable, NumberObservable)}</li>
+ * <li>{@link #isLessThanOrEqualTo(NumberObservable, NumberObservable)}</li>
+ * <li>{@link #isGreaterThan(NumberObservable, NumberObservable)}</li>
+ * <li>{@link #isGreaterThanOrEqualTo(NumberObservable, NumberObservable)}</li>
+ * <li>{@link #isEqualTo(ObjectObservable, ObjectObservable)}</li>
+ * <li>{@link #isNotEqualTo(ObjectObservable, ObjectObservable)}</li>
+ * <li>{@link #isEqualTo(StringObservable, StringObservable)}</li>
+ * <li>{@link #isNotEqualTo(StringObservable, StringObservable)}</li>
+ * <li>{@link #isLessThan(StringObservable, StringObservable)}</li>
+ * <li>{@link #isLessThanOrEqualTo(StringObservable, StringObservable)}</li>
+ * <li>{@link #isGreaterThan(StringObservable, StringObservable)}</li>
+ * <li>{@link #isGreaterThanOrEqualTo(StringObservable, StringObservable)}</li>
  * </ul>
  * </li>
- * <li>To get value, {@link #booleanValue()}.</li>
- * <li>To detect value changed, {@link #addChangeListener(ChangeListener)}.</li>
+ * <li>To get value, {@link #booleanValue()}</li>
+ * <li>To detect value changed, {@link #addChangeListener(ChangeListener)}</li>
  * <li>To wait until condition is true,
  * <ul>
  * <li>{@link #waitUntil(boolean)}</li>
@@ -55,8 +55,8 @@ public interface ComparativeCompution extends BooleanCompution {
 	/**
 	 * Returns {@code (left == right)} ComparativeCompution instance.
 	 * 
-	 * @param left observer
-	 * @param right observer
+	 * @param left the left observer
+	 * @param right the right observer
 	 * @return {@code (left == right)} ComparativeCompution instance.
 	 */
 	public static ComparativeCompution isEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
@@ -66,8 +66,8 @@ public interface ComparativeCompution extends BooleanCompution {
 	/**
 	 * Returns {@code (left != right)} ComparativeCompution instance.
 	 * 
-	 * @param left observer
-	 * @param right observer
+	 * @param left the left observer
+	 * @param right the right observer
 	 * @return {@code (left != right)} ComparativeCompution instance.
 	 */
 	public static ComparativeCompution isNotEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
@@ -77,8 +77,8 @@ public interface ComparativeCompution extends BooleanCompution {
 	/**
 	 * Returns {@code (left < right)} ComparativeCompution instance.
 	 * 
-	 * @param left observer
-	 * @param right observer
+	 * @param left the left observer
+	 * @param right the right observer
 	 * @return {@code (left < right)} ComparativeCompution instance.
 	 */
 	public static ComparativeCompution isLessThan(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
@@ -88,8 +88,8 @@ public interface ComparativeCompution extends BooleanCompution {
 	/**
 	 * Returns {@code (left <= right)} ComparativeCompution instance.
 	 * 
-	 * @param left observer
-	 * @param right observer
+	 * @param left the left observer
+	 * @param right the right observer
 	 * @return {@code (left <= right)} ComparativeCompution instance.
 	 */
 	public static ComparativeCompution isLessThanOrEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
@@ -99,8 +99,8 @@ public interface ComparativeCompution extends BooleanCompution {
 	/**
 	 * Returns {@code (left > right)} ComparativeCompution instance.
 	 * 
-	 * @param left observer
-	 * @param right observer
+	 * @param left the left observer
+	 * @param right the right observer
 	 * @return {@code (left > right)} ComparativeCompution instance.
 	 */
 	public static ComparativeCompution isGreaterThan(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
@@ -110,8 +110,8 @@ public interface ComparativeCompution extends BooleanCompution {
 	/**
 	 * Returns {@code (left >= right)} ComparativeCompution instance.
 	 * 
-	 * @param left observer
-	 * @param right observer
+	 * @param left the left observer
+	 * @param right the right observer
 	 * @return {@code (left >= right)} ComparativeCompution instance.
 	 */
 	public static ComparativeCompution isGreaterThanOrEqualTo(NumberObservable<? extends Number> left, NumberObservable<? extends Number> right) {
@@ -123,8 +123,8 @@ public interface ComparativeCompution extends BooleanCompution {
 	 * 
 	 * @param <T> Type
 	 * @param <U> Type
-	 * @param a observer
-	 * @param b observer
+	 * @param a the observer of a
+	 * @param b the observer of b
 	 * @return Object EqualTo ComparativeCompution
 	 */
 	public static <T, U> ComparativeCompution isEqualTo(ObjectObservable<T> a, ObjectObservable<U> b) {
@@ -136,8 +136,8 @@ public interface ComparativeCompution extends BooleanCompution {
 	 * 
 	 * @param <T> Type
 	 * @param <U> Type
-	 * @param a observer
-	 * @param b observer
+	 * @param a the observer of a
+	 * @param b the observer of b
 	 * @return Object NotEqualTo ComparativeCompution
 	 */
 	public static <T, U> ComparativeCompution isNotEqualTo(ObjectObservable<T> a, ObjectObservable<U> b) {
@@ -147,8 +147,8 @@ public interface ComparativeCompution extends BooleanCompution {
 	/**
 	 * Returns equal String ComparativeCompution instance.
 	 * 
-	 * @param a observer
-	 * @param b observer
+	 * @param a the observer of a
+	 * @param b the observer of b
 	 * @return equal String ComparativeCompution instance
 	 */
 	public static ComparativeCompution isEqualTo(StringObservable a, StringObservable b) {
@@ -158,8 +158,8 @@ public interface ComparativeCompution extends BooleanCompution {
 	/**
 	 * Returns NOT equal String ComparativeCompution instance.
 	 * 
-	 * @param a observer
-	 * @param b observer
+	 * @param a the observer of a
+	 * @param b the observer of b
 	 * @return NOT equal String ComparativeCompution instance
 	 */
 	public static ComparativeCompution isNotEqualTo(StringObservable a, StringObservable b) {
@@ -169,8 +169,8 @@ public interface ComparativeCompution extends BooleanCompution {
 	/**
 	 * Returns {@code (left < right)} ComparativeCompution instance.
 	 * 
-	 * @param left observer
-	 * @param right observer
+	 * @param left the left observer
+	 * @param right the right observer
 	 * @return {@code (left < right)} ComparativeCompution instance
 	 */
 	public static ComparativeCompution isLessThan(StringObservable left, StringObservable right) {
@@ -180,8 +180,8 @@ public interface ComparativeCompution extends BooleanCompution {
 	/**
 	 * Returns {@code (left <= right)} ComparativeCompution instance.
 	 * 
-	 * @param left observer
-	 * @param right observer
+	 * @param left the left observer
+	 * @param right the right observer
 	 * @return {@code (left <= right)} ComparativeCompution instance
 	 */
 	public static ComparativeCompution isLessThanOrEqualTo(StringObservable left, StringObservable right) {
@@ -190,8 +190,8 @@ public interface ComparativeCompution extends BooleanCompution {
 	
 	/**
 	 * Returns {@code (left > right)} ComparativeCompution instance.
-	 * @param left observer
-	 * @param right observer
+	 * @param left the left observer
+	 * @param right the right observer
 	 * @return {@code (left > right)} ComparativeCompution instance
 	 */
 	public static ComparativeCompution isGreaterThan(StringObservable left, StringObservable right) {
@@ -200,8 +200,8 @@ public interface ComparativeCompution extends BooleanCompution {
 	
 	/**
 	 * Returns {@code (left >= right)} ComparativeCompution instance.
-	 * @param left observer
-	 * @param right observer
+	 * @param left the left observer
+	 * @param right the right observer
 	 * @return {@code (left >= right)} ComparativeCompution instance
 	 */
 	public static ComparativeCompution isGreaterThanOrEqualTo(StringObservable left, StringObservable right) {
@@ -210,8 +210,8 @@ public interface ComparativeCompution extends BooleanCompution {
 	
 	/**
 	 * Returns {@code a.equalsIgnoreCase(b)} Comparative Compution instance.
-	 * @param a observer
-	 * @param b observer
+	 * @param a the observer of a
+	 * @param b the observer of b
 	 * @return {@code a.equalsIgnoreCase(b)} Comparative Compution instance
 	 */
 	public static ComparativeCompution isEqualToIgnoreCase(StringObservable a, StringObservable b) {
@@ -220,8 +220,8 @@ public interface ComparativeCompution extends BooleanCompution {
 	
 	/**
 	 * Returns {@code (! a.equalsIgnoreCase(b))} Comparative Compution instance.
-	 * @param a observer
-	 * @param b observer
+	 * @param a the observer of a
+	 * @param b the observer of b
 	 * @return {@code (! a.equalsIgnoreCase(b))} Comparative Compution instance
 	 */
 	public static ComparativeCompution isNotEqualToIgnoreCase(StringObservable a, StringObservable b) {

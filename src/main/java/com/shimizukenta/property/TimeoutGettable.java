@@ -43,7 +43,7 @@ public interface TimeoutGettable extends Gettable<TimeoutAndUnit> {
 	/**
 	 * Returns TimeUnit.
 	 * 
-	 * @return TImeUnit
+	 * @return TimeUnit
 	 * @see TimeoutAndUnit#unit()
 	 */
 	default public TimeUnit getTimeUnit() {
@@ -64,7 +64,7 @@ public interface TimeoutGettable extends Gettable<TimeoutAndUnit> {
 	/**
 	 * This calls TimeUnit#timedJoin(Thread, long).
 	 * 
-	 * @param thread is Thread
+	 * @param thread the Thread
 	 * @throws InterruptedException if interrupted while waiting
 	 * @see TimeUnit#timedJoin(Thread, long)
 	 */
@@ -89,7 +89,7 @@ public interface TimeoutGettable extends Gettable<TimeoutAndUnit> {
 	 * This calls BlockingQueue#poll(long, TimeUnit).
 	 * 
 	 * @param <T> Type
-	 * @param queue is BlockingQueue
+	 * @param queue the BlockingQueue
 	 * @return poll-value
 	 * @throws InterruptedException if interrupted while waiting
 	 * @see BlockingQueue#poll(long, TimeUnit)
@@ -102,7 +102,7 @@ public interface TimeoutGettable extends Gettable<TimeoutAndUnit> {
 	/**
 	 * This calls Lock#tryLock(long, TimeUnit).
 	 * 
-	 * @param lock is Lock
+	 * @param lock the Lock
 	 * @return true if the lock was acquired and false if the waiting time elapsed before the lock was acquired
 	 * @throws InterruptedException  if the current thread is interrupted while acquiring the lock (and interruption of lock acquisition is supported)
 	 * @see Lock#tryLock(long, TimeUnit)
@@ -115,7 +115,7 @@ public interface TimeoutGettable extends Gettable<TimeoutAndUnit> {
 	/**
 	 * This calls Condition#await(long, TimeUnit).
 	 * 
-	 * @param condition is Condition
+	 * @param condition the Condition
 	 * @return false if the waiting time detectably elapsed before return from the method, else true
 	 * @throws InterruptedException if the current thread is interrupted (and interruption of thread suspension is supported)
 	 * @see Condition#await(long, TimeUnit)
@@ -129,7 +129,7 @@ public interface TimeoutGettable extends Gettable<TimeoutAndUnit> {
 	 * This calls Future#get(long, TimeUnit).
 	 * 
 	 * @param <T> Type
-	 * @param future is Future
+	 * @param future the Future
 	 * @return future-result
 	 * @throws InterruptedException if the current thread was interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
@@ -145,7 +145,7 @@ public interface TimeoutGettable extends Gettable<TimeoutAndUnit> {
 	 * This calls ExecutorService#invokeAll(Collection, long, TimeUnit).
 	 * 
 	 * @param <T> Type
-	 * @param executorService is ExecutorService
+	 * @param executorService the ExecutorService
 	 * @param tasks collection of tasks
 	 * @return Future result list
 	 * @throws InterruptedException if the current thread was interrupted while waiting
@@ -163,7 +163,7 @@ public interface TimeoutGettable extends Gettable<TimeoutAndUnit> {
 	 * This calls ExecutorService#invokeAny(Collection, long, TimeUnit).
 	 * 
 	 * @param <T> Type
-	 * @param executorService is ExecutorService
+	 * @param executorService the ExecutorService
 	 * @param tasks  the collection of tasks
 	 * @return Callable result
 	 * @throws InterruptedException if the current thread was interrupted while waiting
@@ -182,7 +182,7 @@ public interface TimeoutGettable extends Gettable<TimeoutAndUnit> {
 	/**
 	 * This calls ExecutorService#awaitTermination(long, TimeUnit).
 	 * 
-	 * @param executorService is ExecutorService
+	 * @param executorService the ExecutorService
 	 * @return true if this executor terminated and false if the timeout elapsed before termination
 	 * @throws InterruptedException if interrupted while waiting
 	 * @see ExecutorService#awaitTermination(long, TimeUnit)

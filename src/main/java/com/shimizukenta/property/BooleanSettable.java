@@ -13,7 +13,7 @@ public interface BooleanSettable extends Settable<Boolean> {
 	/**
 	 * Value setter.
 	 * 
-	 * @param value is boolean
+	 * @param value the boolean value
 	 * 
 	 * @see #setTrue()
 	 * @see #setFalse()

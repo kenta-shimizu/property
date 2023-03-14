@@ -9,27 +9,27 @@ import java.util.Set;
  * Set value Property, include Set-methods, Setter, Observer.
  * 
  * <ul>
- * <li>To build instance, {@link #newInstance()}.</li>
- * <li>To detect value changed, {@link #addChangeListener(ChangeListener)}.</li>
+ * <li>To build instance, {@link #newInstance()}</li>
+ * <li>To detect value changed, {@link #addChangeListener(ChangeListener)}</li>
  * <li>To compute,
  * <ul>
- * <li>{@link #computeIsEmpty()}.</li>
- * <li>{@link #computeIsNotEmpty()}.</li>
- * <li>{@link #computeContains(Object)}.</li>
- * <li>{@link #computeNotContains(Object)}.</li>
- * <li>{@link #computeContainsAll(Collection)}.</li>
- * <li>{@link #computeNotContainsAll(Collection)}.</li>
- * <li>{@link #computeSize()}.</li>
+ * <li>{@link #computeIsEmpty()}</li>
+ * <li>{@link #computeIsNotEmpty()}</li>
+ * <li>{@link #computeContains(Object)}</li>
+ * <li>{@link #computeNotContains(Object)}</li>
+ * <li>{@link #computeContainsAll(Collection)}</li>
+ * <li>{@link #computeNotContainsAll(Collection)}</li>
+ * <li>{@link #computeSize()}</li>
  * </ul>
  * </li>
  * <li>To wait until condition is true,
  * <ul>
- * <li>{@link #waitUntilIsEmpty()}.</li>
- * <li>{@link #waitUntilIsNotEmpty()}.</li>
- * <li>{@link #waitUntilContains(Object)}.</li>
- * <li>{@link #waitUntilNotContains(Object)}.</li>
- * <li>{@link #waitUntilContainsAll(Collection)}.</li>
- * <li>{@link #waitUntilNotContainsAll(Collection)}.</li>
+ * <li>{@link #waitUntilIsEmpty()}</li>
+ * <li>{@link #waitUntilIsNotEmpty()}</li>
+ * <li>{@link #waitUntilContains(Object)}</li>
+ * <li>{@link #waitUntilNotContains(Object)}</li>
+ * <li>{@link #waitUntilContainsAll(Collection)}</li>
+ * <li>{@link #waitUntilNotContainsAll(Collection)}</li>
  * </ul>
  * </li>
  * </ul>
@@ -49,7 +49,7 @@ public interface SetProperty<E> extends Set<E>, CollectionProperty<E, Set<E>>, S
 	 * Instance builder.
 	 * 
 	 * @param <E> Element
-	 * @return new-instance.
+	 * @return new-instance
 	 */
 	public static <E> SetProperty<E> newInstance() {
 		return newInstance(Collections.emptySet());
@@ -59,8 +59,8 @@ public interface SetProperty<E> extends Set<E>, CollectionProperty<E, Set<E>>, S
 	 * Instance builder.
 	 * 
 	 * @param <E> Element
-	 * @param initial is {@code Collection<? extends E>}
-	 * @return new-instance.
+	 * @param initial the {@code Collection<? extends E>} value
+	 * @return new-instance
 	 */
 	public static <E> SetProperty<E> newInstance(Collection<? extends E> initial) {
 		return new AbstractSetProperty<E>(new HashSet<>(initial)) {

@@ -100,7 +100,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns NumberCompution of {@code this.value + observable.value}.
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @return NumberCompution of {@code this.value + observable.value}.
 	 * @see NumberCompution#sum(NumberObservable, NumberObservable)
 	 */
@@ -111,7 +111,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * NumberCompution of {@code this.value * observable.value}.
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @return NumberCompution of {@code this.value * observable.value}.
 	 * @see NumberCompution#multiply(NumberObservable, NumberObservable)
 	 */
@@ -122,7 +122,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns NumberCompution of {@code this.value - observable.value}.
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @return NumberCompution of {@code this.value - observable.value}.
 	 * @see NumberCompution#subtract(NumberObservable, NumberObservable)
 	 */
@@ -146,7 +146,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns NumberCompution of {@code this.value + value}.
 	 * 
-	 * @param value is int
+	 * @param value the int value
 	 * @return NumberCompution of {@code this.value + value}.
 	 */
 	default public NumberCompution add(int value) {
@@ -156,7 +156,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns NumberCompution of {@code this.value + value}.
 	 * 
-	 * @param value is long
+	 * @param value the long value
 	 * @return NumberCompution of {@code this.value + value}.
 	 */
 	default public NumberCompution add(long value) {
@@ -166,7 +166,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns NumberCompution of {@code this.value + value}.
 	 * 
-	 * @param value is float
+	 * @param value the float value
 	 * @return NumberCompution of {@code this.value + value}.
 	 */
 	default public NumberCompution add(float value) {
@@ -176,7 +176,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns NumberCompution of {@code this.value + value}.
 	 * 
-	 * @param value is double
+	 * @param value the double value
 	 * @return NumberCompution of {@code this.value + value}.
 	 */
 	default public NumberCompution add(double value) {
@@ -186,7 +186,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns NumberCompution of {@code this.value * value}.
 	 * 
-	 * @param value is int
+	 * @param value the int value
 	 * @return NumberCompution of {@code this.value * value}.
 	 */
 	default public NumberCompution multiply(int value) {
@@ -196,7 +196,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns NumberCompution of {@code this.value * value}.
 	 * 
-	 * @param value is long
+	 * @param value the long value
 	 * @return NumberCompution of {@code this.value * value}.
 	 */
 	default public NumberCompution multiply(long value) {
@@ -206,7 +206,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns NumberCompution of {@code this.value * value}.
 	 * 
-	 * @param value is float
+	 * @param value the float value
 	 * @return NumberCompution of {@code this.value * value}.
 	 */
 	default public NumberCompution multiply(float value) {
@@ -216,7 +216,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns NumberCompution of {@code this.value * value}.
 	 * 
-	 * @param value is double
+	 * @param value the double value
 	 * @return NumberCompution of {@code this.value * value}.
 	 */
 	default public NumberCompution multiply(double value) {
@@ -226,7 +226,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns NumberCompution of {@code this.value - value}.
 	 * 
-	 * @param value is int
+	 * @param value the int value
 	 * @return NumberCompution of {@code this.value - value}.
 	 */
 	default public NumberCompution subtract(int value) {
@@ -236,7 +236,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns NumberCompution of {@code this.value - value}.
 	 * 
-	 * @param value is long
+	 * @param value the long value
 	 * @return NumberCompution of {@code this.value - value}.
 	 */
 	default public NumberCompution subtract(long value) {
@@ -246,7 +246,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns NumberCompution of {@code this.value - value}.
 	 * 
-	 * @param value is float
+	 * @param value the float value
 	 * @return NumberCompution of {@code this.value - value}.
 	 */
 	default public NumberCompution subtract(float value) {
@@ -256,7 +256,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns NumberCompution of {@code this.value - value}.
 	 * 
-	 * @param value is double
+	 * @param value the double value
 	 * @return NumberCompution of {@code this.value - value}.
 	 */
 	default public NumberCompution subtract(double value) {
@@ -269,7 +269,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value == observable.value}.
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @return ComparativeCompution of {@code this.value == observable.value}.
 	 */
 	default ComparativeCompution computeIsEqualTo(NumberObservable<? extends Number> observer) {
@@ -279,7 +279,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value != observable.value}.
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @return ComparativeCompution of {@code this.value != observable.value}.
 	 */
 	default ComparativeCompution computeIsNotEqualTo(NumberObservable<? extends Number> observer) {
@@ -289,7 +289,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value < observable.value}.
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @return ComparativeCompution of {@code this.value < observable.value}.
 	 */
 	default ComparativeCompution computeIsLessThan(NumberObservable<? extends Number> observer) {
@@ -298,7 +298,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	
 	/**
 	 * Returns ComparativeCompution of {@code this.value <= observable.value}.
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @return ComparativeCompution of {@code this.value <= observable.value}.
 	 */
 	default ComparativeCompution computeIsLessThanOrEqualTo(NumberObservable<? extends Number> observer) {
@@ -308,7 +308,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value > observable.value}.
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @return ComparativeCompution of {@code this.value > observable.value}.
 	 */
 	default ComparativeCompution computeIsGreaterThan(NumberObservable<? extends Number> observer) {
@@ -318,7 +318,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value >= observable.value}.
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @return ComparativeCompution of {@code this.value >= observable.value}.
 	 */
 	default ComparativeCompution computeIsGreaterThanOrEqualTo(NumberObservable<? extends Number> observer) {
@@ -330,7 +330,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value == value}.
 	 * 
-	 * @param value is int
+	 * @param value the int value
 	 * @return ComparativeCompution of {@code this.value == value}.
 	 */
 	default ComparativeCompution computeIsEqualTo(int value) {
@@ -340,7 +340,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value == value}.
 	 * 
-	 * @param value is long
+	 * @param value the long value
 	 * @return ComparativeCompution of {@code this.value == value}.
 	 */
 	default ComparativeCompution computeIsEqualTo(long value) {
@@ -350,7 +350,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value == value}.
 	 * 
-	 * @param value is float
+	 * @param value the float value
 	 * @return ComparativeCompution of {@code this.value == value}.
 	 */
 	default ComparativeCompution computeIsEqualTo(float value) {
@@ -360,7 +360,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value == value}.
 	 * 
-	 * @param value is double
+	 * @param value the double value
 	 * @return ComparativeCompution of {@code this.value == value}.
 	 */
 	default ComparativeCompution computeIsEqualTo(double value) {
@@ -370,7 +370,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value != value}.
 	 * 
-	 * @param value is int
+	 * @param value the int value
 	 * @return ComparativeCompution of {@code this.value != value}.
 	 */
 	default ComparativeCompution computeIsNotEqualTo(int value) {
@@ -380,7 +380,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value != value}.
 	 * 
-	 * @param value is long
+	 * @param value the long value
 	 * @return ComparativeCompution of {@code this.value != value}.
 	 */
 	default ComparativeCompution computeIsNotEqualTo(long value) {
@@ -390,7 +390,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value != value}.
 	 * 
-	 * @param value is float
+	 * @param value the float value
 	 * @return ComparativeCompution of {@code this.value != value}.
 	 */
 	default ComparativeCompution computeIsNotEqualTo(float value) {
@@ -400,7 +400,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value != value}.
 	 * 
-	 * @param value is double
+	 * @param value the double value
 	 * @return ComparativeCompution of {@code this.value != value}.
 	 */
 	default ComparativeCompution computeIsNotEqualTo(double value) {
@@ -410,7 +410,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value != value}.
 	 * 
-	 * @param value is int
+	 * @param value the int value
 	 * @return ComparativeCompution of {@code this.value != value}.
 	 */
 	default ComparativeCompution computeIsLessThan(int value) {
@@ -420,7 +420,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value < value}.
 	 * 
-	 * @param value is long
+	 * @param value the long value
 	 * @return ComparativeCompution of {@code this.value < value}.
 	 */
 	default ComparativeCompution computeIsLessThan(long value) {
@@ -430,7 +430,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value < value}.
 	 * 
-	 * @param value is float
+	 * @param value the float value
 	 * @return ComparativeCompution of {@code this.value < value}.
 	 */
 	default ComparativeCompution computeIsLessThan(float value) {
@@ -440,7 +440,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value < value}.
 	 * 
-	 * @param value is double
+	 * @param value the double value
 	 * @return ComparativeCompution of {@code this.value < value}.
 	 */
 	default ComparativeCompution computeIsLessThan(double value) {
@@ -450,7 +450,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value <= value}.
 	 * 
-	 * @param value is int
+	 * @param value the int value
 	 * @return ComparativeCompution of {@code this.value <= value}.
 	 */
 	default ComparativeCompution computeIsLessThanOrEqualTo(int value) {
@@ -460,7 +460,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value <= value}.
 	 * 
-	 * @param value is long
+	 * @param value the long value
 	 * @return ComparativeCompution of {@code this.value <= value}.
 	 */
 	default ComparativeCompution computeIsLessThanOrEqualTo(long value) {
@@ -470,7 +470,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value <= value}.
 	 * 
-	 * @param value is float
+	 * @param value the float value
 	 * @return ComparativeCompution of {@code this.value <= value}.
 	 */
 	default ComparativeCompution computeIsLessThanOrEqualTo(float value) {
@@ -480,7 +480,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value <= value}.
 	 * 
-	 * @param value is double
+	 * @param value the double value
 	 * @return ComparativeCompution of {@code this.value <= value}.
 	 */
 	default ComparativeCompution computeIsLessThanOrEqualTo(double value) {
@@ -490,7 +490,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value > value}.
 	 * 
-	 * @param value is int
+	 * @param value the int value
 	 * @return ComparativeCompution of {@code this.value > value}.
 	 */
 	default ComparativeCompution computeIsGreaterThan(int value) {
@@ -500,7 +500,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value > value}.
 	 * 
-	 * @param value is long
+	 * @param value the long value
 	 * @return ComparativeCompution of {@code this.value > value}.
 	 */
 	default ComparativeCompution computeIsGreaterThan(long value) {
@@ -510,7 +510,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value > value}.
 	 * 
-	 * @param value is float
+	 * @param value the float value
 	 * @return ComparativeCompution of {@code this.value > value}.
 	 */
 	default ComparativeCompution computeIsGreaterThan(float value) {
@@ -520,7 +520,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value > value}.
 	 * 
-	 * @param value is double
+	 * @param value the double value
 	 * @return ComparativeCompution of {@code this.value > value}.
 	 */
 	default ComparativeCompution computeIsGreaterThan(double value) {
@@ -530,7 +530,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value >= value}.
 	 * 
-	 * @param value is int
+	 * @param value the int value
 	 * @return ComparativeCompution of {@code this.value >= value}.
 	 */
 	default ComparativeCompution computeIsGreaterThanOrEqualTo(int value) {
@@ -540,7 +540,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value >= value}.
 	 * 
-	 * @param value is long
+	 * @param value the long value
 	 * @return ComparativeCompution of {@code this.value >= value}.
 	 */
 	default ComparativeCompution computeIsGreaterThanOrEqualTo(long value) {
@@ -550,7 +550,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value >= value}.
 	 * 
-	 * @param value is float
+	 * @param value the float value
 	 * @return ComparativeCompution of {@code this.value >= value}.
 	 */
 	default ComparativeCompution computeIsGreaterThanOrEqualTo(float value) {
@@ -560,7 +560,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	/**
 	 * Returns ComparativeCompution of {@code this.value >= value}.
 	 * 
-	 * @param value is double
+	 * @param value the double value
 	 * @return ComparativeCompution of {@code this.value >= value}.
 	 */
 	default ComparativeCompution computeIsGreaterThanOrEqualTo(double value) {
@@ -631,7 +631,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilEqualTo(NumberObservable<? extends Number> observer) throws InterruptedException {
@@ -646,7 +646,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -664,7 +664,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @param p is TimeProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
@@ -681,7 +681,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilNotEqualTo(NumberObservable<? extends Number> observer) throws InterruptedException {
@@ -696,7 +696,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -714,7 +714,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @param p is TimeProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
@@ -731,7 +731,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilLessThan(NumberObservable<? extends Number> observer) throws InterruptedException {
@@ -746,7 +746,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -764,7 +764,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @param p is TimeProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
@@ -781,7 +781,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilLessThanOrEqualTo(NumberObservable<? extends Number> observer) throws InterruptedException {
@@ -796,7 +796,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -814,7 +814,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @param p is TimeProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
@@ -831,7 +831,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilGreaterThan(NumberObservable<? extends Number> observer) throws InterruptedException {
@@ -846,7 +846,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -864,7 +864,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @param p is TimeProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
@@ -881,7 +881,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(NumberObservable<? extends Number> observer) throws InterruptedException {
@@ -896,7 +896,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observer is NumberObserver
+	 * @param observer the NumberObserver
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -914,8 +914,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param observer is NumberObserver
-	 * @param p is TimeoutProperty
+	 * @param observer the NumberObserver
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -933,7 +933,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is int
+	 * @param value the int value
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilEqualTo(int value) throws InterruptedException {
@@ -948,7 +948,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is long
+	 * @param value the long value
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilEqualTo(long value) throws InterruptedException {
@@ -963,7 +963,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is float
+	 * @param value the float value
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilEqualTo(float value) throws InterruptedException {
@@ -978,7 +978,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is double
+	 * @param value the double value
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilEqualTo(double value) throws InterruptedException {
@@ -993,7 +993,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is int
+	 * @param value the int value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -1011,7 +1011,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is long
+	 * @param value the long value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -1029,7 +1029,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is float
+	 * @param value the float value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -1047,7 +1047,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is double
+	 * @param value the double value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -1065,8 +1065,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is int
-	 * @param p is TimeoutProperty
+	 * @param value the int value
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -1082,8 +1082,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is long
-	 * @param p is TimeoutProperty
+	 * @param value the long value
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -1099,8 +1099,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is float
-	 * @param p is TimeoutProperty
+	 * @param value the float value
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -1116,8 +1116,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is double
-	 * @param p is TimeoutProperty
+	 * @param value the double value
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -1133,7 +1133,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is int
+	 * @param value the int value
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilNotEqualTo(int value) throws InterruptedException {
@@ -1148,7 +1148,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is long
+	 * @param value the long value
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilNotEqualTo(long value) throws InterruptedException {
@@ -1163,7 +1163,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is float
+	 * @param value the float value
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilNotEqualTo(float value) throws InterruptedException {
@@ -1178,7 +1178,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is double
+	 * @param value the double value
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilNotEqualTo(double value) throws InterruptedException {
@@ -1193,7 +1193,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is int
+	 * @param value the int value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -1211,7 +1211,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is long
+	 * @param value the long value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -1229,7 +1229,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is float
+	 * @param value the float value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -1247,7 +1247,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is double
+	 * @param value the double value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -1265,8 +1265,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is int
-	 * @param p is TimeoutProperty
+	 * @param value the int value
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -1282,8 +1282,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is long
-	 * @param p is TimeoutProperty
+	 * @param value the long value
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -1299,8 +1299,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is float
-	 * @param p is TimeoutProperty
+	 * @param value the float value
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -1316,8 +1316,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is double
-	 * @param p is TimeoutProperty
+	 * @param value the double value
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -1333,7 +1333,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is int
+	 * @param value the int value
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilLessThan(int value) throws InterruptedException {
@@ -1348,7 +1348,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is long
+	 * @param value the long value
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilLessThan(long value) throws InterruptedException {
@@ -1363,7 +1363,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is float
+	 * @param value the float value
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilLessThan(float value) throws InterruptedException {
@@ -1378,7 +1378,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is double
+	 * @param value the double value
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilLessThan(double value) throws InterruptedException {
@@ -1393,7 +1393,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is int
+	 * @param value the int value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -1411,7 +1411,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is long
+	 * @param value the long value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -1429,7 +1429,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is float
+	 * @param value the float value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -1447,7 +1447,7 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is double
+	 * @param value the double value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -1465,8 +1465,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is int
-	 * @param p is TimeoutProperty
+	 * @param value the int value
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -1482,8 +1482,8 @@ public interface NumberObservable<T extends Number> extends Observable<T> {
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is long
-	 * @param p is TimeoutProperty
+	 * @param value the long value
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -1499,8 +1499,8 @@ v	 * Waiting until {@code this.value < value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is float
-	 * @param p is TimeoutProperty
+	 * @param value the float value
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -1516,8 +1516,8 @@ v	 * Waiting until {@code this.value < value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is double
-	 * @param p is TimeoutProperty
+	 * @param value the double value
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -1533,7 +1533,7 @@ v	 * Waiting until {@code this.value < value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is int
+	 * @param value the int value
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilLessThanOrEqualTo(int value) throws InterruptedException {
@@ -1548,7 +1548,7 @@ v	 * Waiting until {@code this.value < value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is long
+	 * @param value the long value
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilLessThanOrEqualTo(long value) throws InterruptedException {
@@ -1563,7 +1563,7 @@ v	 * Waiting until {@code this.value < value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is float
+	 * @param value the float value
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilLessThanOrEqualTo(float value) throws InterruptedException {
@@ -1578,7 +1578,7 @@ v	 * Waiting until {@code this.value < value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is double
+	 * @param value the double value
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilLessThanOrEqualTo(double value) throws InterruptedException {
@@ -1593,7 +1593,7 @@ v	 * Waiting until {@code this.value < value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is int
+	 * @param value the int value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -1611,7 +1611,7 @@ v	 * Waiting until {@code this.value < value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is long
+	 * @param value the long value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -1629,7 +1629,7 @@ v	 * Waiting until {@code this.value < value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is float
+	 * @param value the float value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -1647,7 +1647,7 @@ v	 * Waiting until {@code this.value < value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is double
+	 * @param value the double value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -1666,7 +1666,7 @@ v	 * Waiting until {@code this.value < value}.
 	 * </p>
 	 * 
 	 * @param value s int
-	 * @param p is TimeoutProperty
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -1682,8 +1682,8 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is long
-	 * @param p is TimeoutProperty
+	 * @param value the long value
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -1699,8 +1699,8 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is float
-	 * @param p is TimeoutProperty
+	 * @param value the float value
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -1716,8 +1716,8 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is double
-	 * @param p is TimeoutProperty
+	 * @param value the double value
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -1733,7 +1733,7 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is int
+	 * @param value the int value
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilGreaterThan(int value) throws InterruptedException {
@@ -1748,7 +1748,7 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is long
+	 * @param value the long value
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilGreaterThan(long value) throws InterruptedException {
@@ -1763,7 +1763,7 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is float
+	 * @param value the float value
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilGreaterThan(float value) throws InterruptedException {
@@ -1778,7 +1778,7 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is double
+	 * @param value the double value
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilGreaterThan(double value) throws InterruptedException {
@@ -1793,7 +1793,7 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is int
+	 * @param value the int value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -1811,7 +1811,7 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is long
+	 * @param value the long value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -1829,7 +1829,7 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is float
+	 * @param value the float value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -1847,7 +1847,7 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is double
+	 * @param value the double value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -1865,8 +1865,8 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is int
-	 * @param p is TimeoutProperty
+	 * @param value the int value
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -1882,8 +1882,8 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is long
-	 * @param p is TimeoutProperty
+	 * @param value the long value
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -1899,8 +1899,8 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is float
-	 * @param p is TimeoutProperty
+	 * @param value the float value
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -1916,8 +1916,8 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is double
-	 * @param p is TimeoutProperty
+	 * @param value the double value
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -1933,7 +1933,7 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is int
+	 * @param value the int value
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(int value) throws InterruptedException {
@@ -1948,7 +1948,7 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is long
+	 * @param value the long value
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(long value) throws InterruptedException {
@@ -1963,7 +1963,7 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is float
+	 * @param value the float value
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(float value) throws InterruptedException {
@@ -1978,7 +1978,7 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is double
+	 * @param value the double value
 	 * @throws InterruptedException if interrupted while waiting
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(double value) throws InterruptedException {
@@ -1993,7 +1993,7 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is int
+	 * @param value the int value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -2011,7 +2011,7 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is long
+	 * @param value the long value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -2029,7 +2029,7 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is float
+	 * @param value the float value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -2047,7 +2047,7 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is double
+	 * @param value the double value
 	 * @param timeout the maximum time to wait
 	 * @param unit the time unit of the timeout argument
 	 * @throws InterruptedException if interrupted while waiting
@@ -2065,8 +2065,8 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is int
-	 * @param p is TimeoutProperty
+	 * @param value the int value
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -2082,8 +2082,8 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is long
-	 * @param p is TimeoutProperty
+	 * @param value the long value
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -2099,8 +2099,8 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is float
-	 * @param p is TimeoutProperty
+	 * @param value the float value
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -2116,8 +2116,8 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param value is double
-	 * @param p is TimeoutProperty
+	 * @param value the double value
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -2166,7 +2166,7 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param p is TimeoutProperty
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -2213,7 +2213,7 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param p is TimeoutProperty
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -2260,7 +2260,7 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param p is TimeoutProperty
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -2307,7 +2307,7 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param p is TimeoutProperty
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -2354,7 +2354,7 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param p is TimeoutProperty
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */
@@ -2401,7 +2401,7 @@ v	 * Waiting until {@code this.value <= value}.
 	 * If already condition is true, pass through immediately.<br />
 	 * </p>
 	 * 
-	 * @param p is TimeoutProperty
+	 * @param p the TimeoutProperty
 	 * @throws InterruptedException if interrupted while waiting
 	 * @throws TimeoutException if the wait timed out
 	 */

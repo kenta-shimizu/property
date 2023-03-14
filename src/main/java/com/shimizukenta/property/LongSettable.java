@@ -13,7 +13,7 @@ public interface LongSettable extends NumberSettable<Long> {
 	/**
 	 * Value setter.
 	 * 
-	 * @param value is long
+	 * @param value the long value
 	 */
 	public void set(long value);
 	

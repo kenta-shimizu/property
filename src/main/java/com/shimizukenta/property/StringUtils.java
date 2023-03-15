@@ -216,7 +216,21 @@ public class StringUtils {
 		return new InnerStringJoining(delimiter, observers);
 	}
 	
-	private static String waitUntil(
+	
+	/**
+	 * Waiting until condition is true, and return last value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already value is contentEquals, return last value immediately.<br />
+	 * </p>
+	 * 
+	 * @param i the PredicateCompution
+	 * @param observer the observer
+	 * @return last value
+	 * @throws InterruptedException if interrupted while waiting
+	 */
+	public static String waitUntil(
 			AbstractPredicateCompution<String> i,
 			StringObservable observer) throws InterruptedException {
 		
@@ -228,7 +242,23 @@ public class StringUtils {
 		}
 	}
 	
-	private static String waitUntil(
+	/**
+	 * Waiting until condition is true, and return last value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already value is contentEquals, return last value immediately.<br />
+	 * </p>
+	 * 
+	 * @param i the PredicateCompution
+	 * @param observer the observer
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @return last value
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 */
+	public static String waitUntil(
 			AbstractPredicateCompution<String> i,
 			StringObservable observer,
 			long timeout,
@@ -241,8 +271,23 @@ public class StringUtils {
 			i.unbind(observer);
 		}
 	}
-
-	private static String waitUntil(
+	
+	/**
+	 * Waiting until condition is true, and return last value.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already value is contentEquals, return last value immediately.<br />
+	 * </p>
+	 * 
+	 * @param i the PredicateCompution
+	 * @param observer the observer
+	 * @param p the TimeoutProperty
+	 * @return last value
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 */
+	public static String waitUntil(
 			AbstractPredicateCompution<String> i,
 			StringObservable observer,
 			TimeoutGettable p) throws InterruptedException, TimeoutException {
@@ -255,7 +300,20 @@ public class StringUtils {
 		}
 	}
 	
-	private static void waitUntil(
+	/**
+	 * Waiting until condition is true.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already value is contentEquals, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param i the BiPredicateCompution
+	 * @param left the left observer
+	 * @param right the right observer
+	 * @throws InterruptedException if interrupted while waiting
+	 */
+	public static void waitUntil(
 			AbstractBiPredicateCompution<String, String> i,
 			StringObservable left,
 			StringObservable right) throws InterruptedException {
@@ -269,7 +327,23 @@ public class StringUtils {
 		}
 	}
 	
-	private static void waitUntil(
+	/**
+	 * Waiting until condition is true.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already value is contentEquals, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param i the BiPredicateCompution
+	 * @param left the left observer
+	 * @param right the right observer
+	 * @param timeout the maximum time to wait
+	 * @param unit the time unit of the timeout argument
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 */
+	public static void waitUntil(
 			AbstractBiPredicateCompution<String, String> i,
 			StringObservable left,
 			StringObservable right,
@@ -285,7 +359,22 @@ public class StringUtils {
 		}
 	}
 	
-	private static void waitUntil(
+	/**
+	 * Waiting until condition is true.
+	 * 
+	 * <p>
+	 * This is blocking method.<br />
+	 * If already value is contentEquals, pass through immediately.<br />
+	 * </p>
+	 * 
+	 * @param i the BiPredicateCompution
+	 * @param left the left observer
+	 * @param right the right observer
+	 * @param p the TimeoutProperty
+	 * @throws InterruptedException if interrupted while waiting
+	 * @throws TimeoutException if the wait timed out
+	 */
+	public static void waitUntil(
 			AbstractBiPredicateCompution<String, String> i,
 			StringObservable left,
 			StringObservable right,
@@ -826,1116 +915,6 @@ public class StringUtils {
 	 */
 	public static AbstractStringCompution computeJoin(CharSequence delimiter, Iterable<StringObservable> observers) {
 		return buildStringJoining(delimiter, observers);
-	}
-	
-	/**
-	 * Waiting until value is empty, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is empty, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @see String#isEmpty()
-	 */
-	public static String waitUntilIsEmpty(
-			StringObservable observer) throws InterruptedException {
-		
-		return waitUntil(buildIsEmpty(observer), observer);
-	}
-	
-	/**
-	 * Waiting until value is empty, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is empty, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param timeout the maximum time to wait
-	 * @param unit the time unit of the timeout argument
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 * @see String#isEmpty()
-	 */
-	public static String waitUntilIsEmpty(
-			StringObservable observer,
-			long timeout,
-			TimeUnit unit) throws InterruptedException, TimeoutException {
-		
-		return waitUntil(buildIsEmpty(observer), observer, timeout, unit);
-	}
-	
-	/**
-	 * Waiting until value is empty, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is empty, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param p the TimeoutProperty
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 * @see String#isEmpty()
-	 */
-	public static String waitUntilIsEmpty(
-			StringObservable observer,
-			TimeoutGettable p) throws InterruptedException, TimeoutException {
-		
-		return waitUntil(buildIsEmpty(observer), observer, p);
-	}
-	
-	/**
-	 * Waiting until value is NOT empty, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is NOT empty, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @see String#isEmpty()
-	 */
-	public static String waitUntilIsNotEmpty(
-			StringObservable observer) throws InterruptedException {
-		
-		return waitUntil(buildIsNotEmpty(observer), observer);
-	}
-	
-	/**
-	 * Waiting until value is NOT empty, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is NOT empty, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param timeout the maximum time to wait
-	 * @param unit the time unit of the timeout argument
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 * @see String#isEmpty()
-	 */
-	public static String waitUntilIsNotEmpty(
-			StringObservable observer,
-			long timeout,
-			TimeUnit unit) throws InterruptedException, TimeoutException {
-		
-		return waitUntil(buildIsNotEmpty(observer), observer, timeout, unit);
-	}
-	
-	/**
-	 * Waiting until value is NOT empty, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is NOT empty, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param p the TimeoutProperty
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 * @see String#isEmpty()
-	 */
-	public static String waitUntilIsNotEmpty(
-			StringObservable observer,
-			TimeoutGettable p) throws InterruptedException, TimeoutException {
-		
-		return waitUntil(buildIsNotEmpty(observer), observer, p);
-	}
-	
-	/**
-	 * Waiting until value is contains, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is contains, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param s the sequence to search for
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @see String#contains(CharSequence)
-	 */
-	public static String waitUntilContains(
-			StringObservable observer,
-			CharSequence s) throws InterruptedException {
-		
-		return waitUntil(buildContains(observer, s), observer);
-	}
-	
-	/**
-	 * Waiting until value is contains, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is contains, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param s the sequence to search for
-	 * @param timeout the maximum time to wait
-	 * @param unit the time unit of the timeout argument
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 * @see String#contains(CharSequence)
-	 */
-	public static String waitUntilContains(
-			StringObservable observer,
-			CharSequence s,
-			long timeout,
-			TimeUnit unit) throws InterruptedException, TimeoutException {
-		
-		return waitUntil(buildContains(observer, s), observer, timeout, unit);
-	}
-	
-	/**
-	 * Waiting until value is contains, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is contains, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param s the sequence to search for
-	 * @param p the TimeoutProperty
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 * @see String#contains(CharSequence)
-	 */
-	public static String waitUntilContains(
-			StringObservable observer,
-			CharSequence s,
-			TimeoutGettable p) throws InterruptedException, TimeoutException {
-		
-		return waitUntil(buildContains(observer, s), observer, p);
-	}
-	
-	/**
-	 * Waiting until value is NOT contains, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is NOT contains, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param s the sequence to search for
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @see String#contains(CharSequence)
-	 */
-	public static String waitUntilNotContains(
-			StringObservable observer,
-			CharSequence s) throws InterruptedException {
-		
-		return waitUntil(buildNotContains(observer, s), observer);
-	}
-	
-	/**
-	 * Waiting until value is NOT contains, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is NOT contains, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param s the sequence to search for
-	 * @param timeout the maximum time to wait
-	 * @param unit the time unit of the timeout argument
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 * @see String#contains(CharSequence)
-	 */
-	public static String waitUntilNotContains(
-			StringObservable observer,
-			CharSequence s,
-			long timeout,
-			TimeUnit unit) throws InterruptedException, TimeoutException {
-		
-		return waitUntil(buildNotContains(observer, s), observer, timeout, unit);
-	}
-	
-	/**
-	 * Waiting until value is NOT contains, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is NOT contains, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param s the sequence to search for
-	 * @param p the TimeoutProperty
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 * @see String#contains(CharSequence)
-	 */
-	public static String waitUntilNotContains(
-			StringObservable observer,
-			CharSequence s,
-			TimeoutGettable p) throws InterruptedException, TimeoutException {
-		
-		return waitUntil(buildNotContains(observer, s), observer, p);
-	}
-	
-	/**
-	 * Waiting until value is startsWith, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is startsWith, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param prefix the prefix
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @see String#startsWith(String)
-	 */
-	public static String waitUntilStartsWith(
-			StringObservable observer,
-			String prefix) throws InterruptedException {
-		
-		return waitUntil(buildStartsWith(observer, prefix), observer);
-	}
-	
-	/**
-	 * Waiting until value is startsWith, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is startsWith, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param prefix the prefix
-	 * @param timeout the maximum time to wait
-	 * @param unit the time unit of the timeout argument
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 * @see String#startsWith(String)
-	 */
-	public static String waitUntilStartsWith(
-			StringObservable observer,
-			String prefix,
-			long timeout,
-			TimeUnit unit) throws InterruptedException, TimeoutException {
-		
-		return waitUntil(buildStartsWith(observer, prefix), observer, timeout, unit);
-	}
-	
-	/**
-	 * Waiting until value is startsWith, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is startsWith, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param prefix the prefix
-	 * @param p the TimeoutProperty
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 * @see String#startsWith(String)
-	 */
-	public static String waitUntilStartsWith(
-			StringObservable observer,
-			String prefix,
-			TimeoutGettable p) throws InterruptedException, TimeoutException {
-		
-		return waitUntil(buildStartsWith(observer, prefix), observer, p);
-	}
-	
-	/**
-	 * Waiting until value is startsWith, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is startsWith, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param prefix the prefix.
-	 * @param toOffset where to begin looking in this string.
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @see String#startsWith(String, int)
-	 */
-	public static String waitUntilStartsWith(
-			StringObservable observer,
-			String prefix,
-			int toOffset) throws InterruptedException {
-		
-		return waitUntil(buildStartsWith(observer, prefix, toOffset), observer);
-	}
-	
-	/**
-	 * Waiting until value is startsWith, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is startsWith, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param prefix the prefix.
-	 * @param toOffset where to begin looking in this string.
-	 * @param timeout the maximum time to wait
-	 * @param unit the time unit of the timeout argument
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 * @see String#startsWith(String, int)
-	 */
-	public static String waitUntilStartsWith(
-			StringObservable observer,
-			String prefix,
-			int toOffset,
-			long timeout,
-			TimeUnit unit) throws InterruptedException, TimeoutException {
-		
-		return waitUntil(buildStartsWith(observer, prefix, toOffset), observer, timeout, unit);
-	}
-	
-	/**
-	 * Waiting until value is startsWith, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is startsWith, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param prefix the prefix.
-	 * @param toOffset where to begin looking in this string.
-	 * @param p the TimeoutProperty
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 * @see String#startsWith(String, int)
-	 */
-	public static String waitUntilStartsWith(
-			StringObservable observer,
-			String prefix,
-			int toOffset,
-			TimeoutGettable p) throws InterruptedException, TimeoutException {
-		
-		return waitUntil(buildStartsWith(observer, prefix, toOffset), observer, p);
-	}
-	
-	/**
-	 * Waiting until value is endsWith, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is endsWith, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param suffix the suffix.
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @see String#endsWith(String)
-	 */
-	public static String waitUntilEndsWith(
-			StringObservable observer,
-			String suffix) throws InterruptedException {
-		
-		return waitUntil(buildEndsWith(observer, suffix), observer);
-	}
-	
-	/**
-	 * Waiting until value is endsWith, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is endsWith, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param suffix the suffix.
-	 * @param timeout the maximum time to wait
-	 * @param unit the time unit of the timeout argument
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 * @see String#endsWith(String)
-	 */
-	public static String waitUntilEndsWith(
-			StringObservable observer,
-			String suffix,
-			long timeout,
-			TimeUnit unit) throws InterruptedException, TimeoutException {
-		
-		return waitUntil(buildEndsWith(observer, suffix), observer, timeout, unit);
-	}
-	
-	/**
-	 * Waiting until value is endsWith, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is endsWith, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param suffix the suffix.
-	 * @param p the TimeoutProperty
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 * @see String#endsWith(String)
-	 */
-	public static String waitUntilEndsWith(
-			StringObservable observer,
-			String suffix,
-			TimeoutGettable p) throws InterruptedException, TimeoutException {
-		
-		return waitUntil(buildEndsWith(observer, suffix), observer, p);
-	}
-	
-	/**
-	 * Waiting until value is matches, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is matches, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param regex the regular expression to which this string is to be matched
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @see String#matches(String)
-	 */
-	public static String waitUntilMatches(
-			StringObservable observer,
-			String regex) throws InterruptedException {
-		
-		return waitUntil(buildMatches(observer, regex), observer);
-	}
-	
-	/**
-	 * Waiting until value is matches, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is matches, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param regex the regular expression to which this string is to be matched
-	 * @param timeout the maximum time to wait
-	 * @param unit the time unit of the timeout argument
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 * @see String#matches(String)
-	 */
-	public static String waitUntilMatches(
-			StringObservable observer,
-			String regex,
-			long timeout,
-			TimeUnit unit) throws InterruptedException, TimeoutException {
-		
-		return waitUntil(buildMatches(observer, regex), observer, timeout, unit);
-	}
-	
-	/**
-	 * Waiting until value is matches, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is matches, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param regex the regular expression to which this string is to be matched
-	 * @param p the TimeoutProperty
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 * @see String#matches(String)
-	 */
-	public static String waitUntilMatches(
-			StringObservable observer,
-			String regex,
-			TimeoutGettable p) throws InterruptedException, TimeoutException {
-		
-		return waitUntil(buildMatches(observer, regex), observer, p);
-	}
-	
-	/**
-	 * Waiting until value is contentEquals, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is contentEquals, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param cs The sequence to compare this String against
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @see String#contentEquals(CharSequence)
-	 */
-	public static String waitUntilContentEqualTo(
-			StringObservable observer, 
-			CharSequence cs) throws InterruptedException {
-		
-		return waitUntil(buildContentEqualTo(observer, cs), observer);
-	}
-	
-	/**
-	 * Waiting until value is contentEquals, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is contentEquals, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param cs The sequence to compare this String against
-	 * @param timeout the maximum time to wait
-	 * @param unit the time unit of the timeout argument
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 * @see String#contentEquals(CharSequence)
-	 */
-	public static String waitUntilContentEqualTo(
-			StringObservable observer, 
-			CharSequence cs,
-			long timeout,
-			TimeUnit unit) throws InterruptedException, TimeoutException {
-		
-		return waitUntil(buildContentEqualTo(observer, cs), observer, timeout, unit);
-	}
-	
-	/**
-	 * Waiting until value is contentEquals, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is contentEquals, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param cs The sequence to compare this String against
-	 * @param p the TimeoutProperty
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 * @see String#contentEquals(CharSequence)
-	 */
-	public static String waitUntilContentEqualTo(
-			StringObservable observer, 
-			CharSequence cs,
-			TimeoutGettable p) throws InterruptedException, TimeoutException {
-		
-		return waitUntil(buildContentEqualTo(observer, cs), observer, p);
-	}
-	
-	/**
-	 * Waiting until value is contentEquals, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is contentEquals, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param sb The StringBuffer to compare this String against
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @see String#contentEquals(StringBuffer)
-	 */
-	public static String waitUntilContentEqualTo(
-			StringObservable observer, 
-			StringBuffer sb) throws InterruptedException {
-		
-		return waitUntil(buildContentEqualTo(observer, sb), observer);
-	}
-	
-	/**
-	 * Waiting until value is contentEquals, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is contentEquals, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param sb The StringBuffer to compare this String against
-	 * @param timeout the maximum time to wait
-	 * @param unit the time unit of the timeout argument
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 * @see String#contentEquals(StringBuffer)
-	 */
-	public static String waitUntilContentEqualTo(
-			StringObservable observer, 
-			StringBuffer sb,
-			long timeout,
-			TimeUnit unit) throws InterruptedException, TimeoutException {
-		
-		return waitUntil(buildContentEqualTo(observer, sb), observer, timeout, unit);
-	}
-	
-	/**
-	 * Waiting until value is contentEquals, and return last value.
-	 * 
-	 * <p>
-	 * This is blocking method.<br />
-	 * If already value is contentEquals, return last value immediately.<br />
-	 * </p>
-	 * 
-	 * @param observer the observer
-	 * @param sb The StringBuffer to compare this String against
-	 * @param p the TimeoutProperty
-	 * @return last value
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 * @see String#contentEquals(StringBuffer)
-	 */
-	public static String waitUntilContentEqualTo(
-			StringObservable observer, 
-			StringBuffer sb,
-			TimeoutGettable p) throws InterruptedException, TimeoutException {
-		
-		return waitUntil(buildContentEqualTo(observer, sb), observer, p);
-	}
-	
-	/**
-	 * Waiting until equals.
-	 * 
-	 * @param a the observer A
-	 * @param b the observer B
-	 * @throws InterruptedException if interrupted while waiting
-	 */
-	public static void waitUntilEqualTo(
-			StringObservable a,
-			StringObservable b) throws InterruptedException {
-		
-		waitUntil(buildIsEqualTo(a, b), a, b);
-	}
-	
-	/**
-	 * Waiting until equals.
-	 * 
-	 * @param a the observer A
-	 * @param b the observer B
-	 * @param timeout the maximum time to wait
-	 * @param unit the time unit of the timeout argument
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 */
-	public static void waitUntilEqualTo(
-			StringObservable a,
-			StringObservable b,
-			long timeout,
-			TimeUnit unit) throws InterruptedException, TimeoutException {
-		
-		waitUntil(buildIsEqualTo(a, b), a, b, timeout, unit);
-	}
-	
-	/**
-	 * Waiting until equals.
-	 * 
-	 * @param a the observer A
-	 * @param b the observer B
-	 * @param p TimeoutProperty
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 */
-	public static void waitUntilEqualTo(
-			StringObservable a,
-			StringObservable b,
-			TimeoutGettable p) throws InterruptedException, TimeoutException {
-		
-		waitUntil(buildIsEqualTo(a, b), a, b, p);
-	}
-	
-	/**
-	 * Waiting until NOT equals.
-	 * 
-	 * @param a the observer A
-	 * @param b the observer B
-	 * @throws InterruptedException if interrupted while waiting
-	 */
-	public static void waitUntilNotEqualTo(
-			StringObservable a,
-			StringObservable b) throws InterruptedException {
-		
-		waitUntil(buildIsNotEqualTo(a, b), a, b);
-	}
-	
-	/**
-	 * Waiting until NOT equals.
-	 * 
-	 * @param a the observer A
-	 * @param b the observer B
-	 * @param timeout the maximum time to wait
-	 * @param unit the time unit of the timeout argument
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 */
-	public static void waitUntilNotEqualTo(
-			StringObservable a,
-			StringObservable b,
-			long timeout,
-			TimeUnit unit) throws InterruptedException, TimeoutException {
-		
-		waitUntil(buildIsNotEqualTo(a, b), a, b, timeout, unit);
-	}
-	
-	/**
-	 * Waiting until NOT equals.
-	 * 
-	 * @param a the observer A
-	 * @param b the observer B
-	 * @param p TimeoutProperty
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 */
-	public static void waitUntilNotEqualTo(
-			StringObservable a,
-			StringObservable b,
-			TimeoutGettable p) throws InterruptedException, TimeoutException {
-		
-		waitUntil(buildIsNotEqualTo(a, b), a, b, p);
-	}
-	
-	/**
-	 * Waiting until {@code (left < right)}.
-	 * 
-	 * @param left the left observer
-	 * @param right the right observer
-	 * @throws InterruptedException if interrupted while waiting
-	 */
-	public static void waitUntilLessThan(
-			StringObservable left,
-			StringObservable right) throws InterruptedException {
-		
-		waitUntil(buildIsLessThan(left, right), left, right);
-	}
-	
-	/**
-	 * Waiting until {@code (left < right)}.
-	 * 
-	 * @param left the left observer
-	 * @param right the right observer
-	 * @param timeout the maximum time to wait
-	 * @param unit the time unit of the timeout argument
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 */
-	public static void waitUntilLessThan(
-			StringObservable left,
-			StringObservable right,
-			long timeout,
-			TimeUnit unit) throws InterruptedException, TimeoutException {
-		
-		waitUntil(buildIsLessThan(left, right), left, right, timeout, unit);
-	}
-	
-	/**
-	 * Waiting until {@code (left < right)}.
-	 * 
-	 * @param left the left observer
-	 * @param right the right observer
-	 * @param p the TimeoutProperty
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 */
-	public static void waitUntilLessThan(
-			StringObservable left,
-			StringObservable right,
-			TimeoutGettable p) throws InterruptedException, TimeoutException {
-		
-		waitUntil(buildIsLessThan(left, right), left, right, p);
-	}
-	
-	/**
-	 * Waiting until {@code (left <= right)}.
-	 * 
-	 * @param left the left observer
-	 * @param right the right observer
-	 * @throws InterruptedException if interrupted while waiting
-	 */
-	public static void waitUntilLessThanOrEqualTo(
-			StringObservable left,
-			StringObservable right) throws InterruptedException {
-		
-		waitUntil(buildIsLessThanOrEqualTo(left, right), left, right);
-	}
-	
-	/**
-	 * Waiting until {@code (left <= right)}.
-	 * 
-	 * @param left the left observer
-	 * @param right the right observer
-	 * @param timeout the maximum time to wait
-	 * @param unit the time unit of the timeout argument
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 */
-	public static void waitUntilLessThanOrEqualTo(
-			StringObservable left,
-			StringObservable right,
-			long timeout,
-			TimeUnit unit) throws InterruptedException, TimeoutException {
-		
-		waitUntil(buildIsLessThanOrEqualTo(left, right), left, right, timeout, unit);
-	}
-	
-	/**
-	 * Waiting until {@code (left <= right)}.
-	 * 
-	 * @param left the left observer
-	 * @param right the right observer
-	 * @param p the TimeoutProperty
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 */
-	public static void waitUntilLessThanOrEqualTo(
-			StringObservable left,
-			StringObservable right,
-			TimeoutGettable p) throws InterruptedException, TimeoutException {
-		
-		waitUntil(buildIsLessThanOrEqualTo(left, right), left, right, p);
-	}
-	
-	/**
-	 * Waiting until {@code (left > right)}.
-	 * 
-	 * @param left the left observer
-	 * @param right the right observer
-	 * @throws InterruptedException if interrupted while waiting
-	 */
-	public static void waitUntilGreaterThan(
-			StringObservable left,
-			StringObservable right) throws InterruptedException {
-		
-		waitUntil(buildIsGreaterThan(left, right), left, right);
-	}
-	
-	/**
-	 * Waiting until {@code (left > right)}.
-	 * 
-	 * @param left the left observer
-	 * @param right the right observer
-	 * @param timeout the maximum time to wait
-	 * @param unit the time unit of the timeout argument
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 */
-	public static void waitUntilGreaterThan(
-			StringObservable left,
-			StringObservable right,
-			long timeout,
-			TimeUnit unit) throws InterruptedException, TimeoutException {
-		
-		waitUntil(buildIsGreaterThan(left, right), left, right, timeout, unit);
-	}
-	
-	/**
-	 * Waiting until {@code (left > right)}.
-	 * 
-	 * @param left the left observer
-	 * @param right the right observer
-	 * @param p the TimeoutProperty
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 */
-	public static void waitUntilGreaterThan(
-			StringObservable left,
-			StringObservable right,
-			TimeoutGettable p) throws InterruptedException, TimeoutException {
-		
-		waitUntil(buildIsGreaterThan(left, right), left, right, p);
-	}
-	
-	/**
-	 * Waiting until {@code (left >= right)}.
-	 * 
-	 * @param left the left observer
-	 * @param right the right observer
-	 * @throws InterruptedException if interrupted while waiting
-	 */
-	public static void waitUntilGreaterThanOrEqualTo(
-			StringObservable left,
-			StringObservable right) throws InterruptedException {
-		
-		waitUntil(buildIsGreaterThanOrEqualTo(left, right), left, right);
-	}
-	
-	/**
-	 * Waiting until {@code (left >= right)}.
-	 * 
-	 * @param left the left observer
-	 * @param right the right observer
-	 * @param timeout the maximum time to wait
-	 * @param unit the time unit of the timeout argument
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 */
-	public static void waitUntilGreaterThanOrEqualTo(
-			StringObservable left,
-			StringObservable right,
-			long timeout,
-			TimeUnit unit) throws InterruptedException, TimeoutException {
-		
-		waitUntil(buildIsGreaterThanOrEqualTo(left, right), left, right, timeout, unit);
-	}
-	
-	/**
-	 * Waiting until {@code (left >= right)}.
-	 * 
-	 * @param left the left observer
-	 * @param right the right observer
-	 * @param p the TimeoutProperty
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 */
-	public static void waitUntilGreaterThanOrEqualTo(
-			StringObservable left,
-			StringObservable right,
-			TimeoutGettable p) throws InterruptedException, TimeoutException {
-		
-		waitUntil(buildIsGreaterThanOrEqualTo(left, right), left, right, p);
-	}
-	
-	/**
-	 * Waiting until equalsIgnoreCase.
-	 * 
-	 * @param a the observer A
-	 * @param b the observer B
-	 * @throws InterruptedException if interrupted while waiting
-	 * @see String#equalsIgnoreCase(String)
-	 */
-	public static void waitUntilEqualToIgnoreCase(
-			StringObservable a,
-			StringObservable b) throws InterruptedException {
-		
-		waitUntil(buildIsEqualToIgnoreCase(a, b), a, b);
-	}
-	
-	/**
-	 * Waiting until equalsIgnoreCase.
-	 * 
-	 * @param a the observer A
-	 * @param b the observer B
-	 * @param timeout the maximum time to wait
-	 * @param unit the time unit of the timeout argument
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 * @see String#equalsIgnoreCase(String)
-	 */
-	public static void waitUntilEqualToIgnoreCase(
-			StringObservable a,
-			StringObservable b,
-			long timeout,
-			TimeUnit unit) throws InterruptedException, TimeoutException {
-		
-		waitUntil(buildIsEqualToIgnoreCase(a, b), a, b, timeout, unit);
-	}
-	
-	/**
-	 * Waiting until equalsIgnoreCase.
-	 * 
-	 * @param a the observer A
-	 * @param b the observer B
-	 * @param p TimeoutProperty
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 * @see String#equalsIgnoreCase(String)
-	 */
-	public static void waitUntilEqualToIgnoreCase(
-			StringObservable a,
-			StringObservable b,
-			TimeoutGettable p) throws InterruptedException, TimeoutException {
-		
-		waitUntil(buildIsEqualToIgnoreCase(a, b), a, b, p);
-	}
-	
-	/**
-	 * Waiting until NOT equalsIgnoreCase.
-	 * 
-	 * @param a the observer A
-	 * @param b the observer B
-	 * @throws InterruptedException if interrupted while waiting
-	 * @see String#equalsIgnoreCase(String)
-	 */
-	public static void waitUntilNotEqualToIgnoreCase(
-			StringObservable a,
-			StringObservable b) throws InterruptedException {
-		
-		waitUntil(buildIsNotEqualToIgnoreCase(a, b), a, b);
-	}
-	
-	/**
-	 * Waiting until NOT equalsIgnoreCase.
-	 * 
-	 * @param a the observer A
-	 * @param b the observer B
-	 * @param timeout the maximum time to wait
-	 * @param unit the time unit of the timeout argument
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 * @see String#equalsIgnoreCase(String)
-	 */
-	public static void waitUntilNotEqualToIgnoreCase(
-			StringObservable a,
-			StringObservable b,
-			long timeout,
-			TimeUnit unit) throws InterruptedException, TimeoutException {
-		
-		waitUntil(buildIsNotEqualToIgnoreCase(a, b), a, b, timeout, unit);
-	}
-	
-	/**
-	 * Waiting until NOT equalsIgnoreCase.
-	 * 
-	 * @param a the observer A
-	 * @param b the observer B
-	 * @param p TimeoutProperty
-	 * @throws InterruptedException if interrupted while waiting
-	 * @throws TimeoutException if the wait timed out
-	 * @see String#equalsIgnoreCase(String)
-	 */
-	public static void waitUntilNotEqualToIgnoreCase(
-			StringObservable a,
-			StringObservable b,
-			TimeoutGettable p) throws InterruptedException, TimeoutException {
-		
-		waitUntil(buildIsNotEqualToIgnoreCase(a, b), a, b, p);
 	}
 	
 }

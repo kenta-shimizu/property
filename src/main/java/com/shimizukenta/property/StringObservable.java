@@ -522,7 +522,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#isEmpty()
 	 */
 	default public void waitUntilIsEmpty() throws InterruptedException {
-		StringUtils.waitUntilIsEmpty(this);
+		StringUtils.waitUntil(StringUtils.computeIsEmpty(this), this);
 	}
 	
 	/**
@@ -540,7 +540,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#isEmpty()
 	 */
 	default public void waitUntilIsEmpty(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilIsEmpty(this, timeout, unit);
+		StringUtils.waitUntil(StringUtils.computeIsEmpty(this), this, timeout, unit);
 	}
 	
 	/**
@@ -557,7 +557,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#isEmpty()
 	 */
 	default public void waitUntilIsEmpty(TimeoutGettable p) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilIsEmpty(this, p);
+		StringUtils.waitUntil(StringUtils.computeIsEmpty(this), this, p);
 	}
 	
 	/**
@@ -573,7 +573,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#isEmpty()
 	 */
 	default public String waitUntilIsNotEmptyAndGet() throws InterruptedException {
-		return StringUtils.waitUntilIsNotEmpty(this);
+		return StringUtils.waitUntil(StringUtils.computeIsNotEmpty(this), this);
 	}
 	
 	/**
@@ -592,7 +592,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#isEmpty()
 	 */
 	default public String waitUntilIsNotEmptyAndGet(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		return StringUtils.waitUntilIsNotEmpty(this, timeout, unit);
+		return StringUtils.waitUntil(StringUtils.computeIsNotEmpty(this), this, timeout, unit);
 	}
 	
 	/**
@@ -610,7 +610,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#isEmpty()
 	 */
 	default public String waitUntilIsNotEmptyAndGet(TimeoutGettable p) throws InterruptedException, TimeoutException {
-		return StringUtils.waitUntilIsNotEmpty(this, p);
+		return StringUtils.waitUntil(StringUtils.computeIsNotEmpty(this), this, p);
 	}
 	
 	/**
@@ -627,7 +627,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#contains(CharSequence)
 	 */
 	default public String waitUntilContainsAndGet(CharSequence s) throws InterruptedException {
-		return StringUtils.waitUntilContains(this, s);
+		return StringUtils.waitUntil(StringUtils.computeContains(this, s), this);
 	}
 	
 	/**
@@ -647,7 +647,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#contains(CharSequence)
 	 */
 	default public String waitUntilContainsAndGet(CharSequence s, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		return StringUtils.waitUntilContains(this, s, timeout, unit);
+		return StringUtils.waitUntil(StringUtils.computeContains(this, s), this, timeout, unit);
 	}
 	
 	/**
@@ -666,7 +666,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#contains(CharSequence)
 	 */
 	default public String waitUntilContainsAndGet(CharSequence s, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		return StringUtils.waitUntilContains(this, s, p);
+		return StringUtils.waitUntil(StringUtils.computeContains(this, s), this, p);
 	}
 	
 	/**
@@ -683,7 +683,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#contains(CharSequence)
 	 */
 	default public String waitUntilNotContainsAndGet(CharSequence s) throws InterruptedException {
-		return StringUtils.waitUntilNotContains(this, s);
+		return StringUtils.waitUntil(StringUtils.computeNotContains(this, s), this);
 	}
 	
 	/**
@@ -703,7 +703,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#contains(CharSequence)
 	 */
 	default public String waitUntilNotContainsAndGet(CharSequence s, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		return StringUtils.waitUntilNotContains(this, s, timeout, unit);
+		return StringUtils.waitUntil(StringUtils.computeNotContains(this, s), this, timeout, unit);
 	}
 	
 	/**
@@ -722,7 +722,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#contains(CharSequence)
 	 */
 	default public String waitUntilNotContainsAndGet(CharSequence s, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		return StringUtils.waitUntilNotContains(this, s, p);
+		return StringUtils.waitUntil(StringUtils.computeNotContains(this, s), this, p);
 	}
 	
 	/**
@@ -739,7 +739,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#startsWith(String)
 	 */
 	default public String  waitUntilStartsWithAndGet(String prefix) throws InterruptedException {
-		return StringUtils.waitUntilStartsWith(this, prefix);
+		return StringUtils.waitUntil(StringUtils.computeStartsWith(this, prefix), this);
 	}
 	
 	/**
@@ -759,7 +759,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#startsWith(String)
 	 */
 	default public String waitUntilStartsWithAndGet(String prefix, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		return StringUtils.waitUntilStartsWith(this, prefix, timeout, unit);
+		return StringUtils.waitUntil(StringUtils.computeStartsWith(this, prefix), this, timeout, unit);
 	}
 	
 	/**
@@ -778,7 +778,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#startsWith(String)
 	 */
 	default public String waitUntilStartsWithAndGet(String prefix, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		return StringUtils.waitUntilStartsWith(this, prefix, p);
+		return StringUtils.waitUntil(StringUtils.computeStartsWith(this, prefix), this, p);
 	}
 	
 	/**
@@ -796,7 +796,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#startsWith(String, int)
 	 */
 	default public String waitUntilStartsWithAndGet(String prefix, int toOffset) throws InterruptedException {
-		return StringUtils.waitUntilStartsWith(this, prefix, toOffset);
+		return StringUtils.waitUntil(StringUtils.computeStartsWith(this, prefix, toOffset), this);
 	}
 	
 	/**
@@ -817,7 +817,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#startsWith(String, int)
 	 */
 	default public String waitUntilStartsWithAndGet(String prefix, int toOffset, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		return StringUtils.waitUntilStartsWith(this, prefix, toOffset, timeout, unit);
+		return StringUtils.waitUntil(StringUtils.computeStartsWith(this, prefix, toOffset), this, timeout, unit);
 	}
 	
 	/**
@@ -837,7 +837,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#startsWith(String, int)
 	 */
 	default public String waitUntilStartsWithAndGet(String prefix, int toOffset, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		return StringUtils.waitUntilStartsWith(this, prefix, toOffset, p);
+		return StringUtils.waitUntil(StringUtils.computeStartsWith(this, prefix, toOffset), this, p);
 	}
 	
 	/**
@@ -854,7 +854,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#endsWith(String)
 	 */
 	default public String waitUntilEndsWithAndGet(String suffix) throws InterruptedException {
-		return StringUtils.waitUntilEndsWith(this, suffix);
+		return StringUtils.waitUntil(StringUtils.computeEndsWith(this, suffix), this);
 	}
 	
 	/**
@@ -874,7 +874,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#endsWith(String)
 	 */
 	default public String waitUntilEndsWithAndGet(String suffix, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		return StringUtils.waitUntilEndsWith(this, suffix, timeout, unit);
+		return StringUtils.waitUntil(StringUtils.computeEndsWith(this, suffix), this, timeout, unit);
 	}
 	
 	/**
@@ -893,7 +893,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#endsWith(String)
 	 */
 	default public String waitUntilEndsWithAndGet(String suffix, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		return StringUtils.waitUntilEndsWith(this, suffix, p);
+		return StringUtils.waitUntil(StringUtils.computeEndsWith(this, suffix), this, p);
 	}
 	
 	/**
@@ -910,7 +910,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#matches(String)
 	 */
 	default public String waitUntilMatchesAndGet(String regex) throws InterruptedException {
-		return StringUtils.waitUntilMatches(this, regex);
+		return StringUtils.waitUntil(StringUtils.computeMatches(this, regex), this);
 	}
 	
 	/**
@@ -930,7 +930,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#matches(String)
 	 */
 	default public String waitUntilMatchesAndGet(String regex, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		return StringUtils.waitUntilMatches(this, regex, timeout, unit);
+		return StringUtils.waitUntil(StringUtils.computeMatches(this, regex), this, timeout, unit);
 	}
 	
 	/**
@@ -949,7 +949,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#matches(String)
 	 */
 	default public String waitUntilMatchesAndGet(String regex, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		return StringUtils.waitUntilMatches(this, regex, p);
+		return StringUtils.waitUntil(StringUtils.computeMatches(this, regex), this, p);
 	}
 	
 	/**
@@ -966,7 +966,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#contentEquals(CharSequence)
 	 */
 	default public String waitUntilContentEqualToAndGet(CharSequence cs) throws InterruptedException {
-		return StringUtils.waitUntilContentEqualTo(this, cs);
+		return StringUtils.waitUntil(StringUtils.computeContentEqualTo(this, cs), this);
 	}
 	
 	/**
@@ -986,7 +986,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#contentEquals(CharSequence)
 	 */
 	default public String waitUntilContentEqualToAndGet(CharSequence cs, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		return StringUtils.waitUntilContentEqualTo(this, cs, timeout, unit);
+		return StringUtils.waitUntil(StringUtils.computeContentEqualTo(this, cs), this, timeout, unit);
 	}
 	
 	/**
@@ -1005,7 +1005,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#contentEquals(CharSequence)
 	 */
 	default public String waitUntilContentEqualToAndGet(CharSequence cs, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		return StringUtils.waitUntilContentEqualTo(this, cs, p);
+		return StringUtils.waitUntil(StringUtils.computeContentEqualTo(this, cs), this, p);
 	}
 	
 	/**
@@ -1022,7 +1022,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#contentEquals(StringBuffer)
 	 */
 	default public String waitUntilContentEqualToAndGet(StringBuffer sb) throws InterruptedException {
-		return StringUtils.waitUntilContentEqualTo(this, sb);
+		return StringUtils.waitUntil(StringUtils.computeContentEqualTo(this, sb), this);
 	}
 	
 	/**
@@ -1042,7 +1042,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#contentEquals(StringBuffer)
 	 */
 	default public String waitUntilContentEqualToAndGet(StringBuffer sb, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		return StringUtils.waitUntilContentEqualTo(this, sb, timeout, unit);
+		return StringUtils.waitUntil(StringUtils.computeContentEqualTo(this, sb), this, timeout, unit);
 	}
 	
 	/**
@@ -1061,7 +1061,7 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#contentEquals(StringBuffer)
 	 */
 	default public String waitUntilContentEqualToAndGet(StringBuffer sb, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		return StringUtils.waitUntilContentEqualTo(this, sb, p);
+		return StringUtils.waitUntil(StringUtils.computeContentEqualTo(this, sb), this, p);
 	}
 	
 	/**
@@ -1077,7 +1077,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#equals(Object)
 	 */
 	default public void waitUntilEqualTo(CharSequence cs) throws InterruptedException {
-		StringUtils.waitUntilEqualTo(this, StringUtils.unmodifiableString(cs));
+		final StringObservable o = StringUtils.unmodifiableString(cs);
+		StringUtils.waitUntil(StringUtils.computeIsEqualTo(this, o), this, o);
 	}
 	
 	/**
@@ -1096,7 +1097,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#equals(Object)
 	 */
 	default public void waitUntilEqualTo(CharSequence cs, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilEqualTo(this, StringUtils.unmodifiableString(cs), timeout, unit);
+		final StringObservable o = StringUtils.unmodifiableString(cs);
+		StringUtils.waitUntil(StringUtils.computeIsEqualTo(this, o), this, o, timeout, unit);
 	}
 	
 	/**
@@ -1114,7 +1116,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#equals(Object)
 	 */
 	default public void waitUntilEqualTo(CharSequence cs, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilEqualTo(this, StringUtils.unmodifiableString(cs), p);
+		final StringObservable o = StringUtils.unmodifiableString(cs);
+		StringUtils.waitUntil(StringUtils.computeIsEqualTo(this, o), this, o, p);
 	}
 	
 	/**
@@ -1130,7 +1133,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#equals(Object)
 	 */
 	default public void waitUntilEqualTo(StringObservable observer) throws InterruptedException {
-		StringUtils.waitUntilEqualTo(this, (observer == null ? StringUtils.getUnmodifiableEmptyString() : observer));
+		final StringObservable o = observer == null ? StringUtils.getUnmodifiableEmptyString() : observer;
+		StringUtils.waitUntil(StringUtils.computeIsEqualTo(this, o), this, o);
 	}
 	
 	/**
@@ -1149,7 +1153,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#equals(Object)
 	 */
 	default public void waitUntilEqualTo(StringObservable observer, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilEqualTo(this, (observer == null ? StringUtils.getUnmodifiableEmptyString() : observer), timeout, unit);
+		final StringObservable o = observer == null ? StringUtils.getUnmodifiableEmptyString() : observer;
+		StringUtils.waitUntil(StringUtils.computeIsEqualTo(this, o), this, o, timeout, unit);
 	}
 	
 	/**
@@ -1167,7 +1172,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#equals(Object)
 	 */
 	default public void waitUntilEqualTo(StringObservable observer, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilEqualTo(this, (observer == null ? StringUtils.getUnmodifiableEmptyString() : observer), p);
+		final StringObservable o = observer == null ? StringUtils.getUnmodifiableEmptyString() : observer;
+		StringUtils.waitUntil(StringUtils.computeIsEqualTo(this, o), this, o, p);
 	}
 	
 	/**
@@ -1183,7 +1189,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#equals(Object)
 	 */
 	default public void waitUntilNotEqualTo(CharSequence cs) throws InterruptedException {
-		StringUtils.waitUntilNotEqualTo(this, StringUtils.unmodifiableString(cs));
+		final StringObservable o = StringUtils.unmodifiableString(cs);
+		StringUtils.waitUntil(StringUtils.computeIsNotEqualTo(this, o), this, o);
 	}
 	
 	/**
@@ -1202,7 +1209,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#equals(Object)
 	 */
 	default public void waitUntilNotEqualTo(CharSequence cs, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilNotEqualTo(this, StringUtils.unmodifiableString(cs), timeout, unit);
+		final StringObservable o = StringUtils.unmodifiableString(cs);
+		StringUtils.waitUntil(StringUtils.computeIsNotEqualTo(this, o), this, o, timeout, unit);
 	}
 	
 	/**
@@ -1220,7 +1228,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#equals(Object)
 	 */
 	default public void waitUntilNotEqualTo(CharSequence cs, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilNotEqualTo(this, StringUtils.unmodifiableString(cs), p);
+		final StringObservable o = StringUtils.unmodifiableString(cs);
+		StringUtils.waitUntil(StringUtils.computeIsNotEqualTo(this, o), this, o, p);
 	}
 	
 	/**
@@ -1236,7 +1245,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#equals(Object)
 	 */
 	default public void waitUntilNotEqualTo(StringObservable observer) throws InterruptedException {
-		StringUtils.waitUntilNotEqualTo(this, (observer == null ? StringUtils.getUnmodifiableEmptyString() : observer));
+		final StringObservable o = observer == null ? StringUtils.getUnmodifiableEmptyString() : observer;
+		StringUtils.waitUntil(StringUtils.computeIsNotEqualTo(this, o), this, o);
 	}
 	
 	/**
@@ -1255,7 +1265,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#equals(Object)
 	 */
 	default public void waitUntilNotEqualTo(StringObservable observer, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilNotEqualTo(this, (observer == null ? StringUtils.getUnmodifiableEmptyString() : observer), timeout, unit);
+		final StringObservable o = observer == null ? StringUtils.getUnmodifiableEmptyString() : observer;
+		StringUtils.waitUntil(StringUtils.computeIsNotEqualTo(this, o), this, o, timeout, unit);
 	}
 	
 	/**
@@ -1273,7 +1284,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#equals(Object)
 	 */
 	default public void waitUntilNotEqualTo(StringObservable observer, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilNotEqualTo(this, (observer == null ? StringUtils.getUnmodifiableEmptyString() : observer), p);
+		final StringObservable o = observer == null ? StringUtils.getUnmodifiableEmptyString() : observer;
+		StringUtils.waitUntil(StringUtils.computeIsNotEqualTo(this, o), this, o, p);
 	}
 	
 	/**
@@ -1289,7 +1301,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#compareTo(String)
 	 */
 	default public void waitUntilLessThan(CharSequence cs) throws InterruptedException {
-		StringUtils.waitUntilLessThan(this, StringUtils.unmodifiableString(cs));
+		final StringObservable o = StringUtils.unmodifiableString(cs);
+		StringUtils.waitUntil(StringUtils.computeIsLessThan(this, o), this, o);
 	}
 	
 	/**
@@ -1308,7 +1321,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#compareTo(String)
 	 */
 	default public void waitUntilLessThan(CharSequence cs, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilLessThan(this, StringUtils.unmodifiableString(cs), timeout, unit);
+		final StringObservable o = StringUtils.unmodifiableString(cs);
+		StringUtils.waitUntil(StringUtils.computeIsLessThan(this, o), this, o, timeout, unit);
 	}
 	
 	/**
@@ -1326,7 +1340,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#compareTo(String)
 	 */
 	default public void waitUntilLessThan(CharSequence cs, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilLessThan(this, StringUtils.unmodifiableString(cs), p);
+		final StringObservable o = StringUtils.unmodifiableString(cs);
+		StringUtils.waitUntil(StringUtils.computeIsLessThan(this, o), this, o, p);
 	}
 	
 	/**
@@ -1342,7 +1357,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#compareTo(String)
 	 */
 	default public void waitUntilLessThan(StringObservable observer) throws InterruptedException {
-		StringUtils.waitUntilLessThan(this, (observer == null ? StringUtils.getUnmodifiableEmptyString() : observer));
+		final StringObservable o = observer == null ? StringUtils.getUnmodifiableEmptyString() : observer;
+		StringUtils.waitUntil(StringUtils.computeIsLessThan(this, o), this, o);
 	}
 	
 	/**
@@ -1361,7 +1377,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#compareTo(String)
 	 */
 	default public void waitUntilLessThan(StringObservable observer, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilLessThan(this, (observer == null ? StringUtils.getUnmodifiableEmptyString() : observer), timeout, unit);
+		final StringObservable o = observer == null ? StringUtils.getUnmodifiableEmptyString() : observer;
+		StringUtils.waitUntil(StringUtils.computeIsLessThan(this, o), this, o, timeout, unit);
 	}
 	
 	/**
@@ -1379,7 +1396,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#compareTo(String)
 	 */
 	default public void waitUntilLessThan(StringObservable observer, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilLessThan(this, (observer == null ? StringUtils.getUnmodifiableEmptyString() : observer), p);
+		final StringObservable o = observer == null ? StringUtils.getUnmodifiableEmptyString() : observer;
+		StringUtils.waitUntil(StringUtils.computeIsLessThan(this, o), this, o, p);
 	}
 	
 	/**
@@ -1395,7 +1413,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#compareTo(String)
 	 */
 	default public void waitUntilLessThanOrEqualTo(CharSequence cs) throws InterruptedException {
-		StringUtils.waitUntilLessThanOrEqualTo(this, StringUtils.unmodifiableString(cs));
+		final StringObservable o = StringUtils.unmodifiableString(cs);
+		StringUtils.waitUntil(StringUtils.computeIsLessThanOrEqualTo(this, o), this, o);
 	}
 	
 	/**
@@ -1414,7 +1433,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#compareTo(String)
 	 */
 	default public void waitUntilLessThanOrEqualTo(CharSequence cs, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilLessThanOrEqualTo(this, StringUtils.unmodifiableString(cs), timeout, unit);
+		final StringObservable o = StringUtils.unmodifiableString(cs);
+		StringUtils.waitUntil(StringUtils.computeIsLessThanOrEqualTo(this, o), this, o, timeout, unit);
 	}
 	
 	/**
@@ -1432,7 +1452,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#compareTo(String)
 	 */
 	default public void waitUntilLessThanOrEqualTo(CharSequence cs, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilLessThanOrEqualTo(this, StringUtils.unmodifiableString(cs), p);
+		final StringObservable o = StringUtils.unmodifiableString(cs);
+		StringUtils.waitUntil(StringUtils.computeIsLessThanOrEqualTo(this, o), this, o, p);
 	}
 	
 	/**
@@ -1448,7 +1469,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#compareTo(String)
 	 */
 	default public void waitUntilLessThanOrEqualTo(StringObservable observer) throws InterruptedException {
-		StringUtils.waitUntilLessThanOrEqualTo(this, (observer == null ? StringUtils.getUnmodifiableEmptyString() : observer));
+		final StringObservable o = observer == null ? StringUtils.getUnmodifiableEmptyString() : observer;
+		StringUtils.waitUntil(StringUtils.computeIsLessThanOrEqualTo(this, o), this, o);
 	}
 	
 	/**
@@ -1467,7 +1489,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#compareTo(String)
 	 */
 	default public void waitUntilLessThanOrEqualTo(StringObservable observer, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilLessThanOrEqualTo(this, (observer == null ? StringUtils.getUnmodifiableEmptyString() : observer), timeout, unit);
+		final StringObservable o = observer == null ? StringUtils.getUnmodifiableEmptyString() : observer;
+		StringUtils.waitUntil(StringUtils.computeIsLessThanOrEqualTo(this, o), this, o, timeout, unit);
 	}
 	
 	/**
@@ -1485,7 +1508,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#compareTo(String)
 	 */
 	default public void waitUntilLessThanOrEqualTo(StringObservable observer, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilLessThanOrEqualTo(this, (observer == null ? StringUtils.getUnmodifiableEmptyString() : observer), p);
+		final StringObservable o = observer == null ? StringUtils.getUnmodifiableEmptyString() : observer;
+		StringUtils.waitUntil(StringUtils.computeIsLessThanOrEqualTo(this, o), this, o, p);
 	}
 	
 	/**
@@ -1501,7 +1525,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#compareTo(String)
 	 */
 	default public void waitUntilGreaterThan(CharSequence cs) throws InterruptedException {
-		StringUtils.waitUntilGreaterThan(this, StringUtils.unmodifiableString(cs));
+		final StringObservable o = StringUtils.unmodifiableString(cs);
+		StringUtils.waitUntil(StringUtils.computeIsGreaterThan(this, o), this, o);
 	}
 	
 	/**
@@ -1520,7 +1545,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#compareTo(String)
 	 */
 	default public void waitUntilGreaterThan(CharSequence cs, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilGreaterThan(this, StringUtils.unmodifiableString(cs), timeout, unit);
+		final StringObservable o = StringUtils.unmodifiableString(cs);
+		StringUtils.waitUntil(StringUtils.computeIsGreaterThan(this, o), this, o, timeout, unit);
 	}
 	
 	/**
@@ -1538,7 +1564,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#compareTo(String)
 	 */
 	default public void waitUntilGreaterThan(CharSequence cs, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilGreaterThan(this, StringUtils.unmodifiableString(cs), p);
+		final StringObservable o = StringUtils.unmodifiableString(cs);
+		StringUtils.waitUntil(StringUtils.computeIsGreaterThan(this, o), this, o, p);
 	}
 	
 	/**
@@ -1554,7 +1581,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#compareTo(String)
 	 */
 	default public void waitUntilGreaterThan(StringObservable observer) throws InterruptedException {
-		StringUtils.waitUntilGreaterThan(this, (observer == null ? StringUtils.getUnmodifiableEmptyString() : observer));
+		final StringObservable o = observer == null ? StringUtils.getUnmodifiableEmptyString() : observer;
+		StringUtils.waitUntil(StringUtils.computeIsGreaterThan(this, o), this, o);
 	}
 	
 	/**
@@ -1573,7 +1601,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#compareTo(String)
 	 */
 	default public void waitUntilGreaterThan(StringObservable observer, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilGreaterThan(this, (observer == null ? StringUtils.getUnmodifiableEmptyString() : observer), timeout, unit);
+		final StringObservable o = observer == null ? StringUtils.getUnmodifiableEmptyString() : observer;
+		StringUtils.waitUntil(StringUtils.computeIsGreaterThan(this, o), this, o, timeout, unit);
 	}
 	
 	/**
@@ -1591,7 +1620,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#compareTo(String)
 	 */
 	default public void waitUntilGreaterThan(StringObservable observer, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilGreaterThan(this, (observer == null ? StringUtils.getUnmodifiableEmptyString() : observer), p);
+		final StringObservable o = observer == null ? StringUtils.getUnmodifiableEmptyString() : observer;
+		StringUtils.waitUntil(StringUtils.computeIsGreaterThan(this, o), this, o, p);
 	}
 	
 	/**
@@ -1607,7 +1637,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#compareTo(String)
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(CharSequence cs) throws InterruptedException {
-		StringUtils.waitUntilGreaterThanOrEqualTo(this, StringUtils.unmodifiableString(cs));
+		final StringObservable o = StringUtils.unmodifiableString(cs);
+		StringUtils.waitUntil(StringUtils.computeIsGreaterThanOrEqualTo(this, o), this, o);
 	}
 	
 	/**
@@ -1626,7 +1657,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#compareTo(String)
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(CharSequence cs, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilGreaterThanOrEqualTo(this, StringUtils.unmodifiableString(cs), timeout, unit);
+		final StringObservable o = StringUtils.unmodifiableString(cs);
+		StringUtils.waitUntil(StringUtils.computeIsGreaterThanOrEqualTo(this, o), this, o, timeout, unit);
 	}
 	
 	/**
@@ -1644,7 +1676,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#compareTo(String)
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(CharSequence cs, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilGreaterThanOrEqualTo(this, StringUtils.unmodifiableString(cs), p);
+		final StringObservable o = StringUtils.unmodifiableString(cs);
+		StringUtils.waitUntil(StringUtils.computeIsGreaterThanOrEqualTo(this, o), this, o, p);
 	}
 	
 	/**
@@ -1660,7 +1693,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#compareTo(String)
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(StringObservable observer) throws InterruptedException {
-		StringUtils.waitUntilGreaterThanOrEqualTo(this, (observer == null ? StringUtils.getUnmodifiableEmptyString() : observer));
+		final StringObservable o = observer == null ? StringUtils.getUnmodifiableEmptyString() : observer;
+		StringUtils.waitUntil(StringUtils.computeIsGreaterThanOrEqualTo(this, o), this, o);
 	}
 	
 	/**
@@ -1679,7 +1713,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#compareTo(String)
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(StringObservable observer, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilGreaterThanOrEqualTo(this, (observer == null ? StringUtils.getUnmodifiableEmptyString() : observer), timeout, unit);
+		final StringObservable o = observer == null ? StringUtils.getUnmodifiableEmptyString() : observer;
+		StringUtils.waitUntil(StringUtils.computeIsGreaterThanOrEqualTo(this, o), this, o, timeout, unit);
 	}
 	
 	/**
@@ -1697,7 +1732,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#compareTo(String)
 	 */
 	default public void waitUntilGreaterThanOrEqualTo(StringObservable observer, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilGreaterThanOrEqualTo(this, (observer == null ? StringUtils.getUnmodifiableEmptyString() : observer), p);
+		final StringObservable o = observer == null ? StringUtils.getUnmodifiableEmptyString() : observer;
+		StringUtils.waitUntil(StringUtils.computeIsGreaterThanOrEqualTo(this, o), this, o, p);
 	}
 	
 	/**
@@ -1713,7 +1749,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#equalsIgnoreCase(String)
 	 */
 	default public void waitUntilEqualToIgnoreCase(CharSequence cs) throws InterruptedException {
-		StringUtils.waitUntilEqualToIgnoreCase(this, StringUtils.unmodifiableString(cs));
+		final StringObservable o = StringUtils.unmodifiableString(cs);
+		StringUtils.waitUntil(StringUtils.computeIsEqualToIgnoreCase(this, o), this, o);
 	}
 	
 	/**
@@ -1732,7 +1769,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#equalsIgnoreCase(String)
 	 */
 	default public void waitUntilEqualToIgnoreCase(CharSequence cs, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilEqualToIgnoreCase(this, StringUtils.unmodifiableString(cs), timeout, unit);
+		final StringObservable o = StringUtils.unmodifiableString(cs);
+		StringUtils.waitUntil(StringUtils.computeIsEqualToIgnoreCase(this, o), this, o, timeout, unit);
 	}
 	
 	/**
@@ -1750,7 +1788,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#equalsIgnoreCase(String)
 	 */
 	default public void waitUntilEqualToIgnoreCase(CharSequence cs, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilEqualToIgnoreCase(this, StringUtils.unmodifiableString(cs), p);
+		final StringObservable o = StringUtils.unmodifiableString(cs);
+		StringUtils.waitUntil(StringUtils.computeIsEqualToIgnoreCase(this, o), this, o, p);
 	}
 	
 	/**
@@ -1766,7 +1805,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#equalsIgnoreCase(String)
 	 */
 	default public void waitUntilEqualToIgnoreCase(StringObservable observer) throws InterruptedException {
-		StringUtils.waitUntilEqualToIgnoreCase(this, (observer == null ? StringUtils.getUnmodifiableEmptyString() : observer));
+		final StringObservable o = observer == null ? StringUtils.getUnmodifiableEmptyString() : observer;
+		StringUtils.waitUntil(StringUtils.computeIsEqualToIgnoreCase(this, o), this, o);
 	}
 	
 	/**
@@ -1785,7 +1825,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#equalsIgnoreCase(String)
 	 */
 	default public void waitUntilEqualToIgnoreCase(StringObservable observer, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilEqualToIgnoreCase(this, (observer == null ? StringUtils.getUnmodifiableEmptyString() : observer), timeout, unit);
+		final StringObservable o = observer == null ? StringUtils.getUnmodifiableEmptyString() : observer;
+		StringUtils.waitUntil(StringUtils.computeIsEqualToIgnoreCase(this, o), this, o, timeout, unit);
 	}
 	
 	/**
@@ -1803,7 +1844,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#equalsIgnoreCase(String)
 	 */
 	default public void waitUntilEqualToIgnoreCase(StringObservable observer, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilEqualToIgnoreCase(this, (observer == null ? StringUtils.getUnmodifiableEmptyString() : observer), p);
+		final StringObservable o = observer == null ? StringUtils.getUnmodifiableEmptyString() : observer;
+		StringUtils.waitUntil(StringUtils.computeIsEqualToIgnoreCase(this, o), this, o, p);
 	}
 	
 	/**
@@ -1819,7 +1861,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#equalsIgnoreCase(String)
 	 */
 	default public void waitUntilNotEqualToIgnoreCase(CharSequence cs) throws InterruptedException {
-		StringUtils.waitUntilNotEqualToIgnoreCase(this, StringUtils.unmodifiableString(cs));
+		final StringObservable o = StringUtils.unmodifiableString(cs);
+		StringUtils.waitUntil(StringUtils.computeIsNotEqualToIgnoreCase(this, o), this, o);
 	}
 	
 	/**
@@ -1838,7 +1881,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#equalsIgnoreCase(String)
 	 */
 	default public void waitUntilNotEqualToIgnoreCase(CharSequence cs, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilNotEqualToIgnoreCase(this, StringUtils.unmodifiableString(cs), timeout, unit);
+		final StringObservable o = StringUtils.unmodifiableString(cs);
+		StringUtils.waitUntil(StringUtils.computeIsNotEqualToIgnoreCase(this, o), this, o, timeout, unit);
 	}
 	
 	/**
@@ -1856,7 +1900,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#equalsIgnoreCase(String)
 	 */
 	default public void waitUntilNotEqualToIgnoreCase(CharSequence cs, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilNotEqualToIgnoreCase(this, StringUtils.unmodifiableString(cs), p);
+		final StringObservable o = StringUtils.unmodifiableString(cs);
+		StringUtils.waitUntil(StringUtils.computeIsNotEqualToIgnoreCase(this, o), this, o, p);
 	}
 	
 	/**
@@ -1872,7 +1917,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#equalsIgnoreCase(String)
 	 */
 	default public void waitUntilNotEqualToIgnoreCase(StringObservable observer) throws InterruptedException {
-		StringUtils.waitUntilNotEqualToIgnoreCase(this, (observer == null ? StringUtils.getUnmodifiableEmptyString() : observer));
+		final StringObservable o = observer == null ? StringUtils.getUnmodifiableEmptyString() : observer;
+		StringUtils.waitUntil(StringUtils.computeIsNotEqualToIgnoreCase(this, o), this, o);
 	}
 	
 	/**
@@ -1891,7 +1937,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#equalsIgnoreCase(String)
 	 */
 	default public void waitUntilNotEqualToIgnoreCase(StringObservable observer, long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilNotEqualToIgnoreCase(this, (observer == null ? StringUtils.getUnmodifiableEmptyString() : observer), timeout, unit);
+		final StringObservable o = observer == null ? StringUtils.getUnmodifiableEmptyString() : observer;
+		StringUtils.waitUntil(StringUtils.computeIsNotEqualToIgnoreCase(this, o), this, o, timeout, unit);
 	}
 	
 	/**
@@ -1909,7 +1956,8 @@ public interface StringObservable extends Observable<String> {
 	 * @see String#equalsIgnoreCase(String)
 	 */
 	default public void waitUntilNotEqualToIgnoreCase(StringObservable observer, TimeoutGettable p) throws InterruptedException, TimeoutException {
-		StringUtils.waitUntilNotEqualToIgnoreCase(this, (observer == null ? StringUtils.getUnmodifiableEmptyString() : observer), p);
+		final StringObservable o = observer == null ? StringUtils.getUnmodifiableEmptyString() : observer;
+		StringUtils.waitUntil(StringUtils.computeIsNotEqualToIgnoreCase(this, o), this, o, p);
 	}
 	
 }

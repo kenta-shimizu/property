@@ -27,4 +27,14 @@ public interface Observable<T> {
 	 */
 	public boolean removeChangeListener(ChangeListener<? super T> l);
 	
+	/**
+	 * Returns StringCompution instance of #toString.
+	 * 
+	 * @return StringCompution instance of #toString
+	 * @see Object#toString()
+	 */
+	default public StringObservable computeToString() {
+		return StringUtils.computeToString(this);
+	}
+	
 }

@@ -37,6 +37,10 @@ public class PropertyTest {
 				System.out.println("Map Keys: " + s.toString());
 			});
 			
+			mapProp.computeToString().addChangeListener(v -> {
+				System.out.println("Map StringCompution: " + v);
+			});
+			
 			new Thread(() -> {
 				try {
 					Thread.sleep(1500L);

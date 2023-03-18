@@ -3,6 +3,7 @@ package com.shimizukenta.property;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.function.BiPredicate;
@@ -62,6 +63,31 @@ public class StringUtils {
 		private InnerMonoString(
 				Function<String, String> compute,
 				StringObservable observer) {
+			
+			super();
+			
+			observer.addChangeListener(v -> {
+				synchronized ( this._sync ) {
+					this._syncSetAndNotifyChanged(compute.apply(v));
+				}
+			});
+		}
+	}
+	
+	/**
+	 * InnerObservableString.
+	 * 
+	 * @author kenta-shimizu
+	 *
+	 * @param <T> Type
+	 */
+	private static class InnerObservableString<T> extends AbstractStringCompution {
+		
+		private static final long serialVersionUID = 561369376296913258L;
+		
+		private InnerObservableString(
+				Function<T, String> compute,
+				Observable<T> observer) {
 			
 			super();
 			
@@ -216,6 +242,9 @@ public class StringUtils {
 		return new InnerStringJoining(delimiter, observers);
 	}
 	
+	private static <T> InnerObservableString<T> buildToString(Observable<T> observer) {
+		return new InnerObservableString<T>(v -> Objects.toString(v), observer);
+	}
 	
 	/**
 	 * Waiting until condition is true, and return last value.
@@ -917,4 +946,15 @@ public class StringUtils {
 		return buildStringJoining(delimiter, observers);
 	}
 	
+	/**
+	 * REturns StringCompution instance of #toString.
+	 * 
+	 * @param <T> Type
+	 * @param observer the observer
+	 * @return StringCompution instance of #toString
+	 * @see Object#toString()
+	 */
+	public static <T> AbstractStringCompution computeToString(Observable<T> observer) {
+		return buildToString(observer);
+	}
 }

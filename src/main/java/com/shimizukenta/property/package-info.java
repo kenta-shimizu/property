@@ -28,6 +28,14 @@
  * </ul>
  * </li>
  * </ul>
+ * <ul>
+ * <li>To build new instance, #newInstance</li>
+ * <li>To set value, #set</li>
+ * <li>To get value, #get</li>
+ * <li>To detect value changed, #addChangeListener</li>
+ * <li>To compute value, #compute... methods</li>
+ * <li>To block until condition is true, #waitUntil... methods</li>
+ * </ul>
  * 
  * @author kenta-shimizu
  *

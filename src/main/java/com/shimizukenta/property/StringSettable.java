@@ -19,4 +19,13 @@ public interface StringSettable extends Settable<String> {
 	 * @param value the CharSequence
 	 */
 	public void set(CharSequence value);
+	
+	/**
+	 * Empty String setter.
+	 * 
+	 */
+	default public void set() {
+		this.set("");
+	}
+	
 }

@@ -3,6 +3,9 @@ package com.shimizukenta.property;
 /**
  * String value Property, includes Getter, Setter, Observer.
  * 
+ * <p>
+ * This interface deny null inputs. If input null, replace to empty string.<br />
+ * </p>
  * <ul>
  * <li>To build instance, {@link #newInstance()}</li>
  * <li>To set value, {@link #set(CharSequence)}</li>

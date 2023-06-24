@@ -1,5 +1,7 @@
 package com.shimizukenta.property;
 
+import com.shimizukenta.property.impl.AbstractBooleanProperty;
+
 /**
  * Boolean value Property, includes Getter, Setter, Observer.
  * 

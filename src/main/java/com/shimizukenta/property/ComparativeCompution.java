@@ -1,5 +1,9 @@
 package com.shimizukenta.property;
 
+import com.shimizukenta.property.impl.NumberUtils;
+import com.shimizukenta.property.impl.ObjectUtils;
+import com.shimizukenta.property.impl.StringUtils;
+
 /**
  * Comparative Boolean Compution, includes Getter, Observer.
  * 

@@ -4,6 +4,8 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import com.shimizukenta.property.impl.StringUtils;
+
 /**
  * String value Observer.
  * 

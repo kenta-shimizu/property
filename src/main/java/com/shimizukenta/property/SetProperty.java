@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.shimizukenta.property.impl.AbstractSetProperty;
+
 /**
  * Set value Property, include Set-methods, Setter, Observer.
  * 

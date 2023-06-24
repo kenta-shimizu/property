@@ -4,6 +4,8 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import com.shimizukenta.property.impl.MapUtils;
+
 /**
  * Map value Observer.
  * 

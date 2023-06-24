@@ -1,5 +1,7 @@
 package com.shimizukenta.property;
 
+import com.shimizukenta.property.impl.AbstractLongProperty;
+
 /**
  * Long value Property, includes Getter, Setter, Observer.
  * 

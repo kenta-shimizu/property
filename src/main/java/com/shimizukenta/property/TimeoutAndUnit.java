@@ -2,6 +2,8 @@ package com.shimizukenta.property;
 
 import java.util.concurrent.TimeUnit;
 
+import com.shimizukenta.property.impl.AbstractTimeoutAndUnit;
+
 /**
  * This interface instance is a pair of timeout and TimeUnit.
  * 

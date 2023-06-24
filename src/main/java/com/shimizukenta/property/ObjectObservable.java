@@ -3,6 +3,8 @@ package com.shimizukenta.property;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import com.shimizukenta.property.impl.ObjectUtils;
+
 /**
  * Object value Observer.
  * 

@@ -3,6 +3,8 @@
  */
 package com.shimizukenta.property;
 
+import com.shimizukenta.property.impl.AbstractFloatProperty;
+
 /**
  * Float value Property, includes Getter, Setter, Observer.
  * 

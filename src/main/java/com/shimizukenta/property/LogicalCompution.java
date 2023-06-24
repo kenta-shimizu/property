@@ -3,6 +3,8 @@ package com.shimizukenta.property;
 import java.util.Arrays;
 import java.util.Collection;
 
+import com.shimizukenta.property.impl.BooleanUtils;
+
 /**
  * Logical Boolean compution, includes Getter, Observer.
  * 

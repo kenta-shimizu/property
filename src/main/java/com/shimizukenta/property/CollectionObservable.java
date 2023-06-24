@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import com.shimizukenta.property.impl.CollectionUtils;
+
 /**
  * Collection value Observer.
  * 

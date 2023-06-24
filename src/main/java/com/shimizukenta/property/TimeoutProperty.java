@@ -3,6 +3,8 @@ package com.shimizukenta.property;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
+import com.shimizukenta.property.impl.AbstractTimeoutProperty;
+
 /**
  * TimeoutAndUnit value Property, includes Getter, Setter, Observer.
  * 

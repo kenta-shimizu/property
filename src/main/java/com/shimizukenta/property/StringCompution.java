@@ -3,6 +3,8 @@ package com.shimizukenta.property;
 import java.util.Arrays;
 import java.util.StringJoiner;
 
+import com.shimizukenta.property.impl.StringUtils;
+
 /**
  * String value compution, includes Getter, Observer.
  * 

@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import com.shimizukenta.property.impl.AbstractListProperty;
+
 /**
  * List value Property, include List-methods, Setter, Observer.
  * 

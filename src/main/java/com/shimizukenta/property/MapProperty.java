@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.shimizukenta.property.impl.AbstractMapProperty;
+
 /**
  * Map value Property, includes Getter, Setter, Observer.
  * 
